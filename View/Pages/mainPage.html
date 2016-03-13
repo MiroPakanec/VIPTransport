@@ -3,8 +3,10 @@
   <head>
     <link rel="stylesheet" type="text/css" href="../Css/mainStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/mainPreviewStyles.css">
-
-
+    <script src="../JQuery/jquery.js"></script>
+    <script src="../JQuery/jquery-easing.js"></script>
+    <script src="../JQuery/mainJQ.js"></script>
+    
     <meta charset="UTF-8">
     <title>VIP Transport | Main page</title>
   </head>
@@ -13,12 +15,13 @@
       <div class="mainMenuContainer">
         <div class="mainMenuSelection">
           <ul class="mainMenu">
-            <li class="mainMenuElement">Order Now</li>
-            <li class="mainMenuElement">Register</li>
-            <li class="mainMenuElement">Login</li>
-            <li class="mainMenuElement">About us</li>
-            <li class="mainMenuElement">Transporters</li>
-            <li class="mainMenuElement">Cars</li>
+            <a href="#mainOrder"><li class="mainMenuElement">Order Now</li></a>
+            <a href="#mainRegister"><li class="mainMenuElement">Register</li></a>
+            <a href="#mainLogin"><li class="mainMenuElement">Login</li></a>
+            <a href="#mainAboutUs"><li class="mainMenuElement">About us</li></a>
+            <a href="#mainTransporters"><li class="mainMenuElement">Transporters</li></a>
+            <a href="#mainCars"><li class="mainMenuElement">Cars</li></a>
+            <a href="#mainContact"><li class="mainMenuElement">Contact</li></a>
           </ul>
         </div>
         <div class="mainMenuLeft"></div>
@@ -30,29 +33,78 @@
       </div>
       <div class="mainPreviewContainer">
         <div class="mainPreview">
-
-            <div class="mainTitle mainTextStyle">Register</div>
+            <div class="mainPicture main1"></div>
+            <div class="mainPicture main2"></div>
+            <div class="mainPicture main3"></div>
+            <div class="mainPicture main4"></div>
+            <div id="mainOrder" class="mainTitle mainTextStyle">Create Order</div>
+              <div class="mainParagraph">
+                <div class="mainRow">
+                  <div class="mainText">Username: </div><input type="text" id="orderUsername" class="mainTextInput" maxlength="30">
+                </div>
+                <div class="mainRow">
+                  <div class="mainText">Company name: </div><input type="text" id="orderCompanyName" class="mainTextInput" maxlength="30">
+                </div>
+                <div class="mainRow">
+                  <div class="mainText">Departure date:</div>
+                  <input type="text" id="orderDateDay" class="mainTextInput smallTextInput" value="DD" maxlength="2">
+                  <div class = "midText">/</div>
+                  <input type="text" id="orderDateMonth" class="mainTextInput smallTextInput" value="MM" maxlength="2">
+                  <div class = "midText">/</div>
+                  <input type="text" id="orderYear" class="mainTextInput mediumTextInput" value="YYYY" maxlength="4">
+                </div>
+                <div class="mainRow">
+                  <div class="mainText">Departure time:</div>
+                  <input type="text" id="orderDateDay" class="mainTextInput largerMediumTextInput" value="Hour" maxlength="2">
+                  <div class = "midText">:</div>
+                  <input type="text" id="orderDateMonth" class="mainTextInput largerMediumTextInput" value="Minute" maxlength="2">
+                  <input type="button" name="amButton" value="AM" class="button smallButton orderButton" id="timeButtonAM">
+                  <input type="button" name="pmButton" value="PM" class="button smallButton orderButton" id="timeButtonPM">
+                </div>
+                <div class="mainRow">
+                  <div class="mainText">From: </div><input type="text" id="orderCompanyName" class="mainTextInput" maxlength="30">
+                </div>
+                <div class="mainRow">
+                  <div class="mainText">To: </div><input type="text" id="orderCompanyName" class="mainTextInput" maxlength="30">
+                </div>
+                <div class="mainRow">
+                  <div class="mainText">Pasangers: </div><input type="text" id="orderCompanyName" class="mainTextInput" maxlength="1">
+                  <input type="button" name="plusButton" value="+" class="button smallButton orderButton" id="plusButton">
+                  <input type="button" name="minusButton" value="-" class="button smallButton orderButton" id="minusButton">
+                </div>
+                <div class="mainRow">
+                  <div class="mainText">Payment type: </div>
+                </div>
+                <div class="mainRow mainButtonRow">
+                  <input type="button" name="submitRegistration" value="Confirm" class="button">
+                  <input type="button" name="clearRegistration" value="Clear" class="button">
+                </div>
+              </div>
+            <div class="mainTitle mainTextStyle" id="mainRegister">Register</div>
             <div class="mainParagraph">
               <div class="mainRow">
-                <div class="mainText">First name:</div><input type="text" id="registrationUsername" class="registrationTextInput">
+                <div class="mainText">First name:</div><input type="text" id="registrationFirstName" class="mainTextInput" maxlength="30">
               </div>
               <div class="mainRow">
-                <div class="mainText">Middle name:</div><input type="text" id="registrationUsername" class="registrationTextInput">
+                <div class="mainText">Middle name:</div><input type="text" id="registrationMiddleName" class="mainTextInput" maxlength="30">
               </div>
               <div class="mainRow">
-                <div class="mainText">Last name:</div><input type="text" id="registrationUsername" class="registrationTextInput">
+                <div class="mainText">Last name:</div><input type="text" id="registrationLastName" class="mainTextInput" maxlength="30">
               </div>
               <div class="mainRow">
-                <div class="mainText">Username:</div><input type="text" id="registrationUsername" class="registrationTextInput">
+                <div class="mainText">Username:</div><input type="text" id="registrationUsername" class="mainTextInput" maxlength="30">
               </div>
               <div class="mainRow">
-                <div class="mainText">Password:</div><input type="text" id="registrationUsername" class="registrationTextInput">
+                <div class="mainText">Password:</div><input type="text" id="registrationPassword" class="mainTextInput" maxlength="30">
               </div>
               <div class="mainRow">
-                <div class="mainText">Confirm password:</div><input type="text" id="registrationUsername" class="registrationTextInput">
+                <div class="mainText">Confirm password:</div><input type="text" id="registrationConfirmPassword" class="mainTextInput" maxlength="30">
               </div>
               <div class="mainRow">
-                <div class="mainText">Email:</div><input type="text" id="registrationUsername" class="registrationTextInput">
+                <div class="mainText">Email:</div><input type="text" id="registrationEmail" class="mainTextInput" maxlength="30">
+              </div>
+              <div class="mainRow">
+                <div class="mainText">Phone number:</div><input type="text" id="registrationEmail" class="mainTextInput" maxlength="30">
               </div>
               <div class="mainRow mainButtonRow">
                 <input type="button" name="submitRegistration" value="Register" class="button">
@@ -60,13 +112,13 @@
               </div>
             </div>
 
-            <div class="mainTitle mainTextStyle">Login</div>
-            <div class="mainParagraph mainTextStyle">
+            <div id="mainLogin" class="mainTitle mainTextStyle">Login</div>
+            <div class="mainParagraph">
               <div class="mainRow">
-                <div class="mainText">Username:</div><input type="text" id="registrationUsername" class="registrationTextInput">
+                <div class="mainText">Username:</div><input type="text" id="registrationUsername" class="mainTextInput" maxlength="30">
               </div>
               <div class="mainRow">
-                <div class="mainText">Password:</div><input type="text" id="registrationUsername" class="registrationTextInput">
+                <div class="mainText">Password:</div><input type="text" id="registrationUsername" class="mainTextInput" maxlength="30">
               </div>
               <div class="mainRow mainButtonRow">
                 <input type="button" name="submitRegistration" value="Register" class="button">
@@ -74,7 +126,7 @@
               </div>
             </div>
 
-            <div class="mainTitle mainTextStyle">About us</div>
+            <div id="mainAboutUs" class="mainTitle mainTextStyle">About us</div>
             <div class="mainParagraph mainTextStyle">
               <p>
                 Spoločnosť VIP transport môžete využiť vždy, keď sa potrebujete prepraviť či už v rámci Slovenska alebo do zahraničia,
@@ -82,7 +134,7 @@
                 od starostí pri zanechaní auta na letisko, pri hľadaní alternatívneho odvozu, ale taktiež redukuje svoje náklady (napríklad na parkovanie).
               </p>
             </div>
-            <div class="mainTitle mainTextStyle">Transporters</div>
+            <div id="mainTransporters" class="mainTitle mainTextStyle">Transporters</div>
             <div class="mainParagraph mainTextStyle">
               <p>
                 Profesionálni vodiči spoločnosti sa dokážu prispôsobiť všetkým požiadavkam klienta. Samozrejmosťou je dres code všetkých
@@ -93,9 +145,8 @@
             </div>
             <div class="mainPicture transporter1"></div>
             <div class="mainPicture transporter2"></div>
-
             <div class="mainSpace"></div>
-            <div class="mainTitle mainTextStyle">Cars</div>
+            <div id="mainCars" class="mainTitle mainTextStyle">Cars</div>
             <div class="mainParagraph mainTextStyle">
               <p>
                 Spoločnosť disponuje 5 a 8-miestymi vozidlami, takže dokáže ponúknuť najvyššie pohodlie aj v prípade prepravy
@@ -113,9 +164,26 @@
             <div class="mainPicture car3"></div>
             <div class="mainPicture car4"></div>
             <div class="mainPicture car5"></div>
+            <div class="mainSpace"></div>
+            <div class="mainSpace"></div>
+            <div id="mainContact" class="mainTitle mainTextStyle">Contact</div>
+            <div class="mainRow">
+              <div class="mainText">Company name:</div><div class="mainText">VIP transport s.r.o.</div>
+              <div class="mainText">Address:</div><div class="mainText">Gemerská 4, 01008, Žilina</div>
+              <div class="mainText">IČO:</div><div class="mainText">46304959</div>
+              <div class="mainText">DIČ:</div><div class="mainText">2023323511</div>
+              <div class="mainText">Mail:</div><div class="mainText">info@viptransport.sk</div>
+              <div class="mainText">Phone:</div><div class="mainText">+421 911 301 111</div>
+              <div class="mainSpace"></div>
+              <div class="mainSpace"></div>
+              <div class="mainSpace"></div>
+              <div class="mainSpace"></div>
+              <div class="mainSpace"></div>
+            </div>
         </div>
       </div>
-
     </div>
+
+
   </body>
 </html>
