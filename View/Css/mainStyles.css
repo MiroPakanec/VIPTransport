@@ -1,0 +1,82 @@
+@font-face {
+    font-family: myFont;
+    src: url("Fonts/PoiretOne-Regular.ttf");
+}
+
+body{
+  margin: 0px;
+}
+
+.container{
+
+  background-image: url("Images/backgroundImage.jpg");
+  background-size:cover;
+  width: 100%;
+  height: 100vh;
+}
+
+.mainMenuContainer{
+  width: 40%;
+  float: left;
+  height: inherit;
+}
+
+.mainPreviewContainer{
+  width: 60%;
+  height: inherit;
+  margin-left: 40%;
+}
+
+.mainMenuLeft{
+
+  width: 49%;
+  height: inherit;
+  border-right: 1px solid white;
+  opacity: 0.3;
+  float: left;
+}
+
+.mainMenuRight{
+
+  width: 50%;
+  height: inherit;
+  float: right;
+}
+
+.pageTitle{
+
+  font-family: myFont;
+  font-size: 40px;
+  font-weight: 200;
+  color: white;
+  text-align: left;
+
+  height: 300px;
+  width: 100%;
+  margin: 50% 0 0 5%;
+}
+
+.mainMenuSelection{
+  position: absolute;
+  height: 43%;
+  margin: 19% 0% 0% 5%;
+  width: 35%;
+}
+
+.mainMenu{
+  text-align: right;
+  list-style-type: none;
+
+  font-family: myFont;
+  font-size: 25px;
+  color: white;
+}
+
+.mainMenuElement{
+  margin-top: 2px;
+  padding: 10px 20px 10px 10px;
+}
+
+.mainMenuElement:hover{
+  background-color: rgba(255,255,255,0.1);
+}

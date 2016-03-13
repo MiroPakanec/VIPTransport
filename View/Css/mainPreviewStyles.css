@@ -1,0 +1,134 @@
+
+.mainPreview{
+
+  width: 80%;
+  height: 67%;
+  float: left;
+  margin: 18% 10% 0% 10%;
+  padding: 0.5%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  background-color: rgba(0,0,0,0.3);
+}
+
+.mainPicture{
+  width: 48%;
+  height: 48%;
+  background-color: blue;
+  margin: 1%;
+  float:inherit;
+}
+
+.car1{
+
+  background-image: url("Images/Cars/car1.jpg");
+  background-size:cover;
+}
+
+.car2{
+
+  background-image: url("Images/Cars/car2.jpg");
+  background-size:cover;
+}
+
+.car3{
+
+  background-image: url("Images/Cars/car3.jpg");
+  background-size:cover;
+}
+
+.car4{
+
+  background-image: url("Images/Cars/car4.jpg");
+  background-size:cover;
+}
+
+.car5{
+
+  background-image: url("Images/Cars/car5.jpg");
+  background-size:cover;
+}
+
+.mainTextStyle{
+  font-family: myFont;
+  color: white;
+  margin-left: 2%;
+  width: 90%;
+}
+
+.mainTitle{
+
+  padding: 3% 0% 0% 5%;
+  font-size: 30px;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  float: left;
+
+}
+
+.mainParagraph{
+
+  float: left;
+  font-size: 16px;
+  padding: 2% 0% 0% 2%;
+  margin-bottom: 5%;
+  width: 90%;
+}
+
+.transporter1{
+
+  background-image: url("Images/Transporters/Transporter1.jpg");
+  background-size:cover;
+}
+
+.transporter2{
+
+  background-image: url("Images/Transporters/Transporter2.jpg");
+  background-size:cover;
+}
+
+.mainSpace{
+  padding: 2%;
+  width: inherit;
+  float:left;
+}
+
+.mainText{
+  font-size: 20px;
+  font-family: myFont;
+  color: white;
+  padding: 2.5% 0% 0% 15%;
+  width: 25%;
+  float: left;
+}
+
+.registrationTextInput{
+  float: left;
+  margin-top: 2%;
+  width: 30%;
+  padding: 1% 3%;
+}
+
+.mainRow{
+  width: 100%;
+  height: 20%;
+  float: left;
+}
+
+.mainButtonRow{
+  margin: 2% 0% 5% 48.8%;
+}
+
+.button{
+  padding: 1% 3%;
+  background-color:rgba(255,255,255,0);
+  color: white;
+  border: 1px solid white;
+
+  font-family: myFont;
+  font-size: 18px;
+}
+
+.button:hover{
+  background-color:rgba(255,255,255,0.2);
+}
