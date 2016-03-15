@@ -3,8 +3,11 @@
   <head>
     <link rel="stylesheet" type="text/css" href="../Css/mainStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/mainPreviewStyles.css">
+    <link rel="stylesheet" type="text/css" href="../Css/widgetsStyles.css">
+
     <script src="../JQuery/jquery.js"></script>
     <script src="../JQuery/jquery-easing.js"></script>
+    <script src="../JQuery/jquery-ui/jquery-ui.js"></script>
     <script src="../JQuery/mainJQ.js"></script>
 
     <meta charset="UTF-8">
@@ -52,13 +55,11 @@
                   <div class="button paymentSelection" id="paymentBill">Bill</div>
                 </div>
                 <div class="mainRow">
-                  <div class="mainText">Departure date:</div>
-                  <input type="text" id="orderDateDay" class="mainTextInput smallTextInput" value="DD" maxlength="2">
-                  <div class = "midText">/</div>
-                  <input type="text" id="orderDateMonth" class="mainTextInput smallTextInput" value="MM" maxlength="2">
-                  <div class = "midText">/</div>
-                  <input type="text" id="orderDateYear" class="mainTextInput mediumTextInput" value="YYYY" maxlength="4">
+                  <div class="mainText">Departure date: </div>
+                  <div class="button orderSelect" id="orderDate">Select date</div>
+                  <input type="button" id="orderDateButton" class="button orderButton smallButton" value=". . .">
                 </div>
+                <div id = "datepickerMain" ></div>
                 <div class="mainRow">
                   <div class="mainText">Departure time:</div>
                   <input type="text" id="orderTimeHour" class="mainTextInput largerMediumTextInput" value="Hour" maxlength="2">
@@ -74,7 +75,8 @@
                   <div class="mainText">To: </div><input type="text" id="orderTo" class="mainTextInput" maxlength="30">
                 </div>
                 <div class="mainRow">
-                  <div class="mainText">Pasangers: </div><input type="text" id="orderPasangers" class="mainTextInput" maxlength="1">
+                  <div class="mainText">Pasangers: </div>
+                  <div class="button orderSelect"  id="orderPasangers">2</div>
                   <input type="button" name="plusButton" value="+" class="button smallButton orderButton" id="plusButton">
                   <input type="button" name="minusButton" value="-" class="button smallButton orderButton" id="minusButton">
                 </div>
@@ -87,31 +89,39 @@
             <div class="mainParagraph">
               <div class="mainRow">
                 <div class="mainText">First name:</div><input type="text" id="registrationFirstName" class="mainTextInput" maxlength="30">
+                <div class="errorMessage" id="errorRegistrationFirstName">Test</div>
               </div>
               <div class="mainRow">
                 <div class="mainText">Middle name:</div><input type="text" id="registrationMiddleName" class="mainTextInput" maxlength="30">
+                <div class="errorMessage" id="errorRegistrationMiddleName">Test</div>
               </div>
               <div class="mainRow">
                 <div class="mainText">Last name:</div><input type="text" id="registrationLastName" class="mainTextInput" maxlength="30">
+                <div class="errorMessage" id="errorRegistrationLastName">Test</div>
               </div>
               <div class="mainRow">
                 <div class="mainText">Username:</div><input type="text" id="registrationUsername" class="mainTextInput" maxlength="30">
+                <div class="errorMessage" id="errorRegistrationUsername">Test</div>
               </div>
               <div class="mainRow">
-                <div class="mainText">Password:</div><input type="text" id="registrationPassword" class="mainTextInput" maxlength="30">
+                <div class="mainText">Password:</div><input type="password" id="registrationPassword" class="mainTextInput" maxlength="30">
+                <div class="errorMessage" id="errorRegistrationPassword">Test</div>
               </div>
               <div class="mainRow">
-                <div class="mainText">Confirm password:</div><input type="text" id="registrationConfirmPassword" class="mainTextInput" maxlength="30">
+                <div class="mainText">Confirm password:</div><input type="password" id="registrationConfirmPassword" class="mainTextInput" maxlength="30">
+                <div class="errorMessage" id="errorRegistrationConfirmPassword">Test</div>
               </div>
               <div class="mainRow">
                 <div class="mainText">Email:</div><input type="text" id="registrationEmail" class="mainTextInput" maxlength="30">
+                <div class="errorMessage" id="errorRegistrationEmail">Test</div>
               </div>
               <div class="mainRow">
-                <div class="mainText">Phone number:</div><input type="text" id="registrationEmail" class="mainTextInput" maxlength="30">
+                <div class="mainText">Phone number:</div><input type="text" id="registrationPhone" class="mainTextInput" maxlength="30">
+                <div class="errorMessage" id="errorRegistrationPhone">Test</div>
               </div>
               <div class="mainRow mainButtonRow">
                 <input type="button" name="submitRegistration" value="Register" class="button">
-                <input type="button" name="clearRegistration" value="Clear" class="button">
+                <input type="button" name="clearRegistration" value="Clear" class="button" id="registrationClearButton">
               </div>
             </div>
 

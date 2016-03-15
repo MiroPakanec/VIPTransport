@@ -59,18 +59,38 @@ $(function() {
     "vozidlá majú dostatočne veľký batožinový priestor, aby sa dokázali naplniť všetky požiadavky klienta aj v prípade"+
     "prepravy väčšieho množstva batožiny."),
 
-  $('#orderPasangers').val(2);
+  $('#datepickerMain').hide();
+  $('.errorMessage').hide();
+
 });
 
 //order
 $(function(){
 
     var timeButton = 'AM';
+    var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    //remove text on click / add default text back if empty
-    $("input[id*='orderDate'], input[id*='orderTime']").focus(function(){
+    $('#orderDateButton').on('click', function(){
+      $('#datepickerMain').slideToggle(500);
+    }),
+
+    $("#datepickerMain").datepicker({
+            inline: true,
+            showOtherMonths: true,
+            dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+            dateFormat: "dd/mm/yy",
+            minDate: '+1D',
+            maxDate: '+6M',
+            onSelect: function (date) {
+                    $('#orderDate').html(date);
+                  }
+    }),
+
+    //time check
+
+    $("input[id*='orderTime']").focus(function(){
       var curVal = $(this).val();
-      if(curVal == 'DD' || curVal == 'MM' || curVal == 'YYYY' || curVal == 'Hour' || curVal == 'Minute')
+      if(curVal == 'Hour' || curVal == 'Minute')
         $(this).val('');
     }).blur(function(){
       var input = $(this).val();
@@ -79,38 +99,22 @@ $(function(){
         setTextColor(this, 'red');
       }
       else{
-        //validate if input is correct number
-        validateNumber(this, input);
-      }
-    }),
-
-    $("#orderPasangers").blur(function(){
-      validateNumber(this, $(this).val());
+       //validate if input is correct number
+       validateNumber(this, input);
+     }
     }),
 
     //plus minut buttons
     $("#plusButton").on('click', function(){
-      var value = $('#orderPasangers').val();
-      if($.isNumeric(value)){
-          if(value < 9)
-            value ++;
-          $('#orderPasangers').val(value);
-      }
-      else{
-        $('#orderPasangers').val('');
-      }
+      var value = $('#orderPasangers').html();
+        if(value < 9)
+          $('#orderPasangers').html(parseInt(value) + 1);
     }),
 
     $("#minusButton").on('click', function(){
-      var value = $('#orderPasangers').val();
-      if($.isNumeric(value)){
+      var value = $('#orderPasangers').html();
         if(value > 1)
-          value --;
-        $('#orderPasangers').val(value);
-      }
-      else{
-        $('#orderPasangers').val('');
-      }
+          $('#orderPasangers').html(parseInt(value) - 1);
     }),
 
     $("#paymnetTypeButton").on('click', function(){
@@ -155,9 +159,8 @@ $(function(){
       $('#orderUsername').val('').css({'color' : 'black'});
       $('#orderCompanyName').val('').css({'color' : 'black'});
       $('#paymentTypeButton').html('Select payment');
-      $('#orderDateDay').val('DD').css({'color' : 'black'});
-      $('#orderDateMonth').val('MM').css({'color' : 'black'});
-      $('#orderDateYear').val('YYYY').css({'color' : 'black'});
+      $('#orderDate').html('Select date');
+      $('#datepickerMain').slideUp(500);
       $('#orderTimeHour').val('Hour').css({'color' : 'black'});
       $('#orderTimeMinute').val('Minute').css({'color' : 'black'});
       $('#timeButtonAM').css({
@@ -169,47 +172,93 @@ $(function(){
       timeButton = 'AM';
       $('#ordeFrom').val('').css({'color' : 'black'});
       $('#orderTo').val('').css({'color' : 'black'});
-      $('#orderPasangers').val('2').css({'color' : 'black'});
+      $('#orderPasangers').html('2');
+    }),
+
+    validateRegistration('#registrationFirstName', '#errorRegistrationFirstName' , /^[a-zA-Z]*$/, 'Use only characters', 3, true );
+    validateRegistration('#registrationMiddleName', '#errorRegistrationMiddleName' , /^[a-zA-Z]*$/, 'Use only characters', 1, false );
+    validateRegistration('#registrationLastName', '#errorRegistrationLastName' , /^[a-zA-Z]*$/, 'Use only characters', 3, true );
+    validateRegistration('#registrationUsername', '#errorRegistrationUsername' , /^[a-zA-Z0-9._-]*$/, 'Character not alowed',6, true );
+    validateRegistration('#registrationPassword', '#errorRegistrationPassword' , /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/, 'Use character and digit',8, true );
+    validateRegistration('#registrationEmail', '#errorRegistrationEmail' , emailRegex, 'Incorrect email',0, true );
+    validateRegistration('#registrationPhone', '#errorRegistrationPhone' , /^[0-9+]*$/, 'Use only digit and "+"',6, true );
+
+    //validate confirm password
+    $('#registrationConfirmPassword').blur(function(){
+      var value = $(this).val();
+      if(!value)
+        $('#errorRegistrationConfirmPassword').html('Cannot be empty').slideDown(500);
+      else if(value != $('#registrationPassword').val()){
+        $('#errorRegistrationConfirmPassword').html('Passwords have to match').slideDown(500);
+      }
+      else{
+        $('#errorRegistrationConfirmPassword').html('').slideUp(500);
+      }
+    }),
+
+    $('#registrationClearButton').on('click', function(){
+
+      clearRegistrationErrors();
+      clearRegistrationFields();
     })
 });
 
-//validate functions
-//validate if date is recent
-function validateDate(input){
+function clearRegistrationFields(){
 
-  var day = $('#orderDateDay').val();
-  var month = $('#orderDateMonth').val();
-  var year = $('#orderDateYear').val();
-
-  if(wasInputed(day) && wasInputed(month) && wasInputed(year)){
-
-    month -=1;
-    var date = new Date();
-    date.setFullYear(year, month, day);
-    var curDate = new Date();
-
-    if( date < curDate) {
-      setTextColor('#orderDateDay', 'red');
-      setTextColor('#orderDateMonth', 'red');
-      setTextColor('#orderDateYear', 'red');
-    }
-    else{
-      setTextColor('#orderDateDay', 'red');
-      setTextColor('#orderDateMonth', 'red');
-      setTextColor('#orderDateYear', 'red');    }
-  }
+  $('#registrationFirstName').val('');
+  $('#registrationMiddleName').val('');
+  $('#registrationLastName').val('');
+  $('#registrationUsername').val('');
+  $('#registrationPassword').val('');
+  $('#registrationConfirmPassword').val('');
+  $('#registrationEmail').val('');
+  $('#registrationPhone').val('');
 }
 
-function wasInputed(value){
+function clearRegistrationErrors(){
+  $('#errorRegistrationFirstName').html('').slideUp(500);
+  $('#errorRegistrationMiddleName').html('').slideUp(500);
+  $('#errorRegistrationLastName').html('').slideUp(500);
+  $('#errorRegistrationUsername').html('').slideUp(500);
+  $('#errorRegistrationPassword').html('').slideUp(500);
+  $('#errorRegistrationConfirmPassword').html('').slideUp(500);
+  $('#errorRegistrationEmail').html('').slideUp(500);
+  $('#errorRegistrationPhone').html('').slideUp(500);
+}
 
-  if(value.length > 0){
-    if(value != 'DD' && value != 'MM' && value != 'YYYY')
-      return true;
-    else
-      return false;
-  }
+function validateRegistration(id, idErr, regex, customeMessage, min, mandatory){
 
-  return false;
+  $(id).blur(function(){
+    var value = $(this).val();
+
+    if(!value && mandatory){
+      $(idErr).html('Cannot be empty').slideDown(500);
+    }
+    else if(!regex.test(value)){
+      $(idErr).html(customeMessage).slideDown(500);
+    }
+    else if(value.length < min && mandatory){
+      $(idErr).html('Minimum ' + min + ' characters').slideDown(500);
+    }
+    else{
+      $(idErr).html('').slideUp(500);
+    }
+  });
+}
+
+function setTextColor(element, color){
+  $(element).css({
+  'color' : color
+  });
+}
+
+function setDefaultText(element){
+  var id = $(element).attr("id");
+
+  if(id == 'orderTimeHour')
+    $('#'+id).val('Hour');
+  else if(id == 'orderTimeMinute')
+    $('#'+id).val('Minute');
 }
 
 //validate if number is corretly inputed
@@ -234,44 +283,30 @@ function validateNegative(element, input){
 //validate if ammount is correct
 function validateAmmout(element, input){
 
-  var date = new Date();
-  var year = date.getFullYear();
+  if($(element).attr('id')=='orderTimeHour'){
 
-  if($(element).attr('id')=='orderDateDay' && input > 31)
-    setTextColor(element, 'red');
+      if(input > 12)
+        setTextColor(element, 'red');
 
-  if($(element).attr('id')=='orderDateMonth' && input > 12)
-    setTextColor(element, 'red');
-
-  if($(element).attr('id')=='orderDateYear' && input > year + 1)
-      setTextColor(element, 'red');
-
-  if($(element).attr('id')=='orderTimeHour' && input > 12)
-      setTextColor(element, 'red');
+      //check time interval
+      var d = new Date();
+      var hour = d.getUTCHours() +1;
+      validateTime(hour, input);
+  }
 
   if($(element).attr('id')=='orderTimeMinute' && input > 60)
           setTextColor(element, 'red');
+}
+
+function validateTime(hour, input){
+
+  if(hour > 20 && hour < 6){
+    //if night time allow
+  }
 }
 
 function validateNatural(element, input){
 
   if(input.indexOf('.') >= 0)
     setTextColor(element, 'red');
-}
-
-function setTextColor(element, color){
-  $(element).css({
-  'color' : color
-  });
-}
-
-function setDefaultText(element){
-  switch($(element).attr("id")){
-
-    case 'orderTimeHour':{$('#orderTimeHour').val('Hour'); break;}
-    case 'orderTimeMinute':{$('#orderTimeMinute').val('Minute'); break;}
-    case 'orderDateDay':{$('#orderDateDay').val('DD'); break;}
-    case 'orderDateMonth':{$('#orderDateMonth').val('MM'); break;}
-    case 'orderDateYear':{$('#orderDateYear').val('YYYY'); break;}
-  }
 }

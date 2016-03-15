@@ -1,0 +1,98 @@
+.ui-datepicker {
+    width: 60%;
+    height: inherit;
+    margin: -2px 0% 0% 26%;
+    font: 9pt Arial, sans-serif;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    background-color: rgba(255, 255, 255, .1);
+    border: 1px solid rgba(255, 255, 255, .5);
+}
+
+.ui-datepicker a {
+    text-decoration: none;
+}
+
+.ui-datepicker table {
+    width: 100%;
+}
+
+.ui-datepicker-header {
+    background-color:rgba(255,255,255,0.1);
+    color: white;
+    font-family: myFont;
+    font-size: 20px;
+
+    border-width: 1px solid rgba(255,255,255,0.5);
+}
+
+.ui-datepicker-title {
+    text-align: center;
+}
+
+.ui-datepicker-prev, .ui-datepicker-next {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    line-height: 600%;
+    overflow: hidden;
+}
+
+.ui-datepicker-prev {
+    float: left;
+    background-position: center center;
+    background-image: url('Images/Calendar/arrowLeft.png');
+    background-size: 50% 50%;
+}
+.ui-datepicker-next {
+    float: right;
+    background-position: center center;
+    background-image: url('Images/Calendar/arrowRight.png');
+    background-size: 50% 50%;
+}
+
+.ui-datepicker thead {
+    color: white;
+    font-family: myFont;
+
+}
+
+.ui-datepicker th {
+    text-transform: uppercase;
+    font-size: 12pt;
+    padding: 5px 0;
+    color: white;
+    font-weight: normal;
+}
+
+.ui-datepicker tbody td {
+   text-align: center;
+   font-family: myFont;
+   font-size: 15px;
+}
+
+.ui-datepicker td span, .ui-datepicker td a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: white;
+}
+
+.ui-datepicker td:hover{
+    background-color: rgba(255,255,255,0.1);
+}
+
+.ui-datepicker td:active{
+    background-color: rgba(255,0,0,0.1);
+}
+
+
+.ui-datepicker-unselectable .ui-state-default {
+    color: red;
+    font-weight: bolder;
+}
