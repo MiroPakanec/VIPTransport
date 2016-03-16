@@ -8,7 +8,9 @@
     <script src="../JQuery/jquery.js"></script>
     <script src="../JQuery/jquery-easing.js"></script>
     <script src="../JQuery/jquery-ui/jquery-ui.js"></script>
-    <script src="../JQuery/mainJQ.js"></script>
+    <script src="../JQuery/mainLoad.js"></script>
+    <script src="../JQuery/mainOrder.js"></script>
+    <script src="../JQuery/mainRegister.js"></script>
 
     <meta charset="UTF-8">
     <title>VIP Transport | Main page</title>
@@ -87,42 +89,44 @@
               </div>
             <div class="mainTitle mainTextStyle" id="mainRegister">Register</div>
             <div class="mainParagraph">
-              <div class="mainRow">
-                <div class="mainText">First name:</div><input type="text" id="registrationFirstName" class="mainTextInput" maxlength="30">
-                <div class="errorMessage" id="errorRegistrationFirstName">Test</div>
-              </div>
-              <div class="mainRow">
-                <div class="mainText">Middle name:</div><input type="text" id="registrationMiddleName" class="mainTextInput" maxlength="30">
-                <div class="errorMessage" id="errorRegistrationMiddleName">Test</div>
-              </div>
-              <div class="mainRow">
-                <div class="mainText">Last name:</div><input type="text" id="registrationLastName" class="mainTextInput" maxlength="30">
-                <div class="errorMessage" id="errorRegistrationLastName">Test</div>
-              </div>
-              <div class="mainRow">
-                <div class="mainText">Username:</div><input type="text" id="registrationUsername" class="mainTextInput" maxlength="30">
-                <div class="errorMessage" id="errorRegistrationUsername">Test</div>
-              </div>
-              <div class="mainRow">
-                <div class="mainText">Password:</div><input type="password" id="registrationPassword" class="mainTextInput" maxlength="30">
-                <div class="errorMessage" id="errorRegistrationPassword">Test</div>
-              </div>
-              <div class="mainRow">
-                <div class="mainText">Confirm password:</div><input type="password" id="registrationConfirmPassword" class="mainTextInput" maxlength="30">
-                <div class="errorMessage" id="errorRegistrationConfirmPassword">Test</div>
-              </div>
-              <div class="mainRow">
-                <div class="mainText">Email:</div><input type="text" id="registrationEmail" class="mainTextInput" maxlength="30">
-                <div class="errorMessage" id="errorRegistrationEmail">Test</div>
-              </div>
-              <div class="mainRow">
-                <div class="mainText">Phone number:</div><input type="text" id="registrationPhone" class="mainTextInput" maxlength="30">
-                <div class="errorMessage" id="errorRegistrationPhone">Test</div>
-              </div>
-              <div class="mainRow mainButtonRow">
-                <input type="button" name="submitRegistration" value="Register" class="button">
-                <input type="button" name="clearRegistration" value="Clear" class="button" id="registrationClearButton">
-              </div>
+              <form action="../../Server/Responses/register.php" method="post" class="ajax" id="registerForm">
+                <div class="mainRow">
+                  <div class="mainText">First name:</div><input type="text" name="firstName" id="registrationFirstName" class="mainTextInput" maxlength="30">
+                  <div class="errorMessage" id="errorRegistrationFirstName"></div>
+                </div>
+                <div class="mainRow">
+                  <div class="mainText">Middle name:</div><input type="text" name="middleName" id="registrationMiddleName" class="mainTextInput" maxlength="30">
+                  <div class="errorMessage canSkip" id="errorRegistrationMiddleName"></div>
+                </div>
+                <div class="mainRow">
+                  <div class="mainText">Last name:</div><input type="text" name="lastName" id="registrationLastName" class="mainTextInput" maxlength="30">
+                  <div class="errorMessage" id="errorRegistrationLastName"></div>
+                </div>
+                <div class="mainRow">
+                  <div class="mainText">Username:</div><input type="text" name="username" id="registrationUsername" class="mainTextInput" maxlength="30">
+                  <div class="errorMessage" id="errorRegistrationUsername"></div>
+                </div>
+                <div class="mainRow">
+                  <div class="mainText">Password:</div><input type="password" name="password" id="registrationPassword" class="mainTextInput" maxlength="30">
+                  <div class="errorMessage" id="errorRegistrationPassword"></div>
+                </div>
+                <div class="mainRow">
+                  <div class="mainText">Confirm password:</div><input type="password" id="registrationConfirmPassword" class="mainTextInput" maxlength="30">
+                  <div class="errorMessage" id="errorRegistrationConfirmPassword"></div>
+                </div>
+                <div class="mainRow">
+                  <div class="mainText">Email:</div><input type="text" id="registrationEmail" name="email" class="mainTextInput" maxlength="30">
+                  <div class="errorMessage" id="errorRegistrationEmail"></div>
+                </div>
+                <div class="mainRow">
+                  <div class="mainText">Phone number:</div><input type="text" name="phone" id="registrationPhone" class="mainTextInput" maxlength="30">
+                  <div class="errorMessage" id="errorRegistrationPhone"></div>
+                </div>
+                <div class="mainRow mainButtonRow">
+                  <input type="submit" name="submitRegistration" value="Register" class="button" id=registrationSubmitButton>
+                  <input type="button" name="clearRegistration" value="Clear" class="button" id="registrationClearButton">
+                </div>
+              </form>
             </div>
 
             <div id="mainLogin" class="mainTitle mainTextStyle">Login</div>
