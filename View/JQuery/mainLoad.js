@@ -61,6 +61,7 @@ $(function() {
 
   $('#datepickerMain').hide();
   $('.errorMessage').hide();
+  $('.mainResponseRow').hide();
 
 });
 

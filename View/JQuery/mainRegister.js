@@ -53,11 +53,36 @@
           type: type,
           data: data,
           success: function(response){
-            alert(response);
+            handleRegistrationResponse(response);
+          },
+          error: function(){
+            $('#registrationResponse').slideDown('500').html('We are sorry, something went wrong');
           }
         })
     })
 });
+
+function handleRegistrationResponse(response){
+
+  if(response == 'Registration successful'){
+
+    $('#registrationResponseField').slideDown('500').css({
+      'background-color' : 'rgba(0, 255, 0, 0.1)'
+    });
+    $('#registrationResponseText').html(response).css({
+      'color' : 'green'
+    });
+  }
+   else{
+
+     $('#registrationResponseField').slideDown('500').css({
+      'background-color' : 'rgba(255, 0, 0, 0.1)'
+    });
+    $('#registrationResponseText').html(response).css({
+      'color' : 'red'
+    });
+   }
+}
 
 function validateRegistrationConfirm(){
 
