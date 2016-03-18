@@ -20,10 +20,9 @@
       return $_SESSION['token'];
     }
 
-    public function startSession($username){
+    public function startSession(){
 
       session_start();
-      $_SESSION['username'] = $username;
     }
 
     public function endSession(){

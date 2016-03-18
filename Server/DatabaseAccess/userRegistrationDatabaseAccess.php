@@ -1,9 +1,9 @@
 <?php
 
-  require('databaseConnection.php');
+  require_once('databaseConnection.php');
   require $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/userModel.php';
 
-  class UserDatabaseAccess{
+  class UserRegistrationDatabaseAccess{
 
     public function registerUser($userModelObject){
 
@@ -11,19 +11,18 @@
 
         $dbc = DatabaseConnection::openConnection();
 
-        $query = "INSERT INTO User (Username, First_name, Middle_name, Last_name, Password, Email, Phone, Type, Registration_date)" .
-                 " VALUES (?, ?, ?, ?, ?, ?, ?, 'customer', NOW())";
+        $query = "INSERT INTO User (Email, First_name, Middle_name, Last_name, Password, Phone, Type, Registration_date)" .
+                 " VALUES (?, ?, ?, ?, ?, ?, 'customer', NOW())";
         $stmt = mysqli_prepare($dbc, $query);
 
-        $username = $userModelObject->getUsername();
+        $email = $userModelObject->getEmail();
         $fname = $userModelObject->getFname();
         $mname = $userModelObject->getMname();
         $lname = $userModelObject->getLname();
         $password = $userModelObject->getPassword();
-        $email = $userModelObject->getEmail();
         $phone = $userModelObject->getPhone();
 
-        mysqli_stmt_bind_param($stmt, "sssssss", $username, $fname, $mname, $lname, $password, $email, $phone);
+        mysqli_stmt_bind_param($stmt, "ssssss", $email, $fname, $mname, $lname, $password, $phone);
 
         mysqli_stmt_execute($stmt);
         $affectedRows = mysqli_stmt_affected_rows($stmt);
@@ -31,7 +30,7 @@
         if($affectedRows == 1)
           return 'Registration successful';
         else
-          return 'We are sorry, username already exists...';
+          return 'We are sorry, this email is already in use...';
 
         mysqli_stmt_close($stmt);
         mysqli_close($dbc);

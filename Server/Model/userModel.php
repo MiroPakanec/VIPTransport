@@ -10,19 +10,14 @@ class UserModel{
     private $email;
     private $phone;
 
-    public function __construct($username, $fname, $mname, $lname, $password, $email, $phone){
+    public function __construct($email, $fname, $mname, $lname, $password, $phone){
 
-      $this->username = $username;
+      $this->email = $email;
       $this->fname = $fname;
       $this->mname = $mname;
       $this->lname = $lname;
       $this->password = $password;
-      $this->email = $email;
       $this->phone = $phone;
-    }
-
-    public function getUsername(){
-      return $this->username;
     }
 
     public function getFname(){

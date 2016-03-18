@@ -4,12 +4,11 @@
 
     var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+    validateRegistration('blur', '#registrationEmail', '#errorRegistrationEmail' , emailRegex, 'Incorrect email',0 );
     validateRegistration('blur','#registrationFirstName', '#errorRegistrationFirstName' , /^[a-zA-Z]*$/, 'Use only characters', 3 );
     validateRegistration('blur', '#registrationMiddleName', '#errorRegistrationMiddleName' , /^[a-zA-Z]*$/, 'Use only characters', 1 );
     validateRegistration('blur', '#registrationLastName', '#errorRegistrationLastName' , /^[a-zA-Z]*$/, 'Use only characters', 3 );
-    validateRegistration('blur', '#registrationUsername', '#errorRegistrationUsername' , /^[a-zA-Z0-9._-]*$/, 'Character not alowed',6 );
     validateRegistration('blur', '#registrationPassword', '#errorRegistrationPassword' , /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/, 'Use character and digit',8 );
-    validateRegistration('blur', '#registrationEmail', '#errorRegistrationEmail' , emailRegex, 'Incorrect email',0 );
     validateRegistration('blur', '#registrationPhone', '#errorRegistrationPhone' , /^[0-9+]*$/, 'Use only digit and "+"',6 );
 
     //validate confirm password
@@ -32,7 +31,7 @@
     }),
 
     //submit
-    $('form.ajax').on('submit', function(e){
+    $('#registerForm').on('submit', function(e){
 
         e.preventDefault();
         if(validateRegistrationConfirm().length > 0)
@@ -105,18 +104,17 @@ function clearRegistrationFields(){
   $('#registrationFirstName').val('');
   $('#registrationMiddleName').val('');
   $('#registrationLastName').val('');
-  $('#registrationUsername').val('');
   $('#registrationPassword').val('');
   $('#registrationConfirmPassword').val('');
   $('#registrationEmail').val('');
   $('#registrationPhone').val('');
+  $('#registrationResponseField').slideUp('500');
 }
 
 function clearRegistrationErrors(){
   $('#errorRegistrationFirstName').html('').slideUp(500);
   $('#errorRegistrationMiddleName').html('').slideUp(500);
   $('#errorRegistrationLastName').html('').slideUp(500);
-  $('#errorRegistrationUsername').html('').slideUp(500);
   $('#errorRegistrationPassword').html('').slideUp(500);
   $('#errorRegistrationConfirmPassword').html('').slideUp(500);
   $('#errorRegistrationEmail').html('').slideUp(500);
