@@ -5,19 +5,23 @@ $(function(){
     $.ajax({
         type: 'GET',
         url: '../../Server/Responses/getSession.php',
+        dataType : 'json',
         data: '',
-        success: function(msg){
-            checkSession(msg);
+        success: function(response){
+            checkSession(response);
         }
     });
 });
 
 //js function, checks result of get session
-function checkSession(msg){
+function checkSession(data){
 
-  if(msg === 'in'){
+  if(data.session === 'in'){
     window.location="home.html";
   }
+
+  //set token
+  $('#loginToken').val(data.token);
 }
 
 //hover

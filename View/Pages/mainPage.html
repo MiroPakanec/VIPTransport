@@ -8,9 +8,11 @@
     <script src="../JQuery/jquery.js"></script>
     <script src="../JQuery/jquery-easing.js"></script>
     <script src="../JQuery/jquery-ui/jquery-ui.js"></script>
+
     <script src="../JQuery/mainLoad.js"></script>
     <script src="../JQuery/mainOrder.js"></script>
     <script src="../JQuery/mainRegister.js"></script>
+    <script src="../JQuery/mainLogin.js"></script>
 
     <meta charset="UTF-8">
     <title>VIP Transport | Main page</title>
@@ -135,13 +137,14 @@
             <div id="mainLogin" class="mainTitle mainTextStyle">Login</div>
             <div class="mainParagraph">
               <div class="mainRow">
-                <div class="mainText">Username:</div><input type="text" id="registrationUsername" class="mainTextInput" maxlength="30">
+                <div class="mainText">Email:</div><input type="text" id="loginEmail" class="mainTextInput" maxlength="30">
               </div>
               <div class="mainRow">
-                <div class="mainText">Password:</div><input type="text" id="registrationUsername" class="mainTextInput" maxlength="30">
+                <div class="mainText">Password:</div><input type="text" id="loginPassword" class="mainTextInput" maxlength="30">
               </div>
               <div class="mainRow mainButtonRow">
-                <input type="button" name="submitRegistration" value="Register" class="button">
+                <input type="hidden" name ="token" id="loginToken" value="">
+                <input type="submit" name="submitRegistration" value="Login" class="button" id="loginSubmitButton">
                 <input type="button" name="clearRegistration" value="Clear" class="button">
               </div>
             </div>
