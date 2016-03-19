@@ -1,7 +1,7 @@
 <?php
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/userRegistrationDatabaseAccess.php';
-include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/userLoginDatabaseAccess.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/userSelectDatabaseAccess.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/userModel.php';
 
 
@@ -17,15 +17,16 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/userModel.php
 
     public function loginUser($email, $password, $token){
 
-      $userDataAccessObject = new UserLoginDatabaseAccess();
+      $userDataAccessObject = new UserSelectDatabaseAccess();
+      $wClause = " WHERE Email = '" . $email . "'";
 
-      //get password from db
-      $storedPassword = $userDataAccessObject->getUserLoginPassword($email);
-      if(strlen($storedPassword) == 0)
+      //get populated user model from db
+      $userModelObject = $userDataAccessObject->getUserData($wClause);
+
+      if(strlen($userModelObject->getPassword()) == 0)
         return 'Incorrect email';
 
-
-      if(!password_verify($password, $storedPassword))
+      if(!password_verify($password, $userModelObject->getPassword()))
         return 'Incorrect password';
       else
         return 'in';
