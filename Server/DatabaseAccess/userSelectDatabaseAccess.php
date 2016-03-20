@@ -9,7 +9,7 @@
 
       try{
 
-        $email = $password = $fname = $mname = $lname = $phone = '';
+        $email = $password = $fname = $mname = $lname = $phone = $type = $date = '';
 
         $dbc = DatabaseConnection::openConnection();
         $query = "SELECT * FROM User " . $wClause;
@@ -25,12 +25,14 @@
               $mname = $row['Middle_name'];
               $lname = $row['Last_name'];
               $phone = $row['Phone'];
+              $type = $row['Type'];
+              $date = $row['Registration_date'];
             }
         }
 
         mysqli_close($dbc);
 
-        $userModelObject = new UserModel($email, $fname, $mname, $lname, $password, $phone);
+        $userModelObject = new UserModel($email, $fname, $mname, $lname, $password, $phone, $type, $date);
         return $userModelObject;
       }
       catch(Exception $e){

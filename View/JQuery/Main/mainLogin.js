@@ -43,7 +43,7 @@ $(function(){
 function handleLoginResponse(response){
 
   if(response == 'in')
-    window.location="home.html";
+    window.location="homePage.html";
   else{
 
     $('#loginResponseField').slideDown('500').css({
@@ -95,15 +95,3 @@ function validateLogin(thisEvent, id, idErr){
       $(idErr).html('').slideUp(500);
   })
 }
-
-
-
-/*---------------- TEST ------------------*/
-
-/*$(function(){
-
-  $('#loginSubmitButton').on('click', function(){
-
-
-  })
-})*/

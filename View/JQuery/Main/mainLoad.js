@@ -1,31 +1,22 @@
 
-//check session
 $(function(){
-  //get session
-    $.ajax({
-        type: 'GET',
-        url: '../../Server/Responses/getSession.php',
-        dataType : 'json',
-        data: '',
-        success: function(response){
-            checkSession(response);
-        }
+
+    getSession(function(data){
+
+      if(data.email.length > 0){
+        //window.location="homePage.html";
+      }
+
+      //set token
+      $('input[name^="token"]').each(function(){
+        $(this).val(data.token);
+      })
     });
-});
-
-//js function, checks result of get session
-function checkSession(data){
-
-  if(data.session === 'in'){
-    window.location="home.html";
-  }
-
-  //set token
-  $('#loginToken').val(data.token);
-}
+})
 
 //hover
 $(function() {
+
   $( ".mainMenuElement" ).mouseover(function() {
       $(this).css({
         'background-color' : 'rgba(255,255,255,0.1)',

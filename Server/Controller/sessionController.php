@@ -9,7 +9,7 @@
 
       $sessionArray = array();
       $sessionArray = array_fill($_SESSION['username'], $_SESSION['fname'], $_SESSION['mname'],
-                      $_SESSION['lname'], $_SESSION['email'], $_SESSION['phone']);
+                      $_SESSION['lname'], $_SESSION['email'], $_SESSION['phone'], $_SESSION['type'], $_SESSION['registrationDate']);
       return $sessionArray;
     }
 
@@ -34,6 +34,8 @@
       $_SESSION['mname'] = $userModelObject->getMname();
       $_SESSION['lname'] = $userModelObject->getLname();
       $_SESSION['phone'] = $userModelObject->getPhone();
+      $_SESSION['type']  = $userModelObject->getType();
+      $_SESSION['registrationDate'] = $userModelObject->getRegistrationDate();
     }
 
     public function startSession(){

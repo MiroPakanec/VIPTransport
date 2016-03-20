@@ -2,15 +2,16 @@
 
 class UserModel{
 
-    private $username;
+    private $email;
     private $fname;
     private $mname;
     private $lname;
     private $password;
-    private $email;
     private $phone;
+    private $type;
+    private $registrationDate;
 
-    public function __construct($email, $fname, $mname, $lname, $password, $phone){
+    public function __construct($email, $fname, $mname, $lname, $password, $phone, $type, $registrationDate){
 
       $this->email = $email;
       $this->fname = $fname;
@@ -18,6 +19,8 @@ class UserModel{
       $this->lname = $lname;
       $this->password = $password;
       $this->phone = $phone;
+      $this->type = $type;
+      $this->registrationDate = $registrationDate;
     }
 
     public function getFname(){
@@ -44,6 +47,14 @@ class UserModel{
       return $this->phone;
     }
 
+    public function getType(){
+      return $this->type;
+    }
+
+    public function getRegistrationDate(){
+      return $this->registrationDate;
+    }
+
     public function setFname($value){
       $this->fname = $value;
     }
@@ -62,6 +73,14 @@ class UserModel{
 
     public function setPhone($value){
       $this->phone = $value;
+    }
+
+    public function setType($value){
+      $this->type = $value;
+    }
+
+    public function setRegistrationDate(){
+      $this->registrationDate = $value;
     }
   }
 

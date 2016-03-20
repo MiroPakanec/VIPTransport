@@ -10,7 +10,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/userModel.php
     public function registerUser($email, $fname, $mname, $lname, $password, $phone){
 
       $password = password_hash($password , PASSWORD_BCRYPT);
-      $userModelObject = new UserModel($email, $fname, $mname, $lname, $password, $phone);
+      $userModelObject = new UserModel($email, $fname, $mname, $lname, $password, $phone, '', '');
       $userDataAccessObject = new UserRegistrationDatabaseAccess();
       return $userDataAccessObject->registerUser($userModelObject);
     }
