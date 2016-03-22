@@ -68,6 +68,11 @@ $(function(){
     })
 
     //time AM/ PM
+
+    $('#timeButtonAM').css({
+      'background-color' : 'rgba(255, 255, 255, 0.1)'
+    });
+
     $('#timeButtonAM').on('click', function(){
       timeButton = 'AM';
       $(this).css({
@@ -108,3 +113,69 @@ $(function(){
       $('#orderPasangers').html('2');
     })
   });
+
+
+  function setTextColor(element, color){
+    $(element).css({
+    'color' : color
+    });
+  }
+
+  function setDefaultText(element){
+    var id = $(element).attr("id");
+
+    if(id == 'orderTimeHour')
+      $('#'+id).val('Hour');
+    else if(id == 'orderTimeMinute')
+      $('#'+id).val('Minute');
+  }
+
+  //validate if number is corretly inputed
+  function validateNumber(element, input){
+    if(!$.isNumeric(input))
+      setTextColor(element, 'red');
+    else{
+      setTextColor(element, 'black');
+      validateNegative(element, input);
+      validateAmmout(element, input);
+      validateNatural(element, input);
+    }
+  }
+
+  //validate if input is negative
+  function validateNegative(element, input){
+
+    if(input<0)
+      setTextColor(element, 'red');
+  }
+
+  //validate if ammount is correct
+  function validateAmmout(element, input){
+
+    if($(element).attr('id')=='orderTimeHour'){
+
+        if(input > 12)
+          setTextColor(element, 'red');
+
+        //check time interval
+        var d = new Date();
+        var hour = d.getUTCHours() +1;
+        validateTime(hour, input);
+    }
+
+    if($(element).attr('id')=='orderTimeMinute' && input > 60)
+            setTextColor(element, 'red');
+  }
+
+  function validateTime(hour, input){
+
+    if(hour > 20 && hour < 6){
+      //if night time allow
+    }
+  }
+
+  function validateNatural(element, input){
+
+    if(input.indexOf('.') >= 0)
+      setTextColor(element, 'red');
+  }

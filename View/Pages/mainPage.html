@@ -3,7 +3,6 @@
   <head>
     <link rel="stylesheet" type="text/css" href="../Css/mainStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/mainPreviewStyles.css">
-    <link rel="stylesheet" type="text/css" href="../Css/widgetsStyles.css">
 
     <script src="../JQuery/Source/jquery.js"></script>
     <script src="../JQuery/Source/jquery-easing.js"></script>
@@ -95,31 +94,31 @@
               <form action="../../Server/Responses/register.php" method="post" class="ajax" id="registerForm">
                 <div class="mainRow">
                   <div class="mainText">Email:</div><input type="text" name="email" id="registrationEmail" class="mainTextInput" maxlength="30">
-                  <div class="errorMessage" id="errorRegistrationEmail"></div>
+                  <div class="errorMessageRegister errorMessage" id="errorRegistrationEmail"></div>
                 </div>
                 <div class="mainRow">
                   <div class="mainText">First name:</div><input type="text" name="firstName" id="registrationFirstName" class="mainTextInput" maxlength="30">
-                  <div class="errorMessage" id="errorRegistrationFirstName"></div>
+                  <div class="errorMessageRegister errorMessage" id="errorRegistrationFirstName"></div>
                 </div>
                 <div class="mainRow">
                   <div class="mainText">Middle name:</div><input type="text" name="middleName" id="registrationMiddleName" class="mainTextInput" maxlength="30">
-                  <div class="errorMessage canSkip" id="errorRegistrationMiddleName"></div>
+                  <div class="errorMessageRegister errorMessage canSkip" id="errorRegistrationMiddleName"></div>
                 </div>
                 <div class="mainRow">
                   <div class="mainText">Last name:</div><input type="text" name="lastName" id="registrationLastName" class="mainTextInput" maxlength="30">
-                  <div class="errorMessage" id="errorRegistrationLastName"></div>
+                  <div class="errorMessageRegister errorMessage" id="errorRegistrationLastName"></div>
                 </div>
                 <div class="mainRow">
                   <div class="mainText">Password:</div><input type="password" name="password" id="registrationPassword" class="mainTextInput" maxlength="30">
-                  <div class="errorMessage" id="errorRegistrationPassword"></div>
+                  <div class="errorMessageRegister errorMessage" id="errorRegistrationPassword"></div>
                 </div>
                 <div class="mainRow">
                   <div class="mainText">Confirm password:</div><input type="password" id="registrationConfirmPassword" class="mainTextInput" maxlength="30">
-                  <div class="errorMessage" id="errorRegistrationConfirmPassword"></div>
+                  <div class="errorMessageRegister errorMessage" id="errorRegistrationConfirmPassword"></div>
                 </div>
                 <div class="mainRow">
                   <div class="mainText">Phone number:</div><input type="text" name="phone" id="registrationPhone" class="mainTextInput" maxlength="30">
-                  <div class="errorMessage" id="errorRegistrationPhone"></div>
+                  <div class="errorMessageRegister errorMessage" id="errorRegistrationPhone"></div>
                 </div>
                 <div class="mainRow mainResponseRow" id="registrationResponseField">
                   <div class="mainText mainResponseText" id="registrationResponseText"></div>
@@ -136,11 +135,11 @@
               <form action="../../Server/Responses/login.php" method="post" class="ajax" id="loginForm">
                 <div class="mainRow">
                   <div class="mainText">Email:</div><input type="text" id="loginEmail" class="mainTextInput" maxlength="30" name="email">
-                  <div class="errorMessage" id="errorLoginEmail"></div>
+                  <div class="errorMessage errorMessageLogin" id="errorLoginEmail"></div>
                 </div>
                 <div class="mainRow">
                   <div class="mainText">Password:</div><input type="password" id="loginPassword" class="mainTextInput" maxlength="30" name="password">
-                    <div class="errorMessage" id="errorLoginPassword"></div>
+                    <div class="errorMessage errorMessageLogin" id="errorLoginPassword"></div>
                 </div>
                 <div class="mainRow mainResponseRow" id="loginResponseField">
                   <div class="mainText mainResponseText" id="loginResponseText"></div>

@@ -74,7 +74,7 @@ function validateLoginConfirm(){
   //trigger blur - to repeat automatic error check on click
   $('input[id^="login"]').trigger('blur');
 
-  $(".errorMessage").each(function(index){
+  $(".errorMessageLogin").each(function(index){
 
     error =  error + $(this).html();
     if($(this).html().length > 0)

@@ -2,11 +2,12 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="../Css/homeStyles.css">
+    <link rel="stylesheet" type="text/css" href="../Css/widgetsStyles.css">
 
     <script src="../JQuery/Source/jquery.js"></script>
     <script src="../JQuery/jquery-ui/jquery-ui.js"></script>
 
-    <script src="../JQuery/Home/homeLoad.js"></script>
+    <script src="../JQuery/Customer/homeLoad.js"></script>
     <script src="../JQuery/Global/session.js"></script>
 
     <meta charset="UTF-8">
@@ -14,18 +15,26 @@
   </head>
   <body>
     <div class="container">
-      <div class="preheader"></div>
       <div class="header">
-        <div class="homeHeaderLogo largeText">VIP Transport</div>
-        <div class="headerButtonsContainer">
-
+        <div class="headerMenu">
+          <div class="homeHeaderLogo largeText">VIP Transport</div>
+          <div class="headerButtonsContainer"></div>
         </div>
       </div>
       <div class="main">
-
-      </div>
-      <div class="footer">
-
+        <div id="welcomeMessage" class="largeText"></div>
+        <div class="paragraph">
+          <div class="mediumText">Proceed to order</div>
+          <a href="newOrderPage.html"><div class="paragraphPicture" id="newOrder"></div></a>
+        </div>
+        <div class="paragraph">
+          <div class="mediumText">Check your transports</div>
+          <a href="#"><div class="paragraphPicture" id="myOrders"></div></a>
+        </div>
+        <div class="paragraph">
+          <div class="mediumText">Find out about us</div>
+          <a href="#"><div class="paragraphPicture" id="aboutUs"></div></a>
+        </div>
       </div>
     </div>
   </body>

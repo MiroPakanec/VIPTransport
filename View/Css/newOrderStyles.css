@@ -1,0 +1,282 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+    font-family: myFont;
+    src: url("Fonts/PoiretOne-Regular.ttf");
+}
+
+/* DIVS */
+.container{
+
+  background-image: url("Images/backgroundImage.jpg");
+  background-size:cover;
+  width: 100%;
+  height: 100vh;
+}
+
+.preheader{
+
+  width: 100%;
+  height: 4%;
+}
+
+.header{
+
+  width: inherit;
+  height: 75px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.homeHeaderLogo{
+
+  float: left;
+  width: 20%;
+  margin-left: 5%;
+  margin-right: 5%;
+  height: inherit;
+}
+
+.headerButtonsContainer{
+
+  float: left;
+  width: 60%;
+  height: 100%;
+}
+
+.headerButton{
+
+  margin: 0px;
+  padding: 0px;
+  width: 15%;
+  height: 100%;
+}
+
+.homeHeaderLogo{
+
+  float: left;
+  width: 20%;
+  margin-left: 5%;
+  margin-right: 5%;
+  height: 100%;
+  line-height: 180%;
+}
+
+.headerButtonsContainer{
+
+  float: left;
+  width: 60%;
+  height: 100%;
+}
+
+.headerButton{
+
+  margin: 0px;
+  padding: 0px;
+  width: 15%;
+  height: 100%;
+}
+
+.main{
+
+  height: 40%;
+}
+
+.orderTitleArea{
+
+  height: 20%;
+  width: 100%;
+  float: left;
+  margin-top: 1%;
+  margin-bottom: 3%;
+}
+
+.orderArea{
+
+  height: 100%;
+  width: 100%;
+}
+
+.orderTitle{
+
+  height: 100%;
+  line-height: 180%;
+}
+
+/*ORDER*/
+
+.mainParagraph{
+
+  float: left;
+  font-size: 16px;
+  width: 60%;
+  height: 145%;
+  margin-left: 20%;
+  margin-top: 1%;
+  padding: 2% 0% 0% 2%;
+  text-align: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.mainParagraph::-webkit-scrollbar {
+    width: 1em;
+}
+
+.mainParagraph::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.0);
+}
+
+.mainParagraph::-webkit-scrollbar-thumb {
+  background-color: white;
+  outline: 1px solid slategrey;
+}
+
+.mainRow{
+  width: 100%;
+  height: 10%;
+  margin-top: 0%;
+  float: left;
+}
+
+.mainButtonRow{
+  margin: 10% 0% 0% 20%;
+}
+
+.mainText{
+  font-size: 18px;
+  font-family: myFont;
+  color: white;
+  padding: 0% 0% 0% 10%;
+  margin-right: 5%;
+  width: 20%;
+  text-align: left;
+  float: left;
+}
+
+.mainTextInput{
+  float: left;
+  width: 30%;
+  padding: 0.7% 1%;
+  text-align: center;
+  font-size: 12px;
+}
+
+.midText{
+  color: white;
+  font-family: myFont;
+  font-size: 20px;
+  float: left;
+  margin-top: 0%;
+  padding: 0% 1.5%;
+}
+
+.largerMediumTextInput{
+  width: 12%;
+  padding: 1% 1.1%;
+}
+
+/*ELEMENTS*/
+
+.buttonHome{
+
+  background-color: rgba(0, 0, 0, 0);
+  border: 0px;
+  border-right: 1px solid rgba(255,255,255,0.2);
+}
+
+.buttonHome:hover{
+  background-color:rgba(255,255,255,0.1);
+}
+
+.buttonHome:focus{
+  background-color:rgba(255,255,255,0.3);
+  outline: none;
+}
+
+.button{
+  padding: 0.7% 3%;
+  background-color:rgba(255,255,255,0);
+  color: white;
+  border: 1px solid white;
+
+  font-family: myFont;
+  font-size: 18px;
+}
+
+.button:hover{
+  background-color:rgba(255,255,255,0.2);
+}
+
+.orderSelect{
+  width: 26.5%;
+  float: left;
+  background-color: rgba(255,255,255,0.05);
+}
+
+.smallButton{
+
+  float: left;
+  font-size: 14px;
+  margin-left: 1% !important;
+  padding: 1% 0%;
+}
+
+.orderButton{
+  margin-left: 0.5%;
+  width: 10%;
+}
+
+#plusButton{
+  margin-left: 0%;
+}
+
+.paymentType{
+
+  width: 100%;
+  float: left;
+  margin-bottom: 2%;
+}
+
+#paymentTypeButton, .paymentSelection{
+  width: 26.5%;
+  margin-left: 35%;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+
+#orderDateButton{
+  margin-left: 3.2%;
+  float: left;
+}
+
+#datepickerMain{
+
+  float: left;
+  height: 280px;
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+/*TEXT*/
+
+.largeText{
+
+  font-family: myFont;
+  font-size: 40px;
+  color: white;
+  text-align: center;
+}
+
+.smallText{
+
+  font-family: myFont;
+  font-size: 20px;
+  color: white;
+  text-align: center;
+  line-height: 150%;
+}

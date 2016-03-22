@@ -17,19 +17,23 @@ body{
   height: 100vh;
 }
 
-.preheader{
-
-  width: 100%;
-  height: 5%;
-}
-
 .header{
 
   width: inherit;
-  height: 75px;
+  height: 390px;
   border-top: 1px solid rgba(255,255,255,0.2);
-  border-bottom: 1px solid rgba(255,255,255,0.2);
   background-color: rgba(0, 0, 0, 0.2);
+  background-image: url("Images/NewOrder/picture1.jpg");
+  background-size:cover;
+}
+
+.headerMenu{
+
+  height: 20%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.7);
+  margin-top: 2%;
+
 }
 
 .homeHeaderLogo{
@@ -38,7 +42,8 @@ body{
   width: 20%;
   margin-left: 5%;
   margin-right: 5%;
-  height: inherit;
+  height: 100%;
+  line-height: 180%;
 }
 
 .headerButtonsContainer{
@@ -56,18 +61,86 @@ body{
   height: 100%;
 }
 
-.button{
+.main{
+
+  height: 40%;
+}
+
+.paragraph{
+
+  width: 20%;
+  height: 70%;
+  margin-left: 10%;
+  float: left;
+  margin-top: 2%;
+}
+
+.paragraphPicture{
+  height: 80%;
+  width: 100%;
+}
+
+  #newOrder{
+    background-image: url("Images/HomeIcons/icon6.png");
+    background-size:cover;
+    background-size: 35% 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+  }
+
+  #newOrder:hover{
+    opacity: 1;
+  }
+
+  #myOrders{
+    background-image: url("Images/HomeIcons/icon7.png");
+    background-size:cover;
+    background-size: 30% 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+  }
+
+  #myOrders:hover{
+    opacity: 1;
+  }
+
+  #aboutUs{
+    background-image: url("Images/HomeIcons/icon3.png");
+    background-size:cover;
+    background-size: 45% 75%;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+  }
+
+  #aboutUs:hover{
+    opacity: 1;
+  }
+
+#welcomeMessage{
+
+  width: 100%;
+  height: 70px;
+  margin-top: 2%;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/*ELEMENTS*/
+.buttonHome{
 
   background-color: rgba(0, 0, 0, 0);
   border: 0px;
   border-right: 1px solid rgba(255,255,255,0.2);
 }
 
-.button:hover{
+.buttonHome:hover{
   background-color:rgba(255,255,255,0.1);
 }
 
-.button:focus{
+.buttonHome:focus{
   background-color:rgba(255,255,255,0.3);
   outline: none;
 }
@@ -80,7 +153,15 @@ body{
   font-size: 40px;
   color: white;
   text-align: center;
-  line-height: 180%;
+}
+
+.mediumText{
+
+  font-family: myFont;
+  font-size: 30px;
+  color: white;
+  text-align: center;
+  line-height: 150%;
 }
 
 .smallText{

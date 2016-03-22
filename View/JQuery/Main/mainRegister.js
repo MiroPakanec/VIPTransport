@@ -28,6 +28,7 @@
 
       clearRegistrationErrors();
       clearRegistrationFields();
+      $('#registrationResponseField').slideUp('500');
     }),
 
     //submit
@@ -71,6 +72,7 @@ function handleRegistrationResponse(response){
     $('#registrationResponseText').html(response).css({
       'color' : 'green'
     });
+    clearRegistrationFields();
   }
    else{
 
@@ -89,7 +91,7 @@ function validateRegistrationConfirm(){
     //trigger blur - to repeat automatic error check on click
     $('input[id^="registration"]').trigger('blur');
 
-    $(".errorMessage").each(function(index){
+    $(".errorMessageRegister").each(function(index){
 
       error =  error + $(this).html();
       if($(this).html().length > 0)
@@ -108,7 +110,6 @@ function clearRegistrationFields(){
   $('#registrationConfirmPassword').val('');
   $('#registrationEmail').val('');
   $('#registrationPhone').val('');
-  $('#registrationResponseField').slideUp('500');
 }
 
 function clearRegistrationErrors(){

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../Css/newOrderStyles.css">
+    <link rel="stylesheet" type="text/css" href="../Css/widgetsStyles.css">
+
+    <script src="../JQuery/Source/jquery.js"></script>
+    <script src="../JQuery/jquery-ui/jquery-ui.js"></script>
+
+    <script src="../JQuery/Customer/newOrderLoad.js"></script>
+    <script src="../JQuery/Global/session.js"></script>
+    <script src="../JQuery/Customer/newOrder.js"></script>
+
+    <meta charset="UTF-8">
+    <title>New Order</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="preheader"></div>
+       <div class="header">
+         <div class="homeHeaderLogo largeText">VIP Transport</div>
+         <div class="headerButtonsContainer"></div>
+       </div>
+      <div class="main">
+        <div class="orderTitleArea">
+          <div class="orderTitle largeText">New Order</div>
+        </div>
+        <div class="mainParagraph">
+          <div class="mainRow">
+            <div class="mainText">Departure date: </div>
+            <div class="button orderSelect" id="orderDate">Select date</div>
+            <input type="button" id="orderDateButton" class="button orderButton smallButton" value=". . .">
+          </div>
+          <div id = "datepickerMain" ></div>
+          <div class="mainRow">
+            <div class="mainText">Departure time:</div>
+            <input type="text" id="orderTimeHour" class="mainTextInput largerMediumTextInput" value="Hour" maxlength="2">
+            <div class = "midText">:</div>
+            <input type="text" id="orderTimeMinute" class="mainTextInput largerMediumTextInput" value="Minute" maxlength="2">
+            <input type="button" name="amButton" value="AM" class="button smallButton orderButton" id="timeButtonAM">
+            <input type="button" name="pmButton" value="PM" class="button smallButton orderButton" id="timeButtonPM">
+          </div>
+          <div class="mainRow">
+            <div class="mainText">From: </div><input type="text" id="ordeFrom" class="mainTextInput" maxlength="30">
+          </div>
+          <div class="mainRow">
+            <div class="mainText">To: </div><input type="text" id="orderTo" class="mainTextInput" maxlength="30">
+          </div>
+          <div class="paymentType">
+            <div class="button" id="paymentTypeButton">Select payment</div>
+            <div class="button paymentSelection">Credit Card</div>
+            <div class="button paymentSelection">Cash</div>
+            <div class="button paymentSelection" id="paymentBill">Bill</div>
+          </div>
+          <div class="mainRow">
+            <div class="mainText">Pasangers: </div>
+            <div class="button orderSelect"  id="orderPasangers">2</div>
+            <input type="button" name="plusButton" value="+" class="button smallButton orderButton" id="plusButton">
+            <input type="button" name="minusButton" value="-" class="button smallButton orderButton" id="minusButton">
+          </div>
+          <div class="mainRow mainButtonRow">
+            <input type="button" name="submitRegistration" value="Confirm" class="button">
+            <input type="button" name="clearRegistration" value="Clear" class="button" id="orderClearButton">
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
