@@ -81,10 +81,10 @@ body{
 }
 
   #newOrder{
-    background-image: url("Images/HomeIcons/icon6.png");
+    background-image: url("Images/HomeIcons/icon1.png");
     background-size:cover;
     background-size: 35% 60%;
-    background-position: center;
+    background-position: 50% 55%;
     background-repeat: no-repeat;
     opacity: 0.6;
   }
@@ -94,7 +94,7 @@ body{
   }
 
   #myOrders{
-    background-image: url("Images/HomeIcons/icon7.png");
+    background-image: url("Images/HomeIcons/icon2.png");
     background-size:cover;
     background-size: 30% 60%;
     background-position: center;
@@ -109,8 +109,8 @@ body{
   #aboutUs{
     background-image: url("Images/HomeIcons/icon3.png");
     background-size:cover;
-    background-size: 45% 75%;
-    background-position: center;
+    background-size: 38% 65%;
+    background-position: 50% 55%;
     background-repeat: no-repeat;
     opacity: 0.6;
   }

@@ -26,42 +26,50 @@
           <div class="orderTitle largeText">New Order</div>
         </div>
         <div class="mainParagraph">
+          <form action="../../Server/Responses/login.php" method="post" class="" id="orderForm">
           <div class="mainRow">
             <div class="mainText">Departure date: </div>
-            <div class="button orderSelect" id="orderDate">Select date</div>
-            <input type="button" id="orderDateButton" class="button orderButton smallButton" value=". . .">
+            <div class="button orderSelect" id="orderDate" name="orderDate">Select date</div>
+            <div class="errorMessage" id="errorOrderDepartureDate"></div>
           </div>
           <div id = "datepickerMain" ></div>
           <div class="mainRow">
             <div class="mainText">Departure time:</div>
-            <input type="text" id="orderTimeHour" class="mainTextInput largerMediumTextInput" value="Hour" maxlength="2">
+            <input type="text" id="orderTimeHour" name="orderTimeHour" class="mainTextInput largerMediumTextInput" value="" maxlength="2">
             <div class = "midText">:</div>
-            <input type="text" id="orderTimeMinute" class="mainTextInput largerMediumTextInput" value="Minute" maxlength="2">
+            <input type="text" id="orderTimeMinute" name="orderTimeMinute" class="mainTextInput largerMediumTextInput" value="" maxlength="2">
             <input type="button" name="amButton" value="AM" class="button smallButton orderButton" id="timeButtonAM">
             <input type="button" name="pmButton" value="PM" class="button smallButton orderButton" id="timeButtonPM">
+            <input type="hidden" name="orderClock" value="" id="orderClock">
+            <div class="errorMessage" id="errorOrderDepartureTime"></div>
           </div>
           <div class="mainRow">
-            <div class="mainText">From: </div><input type="text" id="ordeFrom" class="mainTextInput" maxlength="30">
+            <div class="mainText">From: </div><input type="text" id="orderFrom" name="orderFrom" class="mainTextInput" maxlength="30">
+            <div class="errorMessage" id="errorOrderFrom"></div>
           </div>
           <div class="mainRow">
-            <div class="mainText">To: </div><input type="text" id="orderTo" class="mainTextInput" maxlength="30">
+            <div class="mainText">To: </div><input type="text" id="orderTo" name="orderTo" class="mainTextInput" maxlength="30">
+            <div class="errorMessage" id="errorOrderTo"></div>
           </div>
           <div class="paymentType">
-            <div class="button" id="paymentTypeButton">Select payment</div>
+            <div class="errorMessage" id="errorOrderPaymentType"></div>
+            <div class="button" id="paymentTypeButton" name="orderPayment">Select payment</div>
             <div class="button paymentSelection">Credit Card</div>
             <div class="button paymentSelection">Cash</div>
             <div class="button paymentSelection" id="paymentBill">Bill</div>
           </div>
           <div class="mainRow">
             <div class="mainText">Pasangers: </div>
-            <div class="button orderSelect"  id="orderPasangers">2</div>
+            <div class="button orderSelect"  id="orderPasangers" name="orderPasangers">2</div>
             <input type="button" name="plusButton" value="+" class="button smallButton orderButton" id="plusButton">
             <input type="button" name="minusButton" value="-" class="button smallButton orderButton" id="minusButton">
+            <div class="errorMessage" id="errorOrderPasangers"></div>
           </div>
           <div class="mainRow mainButtonRow">
-            <input type="button" name="submitRegistration" value="Confirm" class="button">
-            <input type="button" name="clearRegistration" value="Clear" class="button" id="orderClearButton">
+            <input type="submit" name="submitOrder" value="Confirm" class="button">
+            <input type="button" name="clearOrder" value="Clear" class="button" id="orderClearButton">
           </div>
+        </form>
         </div>
       </div>
     </div>

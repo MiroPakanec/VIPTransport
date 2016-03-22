@@ -22,9 +22,8 @@
       <div class="mainMenuContainer">
         <div class="mainMenuSelection">
           <ul class="mainMenu">
-            <a href="#mainOrder"><li class="mainMenuElement">Order Now</li></a>
-            <a href="#mainRegister"><li class="mainMenuElement">Register</li></a>
             <a href="#mainLogin"><li class="mainMenuElement">Login</li></a>
+            <a href="#mainRegister"><li class="mainMenuElement">Register</li></a>
             <a href="#mainAboutUs"><li class="mainMenuElement">About us</li></a>
             <a href="#mainTransporters"><li class="mainMenuElement">Transporters</li></a>
             <a href="#mainCars"><li class="mainMenuElement">Cars</li></a>
@@ -44,51 +43,27 @@
             <div class="mainPicture main2"></div>
             <div class="mainPicture main3"></div>
             <div class="mainPicture main4"></div>
-            <div id="mainOrder" class="mainTitle mainTextStyle">Create Order</div>
-              <div class="mainParagraph">
+            <div id="mainLogin" class="mainTitle mainTextStyle">Login</div>
+            <div class="mainParagraph">
+              <form action="../../Server/Responses/login.php" method="post" class="ajax" id="loginForm">
                 <div class="mainRow">
-                  <div class="mainText">Username: </div><input type="text" id="orderUsername" class="mainTextInput" maxlength="30">
+                  <div class="mainText">Email:</div><input type="text" id="loginEmail" class="mainTextInput" maxlength="30" name="email">
+                  <div class="errorMessage errorMessageLogin" id="errorLoginEmail"></div>
                 </div>
                 <div class="mainRow">
-                  <div class="mainText">Company name: </div><input type="text" id="orderCompanyName" class="mainTextInput" maxlength="30">
+                  <div class="mainText">Password:</div><input type="password" id="loginPassword" class="mainTextInput" maxlength="30" name="password">
+                    <div class="errorMessage errorMessageLogin" id="errorLoginPassword"></div>
                 </div>
-                <div class="paymentType">
-                  <div class="button" id="paymentTypeButton">Select payment</div>
-                  <div class="button paymentSelection">Credit Card</div>
-                  <div class="button paymentSelection">Cash</div>
-                  <div class="button paymentSelection" id="paymentBill">Bill</div>
-                </div>
-                <div class="mainRow">
-                  <div class="mainText">Departure date: </div>
-                  <div class="button orderSelect" id="orderDate">Select date</div>
-                  <input type="button" id="orderDateButton" class="button orderButton smallButton" value=". . .">
-                </div>
-                <div id = "datepickerMain" ></div>
-                <div class="mainRow">
-                  <div class="mainText">Departure time:</div>
-                  <input type="text" id="orderTimeHour" class="mainTextInput largerMediumTextInput" value="Hour" maxlength="2">
-                  <div class = "midText">:</div>
-                  <input type="text" id="orderTimeMinute" class="mainTextInput largerMediumTextInput" value="Minute" maxlength="2">
-                  <input type="button" name="amButton" value="AM" class="button smallButton orderButton" id="timeButtonAM">
-                  <input type="button" name="pmButton" value="PM" class="button smallButton orderButton" id="timeButtonPM">
-                </div>
-                <div class="mainRow">
-                  <div class="mainText">From: </div><input type="text" id="ordeFrom" class="mainTextInput" maxlength="30">
-                </div>
-                <div class="mainRow">
-                  <div class="mainText">To: </div><input type="text" id="orderTo" class="mainTextInput" maxlength="30">
-                </div>
-                <div class="mainRow">
-                  <div class="mainText">Pasangers: </div>
-                  <div class="button orderSelect"  id="orderPasangers">2</div>
-                  <input type="button" name="plusButton" value="+" class="button smallButton orderButton" id="plusButton">
-                  <input type="button" name="minusButton" value="-" class="button smallButton orderButton" id="minusButton">
+                <div class="mainRow mainResponseRow" id="loginResponseField">
+                  <div class="mainText mainResponseText" id="loginResponseText"></div>
                 </div>
                 <div class="mainRow mainButtonRow">
-                  <input type="button" name="submitRegistration" value="Confirm" class="button">
-                  <input type="button" name="clearRegistration" value="Clear" class="button" id="orderClearButton">
+                  <input type="hidden" name ="token" id="loginToken" value="">
+                  <input type="submit" value="Login" class="button" id="loginSubmitButton">
+                  <input type="button" value="Clear" class="button" id="loginClearButton">
                 </div>
-              </div>
+              </form>
+            </div>
             <div class="mainTitle mainTextStyle" id="mainRegister">Register</div>
             <div class="mainParagraph">
               <form action="../../Server/Responses/register.php" method="post" class="ajax" id="registerForm">
@@ -126,28 +101,6 @@
                 <div class="mainRow mainButtonRow">
                   <input type="submit" name="submitRegistration" value="Register" class="button" id=registrationSubmitButton>
                   <input type="button" name="clearRegistration" value="Clear" class="button" id="registrationClearButton">
-                </div>
-              </form>
-            </div>
-
-            <div id="mainLogin" class="mainTitle mainTextStyle">Login</div>
-            <div class="mainParagraph">
-              <form action="../../Server/Responses/login.php" method="post" class="ajax" id="loginForm">
-                <div class="mainRow">
-                  <div class="mainText">Email:</div><input type="text" id="loginEmail" class="mainTextInput" maxlength="30" name="email">
-                  <div class="errorMessage errorMessageLogin" id="errorLoginEmail"></div>
-                </div>
-                <div class="mainRow">
-                  <div class="mainText">Password:</div><input type="password" id="loginPassword" class="mainTextInput" maxlength="30" name="password">
-                    <div class="errorMessage errorMessageLogin" id="errorLoginPassword"></div>
-                </div>
-                <div class="mainRow mainResponseRow" id="loginResponseField">
-                  <div class="mainText mainResponseText" id="loginResponseText"></div>
-                </div>
-                <div class="mainRow mainButtonRow">
-                  <input type="hidden" name ="token" id="loginToken" value="">
-                  <input type="submit" value="Login" class="button" id="loginSubmitButton">
-                  <input type="button" value="Clear" class="button" id="loginClearButton">
                 </div>
               </form>
             </div>
