@@ -26,7 +26,7 @@
           <div class="orderTitle largeText">New Order</div>
         </div>
         <div class="mainParagraph">
-          <form action="../../Server/Responses/login.php" method="post" class="" id="orderForm">
+          <form action="../../Server/Responses/newOrder.php" method="post" class="" id="orderForm">
           <div class="mainRow">
             <div class="mainText">Departure date: </div>
             <div class="button orderSelect" id="orderDate" name="orderDate">Select date</div>
@@ -64,6 +64,12 @@
             <input type="button" name="plusButton" value="+" class="button smallButton orderButton" id="plusButton">
             <input type="button" name="minusButton" value="-" class="button smallButton orderButton" id="minusButton">
             <div class="errorMessage" id="errorOrderPasangers"></div>
+          </div>
+          <div id="pasangerNames">
+
+          </div>
+          <div class="mainRow orderResponseRow" id="orderResponseField">
+            <div class="orderResponseText" id="orderResponseText">This is a test</div>
           </div>
           <div class="mainRow mainButtonRow">
             <input type="submit" name="submitOrder" value="Confirm" class="button">

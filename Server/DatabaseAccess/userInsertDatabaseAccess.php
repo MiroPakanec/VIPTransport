@@ -3,7 +3,7 @@
   require_once('databaseConnection.php');
   require $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/userModel.php';
 
-  class UserRegistrationDatabaseAccess{
+  class UserInsertDatabaseAccess{
 
     public function registerUser($userModelObject){
 

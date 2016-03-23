@@ -15,8 +15,10 @@ $(function(){
 
     $('.paymentSelection').hide(0);
     $('#datepickerMain').hide();
-    $('.errorMessage').hide();
     $('#orderClock').val('AM');
+    $('#orderResponseField').hide();
+    generatePasangers($('#orderPasangers').html());
+    $('.errorMessage').hide();
 
 })
 
@@ -33,22 +35,54 @@ $(function(){
       var url = $(this).attr('action');
       var type = $(this).attr('method');
       var data = {};
+      var names = {};
       $('input[name^="order"]').each(function(index, value){
 
-        var name = $(this).attr('name');
+        var name = $(this).attr('name').slice(5);
         var value = $(this).val();
         data[name] = value;
       }),
       $('div[name^="order"]').each(function(index, value){
 
-        var name = $(this).attr('name');
+        var name = $(this).attr('name').slice(5);
         var value = $(this).html();
         data[name] = value;
       }),
+      $('input[name^="pasangerName"]').each(function(index, value){
+
+        var name = $(this).attr('name').slice(8);
+        var value = $(this).val();
+        names[name] = value;
+      }),
+
+      data['Names'] = names;
 
       console.log(data)
+
+      $.ajax({
+        url: url,
+        type: type,
+        data: data,
+        success: function(response){
+          handleOrderResponse(response);
+        },
+        error: function(){
+        $('#orderResponse').slideDown(500).html('We are sorry, something went wrong');
+        }
+      })
     })
 })
+
+function handleOrderResponse(response){
+
+    $('#orderResponseField').slideDown(500).css({
+     'background-color' : 'rgba(0, 255, 0, 0.1)'
+   });
+   $('#orderResponseText').html(response).css({
+     'color' : 'green'
+   });
+
+}
 
 //on clear
 
@@ -66,6 +100,15 @@ $(function(){
     $('#orderPasangers').html('2');
 
     $('.errorMessage').slideUp(500);
+    $('#orderResponseField').slideUp(500);
+
+    //remove names
+    $('.generatedInputField').each(function(i){
+      $(this).val('');
+      if(i >= 2)
+        $(this).parent().remove();
+
+    })
   })
 })
 
@@ -94,8 +137,18 @@ $(function(){
   validateOrderTime('blur', '#orderTimeMinute', '#errorOrderDepartureTime', /^[0-9+]*$/, 59, 0, 'minute');
   validateOrderInput('blur', '#orderFrom', '#errorOrderFrom');
   validateOrderInput('blur', '#orderTo', '#errorOrderTo');
+
+  validateGenerated();
 })
 
+function validateGenerated(){
+
+  //validateOrderInput('blur', '#test0', '#teest0');
+  $('.generatedInputField').each(function(i){
+
+    validateOrderName('blur', '#pasangerName'+i, '#errorOrderPasangerName'+i, /^[a-zA-Z\s]*$/);
+  })
+}
 
 function validateOrderTime(thisEvent, id, idErr, regex, max, min, name){
 
@@ -108,6 +161,20 @@ function validateOrderTime(thisEvent, id, idErr, regex, max, min, name){
       $(idErr).html('Incorrect '+name+' (' + min + ' - ' + max + ')').slideDown(500);
     else if(!regex.test(value))
       $(idErr).html('Incorrect value').slideDown(500);
+    else
+      $(idErr).html('').slideUp(500);
+  })
+}
+
+function validateOrderName(thisEvent, id, idErr, regex){
+
+  $(id).on(thisEvent, function(){
+    var value = $(this).val();
+
+    if(!value)
+      $(idErr).html('Cannot be empty').slideDown(500);
+    else if(!regex.test(value))
+      $(idErr).html('Use only characters').slideDown(500);
     else
       $(idErr).html('').slideUp(500);
   })

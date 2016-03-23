@@ -22,14 +22,22 @@ $(function(){
     //plus minut buttons
     $("#plusButton").on('click', function(){
       var value = $('#orderPasangers').html();
-        if(value < 9)
+        if(value < 9){
           $('#orderPasangers').html(parseInt(value) + 1);
+          //generatePasangers($('#orderPasangers').html());
+          addPasangers();
+          validateGenerated();
+        }
     }),
 
     $("#minusButton").on('click', function(){
       var value = $('#orderPasangers').html();
-        if(value > 1)
+        if(value > 1){
           $('#orderPasangers').html(parseInt(value) - 1);
+          //generatePasangers($('#orderPasangers').html());
+          removePasanger();
+          validateGenerated();
+        }
     }),
 
     $("#paymnetTypeButton").on('click', function(){
@@ -75,3 +83,50 @@ $(function(){
       });
     })
   });
+
+  function generatePasangers(num){
+
+    var html = '';
+
+    for(var i = 0; i< num; i++){
+
+      html += generateHtml(i);
+    }
+
+    $('#pasangerNames').html(html);
+    $('.errorMessageGenerated').hide();
+  }
+
+  function addPasangers(){
+
+    var html = '';
+    var counter = -1;
+    $('.generatedInputField').each(function(){
+      counter++;
+    })
+
+    html = generateHtml(counter + 1);
+    $(html).insertAfter($('#pasangerName'+ counter).parent());
+    $('#errorOrderPasangerName' + (counter+1)).hide();
+  }
+
+  function removePasanger(){
+
+    var counter = -1;
+    $('.generatedInputField').each(function(){
+      counter++;
+    })
+
+    $('#pasangerName' + counter).parent().remove();
+  }
+
+  function generateHtml(counter){
+
+    var html = '';
+    html += '<div class="mainRow" style="margin-bottom: 1%">' +
+            '<div class="mainText">Full name ' + (counter+1) + ':</div>'+
+            '<input type="text" name="pasangerName'+counter+'" class="mainTextInput generatedInputField" id="pasangerName'+counter+'" maxlength="30">'+
+            '<div id="errorOrderPasangerName'+counter+'" class="errorMessage errorMessageGenerated"></div>' +
+            '</div>'
+    return html;
+  }

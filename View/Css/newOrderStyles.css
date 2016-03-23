@@ -149,7 +149,28 @@ body{
 }
 
 .mainButtonRow{
-  margin: 10% 0% 0% 20%;
+  margin: 1% 0% 0% 18.5%;
+}
+
+.orderResponseText{
+
+  width: 90%;
+  height: 90%;
+  font-size: 20px;
+  font-family: myFont;
+  color: red;
+  text-align: left;
+  margin-left: 5%;
+  margin-top: 3%;
+}
+
+.orderResponseRow{
+  background-color: rgba(255, 0, 0, 0.1);
+  margin-top: 1%;
+  width: 40% !important;
+  height: 20%;
+  margin-left: 29.5%;
+  float: left;
 }
 
 .mainText{
@@ -183,6 +204,11 @@ body{
 .largerMediumTextInput{
   width: 6.4%;
   padding: 0.9% 1.1%;
+}
+
+#pasangerNames{
+  width: 100%;
+  float: left;
 }
 
 /*ELEMENTS*/

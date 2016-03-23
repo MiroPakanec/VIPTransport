@@ -1,0 +1,30 @@
+<?php
+
+  include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/orderController.php';
+
+  if(isset($_POST['Clock'],$_POST['Date'], $_POST['TimeHour'],
+        $_POST['TimeMinute'],$_POST['From'], $_POST['To'],
+        $_POST['Pasangers'],$_POST['Payment'])){
+
+    $namesError = '';
+    $names = $_POST['Names'];
+
+    for($i = 0; $i < $_POST['Pasangers']; $i++){
+
+        if(strlen(array_values($names)[$i]) == 0){
+
+          $namesError .= 'Pasanger '.($i+1).' is empty'.'</br>';
+        }
+    }
+
+    $orderControllerObject = new OrderController();
+    $response = $orderControllerObject->crearteOrder($_POST['Date'], $_POST['TimeHour'], $_POST['TimeMinute'], $_POST['Clock'],
+                              $_POST['From'], $_POST['To'], $_POST['Pasangers'], $_POST['Payment'], $_POST['Names']);
+
+    //$datetime->format('Y-m-d h:i:s A');
+
+    //response to client
+    echo $response;
+  }
+
+?>

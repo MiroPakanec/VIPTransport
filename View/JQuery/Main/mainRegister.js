@@ -28,7 +28,7 @@
 
       clearRegistrationErrors();
       clearRegistrationFields();
-      $('#registrationResponseField').slideUp('500');
+      $('#registrationResponseField').slideUp(500);
     }),
 
     //submit
@@ -56,7 +56,7 @@
             handleRegistrationResponse(response);
           },
           error: function(){
-            $('#registrationResponse').slideDown('500').html('We are sorry, something went wrong');
+            $('#registrationResponse').slideDown(500).html('We are sorry, something went wrong');
           }
         })
     })
@@ -66,7 +66,7 @@ function handleRegistrationResponse(response){
 
   if(response == 'Registration successful'){
 
-    $('#registrationResponseField').slideDown('500').css({
+    $('#registrationResponseField').slideDown(500).css({
       'background-color' : 'rgba(0, 255, 0, 0.1)'
     });
     $('#registrationResponseText').html(response).css({
@@ -76,7 +76,7 @@ function handleRegistrationResponse(response){
   }
    else{
 
-     $('#registrationResponseField').slideDown('500').css({
+     $('#registrationResponseField').slideDown(500).css({
       'background-color' : 'rgba(255, 0, 0, 0.1)'
     });
     $('#registrationResponseText').html(response).css({

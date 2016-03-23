@@ -1,6 +1,6 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/userRegistrationDatabaseAccess.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/userInsertDatabaseAccess.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/userSelectDatabaseAccess.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/userModel.php';
 
@@ -11,7 +11,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/userModel.php
 
       $password = password_hash($password , PASSWORD_BCRYPT);
       $userModelObject = new UserModel($email, $fname, $mname, $lname, $password, $phone, '', '');
-      $userDataAccessObject = new UserRegistrationDatabaseAccess();
+      $userDataAccessObject = new UserInsertDatabaseAccess();
       return $userDataAccessObject->registerUser($userModelObject);
     }
 

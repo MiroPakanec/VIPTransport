@@ -34,7 +34,7 @@ $(function(){
             handleLoginResponse(response);
           },
           error: function(){
-            $('#loginResponse').slideDown('500').html('We are sorry, something went wrong');
+            $('#loginResponse').slideDown(500).html('We are sorry, something went wrong');
           }
         })
   })
@@ -46,7 +46,7 @@ function handleLoginResponse(response){
     window.location="homePage.html";
   else{
 
-    $('#loginResponseField').slideDown('500').css({
+    $('#loginResponseField').slideDown(500).css({
      'background-color' : 'rgba(255, 0, 0, 0.1)'
    });
    $('#loginResponseText').html(response).css({
