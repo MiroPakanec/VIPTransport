@@ -57,8 +57,6 @@ $(function(){
 
       data['Names'] = names;
 
-      console.log(data)
-
       $.ajax({
         url: url,
         type: type,
@@ -75,42 +73,58 @@ $(function(){
 
 function handleOrderResponse(response){
 
+  if(response == 0){
+
+      var responseText = "We are sorry, your order could not be processed.<br>Make sure imported names are not the same.";
+      $('#orderResponseField').slideDown(500).css({
+       'background-color' : 'rgba(255, 0, 0, 0.1)'
+      });
+      $('#orderResponseText').html(responseText).css({
+       'color' : 'red'
+      });
+  }
+  else{
+
+    var responseText = 'Order was created successfully. <br>Please visit "My Orders" for more information';
     $('#orderResponseField').slideDown(500).css({
      'background-color' : 'rgba(0, 255, 0, 0.1)'
-   });
-   $('#orderResponseText').html(response).css({
+    });
+    $('#orderResponseText').html(responseText).css({
      'color' : 'green'
-   });
-
+    });
+  }
 }
 
 //on clear
-
 $(function(){
 
   $('#orderClearButton').on('click', function(){
 
-    $('#orderDate').html('Select date');
-    $('#datepickerMain').slideUp(500);
-    $('#orderTimeHour').val('');
-    $('#orderTimeMinute').val('');
-    $('#orderFrom').val('');
-    $('#orderTo').val('');
-    $('#paymentTypeButton').html('Select payment');
-    $('#orderPasangers').html('2');
-
-    $('.errorMessage').slideUp(500);
-    $('#orderResponseField').slideUp(500);
-
-    //remove names
-    $('.generatedInputField').each(function(i){
-      $(this).val('');
-      if(i >= 2)
-        $(this).parent().remove();
-
-    })
+    clierFields();
+    clearResponse();
   })
 })
+
+function clierFields(){
+
+  $('#orderDate').html('Select date');
+  $('#datepickerMain').slideUp(500);
+  $('#orderTimeHour').val('');
+  $('#orderTimeMinute').val('');
+  $('#orderFrom').val('');
+  $('#orderTo').val('');
+  $('#paymentTypeButton').html('Select payment');
+  $('#orderPasangers').html('2');
+
+  generatePasangers(2);
+  validateGenerated();
+}
+
+function clearResponse(){
+
+  $('.errorMessage').slideUp(500);
+  $('#orderResponseField').slideUp(500);
+}
 
 //on confirm
 function validateOrderConfirm(){

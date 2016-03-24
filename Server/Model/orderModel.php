@@ -2,16 +2,19 @@
 
   class OrderModel{
 
-    private $date;
+    private $id;
     private $email;
+    private $date;
     private $from;
     private $to;
     private $pasangers;
     private $payment;
     private $names; //array
+    private $creationDate;
 
-    public function __construct($date, $email, $from, $to, $pasangers, $payment, $names){
+    public function __construct($id, $email, $date, $from, $to, $pasangers, $payment, $names, $creationDate){
 
+      $this->id = $id;
       $this->date = $date;
       $this->email = $email;
       $this->from = $from;
@@ -19,6 +22,11 @@
       $this->pasangers = $pasangers;
       $this->payment = $payment;
       $this->names = $names;
+      $this->creationDate =$creationDate;
+    }
+
+    public function getId(){
+      return $this->id;
     }
 
     public function getDate(){
@@ -49,6 +57,14 @@
       return $this->names;
     }
 
+    public function getCreationDate(){
+      return $this->creationDate;
+    }
+
+    public function setId($value){
+      $this->id = $value;
+    }
+
     public function setDate($value){
       $this->date = $value;
     }
@@ -71,6 +87,10 @@
 
     public function setNames($value){
       $this->names = $value;
+    }
+
+    public function setCreationDate($value){
+      $this->creationDate = $value;
     }
   }
 ?>
