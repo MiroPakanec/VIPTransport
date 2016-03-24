@@ -10,6 +10,7 @@
       try{
 
         $id = $email = $datetimeString = $from = $to = $pasangers = $payment = $creationDate = '';
+        $orderModelArray = array();
 
         $dbc = DatabaseConnection::openConnection();
         $query = "SELECT * FROM Transport_order " . $wClause;
@@ -27,15 +28,15 @@
               $pasangers = $row['Pasangers'];
               $payment = $row['Payment_type'];
               $creationDate = $row['Creation_date'];
+
+              $date = new DateTime($datetimeString);
+              $orderModelObject = new OrderModel($id, $email, $date, $from, $to, $pasangers, $payment, '', $creationDate);
+              array_push($orderModelArray, $orderModelObject);
             }
         }
 
         mysqli_close($dbc);
-
-        $date = Datetime::createFromFormat('d/m/Y H:i:s A', $datetimeString);
-
-        $orderModelObject = new OrderModel($id, $email, $date, $from, $to, $pasangers, $payment, '', $creationDate);
-        return $orderModelObject;
+        return $orderModelArray;
       }
       catch(Exception $e){
 

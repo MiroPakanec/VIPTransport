@@ -12,7 +12,13 @@ $(function(){
         generateCustomerButtons();
         generateTableOrdersCustomer();
       }
+    }),
+
+    getTransports(function(data){
+      alert(data);
     })
+
+
 })
 
 function generateTableOrdersCustomer(){
