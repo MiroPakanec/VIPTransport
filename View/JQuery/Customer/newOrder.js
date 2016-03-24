@@ -106,7 +106,7 @@ $(function(){
     })
 
     html = generateHtml(counter + 1);
-    $(html).insertAfter($('#pasangerName'+ counter).parent());
+    $(html).insertAfter($('#orderPasangerName'+ counter).parent());
     $('#errorOrderPasangerName' + (counter+1)).hide();
   }
 
@@ -117,7 +117,7 @@ $(function(){
       counter++;
     })
 
-    $('#pasangerName' + counter).parent().remove();
+    $('#orderPasangerName' + counter).parent().remove();
   }
 
   function generateHtml(counter){
@@ -125,7 +125,7 @@ $(function(){
     var html = '';
     html += '<div class="mainRow" style="margin-bottom: 1%">' +
             '<div class="mainText">Full name ' + (counter+1) + ':</div>'+
-            '<input type="text" name="pasangerName'+counter+'" class="mainTextInput generatedInputField" id="pasangerName'+counter+'" maxlength="30">'+
+            '<input type="text" name="pasangerName'+counter+'" class="mainTextInput generatedInputField" id="orderPasangerName'+counter+'" maxlength="30">'+
             '<div id="errorOrderPasangerName'+counter+'" class="errorMessage errorMessageGenerated"></div>' +
             '</div>'
     return html;

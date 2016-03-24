@@ -85,7 +85,7 @@ function handleOrderResponse(response){
   }
   else{
 
-    var responseText = 'Order was created successfully. <br>Please visit "My Orders" for more information';
+    var responseText = 'Order was created successfully. <br>Please visit "My Transports" for more information';
     $('#orderResponseField').slideDown(500).css({
      'background-color' : 'rgba(0, 255, 0, 0.1)'
     });
@@ -160,7 +160,7 @@ function validateGenerated(){
   //validateOrderInput('blur', '#test0', '#teest0');
   $('.generatedInputField').each(function(i){
 
-    validateOrderName('blur', '#pasangerName'+i, '#errorOrderPasangerName'+i, /^[a-zA-Z\s]*$/);
+    validateOrderName('blur', '#orderPasangerName'+i, '#errorOrderPasangerName'+i, /^[a-zA-Z\s]*$/);
   })
 }
 
@@ -220,16 +220,4 @@ function validateOrderButton(id, idErr, defaultValue){
     $(idErr).html('Cannot be default').slideDown(500);
   else
     $(idErr).html('').slideUp(500);
-}
-
-function generateCustomerButtons(){
-
-  var html = '<a href="homePage.html"><input type="button" class="headerButton buttonHome smallText" value="Home"></a>'
-            +'<a href="newOrderPage.html"><input type="button" class="headerButton buttonHome smallText" value="New Order"></a>'
-            +'<a href="#"><input type="button" class="headerButton buttonHome smallText" value="My Orders"></a>'
-            +'<a href="#"><input type="button" class="headerButton buttonHome smallText" value="My Profile"></a>'
-            +'<a href="#"><input type="button" class="headerButton buttonHome smallText" value="About Us"></a>'
-            +'<a href="#"><input type="button" class="headerButton buttonHome smallText" style="border-right: 0px" value="Log Out"></a>';
-
-  $('.headerButtonsContainer').html(html);
 }
