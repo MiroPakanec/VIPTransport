@@ -2,6 +2,7 @@
 
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderInsertDatabaseAccess.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderSelectDatabaseAccess.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderDeleteDatabaseAccess.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/orderModel.php';
 
   session_start();
@@ -31,6 +32,16 @@
 
       $orderSelectDatabaseAccessObject = new OrderSelectDatabaseAccess();
       return $orderSelectDatabaseAccessObject->getOrderData($this->getOrdersWClause());
+    }
+
+    public function deleteOrder($id){
+
+      $orderDeleteDatabaseAccess = new OrderDeleteDatabaseAccess();
+      if(strlen($id) == 0)
+        return 0;
+
+      $wClause = "WHERE id = ".$id;
+      return $orderDeleteDatabaseAccess->deleteOrder($wClause);
     }
 
     private function getOrdersWClause(){

@@ -13,7 +13,7 @@
         $orderModelArray = array();
 
         $dbc = DatabaseConnection::openConnection();
-        $query = "SELECT * FROM Transport_order " . $wClause;
+        $query = "SELECT * FROM Transport_order " . $wClause. " ORDER BY Id DESC";
 
         $response = @mysqli_query($dbc, $query);
 

@@ -1,7 +1,6 @@
 <?php
 
     require $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/orderController.php';
-    //require $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/orderModel.php';
 
     $orderControllerObject = new OrderController();
     $orderModelArray = $orderControllerObject->getOrders();

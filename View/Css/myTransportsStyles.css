@@ -1,13 +1,66 @@
+.titleArea{
+
+  margin-top: 2%;
+  margin-left: 30%;
+  width: 50% !important;
+}
+
+.title{
+
+  width: 40%;
+  float: left;
+  background-color: rgba(255,255,255, 0.0);
+}
+
+.title:hover{
+
+  background-color: rgba(255,255,255, 0.1) !important;
+}
+
+.title:active{
+
+  background-color: rgba(255,255,255, 0.2) !important;
+}
+
 .orderTableArea{
 
   margin-top: 7%;
-  height: 40%;
-  width: 100%;
+  margin-left: 5%;
+  height: 45%;
+  width: 90%;
   text-align: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.responseArea{
+
+  height: 10%;
+  width: 74%;
+  float: left;
+  margin-left: 5%;
+  margin-top: 1%;
+  padding: 1% 1%;
+
+  font-family: myFont;
+  font-size: 20px;
+}
+
+.orderTableArea::-webkit-scrollbar {
+    width: 1em;
+}
+
+.orderTableArea::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.orderTableArea::-webkit-scrollbar-thumb {
+  background-color: white;
+  outline: 1px solid slategrey;
 }
 
 table{
-  margin-left: 16%;
+  width: 100%;
 
 }
 
@@ -16,18 +69,78 @@ tr{
 }
 
 td{
-  width: 15%;
   border: 1px solid rgba(255,255,255,0.2);
   background-color: rgba(255,255,255,0.1);
+  width: 200px;
+  height: 30px;
 }
 
-.tableButton{
+td>input{
 
-  padding: 0.7% 10%;
-  background-color:rgba(255,255,255,0.3);
-  color: white;
+  background-color: rgba(255,255,255,0.0);
   border: none;
+  color: white;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+
 
   font-family: myFont;
+}
+
+td>input:focus{
+
+  outline: none;
+  border: none;
+  background-color: rgba(255,255,255,0.2);
+}
+
+td>input:hover{
+
+  outline: none;
+  border: none;
+  background-color: rgba(255,255,255,0.2);
+}
+
+.tableRow{
+
+  font-size: 14px;
+}
+
+.buttonColumnHeader{
+
+  background-color:rgba(255,0,0,0.1);
+  border: none;
   font-size: 18px;
+  border: 1px solid rgba(0,0,0,0.2);
+}
+
+.buttonColumn{
+
+    background-color:rgba(255,0,0,0.1);
+    border: none;
+    font-size: 18px;
+}
+
+.buttonColumn:hover{
+  background-color:rgba(255,0,0,0.2);
+}
+
+.alertButton{
+
+  width: 5%;
+  height: 30%;
+  margin-top: 1%;
+  margin-right: 1%;
+
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+
+  font-family: myFont;
+  outline: none;
+}
+
+.alertButton:hover{
+    background-color: rgba(255,255,255,0.3);
 }

@@ -10,29 +10,11 @@ $(function(){
 
         //generate page for custoemr
         generateCustomerButtons();
-        generateTableOrdersCustomer();
       }
     }),
 
-    getTransports(function(data){
-      alert(data);
-    })
-
-
+    $('#responseArea').hide();
+    setTimeout(function() {
+        $("#titleOrder").trigger('click');
+    },10);
 })
-
-function generateTableOrdersCustomer(){
-
-  var html = '<table class="smallText">' +
-                '<tr class = "tableHeader">' +
-                  '<td>Date</td>' +
-                  '<td>Departure address</td>' +
-                  '<td>Arrival address</td>' +
-                  '<td>Pasangers</td>' +
-                  '<td>Payment</td>' +
-                  '<td>Operation</td>';
-                '</tr>' +
-             '</table>';
-
-   $('#orderTableArea').html(html);
-}

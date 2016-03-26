@@ -16,7 +16,7 @@ function getTransports(handleData){
   $.ajax({
       type: 'GET',
       url: '../../Server/Responses/getTransports.php',
-      //dataType : 'json',
+      dataType : 'json',
       data: '',
       success: function(response){
           handleData(response);
