@@ -57,6 +57,14 @@ $(function(){
       }),
 
       data['Names'] = names;
+      if($('#orderConfirmButton').val() == 'Confirm')
+        data['Operation'] = 'create';
+      else if ($('#orderConfirmButton').val() == 'Update'){
+
+        data['Operation'] = 'update';
+        data['Id'] = getParameterByName('id');
+      }
+
 
       $.ajax({
         url: url,
@@ -105,9 +113,30 @@ function autoFillFields(id){
   getTransports(function(data){
 
     var dateString = data[0].date;
+    var clock = dateString.substring(20,22);
     $('#orderDate').html(dateString.substring(0,10));
     $('#orderTimeHour').val(dateString.substring(11,13));
     $('#orderTimeMinute').val(dateString.substring(14,16));
+
+    if(clock == "PM"){
+
+      $('#timeButtonPM').css({
+        'background-color' : 'rgba(255,255,255,0.3)'
+      });
+      $('#timeButtonAM').css({
+        'background-color' : 'rgba(255,255,255,0)'
+      });
+    }
+    else if(clock == "AM"){
+
+      $('#timeButtonAM').css({
+        'background-color' : 'rgba(255,255,255,0.3)'
+      });
+      $('#timeButtonPM').css({
+        'background-color' : 'rgba(255,255,255,0)'
+      });
+    }
+
     $('#orderFrom').val(data[0].from);
     $('#orderTo').val(data[0].to);
     $('#paymentTypeButton').html(data[0].payment);
@@ -122,20 +151,32 @@ function autoFillFields(id){
 
 function handleOrderResponse(response){
 
-  if(response == 0){
+  if(response == 1)
+    window.location = "myTransportsPage.html?added=0&updated=-1";
+  else if(response == 2){
 
-      var responseText = "We are sorry, your order could not be processed.<br>Make sure imported names are not the same.";
-      $('#orderResponseField').slideDown(500).css({
-       'background-color' : 'rgba(255, 0, 0, 0.1)'
-      });
-      $('#orderResponseText').html(responseText).css({
-       'color' : 'red'
-      });
+    var responseText = "No changes were made";
+    $('#orderResponseField').slideDown(500).css({
+     'background-color' : 'rgba(255, 255, 255, 0.1)'
+    });
+    $('#orderResponseText').html(responseText).css({
+     'color' : 'white'
+    });
+  }
+  else if(response == 3){
+
+    window.location = "myTransportsPage.html?added=-1&updated="+getParameterByName('id');
   }
   else{
 
-   window.location = "myTransportsPage.html?added=1";
-  }
+    var responseText = "We are sorry, your order could not be processed.<br>Make sure imported names are not the same.";
+    $('#orderResponseField').slideDown(500).css({
+     'background-color' : 'rgba(255, 0, 0, 0.1)'
+    });
+    $('#orderResponseText').html(responseText).css({
+     'color' : 'red'
+    });
+ }
 }
 
 //on clear

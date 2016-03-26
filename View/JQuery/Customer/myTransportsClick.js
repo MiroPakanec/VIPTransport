@@ -5,10 +5,12 @@ $(function (){
     getTransports(function(data){
       generateTableOrders();
       var added = getParameterByName('added');
+      var updated= getParameterByName('updated');
       for (index in data){
         generateTableRow(data[index].id ,data[index].date, data[index].from, data[index].to,
-          data[index].pasangers, data[index].payment, data[index].creationDate, added);
-        added = 0;
+          data[index].pasangers, data[index].payment, data[index].creationDate, added, updated);
+
+        added = '-1';
       }
     }, ''),
 
@@ -134,7 +136,7 @@ function generateTableOrders(){
    $('#orderTableArea').html(html);
 }
 
-function generateTableRow(id, date, addressFrom, addressTo, pasangers, payment, creationDate, added){
+function generateTableRow(id, date, addressFrom, addressTo, pasangers, payment, creationDate, added, updated){
 
   var html =      '<tr class = "tableRow" id="'+id+'">' +
                     '<td><input type="text" class="tableInput" name="date" value="'+ date +'" disabled></td>' +
@@ -148,8 +150,13 @@ function generateTableRow(id, date, addressFrom, addressTo, pasangers, payment, 
                   '</tr>';
 
   $('#orderTable').append(html);
-  if(added == '1')
+  if(added == '0')
     $('#' + id + ' input.tableInput').css({
       'background-color' : 'rgba(255,255,255,0.3)'
     });
+  else if(id == updated){
+    $('#' + id + ' input.tableInput').css({
+      'background-color' : 'rgba(255,255,255,0.3)'
+    });
+  }
 }

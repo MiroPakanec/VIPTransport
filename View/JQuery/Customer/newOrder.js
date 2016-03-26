@@ -60,13 +60,13 @@ $(function(){
     //time AM/ PM
 
     $('#timeButtonAM').css({
-      'background-color' : 'rgba(255, 255, 255, 0.1)'
+      'background-color' : 'rgba(255, 255, 255, 0.3)'
     });
 
     $('#timeButtonAM').on('click', function(){
       $('#orderClock').val('AM');
       $(this).css({
-        'background-color' : 'rgba(255, 255, 255, 0.1)'
+        'background-color' : 'rgba(255, 255, 255, 0.3)'
       });
       $('#timeButtonPM').css({
         'background-color' : 'rgba(255, 255, 255, 0.0)'
@@ -76,7 +76,7 @@ $(function(){
     $('#timeButtonPM').on('click', function(){
       $('#orderClock').val('PM');
       $(this).css({
-        'background-color' : 'rgba(255, 255, 255, 0.1)'
+        'background-color' : 'rgba(255, 255, 255, 0.3)'
       });
       $('#timeButtonAM').css({
         'background-color' : 'rgba(255, 255, 255, 0.0)'

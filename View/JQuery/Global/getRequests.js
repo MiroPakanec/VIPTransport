@@ -13,7 +13,6 @@ function getSession(handleData){
 
 function getTransports(handleData, id){
 
-
   $.ajax({
       type: 'POST',
       url: '../../Server/Responses/getTransports.php',

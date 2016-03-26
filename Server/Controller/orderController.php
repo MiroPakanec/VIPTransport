@@ -3,6 +3,7 @@
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderInsertDatabaseAccess.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderSelectDatabaseAccess.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderDeleteDatabaseAccess.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderUpdateDatabaseAccess.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/orderModel.php';
 
   session_start();
@@ -26,6 +27,16 @@
 
       //return response from DAL insertion to Pasangers table
       return $orderInsertDatabaseAccessObject->createOrderNames($orderModelObject);
+    }
+
+    public function updateOrder($id, $date, $timeHour, $timeMinute, $clock, $from, $to, $pasangers, $payment, $names){
+
+      $datetimeString = $date." ".$timeHour.":".$timeMinute.":00 ".$clock;
+      $datetime = Datetime::createFromFormat('d/m/Y H:i:s A', $datetimeString);
+      $orderModelObject = new OrderModel($id, $_SESSION['email'], $datetime, $from, $to, $pasangers, $payment, $names, '');
+
+      $orderUpdateDatabaseAccessObject = new OrderUpdateDatabaseAccess();
+      return $orderUpdateDatabaseAccessObject->updateOrder($orderModelObject);
     }
 
     public function getOrders($id){

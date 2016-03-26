@@ -130,6 +130,11 @@ body{
   background-color:rgba(255,255,255,0.2);
 }
 
+.button:focus{
+  background-color:rgba(255,255,255,0.2);
+  outline: none;
+}
+
 .orderSelect{
   width: 15.2%;
   float: left;
