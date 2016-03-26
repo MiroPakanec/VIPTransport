@@ -20,6 +20,7 @@ $(function(){
     generatePasangers($('#orderPasangers').html());
     $('.errorMessage').hide();
 
+    updateOrder();
 })
 
 //form submit
@@ -71,6 +72,54 @@ $(function(){
     })
 })
 
+function updateOrder(){
+
+  //get url params
+  if(getParameterByName('update')){
+
+    $(".title").html('Update Order');
+    $("#orderClearButton").val('Cancel changes');
+    //get data with ID
+    id = getParameterByName('id');
+    autoFillFields(id);
+
+    setTimeout(function() {
+      $("#orderConfirmButton").val('Update');
+    },10);
+  }
+}
+
+function getNames(id){
+
+  getOrderNames(function(data){
+    for (index in data){
+
+      $('#orderPasangerName' + index).val(data[index]);
+    }
+  }, id)
+
+}
+
+function autoFillFields(id){
+
+  getTransports(function(data){
+
+    var dateString = data[0].date;
+    $('#orderDate').html(dateString.substring(0,10));
+    $('#orderTimeHour').val(dateString.substring(11,13));
+    $('#orderTimeMinute').val(dateString.substring(14,16));
+    $('#orderFrom').val(data[0].from);
+    $('#orderTo').val(data[0].to);
+    $('#paymentTypeButton').html(data[0].payment);
+    $('#orderPasangers').html(data[0].pasangers);
+
+    generatePasangers(data[0].pasangers);
+    getNames(id);
+    validateGenerated();
+
+  }, id)
+}
+
 function handleOrderResponse(response){
 
   if(response == 0){
@@ -85,13 +134,7 @@ function handleOrderResponse(response){
   }
   else{
 
-    var responseText = 'Order was created successfully. <br>Please visit "My Transports" for more information';
-    $('#orderResponseField').slideDown(500).css({
-     'background-color' : 'rgba(0, 255, 0, 0.1)'
-    });
-    $('#orderResponseText').html(responseText).css({
-     'color' : 'green'
-    });
+   window.location = "myTransportsPage.html?added=1";
   }
 }
 
@@ -100,12 +143,25 @@ $(function(){
 
   $('#orderClearButton').on('click', function(){
 
-    clierFields();
-    clearResponse();
+    id = getParameterByName('id');
+    if($("#orderClearButton").val() === 'Cancel changes'){
+
+      autoFillFields(id);
+    }
+    else{
+
+      clierFields();
+      clearResponse();
+    }
   })
 })
 
 function clierFields(){
+
+  if($("#orderClearButton").val() === 'Cancel changes'){
+
+    autoFillFields(id);
+  }
 
   $('#orderDate').html('Select date');
   $('#datepickerMain').slideUp(500);
@@ -175,6 +231,8 @@ function validateOrderTime(thisEvent, id, idErr, regex, max, min, name){
       $(idErr).html('Incorrect '+name+' (' + min + ' - ' + max + ')').slideDown(500);
     else if(!regex.test(value))
       $(idErr).html('Incorrect value').slideDown(500);
+    else if(value.length == 1)
+      $(this).val('0' + value);
     else
       $(idErr).html('').slideUp(500);
   })

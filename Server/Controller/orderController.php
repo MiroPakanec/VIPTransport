@@ -28,10 +28,17 @@
       return $orderInsertDatabaseAccessObject->createOrderNames($orderModelObject);
     }
 
-    public function getOrders(){
+    public function getOrders($id){
 
       $orderSelectDatabaseAccessObject = new OrderSelectDatabaseAccess();
-      return $orderSelectDatabaseAccessObject->getOrderData($this->getOrdersWClause());
+      return $orderSelectDatabaseAccessObject->getOrderData($this->getOrdersWClause($id));
+      //return getOrdersWClause($id);
+    }
+
+    public function getOrderNames($id){
+
+      $orderSelectDatabaseAccessObject = new OrderSelectDatabaseAccess();
+      return $orderSelectDatabaseAccessObject->getOrderNamesData($this->getOrdersNamesWClause($id));
     }
 
     public function deleteOrder($id){
@@ -44,10 +51,24 @@
       return $orderDeleteDatabaseAccess->deleteOrder($wClause);
     }
 
-    private function getOrdersWClause(){
+    private function getOrdersWClause($id){
 
-      if($_SESSION['type'] == 'customer')
-        return " WHERE Email = '".$_SESSION['email']."'";
+      $wClause = '';
+      if($_SESSION['type'] == 'customer'){
+         $wClause = " WHERE Email = '".$_SESSION['email']."'";
+         if(strlen($id) != 0)
+          $wClause .= " AND Id = ".$id;
+      }
+
+      return $wClause;
+    }
+
+    private function getOrdersNamesWClause($id){
+
+      if(strlen($id) != 0)
+          return "WHERE Order_id = ".$id;
+
+      return '';
     }
   }
 

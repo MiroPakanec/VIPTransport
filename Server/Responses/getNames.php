@@ -1,17 +1,24 @@
 <?php
 
     require $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/orderController.php';
-
-    $id = '';
+    header('Content-Type: text/javascript');
 
     if(isset($_POST['id'])){
+
       $id = $_POST['id'];
+      $orderControllerObject = new OrderController();
+      $orderNamesArray = $orderControllerObject->getOrderNames($id);
+
+      echo json_encode($orderNamesArray, JSON_PRETTY_PRINT);
+      //print_r($orderNamesArray);
+      //echo $orderNamesArray;
     }
+    //else
+      //echo 'SHIT';
 
-    $orderControllerObject = new OrderController();
-    $orderModelArray = $orderControllerObject->getOrders($id);
 
-    header('Content-Type: text/javascript');
+
+    /*header('Content-Type: text/javascript');
     //test
     $index = 0;
     $array = array();
@@ -30,6 +37,6 @@
       array_push($array, $arrayOrder);
     }
 
-    echo json_encode($array, JSON_PRETTY_PRINT);
+    echo json_encode($array, JSON_PRETTY_PRINT);*/
 
 ?>

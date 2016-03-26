@@ -92,14 +92,14 @@ td>input:focus{
 
   outline: none;
   border: none;
-  background-color: rgba(255,255,255,0.2);
+  /*background-color: rgba(255,255,255,0.2);*/
 }
 
 td>input:hover{
 
   outline: none;
   border: none;
-  background-color: rgba(255,255,255,0.2);
+  /*background-color: rgba(255,255,255,0.2);*/
 }
 
 .tableRow{
@@ -113,6 +113,7 @@ td>input:hover{
   border: none;
   font-size: 18px;
   border: 1px solid rgba(0,0,0,0.2);
+  width: 8% !important;
 }
 
 .buttonColumn{

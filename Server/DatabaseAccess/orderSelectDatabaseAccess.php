@@ -43,4 +43,33 @@
         return 'We are sorry, something went wrong...';
       }
     }
+
+    public function getOrderNamesData($wClause){
+
+      try{
+
+        $name = '';
+        $orderNamesArray = array();
+
+        $dbc = DatabaseConnection::openConnection();
+        $query = "SELECT * FROM pasanger_name " . $wClause;
+
+        $response = @mysqli_query($dbc, $query);
+
+        if($response){
+            while($row = mysqli_fetch_array($response)){
+
+              $name = $row['Pasanger_name'];
+              array_push($orderNamesArray, $name);
+            }
+        }
+
+        mysqli_close($dbc);
+        return $orderNamesArray;
+      }
+      catch(Exception $e){
+
+        return 'We are sorry, something went wrong...';
+      }
+    }
   }

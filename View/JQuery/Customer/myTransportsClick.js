@@ -4,11 +4,13 @@ $(function (){
 
     getTransports(function(data){
       generateTableOrders();
+      var added = getParameterByName('added');
       for (index in data){
         generateTableRow(data[index].id ,data[index].date, data[index].from, data[index].to,
-          data[index].pasangers, data[index].payment, data[index].creationDate);
+          data[index].pasangers, data[index].payment, data[index].creationDate, added);
+        added = 0;
       }
-    }),
+    }, ''),
 
     $(this).css({
       'background-color': 'rgba(255,255,255, 0.05)'
@@ -30,6 +32,13 @@ $(function (){
       'background-color': 'rgba(255,255,255, 0.0)'
     });
     $('#responseArea').slideUp(300).html('');
+  }),
+
+  //edit
+  $(document).on('click','.editButton',function(){
+
+    var id = $(this).parent().attr('id');
+    window.location = "newOrderPage.html?update=1&id="+id;
   }),
 
   //delete
@@ -119,22 +128,28 @@ function generateTableOrders(){
                   '<td>Payment</td>' +
                   '<td>Created</td>' +
                   '<td class="buttonColumnHeader"></td>' +
+                  '<td class="buttonColumnHeader"></td>' +
                 '</tr>';
 
    $('#orderTableArea').html(html);
 }
 
-function generateTableRow(id, date, addressFrom, addressTo, pasangers, payment, creationDate){
+function generateTableRow(id, date, addressFrom, addressTo, pasangers, payment, creationDate, added){
 
   var html =      '<tr class = "tableRow" id="'+id+'">' +
-                    '<td><input type="text" class="tableInput" name="date" value="'+ date +'"></td>' +
-                    '<td><input type="text" class="tableInput" name="from" value="'+ addressFrom +'"></td>' +
-                    '<td><input type="text" class="tableInput" name="to" value="'+ addressTo +'"></td>' +
-                    '<td><input type="text" class="tableInput" name="pasangers" value="'+ pasangers +'"></td>' +
-                    '<td><input type="text" class="tableInput" name="payment" value="'+ payment +'"></td>' +
-                    '<td>'+ creationDate +'</td>' +
+                    '<td><input type="text" class="tableInput" name="date" value="'+ date +'" disabled></td>' +
+                    '<td><input type="text" class="tableInput" name="from" value="'+ addressFrom +'" disabled></td>' +
+                    '<td><input type="text" class="tableInput" name="to" value="'+ addressTo +'" disabled></td>' +
+                    '<td><input type="text" class="tableInput" name="pasangers" value="'+ pasangers +'" disabled></td>' +
+                    '<td><input type="text" class="tableInput" name="payment" value="'+ payment +'" disabled></td>' +
+                    '<td><input type="text" class="tableInput" name="creationDate" value="'+ creationDate +'" disabled></td>' +
                     '<td class="buttonColumn deleteButton">Delete</td>' +
+                    '<td class="buttonColumn editButton">Edit</td>' +
                   '</tr>';
 
   $('#orderTable').append(html);
+  if(added == '1')
+    $('#' + id + ' input.tableInput').css({
+      'background-color' : 'rgba(255,255,255,0.3)'
+    });
 }
