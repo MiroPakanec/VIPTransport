@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../Css/generalPageStyles.css">
+    <link rel="stylesheet" type="text/css" href="../Css/myProfileStyles.css">
+
+    <script src="../JQuery/Source/jquery.js"></script>
+
+    <script src="../JQuery/Global/getRequests.js"></script>
+    <script src="../JQuery/Global/headerButtons.js"></script>
+    <script src="../JQuery/Customer/myProfileLoad.js"></script>
+    <script src="../JQuery/Customer/myProfileClick.js"></script>
+
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="preheader"></div>
+       <div class="header">
+         <div class="homeHeaderLogo largeText">VIP Transport</div>
+         <div class="headerButtonsContainer"></div>
+       </div>
+      <div class="titleArea">
+        <div class="title largeText" id="titleOrder">My Profile</div>
+      </div>
+      <div id="profilePictureArea">
+        <div id="profilePicture"></div>
+        <input type="button" name="chooseProfilePicture" value="Change prfile picture" class="smallText button" id="profilePictureButton">
+        <div class="outputArea"></div>
+      </div>
+      <div class="formArea" id="formSelection">
+        <div class="formRow">
+          <input type="button" class="button smallText selectionButton" value="Manage personal information" id="personalFormSelection">
+        </div>
+        <div class="formRow">
+          <input type="button" class="button smallText selectionButton" value="Change password" id="changePasswordSelection">
+        </div>
+        <div class="formRow">
+          <input type="button" class="button smallText selectionButton" value="My company" id="addCompanySelection">
+        </div>
+      </div>
+      <div id="personalForm" class="formArea">
+        <div class="formRow">
+          <div class="rowTitle smallText profileRow" id="emailTitle">Email</div>
+          <input type="text" class="textInput profileRow" id="emailInput">
+          <div class="smallText errorMessage profileRow" id="emailError"></div>
+        </div>
+        <div class="formRow">
+          <div class="rowTitle smallText profileRow" id="fnameTitle">First name</div>
+          <input type="text" class="textInput profileRow" id="fnameInput">
+          <div class="smallText errorMessage profileRow" id="fnameError"></div>
+        </div>
+        <div class="formRow">
+          <div class="rowTitle smallText profileRow" id="mnameTitle">Middle name</div>
+          <input type="text" class="textInput profileRow" id="mnameInput">
+          <div class="smallText errorMessage profileRow" id="mnameError"></div>
+        </div>
+        <div class="formRow">
+          <div class="rowTitle smallText profileRow" id="lnameTitle">Last name</div>
+          <input type="text" class="textInput profileRow" id="lnameInput">
+          <div class="smallText errorMessage profileRow" id="lnameError"></div>
+        </div>
+        <div class="formRow">
+          <div class="rowTitle smallText profileRow" id="phoneTitle">Phone</div>
+          <input type="text" class="textInput profileRow" id="phoneInput">
+          <div class="smallText errorMessage profileRow" id="phoneError"></div>
+        </div>
+        <div class="formRow buttonRow">
+          <input id="personalConfirmButton" type="button" name="confirmButton" value="Confirm" class="button smallText confirmButton">
+          <input id="personalCancelButton" type="button" name="cancelButton" value="Cancel changes" class="button smallText">
+          <input type="button" name="backButton" value="Back" class="button smallText profileBackButton">
+        </div>
+      </div>
+      <div id="passwordForm" class="formArea">
+        <div class="formRow">
+          <div class="rowTitle smallText profileRow" id="fnameTitle">Current password</div>
+          <input type="text" class="textInput profileRow" id="fnameInput">
+          <div class="smallText errorMessage profileRow" id="fnameError"></div>
+        </div>
+        <div class="formRow">
+          <div class="rowTitle smallText profileRow" id="fnameTitle">New password</div>
+          <input type="text" class="textInput profileRow" id="fnameInput">
+          <div class="smallText errorMessage profileRow" id="fnameError"></div>
+        </div>
+        <div class="formRow">
+          <div class="rowTitle smallText profileRow" id="fnameTitle">Repeat new password</div>
+          <input type="text" class="textInput profileRow" id="fnameInput">
+          <div class="smallText errorMessage profileRow" id="fnameError"></div>
+        </div>
+        <div class="formRow buttonRow">
+          <input id="passwordConfirmButton" type="button" name="confirmButton" value="Confirm" class="button smallText confirmButton">
+          <input id="passwordCancelButton" type="button" name="cancelButton" value="Cancel changes" class="button smallText">
+          <input type="button" name="backButton" value="Back" class="button smallText profileBackButton">
+        </div>
+      </div>
+      <div id="companyForm" class="formArea">
+        <div class="formRow">
+          <div class="rowTitle smallText profileRow" id="fnameTitle">Company name</div>
+          <input type="text" class="textInput profileRow" id="fnameInput">
+          <div class="smallText errorMessage profileRow" id="fnameError"></div>
+        </div>
+        <div class="formRow buttonRow">
+          <input id="companyConfirmButton" type="button" name="confirmButton" value="Confirm" class="button smallText confirmButton">
+          <input id="companyCancelButton" type="button" name="cancelButton" value="Cancel changes" class="button smallText">
+          <input type="button" name="backButton" value="Back" class="button smallText profileBackButton">
+        </div>
+      </div>
+    </div>
+  </body>

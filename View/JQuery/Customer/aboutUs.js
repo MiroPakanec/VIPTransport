@@ -39,13 +39,11 @@ function generateTable(){
 
   var html = '<table class="smallText">' +
               '<tr class="headerRow">' +
-                '<td>From</td>' +
-                '<td>To</td>' +
+                '<td rowspan="2">From</td>' +
+                '<td rowspan="2">To</td>' +
                 '<td colspan="2">Price</td>' +
               '</tr>'+
               '<tr class="headerRow">' +
-                '<td></td>' +
-                '<td></td>' +
                 '<td>5 seats</td>' +
                 '<td>8 seats</td>' +
               '</tr>'+
