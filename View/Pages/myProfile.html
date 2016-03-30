@@ -25,9 +25,14 @@
         <div class="title largeText" id="titleOrder">My Profile</div>
       </div>
       <div id="profilePictureArea">
-        <div id="profilePicture"></div>
-        <input type="button" name="chooseProfilePicture" value="Change prfile picture" class="smallText button" id="profilePictureButton">
-        <div class="outputArea"></div>
+        <img id="profilePicture"/>
+        <form id="profilePictureForm" action="../../Server/Responses/profilePicture.php" method="POST" enctype="multipart/form-data">
+          <input type="button" name="chooseProfilePicture" value="Change profile picture" class="smallText button" id="profilePictureButton">
+          <input type="file" id="filePicker">
+          <input type="hidden" id="tmppath">
+        </form>
+        <div id="outputAreaPicture" class="outputArea smallText"></div>
+
       </div>
       <div class="formArea" id="formSelection">
         <div class="formRow">

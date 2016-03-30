@@ -30,7 +30,7 @@
   background-size:cover;
 }
 
-.outputArea{
+#outputAreaPicture{
 
   height: 29%;
   background-color:rgba(255,255,255,0.2);
@@ -107,6 +107,12 @@
   margin-left: 44%;
 }
 
+.respoonseButton{
+
+  margin-bottom: 10%;
+  margin-right: 5%;
+}
+
 .textInput{
   float: left;
   margin-top: 0.5%;
@@ -118,4 +124,25 @@
 
 .textInput:focus{
   outline: none;
+}
+
+
+/*FILES*/
+#profilePicturePicker{
+
+  font-family: myFont;
+  color: white;
+
+  background-color: rgba(255,255,255,0.1);
+}
+
+input.file {
+	position: relative;
+	text-align: right;
+	-moz-opacity:0 ;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 2;
+
+  width: 100% !important;
 }

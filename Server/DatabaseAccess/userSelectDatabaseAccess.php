@@ -40,4 +40,31 @@
         return 'We are sorry, something went wrong...';
       }
     }
+
+    public function getImage($wClause){
+
+      try{
+
+        $image = 0;
+
+        $dbc = DatabaseConnection::openConnection();
+        $query = "SELECT Image FROM User " . $wClause;
+
+        $response = @mysqli_query($dbc, $query);
+
+        if($response){
+            while($row = mysqli_fetch_array($response)){
+
+              $image = $row['Image'];
+            }
+        }
+
+        mysqli_close($dbc);
+        return $image;
+      }
+      catch(Exception $e){
+
+        return 'We are sorry, something went wrong...';
+      }
+    }
   }

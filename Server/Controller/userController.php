@@ -2,8 +2,10 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/userInsertDatabaseAccess.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/userSelectDatabaseAccess.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/userUpdateDatabaseAccess.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/userModel.php';
 
+  session_start();
 
   class UserController{
 
@@ -30,8 +32,22 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/userModel.php
         return 'Incorrect password';
       else
         return 'in';
+    }
 
+    public function updateImage($image){
 
+      $userDataAccessObject = new userUpdateDatabaseAccess();
+      $wClause = " WHERE Email = '" . $_SESSION['email'] . "'";
+
+      return $userDataAccessObject->updateImage($image, $wClause);
+    }
+
+    public function getImage($email){
+
+      $userDataAccessObject = new userSelectDatabaseAccess();
+      $wClause = " WHERE Email = '" . $email . "'";
+
+      return $userDataAccessObject->getImage($wClause);
     }
   }
 

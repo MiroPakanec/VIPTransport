@@ -21,10 +21,33 @@ function getSessionData(){
       generateCustomerButtons();
     }
     loadData(data);
+    loadProfilePicture(data.email);
+  });
+}
+
+function loadProfilePicture(email){
+
+  $.ajax({
+      type: 'POST',
+      url: '../../Server/Responses/getProfilePicture.php',
+      data: 'email='+email,
+      success: function(response){
+
+        if(response.length > 23)
+        $('#profilePicture').css({
+          'background-image' : 'url(' + response + ')'
+        })
+        else
+        $('#profilePicture').css({
+          'background-image' : 'url(../Css/Images/ProfilePictures/profileDefault.png)'
+        })
+      }
   });
 }
 
 function hideElements(){
+
+  $('#filePicker').hide();
 
   $('#profilePictureArea').hide();
 
