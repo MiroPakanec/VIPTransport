@@ -17,6 +17,9 @@ $(function (){
   $('.profileBackButton').on('click', function(){
     $(this).parent().parent().hide();
     $('#formSelection').fadeIn(500);
+    $('.outputAreaForm').each(function(){
+      $(this).slideUp(500);
+    });
   }),
 
   $('#addCompanySelection').on('click', function(){
@@ -26,7 +29,13 @@ $(function (){
 
   $('#personalCancelButton').on('click', function(){
 
+    $('.errorMessage').each(function(){
+      $(this).slideUp(500);
+    })
     getSessionData();
+    $('.outputAreaForm').each(function(){
+      $(this).slideUp(500);
+    })
   }),
 
   $('#profilePictureButton').on('click', function(){
@@ -40,7 +49,7 @@ $(function (){
 
     if(validationMessage.length > 1){
       htmlResponse = generateHtmlResponse(validationMessage, false);
-      negativeResponse(htmlResponse);
+      negativeResponse(htmlResponse, '#outputAreaPicture');
     }
     else{
       var tmppath = URL.createObjectURL(file);
@@ -49,7 +58,7 @@ $(function (){
       })
       profilePictureObject = file;
       htmlResponse = generateHtmlResponse('Do you like\nthis image?', file);
-      neutralResponse(htmlResponse);
+      neutralResponse(htmlResponse, '#outputAreaPicture');
     }
   }),
 
@@ -93,35 +102,35 @@ function handleProfilePictureResponse(response){
 
   if(response == 0){
     var responseText = '<p>We are sorry<br>picture could not be changed</p>';
-    negativeResponse(responseText);
+    negativeResponse(responseText, '#outputAreaPicture');
   }
   else{
     var responseText = '<p>Picture was changed<br>successfully</p>'
-    positiveResponse(responseText);
+    positiveResponse(responseText, '#outputAreaPicture');
   }
 }
 
-function negativeResponse(response){
+function negativeResponse(response, id){
 
-  $('#outputAreaPicture').html(response).css({
+  $(id).html(response).css({
       'background-color' : 'rgba(255,0,0,0.1)',
       'color' : 'red',
       'border-color' : 'rgba(255,0,0,0.3)'
     }).slideDown(500);
 }
 
-function positiveResponse(response){
+function positiveResponse(response, id){
 
-  $('#outputAreaPicture').html(response).css({
-      'background-color' : 'rgba(0,255,0,0.2)',
+  $(id).html(response).css({
+      'background-color' : 'rgba(0,255,0,0.1)',
       'color' : 'green',
       'border-color' : 'rgba(0,255,0,0.4)'
     }).slideDown(500);
 }
 
-function neutralResponse(response){
+function neutralResponse(response, id){
 
-  $('#outputAreaPicture').html(response).css({
+  $(id).html(response).css({
       'background-color' : 'rgba(255,255,255,0.2)',
       'color' : 'white',
       'border-color' : 'rgba(255,255,255,0.4)'
@@ -152,13 +161,6 @@ function validateFile(file){
     return 'Picture must not be <br>bigger than 1MB';
 
   return 1;
-}
-
-function validateFileType(fileName){
-
-
-
-  return;
 }
 
 function validateFileSize(file){

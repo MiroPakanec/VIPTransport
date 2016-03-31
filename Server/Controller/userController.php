@@ -4,6 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/user
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/userSelectDatabaseAccess.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/userUpdateDatabaseAccess.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/userModel.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/sessionController.php';
 
   session_start();
 
@@ -15,6 +16,21 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/userModel.php
       $userModelObject = new UserModel($email, $fname, $mname, $lname, $password, $phone, '', '');
       $userDataAccessObject = new UserInsertDatabaseAccess();
       return $userDataAccessObject->registerUser($userModelObject);
+    }
+
+    public function updateUser($email, $fname, $mname, $lname, $phone){
+
+      $userDataAccessObject = new userUpdateDatabaseAccess();
+      $userModelObject = new UserModel($email, $fname, $mname, $lname, '', $phone, '', '');
+      $wClause = " WHERE Email = '".$_SESSION['email']."'";
+
+      $response = $userDataAccessObject->updateUser($userModelObject, $wClause);
+      if($response == 1){
+
+        $sessionControllerObject = new SessionController();
+        $sessionControllerObject->setSessionData($userModelObject->getEmail());
+      }
+      return $response;
     }
 
     public function loginUser($email, $password, $token){

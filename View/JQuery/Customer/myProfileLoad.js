@@ -62,6 +62,10 @@ function hideElements(){
   $('.errorMessage').each(function(){
     $(this).hide();
   })
+
+  $('.outputAreaForm').each(function(){
+    $(this).hide();
+  })
 }
 
 function loadData(data){
