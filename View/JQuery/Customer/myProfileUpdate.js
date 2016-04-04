@@ -4,40 +4,28 @@ $(function (){
 
   $('#personalConfirmButton').on('click', function(){
 
-    var error = validateProfilePersonalConfirm();
-    if(error.length > 0)
-      return;
-
-    var data = {};
-    $('input.personal').each(function(index, value){
-
-      var name = $(this).attr('name');
-      var value = $(this).val();
-      data[name] = value;
-    }),
-
-    console.log(data);
-
-    $.ajax({
-      url: '../../Server/Responses/updateProfile.php',
-      type: 'POST',
-      data: data,
-      success: function(response){
-        console.log(response);
-        handleUpdateResponse(response);
-      },
-      error: function(){
-        $('#registrationResponse').slideDown(500).html('We are sorry, something went wrong');
-      }
-    })
+    profilePersonalConfirm();
   })
 
+  $('#passwordConfirmButton').on('click', function(){
+
+    profilePasswordConfirm();
+  })
+
+  //personal form
   validateInput('blur', '#emailInput', '#emailError' , emailRegex, 'Incorrect email',0 );
   validateInput('blur','#fnameInput', '#fnameError' , /^[a-zA-Z]*$/, 'Use only characters', 3 );
   validateInput('blur', '#mnameInput', '#mnameError' , /^[a-zA-Z]*$/, 'Use only characters', 1 );
   validateInput('blur', '#lnameInput', '#lnameError' , /^[a-zA-Z]*$/, 'Use only characters', 3 );
   validateInput('blur', '#phoneInput', '#phoneError' , /^[0-9+]*$/, 'Use only digit and "+"',6 );
 
+  //password form
+  validateInput('blur', '#currentPassword', '#currentPasswordError' , /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/, 'Use character and digit',8 );
+  validateInput('blur', '#newPassword', '#newPasswordError' , /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/, 'Use character and digit',8 );
+  validatePasswordMatch('blur', '#newPasswordRepeat', '#newPassword', '#newPasswordRepeatError');
+
+  //company form
+  validateInput('blur', '#phoneInput', '#phoneError' , /^[0-9]*$/, 'Use only numbers',6 );
 
 })
 
@@ -47,7 +35,7 @@ function handleUpdateResponse(response){
   var responseText = '';
   if(response == 1){
 
-      
+
       responseText = "Your profile was changed successfully.";
       positiveResponse(responseText, id);
   }
@@ -78,10 +66,83 @@ function validateInput(thisEvent, id, idErr, regex, customeMessage, min){
   });
 }
 
+function validatePasswordMatch(thisEvent, id, matchId, idErr){
+
+  $(id).blur(function(){
+    var value = $(this).val();
+    if(!value)
+      $(idErr).html('Cannot be empty').slideDown(500);
+    else if(value != $(matchId).val()){
+      $(idErr).html('Passwords have to match').slideDown(500);
+    }
+    else{
+      $(idErr).html('').slideUp(500);
+    }
+  })
+}
+
+function profilePersonalConfirm(){
+
+  var error = validateProfilePersonalConfirm();
+  if(error.length > 0)
+    return;
+
+  request('../../Server/Responses/updateProfile.php' ,'POST' ,'input.personal');
+}
+
+function profilePasswordConfirm(){
+
+  var error = validateProfilePasswordConfirm();
+  if(error.length > 0)
+    return;
+
+  request('../../Server/Responses/updatePassword.php' ,'POST' ,'input.password');
+}
+
+function request(url, type, dataTarget){
+
+  var data = {};
+  $(dataTarget).each(function(index, value){
+    var name = $(this).attr('name');
+    var value = $(this).val();
+    data[name] = value;
+  }),
+
+  $.ajax({
+    url: url,
+    type: type,
+    data: data,
+    success: function(response){
+      console.log(response);
+      handleUpdateResponse(response);
+    },
+    error: function(){
+      $('#registrationResponse').slideDown(500).html('We are sorry, something went wrong');
+    }
+  })
+}
+
 function validateProfilePersonalConfirm(){
 
     var error = '';
-    $(".errorMessage").each(function(){
+    $(".personalFormError").each(function(){
+
+      error =  error + $(this).html();
+      if($(this).html().length > 0)
+        $(this).toggle( "pulsate", 100).toggle( "pulsate", 100);
+    });
+
+    return error;
+}
+
+function validateProfilePasswordConfirm(){
+
+     $("input.password").each(function(){
+      $(this).trigger('blur');
+    });
+
+    var error = '';
+    $(".passwordFormError").each(function(){
 
       error =  error + $(this).html();
       if($(this).html().length > 0)

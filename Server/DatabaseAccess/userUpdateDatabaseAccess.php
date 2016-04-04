@@ -43,7 +43,26 @@
       }
       catch(Exception $e){
 
-        return 'We are sorry, something went wrong...';
+        return 0;
+      }
+    }
+
+    public function updatePassword($password, $wClause){
+
+      try{
+
+        $dbc = DatabaseConnection::openConnection();
+        $query = "UPDATE user SET Password = '".$password."' ".$wClause;
+        $dbc->query($query);
+
+        if($dbc->error)
+          return 0;
+        else
+          return 1;
+      }
+      catch(Exception $e){
+
+        return 0;
       }
     }
   }

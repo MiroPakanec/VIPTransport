@@ -1,6 +1,7 @@
 $(function(){
 
     getSessionData();
+    getCompanyData();
 
     hideElements();
     $('#formSelection').fadeIn(300);
@@ -23,6 +24,11 @@ function getSessionData(){
     loadData(data);
     loadProfilePicture(data.email);
   });
+}
+
+function getCompanyData(){
+
+  $('#companyCancelButton').val('Clear');
 }
 
 function loadProfilePicture(email){

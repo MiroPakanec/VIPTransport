@@ -33,6 +33,22 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/sessionC
       return $response;
     }
 
+    public function updatePassword($current, $new, $newRepeat){
+
+      $userSelectDataAccessObject = new UserSelectDatabaseAccess();
+      $userUpdateDataAccessObject = new userUpdateDatabaseAccess();
+
+      //get users password from DB
+      $wClause = " WHERE Email = '" . $_SESSION['email'] . "'";
+      $userModelObject = $userSelectDataAccessObject->getUserData($wClause);
+
+      if(!$this->validatePassword($current, $new, $newRepeat, $userModelObject->getPassword()))
+        return 0;
+
+      $userModelObject->setPassword(password_hash($new , PASSWORD_BCRYPT));
+      return $userUpdateDataAccessObject->updatePassword($userModelObject->getPassword(), $wClause);
+    }
+
     public function loginUser($email, $password, $token){
 
       $userDataAccessObject = new UserSelectDatabaseAccess();
@@ -64,6 +80,33 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/sessionC
       $wClause = " WHERE Email = '" . $email . "'";
 
       return $userDataAccessObject->getImage($wClause);
+    }
+
+    private function validatePassword($currentPassword, $newPassword, $newPasswordRepeat, $storedPassword){
+
+      if(!$this->validateCorrectPassword($currentPassword, $storedPassword))
+        return 0;
+
+      if(!$this->validatePasswordMatch($newPassword, $newPasswordRepeat))
+        return 0;
+
+      return 1;
+    }
+
+    private function validateCorrectPassword($password, $storedPassword){
+
+      if(!password_verify($password, $storedPassword))
+        return 0;
+      else
+        return 1;
+    }
+
+    private function validatePasswordMatch($password, $passwordRepeat){
+
+      if($password != $passwordRepeat)
+        return 0;
+      else
+        return 1;
     }
   }
 

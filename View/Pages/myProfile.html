@@ -51,27 +51,27 @@
         <div class="formRow">
           <div class="rowTitle smallText profileRow" id="emailTitle">Email</div>
           <input type="text" class="textInput profileRow personal" id="emailInput" name="email" disabled="true">
-          <div class="smallText errorMessage profileRow" id="emailError"></div>
+          <div class="smallText errorMessage profileRow personalFormError" id="emailError"></div>
         </div>
         <div class="formRow">
           <div class="rowTitle smallText profileRow" id="fnameTitle">First name</div>
           <input type="text" class="textInput profileRow personal" id="fnameInput" name="fname">
-          <div class="smallText errorMessage profileRow" id="fnameError"></div>
+          <div class="smallText errorMessage profileRow personalFormError" id="fnameError"></div>
         </div>
         <div class="formRow">
           <div class="rowTitle smallText profileRow" id="mnameTitle">Middle name</div>
           <input type="text" class="textInput profileRow personal" id="mnameInput" name="mname">
-          <div class="smallText errorMessage profileRow canSkip" id="mnameError"></div>
+          <div class="smallText errorMessage profileRow canSkip personalFormError" id="mnameError"></div>
         </div>
         <div class="formRow">
           <div class="rowTitle smallText profileRow" id="lnameTitle">Last name</div>
           <input type="text" class="textInput profileRow personal" id="lnameInput" name="lname">
-          <div class="smallText errorMessage profileRow" id="lnameError"></div>
+          <div class="smallText errorMessage profileRow personalFormError" id="lnameError"></div>
         </div>
         <div class="formRow">
           <div class="rowTitle smallText profileRow" id="phoneTitle">Phone</div>
           <input type="text" class="textInput profileRow personal" id="phoneInput" name="phone">
-          <div class="smallText errorMessage profileRow" id="phoneError"></div>
+          <div class="smallText errorMessage profileRow personalFormError" id="phoneError"></div>
         </div>
         <div class="formRow buttonRow">
           <input id="personalConfirmButton" type="button" name="confirmButton" value="Confirm" class="button smallText confirmButton">
@@ -84,23 +84,23 @@
       </div>
       <div id="passwordForm" class="formArea">
         <div class="formRow">
-          <div class="rowTitle smallText profileRow" id="fnameTitle">Current password</div>
-          <input type="text" class="textInput profileRow" id="fnameInput">
-          <div class="smallText errorMessage profileRow" id="fnameError"></div>
+          <div class="rowTitle smallText profileRow">Current password</div>
+          <input type="password" class="textInput profileRow password" name="currentPassword" id="currentPassword">
+          <div class="smallText errorMessage profileRow passwordFormError" id="currentPasswordError"></div>
         </div>
         <div class="formRow">
-          <div class="rowTitle smallText profileRow" id="fnameTitle">New password</div>
-          <input type="text" class="textInput profileRow" id="fnameInput">
-          <div class="smallText errorMessage profileRow" id="fnameError"></div>
+          <div class="rowTitle smallText profileRow">New password</div>
+          <input type="password" class="textInput profileRow password" name="newPassword" id="newPassword">
+          <div class="smallText errorMessage profileRow passwordFormError" id="newPasswordError"></div>
         </div>
         <div class="formRow">
-          <div class="rowTitle smallText profileRow" id="fnameTitle">Repeat new password</div>
-          <input type="text" class="textInput profileRow" id="fnameInput">
-          <div class="smallText errorMessage profileRow" id="fnameError"></div>
+          <div class="rowTitle smallText profileRow">Repeat new password</div>
+          <input type="password" class="textInput profileRow password" name="newPasswordRepeat" id="newPasswordRepeat">
+          <div class="smallText errorMessage profileRow passwordFormError" id="newPasswordRepeatError"></div>
         </div>
         <div class="formRow buttonRow">
           <input id="passwordConfirmButton" type="button" name="confirmButton" value="Confirm" class="button smallText confirmButton">
-          <input id="passwordCancelButton" type="button" name="cancelButton" value="Cancel changes" class="button smallText">
+          <input id="passwordClearButton" type="button" name="cancelButton" value="Clear" class="button smallText">
           <input type="button" name="backButton" value="Back" class="button smallText profileBackButton">
         </div>
         <div class="formRow">
@@ -109,9 +109,24 @@
       </div>
       <div id="companyForm" class="formArea">
         <div class="formRow">
-          <div class="rowTitle smallText profileRow" id="fnameTitle">Company name</div>
-          <input type="text" class="textInput profileRow" id="fnameInput">
-          <div class="smallText errorMessage profileRow" id="fnameError"></div>
+          <div class="rowTitle smallText profileRow">Company name</div>
+          <input type="text" class="textInput profileRow company" name="companyName" id="companyName">
+          <div class="smallText errorMessage profileRow companyFormError" id="companyNameError"></div>
+        </div>
+        <div class="formRow">
+          <div class="rowTitle smallText profileRow">Invoice address</div>
+          <input type="text" class="textInput profileRow company" name="invoiceAddress" id="invoiceAddress">
+          <div class="smallText errorMessage profileRow companyFormError" id="invoiceAddressError"></div>
+        </div>
+        <div class="formRow">
+          <div class="rowTitle smallText profileRow">ICO / Registration Number</div>
+          <input type="text" class="textInput profileRow company" name="ico" id="ico">
+          <div class="smallText errorMessage profileRow companyFormError" id="icoError"></div>
+        </div>
+        <div class="formRow">
+          <div class="rowTitle smallText profileRow">DIC / Tax Number</div>
+          <input type="text" class="textInput profileRow company" name="dic" id="dic">
+          <div class="smallText errorMessage profileRow companyFormError" id="dicError"></div>
         </div>
         <div class="formRow buttonRow">
           <input id="companyConfirmButton" type="button" name="confirmButton" value="Confirm" class="button smallText confirmButton">

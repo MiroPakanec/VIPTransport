@@ -67,6 +67,10 @@ class UserModel{
       $this->lname = $value;
     }
 
+    public function setPassword($value){
+      $this->password = $value;
+    }
+
     public function setEmail($value){
       $this->email = $value;
     }

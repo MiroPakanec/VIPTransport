@@ -29,7 +29,7 @@ $(function (){
 
   $('#personalCancelButton').on('click', function(){
 
-    $('.errorMessage').each(function(){
+    $('.personalFormError').each(function(){
       $(this).slideUp(500);
     })
     getSessionData();
@@ -37,6 +37,29 @@ $(function (){
       $(this).slideUp(500);
     })
   }),
+
+  $('#passwordClearButton').on('click', function(){
+
+    $('#currentPassword').val('');
+    $('#newPassword').val('');
+    $('#newPasswordRepeat').val('');
+
+    $('.outputAreaForm').each(function(){
+      $(this).slideUp(500);
+    });
+    $('.passwordFormError').each(function(){
+      $(this).slideUp(500);
+    })
+
+  }),
+
+  $('#companyCancelButton').on('click', function(){
+
+    $('#companyName').val('');
+    $('#invoiceAddress').val('');
+    $('#ico').val('');
+    $('#dic').val('');
+  })
 
   $('#profilePictureButton').on('click', function(){
     $('#filePicker').trigger('click');

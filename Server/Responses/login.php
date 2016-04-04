@@ -14,7 +14,8 @@
         $_POST['token']
       );
 
-    $sessionControllerObject->setSessionData($_POST['email']);
+    if($response == 'in')
+      $sessionControllerObject->setSessionData($_POST['email']);
 
     //response to client
     echo $response;
