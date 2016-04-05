@@ -19,5 +19,5 @@ $(function(){
 
 function generateMessage(name){
 
-  $('#welcomeMessage').html('Welcome back ' + name);
+  $('#welcomeMessage').html('Welcome ' + name);
 }

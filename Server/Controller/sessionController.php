@@ -46,7 +46,17 @@
 
     public function endSession(){
 
+      session_start();
       session_destroy();
+    }
+
+    public function sessionStarted(){
+
+      if ( version_compare(phpversion(), '5.4.0', '>=') ) {
+          return session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
+      } else {
+          return session_id() === '' ? FALSE : TRUE;
+      }
     }
   }
 

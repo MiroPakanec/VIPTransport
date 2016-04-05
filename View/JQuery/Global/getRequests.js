@@ -11,6 +11,22 @@ function getSession(handleData){
   });
 }
 
+function endSession(handleData){
+
+  $.ajax({
+      type: 'GET',
+      url: '../../Server/Responses/endSession.php',
+      data: '',
+      success: function(response){
+          handleData(response);
+          console.log(response);
+      },
+      error: function(response){
+          handleData(response);
+      }
+  });
+}
+
 function getCompany(handleData){
 
   $.ajax({

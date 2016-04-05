@@ -30,7 +30,7 @@ $(function (){
   validatePasswordMatch('blur', '#newPasswordRepeat', '#newPassword', '#newPasswordRepeatError');
 
   //company form
-  validateInput('blur', '#companyName', '#companyNameError' , /^[a-zA-Z]*$/, 'Use only characters',3  ,'n');
+  validateInput('blur', '#companyName', '#companyNameError' , /^[a-zA-Z\s]*$/, 'Use only characters',3  ,'n');
   validateInput('blur', '#invoiceAddress', '#invoiceAddressError' , /^/, 'Use only characters or numbers',6 ,'n');
   validateInput('blur', '#ico', '#icoError' , /^[0-9]*$/, 'Use only numbers',8, 8);
   validateInput('blur', '#dic', '#dicError' , /^[0-9]*$/, 'Use only numbers',10, 10);
