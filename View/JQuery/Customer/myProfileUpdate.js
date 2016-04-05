@@ -12,26 +12,35 @@ $(function (){
     profilePasswordConfirm();
   })
 
+  $('#companyConfirmButton').on('click', function(){
+
+    profileCompanyConfirm();
+  })
+
   //personal form
-  validateInput('blur', '#emailInput', '#emailError' , emailRegex, 'Incorrect email',0 );
-  validateInput('blur','#fnameInput', '#fnameError' , /^[a-zA-Z]*$/, 'Use only characters', 3 );
-  validateInput('blur', '#mnameInput', '#mnameError' , /^[a-zA-Z]*$/, 'Use only characters', 1 );
-  validateInput('blur', '#lnameInput', '#lnameError' , /^[a-zA-Z]*$/, 'Use only characters', 3 );
-  validateInput('blur', '#phoneInput', '#phoneError' , /^[0-9+]*$/, 'Use only digit and "+"',6 );
+  validateInput('blur', '#emailInput', '#emailError' , emailRegex, 'Incorrect email',0 ,'n' );
+  validateInput('blur','#fnameInput', '#fnameError' , /^[a-zA-Z]*$/, 'Use only characters', 3,'n' );
+  validateInput('blur', '#mnameInput', '#mnameError' , /^[a-zA-Z]*$/, 'Use only characters', 1 ,'n' );
+  validateInput('blur', '#lnameInput', '#lnameError' , /^[a-zA-Z]*$/, 'Use only characters', 3 ,'n' );
+  validateInput('blur', '#phoneInput', '#phoneError' , /^[0-9+]*$/, 'Use only digit and "+"',6 ,'n' );
 
   //password form
-  validateInput('blur', '#currentPassword', '#currentPasswordError' , /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/, 'Use character and digit',8 );
-  validateInput('blur', '#newPassword', '#newPasswordError' , /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/, 'Use character and digit',8 );
+  validateInput('blur', '#currentPassword', '#currentPasswordError' , /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/, 'Use character and digit',8 ,'n' );
+  validateInput('blur', '#newPassword', '#newPasswordError' , /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$/, 'Use character and digit',8 ,'n' );
   validatePasswordMatch('blur', '#newPasswordRepeat', '#newPassword', '#newPasswordRepeatError');
 
   //company form
-  validateInput('blur', '#phoneInput', '#phoneError' , /^[0-9]*$/, 'Use only numbers',6 );
+  validateInput('blur', '#companyName', '#companyNameError' , /^[a-zA-Z]*$/, 'Use only characters',3  ,'n');
+  validateInput('blur', '#invoiceAddress', '#invoiceAddressError' , /^/, 'Use only characters or numbers',6 ,'n');
+  validateInput('blur', '#ico', '#icoError' , /^[0-9]*$/, 'Use only numbers',8, 8);
+  validateInput('blur', '#dic', '#dicError' , /^[0-9]*$/, 'Use only numbers',10, 10);
+
 
 })
 
-function handleUpdateResponse(response){
+function handleUpdateResponse(response, id){
 
-  id = '#outputAreaPersonalForm';
+  id = '#'+id;
   var responseText = '';
   if(response == 1){
 
@@ -46,7 +55,7 @@ function handleUpdateResponse(response){
   }
 }
 
-function validateInput(thisEvent, id, idErr, regex, customeMessage, min){
+function validateInput(thisEvent, id, idErr, regex, customeMessage, min, max){
 
   $(id).on(thisEvent, function(){
     var value = $(this).val();
@@ -59,6 +68,9 @@ function validateInput(thisEvent, id, idErr, regex, customeMessage, min){
     }
     else if(value.length < min && !$(idErr).hasClass('canSkip')){
       $(idErr).html('Minimum ' + min + ' characters').slideDown(500);
+    }
+    else if(max != 'n' && value.length > max && !$(idErr).hasClass('canSkip')){
+        $(idErr).html('Maximum ' + max + ' characters').slideDown(500);
     }
     else{
       $(idErr).html('').slideUp(500);
@@ -87,7 +99,7 @@ function profilePersonalConfirm(){
   if(error.length > 0)
     return;
 
-  request('../../Server/Responses/updateProfile.php' ,'POST' ,'input.personal');
+  request('../../Server/Responses/updateProfile.php' ,'POST' ,'input.personal', 'outputAreaPersonalForm');
 }
 
 function profilePasswordConfirm(){
@@ -96,10 +108,19 @@ function profilePasswordConfirm(){
   if(error.length > 0)
     return;
 
-  request('../../Server/Responses/updatePassword.php' ,'POST' ,'input.password');
+  request('../../Server/Responses/updatePassword.php' ,'POST' ,'input.password', 'outputAreaPasswordForm');
 }
 
-function request(url, type, dataTarget){
+function profileCompanyConfirm(){
+
+  var error = validateProfileCompanyConfirm();
+  if(error.length > 0)
+    return;
+
+  request('../../Server/Responses/updateCompany.php' ,'POST' ,'input.company', 'outputAreaCompanyForm');
+}
+
+function request(url, type, dataTarget, outputTarget){
 
   var data = {};
   $(dataTarget).each(function(index, value){
@@ -107,17 +128,17 @@ function request(url, type, dataTarget){
     var value = $(this).val();
     data[name] = value;
   }),
-
+  console.log(data);
   $.ajax({
     url: url,
     type: type,
     data: data,
     success: function(response){
       console.log(response);
-      handleUpdateResponse(response);
+      handleUpdateResponse(response, outputTarget);
     },
     error: function(){
-      $('#registrationResponse').slideDown(500).html('We are sorry, something went wrong');
+      $(outputTarget).slideDown(500).html('We are sorry, something went wrong');
     }
   })
 }
@@ -150,4 +171,21 @@ function validateProfilePasswordConfirm(){
     });
 
     return error;
+}
+
+function validateProfileCompanyConfirm(){
+
+  $("input.company").each(function(){
+   $(this).trigger('blur');
+ });
+
+ var error = '';
+ $(".companyFormError").each(function(){
+
+   error =  error + $(this).html();
+   if($(this).html().length > 0)
+     $(this).toggle( "pulsate", 100).toggle( "pulsate", 100);
+ });
+
+ return error;
 }

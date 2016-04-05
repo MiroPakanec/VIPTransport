@@ -11,6 +11,21 @@ function getSession(handleData){
   });
 }
 
+function getCompany(handleData){
+
+  $.ajax({
+      type: 'GET',
+      url: '../../Server/Responses/getCompany.php',
+      dataType : 'json',
+      data: '',
+      success: function(response){
+        handleData(response);
+      },
+      error: function(response){
+      }
+  });
+}
+
 function getTransports(handleData, id){
 
   $.ajax({

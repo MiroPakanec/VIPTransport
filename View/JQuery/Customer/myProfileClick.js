@@ -55,10 +55,13 @@ $(function (){
 
   $('#companyCancelButton').on('click', function(){
 
-    $('#companyName').val('');
-    $('#invoiceAddress').val('');
-    $('#ico').val('');
-    $('#dic').val('');
+    getCompanyData();
+    $('.outputAreaForm').each(function(){
+      $(this).slideUp(500);
+    });
+    $('.companyFormError').each(function(){
+      $(this).slideUp(500);
+    })
   })
 
   $('#profilePictureButton').on('click', function(){
@@ -140,6 +143,10 @@ function negativeResponse(response, id){
       'color' : 'red',
       'border-color' : 'rgba(255,0,0,0.3)'
     }).slideDown(500);
+
+    setTimeout(function(){
+      $(id).slideUp(500);
+    }, 5000);
 }
 
 function positiveResponse(response, id){
@@ -149,6 +156,10 @@ function positiveResponse(response, id){
       'color' : 'green',
       'border-color' : 'rgba(0,255,0,0.4)'
     }).slideDown(500);
+
+  setTimeout(function(){
+    $(id).slideUp(500);
+  }, 5000);
 }
 
 function neutralResponse(response, id){
@@ -158,6 +169,10 @@ function neutralResponse(response, id){
       'color' : 'white',
       'border-color' : 'rgba(255,255,255,0.4)'
     }).slideDown(500);
+
+    setTimeout(function(){
+      $(id).slideUp(500);
+    }, 5000);
 }
 
 function generateHtmlResponse(message, file){

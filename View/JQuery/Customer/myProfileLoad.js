@@ -28,7 +28,18 @@ function getSessionData(){
 
 function getCompanyData(){
 
-  $('#companyCancelButton').val('Clear');
+   getCompany(function(data){
+
+     if(!data.name.length == 0){
+
+       $('#companyName').val(data.name);
+       $('#invoiceAddress').val(data.address);
+       $('#ico').val(data.ico);
+       $('#dic').val(data.dic);
+     }
+
+
+   });
 }
 
 function loadProfilePicture(email){

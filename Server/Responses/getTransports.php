@@ -9,7 +9,7 @@
     }
 
     $orderControllerObject = new OrderController();
-    $orderModelArray = $orderControllerObject->getOrders($id);
+    $orderModelArray = $orderControllerObject->getOrders($id); 
 
     header('Content-Type: text/javascript');
     //test
