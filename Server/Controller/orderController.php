@@ -5,6 +5,7 @@
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderDeleteDatabaseAccess.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderUpdateDatabaseAccess.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/orderModel.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validationController.php';
 
   session_start();
 
@@ -12,10 +13,17 @@
 
     public function crearteOrder($date, $timeHour, $timeMinute, $clock, $from, $to, $pasangers, $payment, $names){
 
+      $validationControllerObject = new ValidationController();
+      if($this->validateDate($date, $timeHour, $timeMinute, 00, $clock) > 0)
+        return 0;
+
       $datetimeString = $date." ".$timeHour.":".$timeMinute.":00 ".$clock;
       $datetime = Datetime::createFromFormat('d/m/Y H:i:s A', $datetimeString);
-
       $orderModelObject = new OrderModel('', $_SESSION['email'], $datetime, $from, $to, $pasangers, $payment, $names, '');
+
+      if($validationControllerObject->validateOrder($orderModelObject) > 0)
+        return 0;
+
       $orderInsertDatabaseAccessObject = new OrderInsertDatabaseAccess();
       $wClause = ' ORDER BY id DESC LIMIT 0, 1';
 
@@ -31,9 +39,16 @@
 
     public function updateOrder($id, $date, $timeHour, $timeMinute, $clock, $from, $to, $pasangers, $payment, $names){
 
+      $validationControllerObject = new ValidationController();
+      if($this->validateDate($date, $timeHour, $timeMinute, 00, $clock) > 0)
+        return 0;
+
       $datetimeString = $date." ".$timeHour.":".$timeMinute.":00 ".$clock;
       $datetime = Datetime::createFromFormat('d/m/Y H:i:s A', $datetimeString);
       $orderModelObject = new OrderModel($id, $_SESSION['email'], $datetime, $from, $to, $pasangers, $payment, $names, '');
+
+      if($validationControllerObject->validateOrder($orderModelObject) > 0)
+        return 0;
 
       $orderUpdateDatabaseAccessObject = new OrderUpdateDatabaseAccess();
       return $orderUpdateDatabaseAccessObject->updateOrder($orderModelObject);
@@ -60,6 +75,16 @@
 
       $wClause = "WHERE id = ".$id;
       return $orderDeleteDatabaseAccess->deleteOrder($wClause);
+    }
+
+    private function validateDate($date, $hour, $minute, $second, $clock){
+
+      $year = substr($date, 6, 4);
+      $month = substr($date, 3, 2);
+      $day = substr($date, 0, 2);
+
+      $validationControllerObject = new ValidationController();
+      return $validationControllerObject->validateDate($year, $month, $day, $hour, $minute, $second, $clock);
     }
 
     private function getOrdersWClause($id){

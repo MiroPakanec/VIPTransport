@@ -13,6 +13,10 @@ $(function(){
       }
     }),
 
+
+
+
+
     $('.paymentSelection').hide(0);
     $('#datepickerMain').hide();
     $('#orderClock').val('AM');
@@ -71,6 +75,7 @@ $(function(){
         type: type,
         data: data,
         success: function(response){
+          console.log(response);
           handleOrderResponse(response);
         },
         error: function(){

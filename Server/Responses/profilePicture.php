@@ -15,7 +15,6 @@
     echo 'Please select a file';
   else{
     $image = addslashes(file_get_contents($_FILES['file']['tmp_name']));
-    $imageName = addslashes($_FILES['file']['name']);
 
     //validation variables
     $isImage = getimagesize($_FILES['file']['tmp_name']);

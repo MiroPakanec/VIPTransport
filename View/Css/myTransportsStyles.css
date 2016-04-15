@@ -109,10 +109,10 @@ td>input:hover{
 
 .buttonColumnHeader{
 
-  background-color:rgba(255,0,0,0.1);
+  background-color:rgba(255,0,0,0.0);
   border: none;
   font-size: 18px;
-  border: 1px solid rgba(0,0,0,0.2);
+  border: 1px solid rgba(0,0,0,0.0);
   width: 8% !important;
 }
 
@@ -121,6 +121,18 @@ td>input:hover{
     background-color:rgba(255,0,0,0.1);
     border: none;
     font-size: 18px;
+}
+
+.editButton{
+
+  background-color:rgba(255,255,255,0.1) !important;
+  border: none;
+  font-size: 18px;
+}
+
+.editButton:hover{
+
+  background-color:rgba(255,255,255,0.2) !important;
 }
 
 .buttonColumn:hover{

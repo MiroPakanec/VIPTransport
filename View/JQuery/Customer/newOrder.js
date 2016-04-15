@@ -46,6 +46,11 @@ $(function(){
 
     $("#paymentTypeButton, .paymentSelection").mouseover(function(){
       $('.paymentSelection').stop().slideDown(500);
+      getCompany(function(data){
+
+        if(data.address.length == 0)
+          $('#paymentBill').hide();
+      });
     }),
 
     $("#paymentTypeButton, .paymentSelection").mouseout(function(){

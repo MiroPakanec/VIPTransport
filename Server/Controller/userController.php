@@ -5,6 +5,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/user
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/userUpdateDatabaseAccess.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/userModel.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/sessionController.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validationController.php';
 
   session_start();
 
@@ -12,16 +13,27 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/sessionC
 
     public function registerUser($email, $fname, $mname, $lname, $password, $phone){
 
-      $password = password_hash($password , PASSWORD_BCRYPT);
-      $userModelObject = new UserModel($email, $fname, $mname, $lname, $password, $phone, '', '');
+      $validationControllerObject = new ValidationController();
       $userDataAccessObject = new UserInsertDatabaseAccess();
+      $userModelObject = new UserModel($email, $fname, $mname, $lname, $password, $phone, null, null);
+
+      if($validationControllerObject->validateUser($userModelObject) > 0)
+        return 0;
+
+      $userModelObject->setPassword(password_hash($password , PASSWORD_BCRYPT));
       return $userDataAccessObject->registerUser($userModelObject);
     }
 
     public function updateUser($email, $fname, $mname, $lname, $phone){
 
       $userDataAccessObject = new userUpdateDatabaseAccess();
-      $userModelObject = new UserModel($email, $fname, $mname, $lname, '', $phone, '', '');
+      $validationControllerObject = new ValidationController();
+
+      $userModelObject = new UserModel($email, $fname, $mname, $lname, null, $phone, null, null);
+
+      if($validationControllerObject->validateUser($userModelObject) > 0)
+        return 0;
+
       $wClause = " WHERE Email = '".$_SESSION['email']."'";
 
       $response = $userDataAccessObject->updateUser($userModelObject, $wClause);
@@ -37,12 +49,13 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/sessionC
 
       $userSelectDataAccessObject = new UserSelectDatabaseAccess();
       $userUpdateDataAccessObject = new userUpdateDatabaseAccess();
+      $validationControllerObject = new ValidationController();
 
       //get users password from DB
       $wClause = " WHERE Email = '" . $_SESSION['email'] . "'";
       $userModelObject = $userSelectDataAccessObject->getUserData($wClause);
 
-      if(!$this->validatePassword($current, $new, $newRepeat, $userModelObject->getPassword()))
+      if($validationControllerObject->validatePassword($current, $new, $newRepeat, $userModelObject->getPassword()) > 0)
         return 0;
 
       $userModelObject->setPassword(password_hash($new , PASSWORD_BCRYPT));
@@ -52,6 +65,12 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/sessionC
     public function loginUser($email, $password, $token){
 
       $userDataAccessObject = new UserSelectDatabaseAccess();
+      $validationControllerObject = new ValidationController();
+      $userModelObject = new UserModel($email, null, null, null, $password, null, null, null);
+
+      if($validationControllerObject->validateUser($userModelObject) > 0)
+        return 'Please enter valid email and password';
+
       $wClause = " WHERE Email = '" . $email . "'";
 
       //get populated user model from db
@@ -80,33 +99,6 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/sessionC
       $wClause = " WHERE Email = '" . $email . "'";
 
       return $userDataAccessObject->getImage($wClause);
-    }
-
-    private function validatePassword($currentPassword, $newPassword, $newPasswordRepeat, $storedPassword){
-
-      if(!$this->validateCorrectPassword($currentPassword, $storedPassword))
-        return 0;
-
-      if(!$this->validatePasswordMatch($newPassword, $newPasswordRepeat))
-        return 0;
-
-      return 1;
-    }
-
-    private function validateCorrectPassword($password, $storedPassword){
-
-      if(!password_verify($password, $storedPassword))
-        return 0;
-      else
-        return 1;
-    }
-
-    private function validatePasswordMatch($password, $passwordRepeat){
-
-      if($password != $passwordRepeat)
-        return 0;
-      else
-        return 1;
     }
   }
 

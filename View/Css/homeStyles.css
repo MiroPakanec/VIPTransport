@@ -20,7 +20,7 @@ body{
 .header{
 
   width: inherit;
-  height: 390px;
+  height: 360px;
   border-top: 1px solid rgba(255,255,255,0.2);
   background-color: rgba(0, 0, 0, 0.2);
   background-image: url("Images/NewOrder/picture1.jpg");
@@ -76,14 +76,15 @@ body{
 }
 
 .paragraphPicture{
-  height: 80%;
-  width: 100%;
+  margin: auto;
+  height: 150px;
+  width: 300px;
 }
 
   #newOrder{
     background-image: url("Images/HomeIcons/icon1.png");
     background-size:cover;
-    background-size: 35% 60%;
+    background-size: 32% 60%;
     background-position: 50% 55%;
     background-repeat: no-repeat;
     opacity: 0.6;

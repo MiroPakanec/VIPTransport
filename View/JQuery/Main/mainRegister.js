@@ -37,7 +37,7 @@
         e.preventDefault();
         if(validateRegistrationConfirm().length > 0)
           return;
-
+        
         var url = $(this).attr('action');
         var type = $(this).attr('method');
         var data = {};
@@ -53,6 +53,7 @@
           type: type,
           data: data,
           success: function(response){
+            console.log(response);
             handleRegistrationResponse(response);
           },
           error: function(){

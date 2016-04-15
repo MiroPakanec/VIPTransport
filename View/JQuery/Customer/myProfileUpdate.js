@@ -134,7 +134,6 @@ function request(url, type, dataTarget, outputTarget){
     type: type,
     data: data,
     success: function(response){
-      console.log(response);
       handleUpdateResponse(response, outputTarget);
     },
     error: function(){
