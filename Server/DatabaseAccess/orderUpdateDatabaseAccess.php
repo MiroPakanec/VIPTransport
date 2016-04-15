@@ -24,7 +24,7 @@
 
         $query = "UPDATE Transport_order  SET ".
                  "Email = '{$email}', DateTime = '{$date}', Departure_address = '{$from}', Arrival_address = '{$to}',".
-                 "Pasangers = '{$pasangers}', Payment_type = '{$payment}' WHERE Id=".$id;
+                 "Pasangers = '{$pasangers}', Payment_type = '{$payment}', Status = 'Stand by' WHERE Id=".$id;
 
         $query1 = "DELETE FROM  Pasanger_name WHERE Order_id=".$id;
 

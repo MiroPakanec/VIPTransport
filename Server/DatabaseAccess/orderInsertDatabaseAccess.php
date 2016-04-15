@@ -19,8 +19,9 @@
         $pasangers = $dbc->real_escape_string(trim($orderModelObject->getPasangers()));
         $payment = $dbc->real_escape_string(trim($orderModelObject->getPayment()));
 
-        $query = "INSERT INTO Transport_order (Email, DateTime, Departure_address, Arrival_address, Pasangers, Payment_type, Creation_date)" .
-                 " VALUES ('{$email}', '{$date}', '{$from}', '{$to}', '{$pasangers}', '{$payment}', NOW())";
+        $query = "INSERT INTO Transport_order (Email, DateTime, Departure_address, Arrival_address, Pasangers, Payment_type, Creation_date, Status)" .
+                 " VALUES ('{$email}', '{$date}', '{$from}', '{$to}', '{$pasangers}', '{$payment}', NOW(), 'Stand by')";
+
         $dbc->query($query);
         $id = $dbc->insert_id;
         return $id;

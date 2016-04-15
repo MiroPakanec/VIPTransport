@@ -29,7 +29,6 @@
 
       //ID is returned from DAL and set to model object
       $orderModelObject->setId($orderInsertDatabaseAccessObject->createOrder($orderModelObject));
-
       if(!$orderModelObject->getId() > 0)
         return 0;
 
@@ -58,7 +57,6 @@
 
       $orderSelectDatabaseAccessObject = new OrderSelectDatabaseAccess();
       return $orderSelectDatabaseAccessObject->getOrderData($this->getOrdersWClause($id));
-      //return getOrdersWClause($id);
     }
 
     public function getOrderNames($id){

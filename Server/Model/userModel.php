@@ -83,7 +83,7 @@ class UserModel{
       $this->type = $value;
     }
 
-    public function setRegistrationDate(){
+    public function setRegistrationDate($value){
       $this->registrationDate = $value;
     }
   }

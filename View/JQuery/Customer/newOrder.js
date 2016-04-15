@@ -46,11 +46,6 @@ $(function(){
 
     $("#paymentTypeButton, .paymentSelection").mouseover(function(){
       $('.paymentSelection').stop().slideDown(500);
-      getCompany(function(data){
-
-        if(data.address.length == 0)
-          $('#paymentBill').hide();
-      });
     }),
 
     $("#paymentTypeButton, .paymentSelection").mouseout(function(){
@@ -129,7 +124,7 @@ $(function(){
 
     var html = '';
     html += '<div class="mainRow" style="margin-bottom: 1%">' +
-            '<div class="mainText">Full name ' + (counter+1) + ':</div>'+
+            '<div class="mainText">Full name ' + (counter+1) + ': *</div>'+
             '<input type="text" name="pasangerName'+counter+'" class="mainTextInput generatedInputField" id="orderPasangerName'+counter+'" maxlength="30">'+
             '<div id="errorOrderPasangerName'+counter+'" class="errorMessage errorMessageGenerated"></div>' +
             '</div>'

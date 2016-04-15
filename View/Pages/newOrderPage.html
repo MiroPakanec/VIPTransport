@@ -30,13 +30,13 @@
         <div class="mainParagraph">
           <form action="../../Server/Responses/newOrder.php" method="post" class="" id="orderForm">
           <div class="mainRow">
-            <div class="mainText">Departure date: </div>
+            <div class="mainText">Departure date: *</div>
             <div class="button orderSelect" id="orderDate" name="orderDate">Select date</div>
             <div class="errorMessage" id="errorOrderDepartureDate"></div>
           </div>
           <div id = "datepickerMain" ></div>
           <div class="mainRow">
-            <div class="mainText">Departure time:</div>
+            <div class="mainText">Departure time: *</div>
             <input type="text" id="orderTimeHour" name="orderTimeHour" class="mainTextInput largerMediumTextInput" value="" maxlength="2">
             <div class = "midText">:</div>
             <input type="text" id="orderTimeMinute" name="orderTimeMinute" class="mainTextInput largerMediumTextInput" value="" maxlength="2">
@@ -46,14 +46,15 @@
             <div class="errorMessage" id="errorOrderDepartureTime"></div>
           </div>
           <div class="mainRow">
-            <div class="mainText">From (address): </div><input type="text" id="orderFrom" name="orderFrom" class="mainTextInput" maxlength="30">
+            <div class="mainText">From (address): *</div><input type="text" id="orderFrom" name="orderFrom" class="mainTextInput" maxlength="30">
             <div class="errorMessage" id="errorOrderFrom"></div>
           </div>
           <div class="mainRow">
-            <div class="mainText">To (address): </div><input type="text" id="orderTo" name="orderTo" class="mainTextInput" maxlength="30">
+            <div class="mainText">To (address): *</div><input type="text" id="orderTo" name="orderTo" class="mainTextInput" maxlength="30">
             <div class="errorMessage" id="errorOrderTo"></div>
           </div>
           <div class="paymentType">
+            <div class="mainText">Payment type: *</div>
             <div class="errorMessage" id="errorOrderPaymentType"></div>
             <div class="button" id="paymentTypeButton" name="orderPayment">Select payment</div>
             <div class="button paymentSelection">Credit Card</div>
@@ -61,7 +62,7 @@
             <div class="button paymentSelection" id="paymentBill">Invoice</div>
           </div>
           <div class="mainRow">
-            <div class="mainText">Pasangers: </div>
+            <div class="mainText">Pasangers: *</div>
             <div class="button orderSelect"  id="orderPasangers" name="orderPasangers">2</div>
             <input type="button" name="plusButton" value="+" class="button smallButton orderButton" id="plusButton">
             <input type="button" name="minusButton" value="-" class="button smallButton orderButton" id="minusButton">

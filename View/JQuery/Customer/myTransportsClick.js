@@ -8,7 +8,7 @@ $(function (){
       var updated= getParameterByName('updated');
       for (index in data){
         generateTableRow(data[index].id ,data[index].date, data[index].from, data[index].to,
-          data[index].pasangers, data[index].payment, data[index].creationDate, added, updated);
+          data[index].pasangers, data[index].payment, data[index].creationDate, data[index].status, added, updated);
 
         added = '-1';
       }
@@ -136,7 +136,10 @@ function generateTableOrders(){
    $('#orderTableArea').html(html);
 }
 
-function generateTableRow(id, date, addressFrom, addressTo, pasangers, payment, creationDate, added, updated){
+function generateTableRow(id, date, addressFrom, addressTo, pasangers, payment, creationDate, status, added, updated){
+
+  var deleteButtonValue = generateButtonName(status, 'Delete');
+  var updateButtonValue = generateButtonName(status, 'Update');
 
   var html =      '<tr class = "tableRow" id="'+id+'">' +
                     '<td><input type="text" class="tableInput" name="date" value="'+ date +'" disabled></td>' +
@@ -145,8 +148,8 @@ function generateTableRow(id, date, addressFrom, addressTo, pasangers, payment, 
                     '<td><input type="text" class="tableInput" name="pasangers" value="'+ pasangers +'" disabled></td>' +
                     '<td><input type="text" class="tableInput" name="payment" value="'+ payment +'" disabled></td>' +
                     '<td><input type="text" class="tableInput" name="creationDate" value="'+ creationDate +'" disabled></td>' +
-                    '<td class="buttonColumn deleteButton">Delete</td>' +
-                    '<td class="buttonColumn editButton">Edit</td>' +
+                    '<td class="buttonColumn deleteButton">'+deleteButtonValue+'</td>' +
+                    '<td class="buttonColumn editButton">'+updateButtonValue+'</td>' +
                   '</tr>';
 
   $('#orderTable').append(html);
@@ -159,4 +162,14 @@ function generateTableRow(id, date, addressFrom, addressTo, pasangers, payment, 
       'background-color' : 'rgba(255,255,255,0.3)'
     });
   }
+}
+
+function generateButtonName(status, defaultValue){
+
+  if(status != 'Stand by'){
+
+    return defaultValue + ' request';
+  }
+
+  return defaultValue;
 }

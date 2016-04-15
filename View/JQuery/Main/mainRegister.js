@@ -37,7 +37,7 @@
         e.preventDefault();
         if(validateRegistrationConfirm().length > 0)
           return;
-        
+
         var url = $(this).attr('action');
         var type = $(this).attr('method');
         var data = {};
@@ -126,7 +126,8 @@ function clearRegistrationErrors(){
 function validateRegistration(thisEvent, id, idErr, regex, customeMessage, min){
 
   $(id).on(thisEvent, function(){
-    var value = $(this).val();
+    var value = $(this).val().trim();
+    $(id).val(value);
 
     if(!value && !$(idErr).hasClass('canSkip')){
       $(idErr).html('Cannot be empty').slideDown(500);

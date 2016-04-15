@@ -11,8 +11,9 @@
     private $payment;
     private $names; //array
     private $creationDate;
+    private $status;
 
-    public function __construct($id, $email, $date, $from, $to, $pasangers, $payment, $names, $creationDate){
+    public function __construct($id, $email, $date, $from, $to, $pasangers, $payment, $names, $creationDate, $status){
 
       $this->id = $id;
       $this->date = $date;
@@ -23,6 +24,7 @@
       $this->payment = $payment;
       $this->names = $names;
       $this->creationDate =$creationDate;
+      $this->status = $status;
     }
 
     public function getId(){
@@ -61,6 +63,10 @@
       return $this->creationDate;
     }
 
+    public function getStatus(){
+      return $this->status;
+    }
+
     public function setId($value){
       $this->id = $value;
     }
@@ -91,6 +97,10 @@
 
     public function setCreationDate($value){
       $this->creationDate = $value;
+    }
+
+    public function setStatus($value){
+      $this->status = $value;
     }
   }
 ?>

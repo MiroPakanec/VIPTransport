@@ -87,8 +87,9 @@ function validateLoginConfirm(){
 function validateLogin(thisEvent, id, idErr){
 
   $(id).on(thisEvent, function(){
-    var value = $(this).val();
-
+    var value = $(this).val().trim();
+    $(id).val(value);
+    
     if(!value)
       $(idErr).html('Cannot be empty').slideDown(500);
     else

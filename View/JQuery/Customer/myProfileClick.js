@@ -170,9 +170,6 @@ function neutralResponse(response, id){
       'border-color' : 'rgba(255,255,255,0.4)'
     }).slideDown(500);
 
-    setTimeout(function(){
-      $(id).slideUp(500);
-    }, 5000);
 }
 
 function generateHtmlResponse(message, file){

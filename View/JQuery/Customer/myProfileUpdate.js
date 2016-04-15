@@ -58,7 +58,8 @@ function handleUpdateResponse(response, id){
 function validateInput(thisEvent, id, idErr, regex, customeMessage, min, max){
 
   $(id).on(thisEvent, function(){
-    var value = $(this).val();
+    var value = $(this).val().trim();
+    $(id).val(value);
 
     if(!value && !$(idErr).hasClass('canSkip')){
       $(idErr).html('Cannot be empty').slideDown(500);

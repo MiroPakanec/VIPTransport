@@ -9,10 +9,10 @@
     }
 
     $orderControllerObject = new OrderController();
-    $orderModelArray = $orderControllerObject->getOrders($id); 
+    $orderModelArray = $orderControllerObject->getOrders($id);
 
     header('Content-Type: text/javascript');
-    //test
+
     $index = 0;
     $array = array();
     $arrayOrder = array();
@@ -26,6 +26,7 @@
       $arrayOrder['payment'] = $orderModelObject->getPayment();
       $arrayOrder['pasangers'] = $orderModelObject->getPasangers();
       $arrayOrder['creationDate'] = $orderModelObject->getCreationDate();
+      $arrayOrder['status'] = $orderModelObject->getStatus();
 
       array_push($array, $arrayOrder);
     }

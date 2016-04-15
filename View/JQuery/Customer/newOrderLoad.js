@@ -10,12 +10,12 @@ $(function(){
 
         //generate page for custoemr
         generateCustomerButtons();
+        getCompany(function(data){
+
+          disableInvoice(data);
+        });
       }
     }),
-
-
-
-
 
     $('.paymentSelection').hide(0);
     $('#datepickerMain').hide();
@@ -84,6 +84,19 @@ $(function(){
       })
     })
 })
+
+function disableInvoice(data){
+
+    if(data.address.length == 0){
+      $('#paymentBill').css({
+        'background-color' : 'rgba(255,0,0,0.2)',
+        'color' : 'red',
+        'border' : '1px solid rgba(255,0,0,0.2)'
+      }).off('click');
+
+    $('#errorOrderPaymentType').html("To use invoice option, please add a company in 'My Profile'").slideDown(500);
+  }
+}
 
 function updateOrder(){
 
@@ -269,7 +282,9 @@ function validateGenerated(){
 function validateOrderTime(thisEvent, id, idErr, regex, max, min, name){
 
   $(id).on(thisEvent, function(){
-    var value = $(this).val();
+
+    var value = $(this).val().trim();
+    $(id).val(value);
 
     if(!value)
       $(idErr).html('Cannot be empty').slideDown(500);
@@ -287,7 +302,8 @@ function validateOrderTime(thisEvent, id, idErr, regex, max, min, name){
 function validateOrderName(thisEvent, id, idErr, regex){
 
   $(id).on(thisEvent, function(){
-    var value = $(this).val();
+    var value = $(this).val().trim();
+    $(id).val(value);
 
     if(!value)
       $(idErr).html('Cannot be empty').slideDown(500);
@@ -301,7 +317,8 @@ function validateOrderName(thisEvent, id, idErr, regex){
 function validateOrderInput(thisEvent, id, idErr){
 
   $(id).on(thisEvent, function(){
-    var value = $(this).val();
+    var value = $(this).val().trim();
+    $(id).val(value);
 
     if(!value)
       $(idErr).html('Cannot be empty').slideDown(500);

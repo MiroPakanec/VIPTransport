@@ -28,9 +28,11 @@
               $pasangers = $row['Pasangers'];
               $payment = $row['Payment_type'];
               $creationDate = $row['Creation_date'];
+              $status = $row['Status'];
 
               $date = new DateTime($datetimeString);
-              $orderModelObject = new OrderModel($id, $email, $date, $from, $to, $pasangers, $payment, '', $creationDate);
+
+              $orderModelObject = new OrderModel($id, $email, $date, $from, $to, $pasangers, $payment, '', $creationDate, $status);
               array_push($orderModelArray, $orderModelObject);
             }
         }
