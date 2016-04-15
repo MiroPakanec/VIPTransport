@@ -24,6 +24,7 @@
       $arrayOrder['from'] = $orderModelObject->getFrom();
       $arrayOrder['to'] = $orderModelObject->getTo();
       $arrayOrder['payment'] = $orderModelObject->getPayment();
+      $arrayOrder['phone'] = $orderModelObject->getPhone();
       $arrayOrder['pasangers'] = $orderModelObject->getPasangers();
       $arrayOrder['creationDate'] = $orderModelObject->getCreationDate();
       $arrayOrder['status'] = $orderModelObject->getStatus();

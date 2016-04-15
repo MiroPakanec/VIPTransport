@@ -9,7 +9,7 @@
 
       try{
 
-        $id = $email = $datetimeString = $from = $to = $pasangers = $payment = $creationDate = '';
+        $id = $email = $datetimeString = $from = $to = $pasangers = $payment = $phone = $status = $creationDate = '';
         $orderModelArray = array();
 
         $dbc = DatabaseConnection::openConnection();
@@ -27,12 +27,13 @@
               $to = $row['Arrival_address'];
               $pasangers = $row['Pasangers'];
               $payment = $row['Payment_type'];
+              $phone = $row['Phone'];
               $creationDate = $row['Creation_date'];
               $status = $row['Status'];
 
               $date = new DateTime($datetimeString);
 
-              $orderModelObject = new OrderModel($id, $email, $date, $from, $to, $pasangers, $payment, '', $creationDate, $status);
+              $orderModelObject = new OrderModel($id, $email, $date, $from, $to, $pasangers, $payment, $phone, '', $creationDate, $status);
               array_push($orderModelArray, $orderModelObject);
             }
         }

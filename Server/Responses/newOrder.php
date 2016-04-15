@@ -4,7 +4,7 @@
 
   if(isset($_POST['Clock'],$_POST['Date'], $_POST['TimeHour'],
         $_POST['TimeMinute'],$_POST['From'], $_POST['To'],
-        $_POST['Pasangers'],$_POST['Payment'], $_POST['Operation'])){
+        $_POST['Pasangers'],$_POST['Payment'], $_POST['Phone'], $_POST['Operation'])){
 
     $namesError = '';
     $names = $_POST['Names'];
@@ -21,11 +21,11 @@
 
     if($_POST['Operation'] == 'create')
       $response = $orderControllerObject->crearteOrder($_POST['Date'], $_POST['TimeHour'], $_POST['TimeMinute'], $_POST['Clock'],
-                                $_POST['From'], $_POST['To'], $_POST['Pasangers'], $_POST['Payment'], $_POST['Names']);
+                                $_POST['From'], $_POST['To'], $_POST['Pasangers'], $_POST['Payment'], $_POST['Phone'], $_POST['Names']);
 
     else if($_POST['Operation'] == 'update')
       $response = $orderControllerObject->updateOrder($_POST['Id'], $_POST['Date'], $_POST['TimeHour'], $_POST['TimeMinute'], $_POST['Clock'],
-                                $_POST['From'], $_POST['To'], $_POST['Pasangers'], $_POST['Payment'], $_POST['Names']);
+                                $_POST['From'], $_POST['To'], $_POST['Pasangers'], $_POST['Payment'], $_POST['Phone'], $_POST['Names']);
 
     echo($response);
   }

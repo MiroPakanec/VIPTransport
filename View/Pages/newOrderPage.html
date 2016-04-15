@@ -62,15 +62,18 @@
             <div class="button paymentSelection" id="paymentBill">Invoice</div>
           </div>
           <div class="mainRow">
+            <div class="mainText">Phone on pasanger:*</div>
+            <input type="text" id="orderPhone" name="orderPhone" class="mainTextInput" maxlength="30">
+            <div class="errorMessage" id="errorOrderPhone"></div>
+          </div>
+          <div class="mainRow">
             <div class="mainText">Pasangers: *</div>
             <div class="button orderSelect"  id="orderPasangers" name="orderPasangers">2</div>
             <input type="button" name="plusButton" value="+" class="button smallButton orderButton" id="plusButton">
             <input type="button" name="minusButton" value="-" class="button smallButton orderButton" id="minusButton">
             <div class="errorMessage" id="errorOrderPasangers"></div>
           </div>
-          <div id="pasangerNames">
-
-          </div>
+          <div id="pasangerNames"></div>
           <div class="mainRow orderResponseRow" id="orderResponseField">
             <div class="orderResponseText" id="orderResponseText"></div>
           </div>

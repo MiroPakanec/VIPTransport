@@ -69,7 +69,7 @@ $(function(){
         data['Id'] = getParameterByName('id');
       }
 
-
+      console.log(data);
       $.ajax({
         url: url,
         type: type,
@@ -157,6 +157,7 @@ function autoFillFields(id){
 
     $('#orderFrom').val(data[0].from);
     $('#orderTo').val(data[0].to);
+    $('#orderPhone').val(data[0].phone);
     $('#paymentTypeButton').html(data[0].payment);
     $('#orderPasangers').html(data[0].pasangers);
 
@@ -262,10 +263,11 @@ function validateOrderConfirm(){
 //on blur
 $(function(){
 
-  validateOrderTime('blur', '#orderTimeHour', '#errorOrderDepartureTime', /^[0-9+]*$/, 12, 0, 'hour');
-  validateOrderTime('blur', '#orderTimeMinute', '#errorOrderDepartureTime', /^[0-9+]*$/, 59, 0, 'minute');
+  validateOrderTime('blur', '#orderTimeHour', '#errorOrderDepartureTime', /^[0-9]*$/, 12, 0, 'hour');
+  validateOrderTime('blur', '#orderTimeMinute', '#errorOrderDepartureTime', /^[0-9]*$/, 59, 0, 'minute');
   validateOrderInput('blur', '#orderFrom', '#errorOrderFrom');
   validateOrderInput('blur', '#orderTo', '#errorOrderTo');
+  validateOrderName('blur', '#orderPhone', '#errorOrderPhone', /^[0-9+]*$/);
 
   validateGenerated();
 })
@@ -308,7 +310,7 @@ function validateOrderName(thisEvent, id, idErr, regex){
     if(!value)
       $(idErr).html('Cannot be empty').slideDown(500);
     else if(!regex.test(value))
-      $(idErr).html('Use only characters').slideDown(500);
+      $(idErr).html('Incorrect character').slideDown(500);
     else
       $(idErr).html('').slideUp(500);
   })

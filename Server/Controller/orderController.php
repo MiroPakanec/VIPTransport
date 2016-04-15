@@ -11,7 +11,7 @@
 
   class OrderController{
 
-    public function crearteOrder($date, $timeHour, $timeMinute, $clock, $from, $to, $pasangers, $payment, $names){
+    public function crearteOrder($date, $timeHour, $timeMinute, $clock, $from, $to, $pasangers, $payment, $phone, $names){
 
       $validationControllerObject = new ValidationController();
       if($this->validateDate($date, $timeHour, $timeMinute, 00, $clock) > 0)
@@ -19,7 +19,7 @@
 
       $datetimeString = $date." ".$timeHour.":".$timeMinute.":00 ".$clock;
       $datetime = Datetime::createFromFormat('d/m/Y H:i:s A', $datetimeString);
-      $orderModelObject = new OrderModel('', $_SESSION['email'], $datetime, $from, $to, $pasangers, $payment, $names, '');
+      $orderModelObject = new OrderModel('', $_SESSION['email'], $datetime, $from, $to, $pasangers, $payment, $phone, $names, '', '');
 
       if($validationControllerObject->validateOrder($orderModelObject) > 0)
         return 0;
@@ -30,13 +30,13 @@
       //ID is returned from DAL and set to model object
       $orderModelObject->setId($orderInsertDatabaseAccessObject->createOrder($orderModelObject));
       if(!$orderModelObject->getId() > 0)
-        return 0;
+        return 6;
 
       //return response from DAL insertion to Pasangers table
       return $orderInsertDatabaseAccessObject->createOrderNames($orderModelObject);
     }
 
-    public function updateOrder($id, $date, $timeHour, $timeMinute, $clock, $from, $to, $pasangers, $payment, $names){
+    public function updateOrder($id, $date, $timeHour, $timeMinute, $clock, $from, $to, $pasangers, $payment, $phone, $names){
 
       $validationControllerObject = new ValidationController();
       if($this->validateDate($date, $timeHour, $timeMinute, 00, $clock) > 0)
@@ -44,7 +44,7 @@
 
       $datetimeString = $date." ".$timeHour.":".$timeMinute.":00 ".$clock;
       $datetime = Datetime::createFromFormat('d/m/Y H:i:s A', $datetimeString);
-      $orderModelObject = new OrderModel($id, $_SESSION['email'], $datetime, $from, $to, $pasangers, $payment, $names, '');
+      $orderModelObject = new OrderModel($id, $_SESSION['email'], $datetime, $from, $to, $pasangers, $payment, $phone, $names, '', '');
 
       if($validationControllerObject->validateOrder($orderModelObject) > 0)
         return 0;

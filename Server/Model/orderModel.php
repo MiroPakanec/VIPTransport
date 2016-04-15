@@ -9,11 +9,12 @@
     private $to;
     private $pasangers;
     private $payment;
+    private $phone;
     private $names; //array
     private $creationDate;
     private $status;
 
-    public function __construct($id, $email, $date, $from, $to, $pasangers, $payment, $names, $creationDate, $status){
+    public function __construct($id, $email, $date, $from, $to, $pasangers, $payment, $phone, $names, $creationDate, $status){
 
       $this->id = $id;
       $this->date = $date;
@@ -22,6 +23,7 @@
       $this->to = $to;
       $this->pasangers = $pasangers;
       $this->payment = $payment;
+      $this->phone = $phone;
       $this->names = $names;
       $this->creationDate =$creationDate;
       $this->status = $status;
@@ -53,6 +55,10 @@
 
     public function getPayment(){
       return $this->payment;
+    }
+
+    public function getPhone(){
+      return $this->phone;
     }
 
     public function getNames(){
@@ -88,6 +94,10 @@
     }
 
     public function setPayment($value){
+      $this->pasangers = $value;
+    }
+
+    public function setPhone($value){
       $this->pasangers = $value;
     }
 

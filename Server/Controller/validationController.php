@@ -38,6 +38,8 @@
         $errorCounter += $this->validateIntegerInput($orderModelObject->getPasangers(), 9, 1, false);
       if(null !== $orderModelObject->getPayment())
         $errorCounter += $this->validateInput($orderModelObject->getPayment(), '^[a-zA-Z ]+$^', 50, 3, false);
+      if(null !== $orderModelObject->getPhone())
+        $errorCounter += $this->validateInput($orderModelObject->getPhone(), '^[0-9]+$^', 20, 3, false);
 
       /*if(null !== $orderModelObject->getNames())
         $errorCounter += $this->validateNames($orderModelObject->getNames(), $orderModelObject->getPasangers());*/

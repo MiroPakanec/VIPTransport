@@ -50,7 +50,11 @@ function getTransports(handleData, id){
       dataType : 'json',
       data: {'id' : id},
       success: function(response){
+        console.log(response);
           handleData(response);
+      },
+      error:function(response){
+        console.log(response);
       }
   });
 }
