@@ -23,6 +23,13 @@ function getSessionData(){
     }
     loadData(data);
     loadProfilePicture(data.email);
+  }),
+
+  $('.notificationAmmount').html('0');
+
+  getNotificationsAmmount(function(data){
+
+    $('.notificationAmmount').html(data);
   });
 }
 

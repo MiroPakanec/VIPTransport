@@ -13,6 +13,13 @@ $(function(){
       }
     }),
 
+    $('.notificationAmmount').html('0');
+
+    getNotificationsAmmount(function(data){
+
+      $('.notificationAmmount').html(data);
+    }),
+
     setTimeout(function() {
       $('#menuVIPTransport').trigger('click');
     },10);

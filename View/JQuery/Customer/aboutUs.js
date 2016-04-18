@@ -2,6 +2,10 @@ $(function() {
 
   menuButtons();
 
+  $('#notifications').on('click', function(){
+    window.location="notificationsPage.html";
+  })
+
   $('#menuVIPTransport').on('click', function(){
 
     $('#textArea').html(getHtmlVIPTransport());

@@ -1,0 +1,48 @@
+#notificationsArea{
+
+  margin: auto;
+  margin-top: 6%;
+  width: 50%;
+  height: 65%;
+  background-color: rgba(255,255,255,0.05);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.notificationContainer{
+
+  width: 100%;
+  height: 25%;
+  background-color: rgba(255,255,255,0.1);
+  margin-bottom: 1%;
+}
+
+.notificationText{
+
+  /*color: black !important;*/
+  font-size: 22px !important;
+  /*font-weight: bold !important;*/
+
+  text-align: left;
+  margin-left: 5%;
+  padding-top: 2%;
+}
+
+b{
+
+  color : red;
+  font-size: 25px;
+}
+
+#notificationsArea::-webkit-scrollbar {
+    width: 1em;
+}
+
+#notificationsArea::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+#notificationsArea::-webkit-scrollbar-thumb {
+  background-color: white;
+  outline: 1px solid slategrey;
+}

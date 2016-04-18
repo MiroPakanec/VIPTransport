@@ -17,6 +17,13 @@ $(function(){
       }
     }),
 
+    $('.notificationAmmount').html('0');
+
+    getNotificationsAmmount(function(data){
+
+      $('.notificationAmmount').html(data);
+    }),
+
     $('.paymentSelection').hide(0);
     $('#datepickerMain').hide();
     $('#orderClock').val('AM');

@@ -19,10 +19,58 @@ function endSession(handleData){
       data: '',
       success: function(response){
           handleData(response);
-          console.log(response);
       },
       error: function(response){
           handleData(response);
+      }
+  });
+}
+
+function getNotificationsAmmount(handleData){
+
+  $.ajax({
+      type: 'POST',
+      url: '../../Server/Responses/getNotificationsAmmount.php',
+      //dataType : 'json',
+      data: {'ammount':'n'},
+      success: function(response){
+          console.log(response);
+          handleData(response);
+      },
+      error: function(response){
+      }
+  });
+}
+
+
+function getNotifications(handleData, ammount){
+
+  $.ajax({
+      type: 'POST',
+      url: '../../Server/Responses/getNotifications.php',
+      dataType : 'json',
+      data: {'ammount':ammount},
+      success: function(response){
+          console.log(response);
+          handleData(response);
+      },
+      error: function(response){
+      }
+  });
+}
+
+function readNotifications(handleData){
+
+  $.ajax({
+      type: 'POST',
+      url: '../../Server/Responses/readNotifications.php',
+      data: '',
+      success: function(response){
+          console.log(response);
+          handleData(response);
+      },
+      error: function(response){
+          alert(response);
       }
   });
 }

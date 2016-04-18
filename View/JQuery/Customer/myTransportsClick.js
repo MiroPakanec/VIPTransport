@@ -1,5 +1,9 @@
 $(function (){
 
+  $('#notifications').on('click', function(){
+    window.location="notificationsPage.html";
+  }),
+
   $('#titleOrder').click(function(){
 
     getTransports(function(data){

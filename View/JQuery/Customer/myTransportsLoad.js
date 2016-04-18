@@ -13,6 +13,13 @@ $(function(){
       }
     }),
 
+    $('.notificationAmmount').html('0');
+
+    getNotificationsAmmount(function(data){
+
+      $('.notificationAmmount').html(data);
+    }),
+
     $('#responseArea').hide();
     setTimeout(function() {
         $("#titleOrder").trigger('click');

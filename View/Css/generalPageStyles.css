@@ -32,13 +32,33 @@ body{
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-.homeHeaderLogo{
+.headerNotifications{
 
   float: left;
-  width: 20%;
-  margin-left: 5%;
-  margin-right: 5%;
-  height: inherit;
+  width: 5%;
+  height: 100%;
+  background-image: url("Images/notificationIcon/notification_icon.png");
+  background-size:cover;
+  background-color: rgba(255,255,255,0);
+}
+
+.headerNotifications:hover{
+  background-color: rgba(255,255,255,0.1);
+}
+
+.headerNotifications:active{
+  background-color: rgba(255,255,255,0.2);
+}
+
+.notificationAmmount{
+
+  float: left;
+  margin-top: 50%;
+  margin-left: 70%;
+
+  background-color: rgba(255,255,255,0);
+  padding: 2% 4%;
+  font-size: 15px !important;
 }
 
 .headerButtonsContainer{
@@ -61,24 +81,8 @@ body{
   float: left;
   width: 20%;
   margin-left: 5%;
-  margin-right: 5%;
   height: 100%;
   line-height: 180%;
-}
-
-.headerButtonsContainer{
-
-  float: left;
-  width: 60%;
-  height: 100%;
-}
-
-.headerButton{
-
-  margin: 0px;
-  padding: 0px;
-  width: 15%;
-  height: 100%;
 }
 
 .main{

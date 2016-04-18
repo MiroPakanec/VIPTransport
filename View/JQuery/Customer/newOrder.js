@@ -1,6 +1,10 @@
 //dynamic functionality order
 $(function(){
 
+  $('#notifications').on('click', function(){
+    window.location="notificationsPage.html";
+  }),
+
     $('#orderDate').on('click', function(){
       $('#datepickerMain').slideToggle(500);
     }),

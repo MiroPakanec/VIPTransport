@@ -13,6 +13,13 @@ $(function(){
         generateMessage(data.fname);
       }
     });
+
+    $('.notificationAmmount').html('0');
+
+    getNotificationsAmmount(function(data){
+
+      $('.notificationAmmount').html(data);
+    });
 });
 
 

@@ -2,6 +2,10 @@ var profilePictureObject;
 
 $(function (){
 
+  $('#notifications').on('click', function(){
+    window.location="notificationsPage.html";
+  }),
+
   $('#personalFormSelection').on('click', function(){
 
     $('#formSelection').hide();
