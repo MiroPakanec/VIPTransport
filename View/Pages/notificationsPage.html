@@ -11,6 +11,7 @@
     <script src="../JQuery/Global/headerButtons.js"></script>
     <script src="../JQuery/Customer/NotificationsLoad.js"></script>
     <script src="../JQuery/Customer/NotificationsClick.js"></script>
+    <script src="../JQuery/Global/notificationsAmmount.js"></script>
 
     <meta charset="UTF-8">
     <title>Notifications</title>
@@ -28,7 +29,17 @@
       <div class="titleArea">
         <div class="title largeText" id="titleOrder">Notifications</div>
       </div>
+      <div class="notificationButtonArea">
+        <input type="button" class="buttonHome notificationButton buttonText" id="allNotifications" value="All">
+        <input type="button" class="buttonHome notificationButton buttonText" id="unreadNotifications" value="Unread">
+        <input type="hidden" value="all" id="notificationsType">
+        <input type="button" class="buttonHome notificationButton buttonText" id="mark" value="Confirm all">
+      </div>
       <div class="smallText" id="notificationsArea">
+      </div>
+      <div class="notificationButtonArea">
+        <input type="button" class="buttonHome notificationButton buttonText" id="moreNotifications" value="Show more">
+        <input type="hidden" value="10" id="notificationsLoaded">
       </div>
     </div>
   </div>

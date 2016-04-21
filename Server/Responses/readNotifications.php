@@ -2,9 +2,11 @@
 
   require $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/notificationController.php';
 
-  $notificationControllerObject = new NotificationController();
-  $response = $notificationControllerObject->readNotifications();
+  if(isset($_POST['id']) && isset($_POST['value'])){
 
-  echo $response;
+    $notificationControllerObject = new NotificationController();
+    $response = $notificationControllerObject->readNotifications($_POST['id'], $_POST['value']);
 
+    echo $response;
+  }
 ?>

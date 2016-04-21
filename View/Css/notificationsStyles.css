@@ -1,17 +1,27 @@
 #notificationsArea{
 
   margin: auto;
-  margin-top: 6%;
-  width: 50%;
-  height: 65%;
+  margin-top: 1%;
+  width: 60%;
+  height: 55%;
   background-color: rgba(255,255,255,0.05);
   overflow-y: scroll;
   overflow-x: hidden;
 }
 
+.notificationButtonArea{
+
+  float: left;
+  margin-left: 20%;
+  width: 60%;
+  height: 7%;
+
+}
+
 .notificationContainer{
 
-  width: 100%;
+  float: left;
+  width: 90%;
   height: 25%;
   background-color: rgba(255,255,255,0.1);
   margin-bottom: 1%;
@@ -20,12 +30,75 @@
 .notificationText{
 
   /*color: black !important;*/
-  font-size: 22px !important;
+  font-size: 20px !important;
   /*font-weight: bold !important;*/
 
   text-align: left;
   margin-left: 5%;
-  padding-top: 2%;
+  padding-top: 1%;
+}
+
+.notificationConfirm{
+
+  float: left;
+  width: 10%;
+  height: 25%;
+
+  /*line-height: 550%;*/
+
+  background-image: url("Images/notificationIcon/unchecked_checkbox.png");
+  background-size:30%, 30%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.notificationConfirm:hover{
+  background-size:35%, 35%;
+
+}
+
+.notificationButton{
+
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 10px 50px;
+  width: 20%;
+
+  float: left;
+}
+
+.buttonText{
+
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  font-family: myFont;
+}
+
+#allNotifications{
+
+  margin-left: 30%;
+  background-color: rgba(255,255,255,0.3);
+}
+
+#mark{
+
+  float: right;
+  padding: 10px 10px;
+  margin-right: 2.2%;
+  width: 12% !important;
+}
+
+#moreNotifications{
+
+  margin-left: 39%;
+}
+
+#mark:focus, #moreNotifications:focus{
+  background-color: rgba(255,255,255,0);
+}
+
+#mark:hover, #moreNotifications:hover{
+  background-color: rgba(255,255,255,0.2);
 }
 
 b{

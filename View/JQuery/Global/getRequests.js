@@ -43,27 +43,52 @@ function getNotificationsAmmount(handleData){
 }
 
 
-function getNotifications(handleData, ammount){
+function getNotifications(handleData, ammount, skip, type){
+
+  //skip = 0;
+
+  var data = {};
+  data['ammount'] = ammount;
+  data['skip'] = skip;
+  data['type'] = type;
 
   $.ajax({
       type: 'POST',
       url: '../../Server/Responses/getNotifications.php',
       dataType : 'json',
-      data: {'ammount':ammount},
+      data: data,
       success: function(response){
           console.log(response);
           handleData(response);
       },
       error: function(response){
+        console.log(response);
+
       }
   });
 }
 
-function readNotifications(handleData){
+function readNotifications(handleData, data){
 
   $.ajax({
       type: 'POST',
       url: '../../Server/Responses/readNotifications.php',
+      data: data,
+      success: function(response){
+          console.log(response);
+          handleData(response);
+      },
+      error: function(response){
+          alert(response);
+      }
+  });
+}
+
+function readAllNotifications(handleData){
+
+  $.ajax({
+      type: 'POST',
+      url: '../../Server/Responses/readAllNotifications.php',
       data: '',
       success: function(response){
           console.log(response);
