@@ -12,9 +12,9 @@ class NotificationFindDatabaseAccess{
       $receiver = "miroslav@gmail.com";
 
       $collection = DatabaseMongodbConnection::getCollection("VIPTransport", "notifications");
-      if($ammount == 'n')
-        $cursor = $collection->find(array("reciever"=> $receiver, "read"=> false));
-      else if($type === 'all')
+
+      //$cursor = $collection->find(array("reciever"=> $receiver, "read"=> false));
+      if($type === 'all')
         $cursor = $collection->find(array("reciever"=> $receiver), array('limit' => $ammount, 'skip' => $skip, 'sort' => array('date' => -1)));
       else if($type === 'unread')
         $cursor = $collection->find(array("reciever"=> $receiver, "read"=>false), array('limit' => $ammount, 'skip' => $skip, 'sort' => array('date' => -1)));
@@ -24,6 +24,24 @@ class NotificationFindDatabaseAccess{
     catch(Exception $e){
 
       return 0;
+    }
+  }
+
+  public function getAllNotification($receiver){
+
+    try{
+
+      //testing
+      $receiver = "miroslav@gmail.com";
+
+      $collection = DatabaseMongodbConnection::getCollection("VIPTransport", "notifications");
+      $cursor = $collection->aggregate([[ '$match' => ['reciever' => $receiver, 'read' => false]], [ '$group' => [ '_id' => '$read', 'total' => [ '$sum' => 1]]]]);
+
+      return $cursor;
+    }
+    catch(Exception $e){
+
+      return 'error';
     }
   }
 }

@@ -29,10 +29,11 @@
           return 0;
 
         $notificationFindDatabaseAccessObject = new NotificationFindDatabaseAccess();
-        $cursor = $notificationFindDatabaseAccessObject->getNotifications($ammount, 0, $receiver, 'all');
+        $cursor = $notificationFindDatabaseAccessObject->getAllNotification($receiver);
 
-        //return $this->manageNotificationCursor($cursor);
-        return $this->countNotifications($cursor);
+        $document = $this->manageNotificationCursor($cursor);
+        return $this->manageNotificationsAggregate($document, 'false');
+
     }
 
     public function readNotifications($id, $value){
@@ -59,6 +60,14 @@
       $notificationUpdateDatabaseAccessObject = new NotificationUpdateDatabaseAccess();
       $result = $notificationUpdateDatabaseAccessObject->readAllNotifications($email);
       return 'Modified records: '.$result->getModifiedCount();
+    }
+
+    private function manageNotificationsAggregate($document){
+
+      if(empty($document))
+        return 0;
+
+      return $document[0]['total'];
     }
 
     private function countNotifications($cursor){

@@ -42,10 +42,6 @@ $(function (){
     skip += 10;
     $('#notificationsLoaded').val(skip);
     loadNotifications();
-
-    setTimeout(function() {
-          //markNotificationsRead();
-    },100);
   })
 });
 

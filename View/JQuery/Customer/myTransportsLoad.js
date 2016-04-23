@@ -13,12 +13,7 @@ $(function(){
       }
     }),
 
-    $('.notificationAmmount').html('0');
-
-    getNotificationsAmmount(function(data){
-
-      $('.notificationAmmount').html(data);
-    }),
+   loadNotificationsAmmount();
 
     $('#responseArea').hide();
     setTimeout(function() {

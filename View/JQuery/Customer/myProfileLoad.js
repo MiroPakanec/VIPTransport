@@ -25,12 +25,7 @@ function getSessionData(){
     loadProfilePicture(data.email);
   }),
 
-  $('.notificationAmmount').html('0');
-
-  getNotificationsAmmount(function(data){
-
-    $('.notificationAmmount').html(data);
-  });
+  loadNotificationsAmmount();
 }
 
 function getCompanyData(){

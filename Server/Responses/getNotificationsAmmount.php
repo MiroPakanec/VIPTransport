@@ -9,7 +9,7 @@
     $ammount = $_POST['ammount'];
     $response = $notificationControllerObject->getNotificationsAmmount($ammount);
 
-    echo $response;
+    echo var_dump($response);
 
     //echo json_encode($response, JSON_PRETTY_PRINT);
   }

@@ -103,20 +103,6 @@ function markAllNotificationsRead(element, value){
   });
 }
 
-function getNotificationsToUpdate(id){
-
-  var data = {};
-  var counter = 0;
-
-  $(id).children('.notificationContainer').each(function(){
-
-    data['elementId' + counter] = $(this).attr('id');
-    counter++;
-  })
-
-  return data;
-}
-
 function processNotification(notification){
 
   var id = notification['_id'];

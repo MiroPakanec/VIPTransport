@@ -1,8 +1,7 @@
 $(function(){
-
   setInterval(function(){
     loadNotificationsAmmount();
-  }, 5000);
+  }, 2000);
 
 });
 
@@ -10,6 +9,15 @@ function loadNotificationsAmmount(){
 
   getNotificationsAmmount(function(data){
 
-    $('.notificationAmmount').html(data);
+    var length = data.length;
+    if(length > 0 && length < 20){
+
+      console.log(data);
+      data = data.substring(data.indexOf('(')+1, data.lastIndexOf(')'));
+      console.log(data);
+
+      $('.notificationAmmount').html(data);
+    }
+
   });
 }
