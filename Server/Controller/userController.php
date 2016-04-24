@@ -53,13 +53,19 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validati
 
       //get users password from DB
       $wClause = " WHERE Email = '" . $_SESSION['email'] . "'";
-      $userModelObject = $userSelectDataAccessObject->getUserData($wClause);
+      $userModelObject = $this->getUserData($wClause)[0];
 
       if($validationControllerObject->validatePassword($current, $new, $newRepeat, $userModelObject->getPassword()) > 0)
         return 0;
 
       $userModelObject->setPassword(password_hash($new , PASSWORD_BCRYPT));
       return $userUpdateDataAccessObject->updatePassword($userModelObject->getPassword(), $wClause);
+    }
+
+    public function getUserData($wClause){
+
+      $userSelectDataAccessObject = new UserSelectDatabaseAccess();
+      return $userSelectDataAccessObject->getUserData($wClause);
     }
 
     public function loginUser($email, $password, $token){
@@ -74,7 +80,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validati
       $wClause = " WHERE Email = '" . $email . "'";
 
       //get populated user model from db
-      $userModelObject = $userDataAccessObject->getUserData($wClause);
+      $userModelObject = $userDataAccessObject->getUserData($wClause)[0];
 
       if(strlen($userModelObject->getPassword()) == 0)
         return 'Incorrect email';

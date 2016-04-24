@@ -22,7 +22,7 @@
 
   float: left;
   width: 90%;
-  height: 25%;
+  height: auto;
   background-color: rgba(255,255,255,0.1);
   margin-bottom: 1%;
 }
@@ -66,6 +66,17 @@
   float: left;
 }
 
+.notificationResponseButton{
+
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 3px 10px;
+  width: 20%;
+
+  float: left;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
 .buttonText{
 
   color: white;
@@ -101,10 +112,15 @@
   background-color: rgba(255,255,255,0.2);
 }
 
-b{
+strong{
 
   color : red;
   font-size: 25px;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
 }
 
 #notificationsArea::-webkit-scrollbar {

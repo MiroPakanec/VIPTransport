@@ -9,7 +9,7 @@ class NotificationUpdateDatabaseAccess{
     try{
 
       //testing
-      $email = "miroslav@gmail.com";
+      //$email = "miroslav@gmail.com";
 
       $host = DatabaseMongodbConnection::openConnection();
       $collection = DatabaseMongodbConnection::getCollection("VIPTransport", "notifications");
@@ -41,7 +41,7 @@ class NotificationUpdateDatabaseAccess{
     try{
 
       //testing
-      $email = "miroslav@gmail.com";
+      //$email = "miroslav@gmail.com";
 
       $host = DatabaseMongodbConnection::openConnection();
       $collection = DatabaseMongodbConnection::getCollection("VIPTransport", "notifications");

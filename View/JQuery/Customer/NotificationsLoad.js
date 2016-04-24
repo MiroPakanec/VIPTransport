@@ -35,8 +35,19 @@ function loadNotifications(){
       }
 
       setNotificationsIcons();
+      setHeights();
 
   }, ammount, skip, type);
+}
+
+function setHeights(){
+
+  $('.notificationContainer').each(function(){
+    var height = $(this).css('height');
+    $(this).next().css({
+      'height' : height
+    });
+  })
 }
 
 function setNotificationsIcons(){
@@ -106,17 +117,20 @@ function markAllNotificationsRead(element, value){
 function processNotification(notification){
 
   var id = notification['_id'];
+  var message = notification['text'];
+  var date = notification['date'];
+  var read = notification['read'];
+  var userMessage = notification['message'];
+  var action = notification['action'];
+  var html = '';
 
-  if(notificationExists(id)){
-    console.log(notification['user']['type'] + ' already exists');
-    return;
-  }
+  if(notificationExists(id)){return; }
 
-  var message = generateNotificationMessage(notification);
-  if(notification['read'] == false)
-    var html = generateNewNotificationHtml(message, id);
-  else
-    var html = generateOldNotificationHtml(message, id);
+  date = relative_time(date);
+  message = modifyMessageHtml(message);
+  userMessage = modifyUserMessageHtml(userMessage, action);
+  message += '</br>' + userMessage + '</br>' + date;
+  html = generateNotficationHtml(message, id, read);
 
   $('#notificationsArea').append(html);
 }
@@ -137,17 +151,12 @@ function notificationExists(id){
   return found;
 }
 
-function generateNotificationMessage(notification){
+function generateNotficationHtml(message, id, read){
 
-  var message = notification['user']['type'] + ' '
-          + "<b>" + notification['user']['name'] + ' '
-          + notification['user']['surname'] + '</b>' + ' has '
-          + "<b>" + notification['action'] + '</b>'  + ' ';
-
-  if(notification['order'] != null)
-    return message + generateOrderMessage(notification);
-  else if(notification['transport'] != null)
-    return message + generateTransportMessage(notification);
+  if(read == false)
+    return generateNewNotificationHtml(message, id);
+  else
+    return generateOldNotificationHtml(message, id);
 }
 
 function generateNewNotificationHtml(message, id){
@@ -178,15 +187,77 @@ function generateOldNotificationHtml(message, id){
   return html;
 }
 
-function generateOrderMessage(notification){
+function relative_time(date_str) {
+    if (!date_str) {return;}
+    date_str = $.trim(date_str);
+    date_str = date_str.replace(/\.\d\d\d+/,""); // remove the milliseconds
+    date_str = date_str.replace(/-/,"/").replace(/-/,"/"); //substitute - with /
+    date_str = date_str.replace(/T/," ").replace(/Z/," UTC"); //remove T and substitute Z with UTC
+    date_str = date_str.replace(/([\+\-]\d\d)\:?(\d\d)/," $1$2"); // +08:00 -> +0800
 
-  return    'an <b>order</b> from ' + notification['order']['from'] + ' '
-          + 'to ' + notification['order']['to'] + ' '
-          + 'scheduled at ' + notification['order']['datetime'] + '<br>'
-          + 'date : ' + notification['date'];
+    var parsed_date = new Date(date_str);
+    var relative_to = (arguments.length > 1) ? arguments[1] : new Date(); //defines relative to what ..default is now
+    var delta = parseInt((relative_to.getTime()-parsed_date)/1000);
+    delta=(delta<2)?2:delta;
+    var r = '';
+    if (delta < 60) {
+    r = delta + ' seconds ago';
+    } else if(delta < 120) {
+    r = 'a minute ago';
+    } else if(delta < (45*60)) {
+    r = (parseInt(delta / 60, 10)).toString() + ' minutes ago';
+    } else if(delta < (2*60*60)) {
+    r = 'an hour ago';
+    } else if(delta < (24*60*60)) {
+    r = '' + (parseInt(delta / 3600, 10)).toString() + ' hours ago';
+    } else if(delta < (48*60*60)) {
+    r = 'a day ago';
+    } else {
+    r = (parseInt(delta / 86400, 10)).toString() + ' days ago';
+    }
+    return 'about ' + r;
+};
+
+function modifyUserMessageHtml(message, action){
+
+  if(!message) {return ' ';}
+  if(message.length <= 0) {return ' '}
+  if (!/update request/i.test(action)) {return ' '}
+
+  message = message.splice(0, 0, '<strong>Message: </strong>');
+  if(message.length <= 95) {return message}
+
+  message = message.splice(95, 0, '</br>');
+
+  return message;
 }
 
-function generateTransportMessage(message){
+function modifyMessageHtml(message){
 
-  return 'TRANSPORT!';
+  if(!message) {return;}
+  var url = '#';
+  var index, index2, index3, id = -1;
+
+  //find indexes for user identification and ID
+  index = message.indexOf("has ");
+  if(index == -1){index = message.indexOf("have ");}
+  index2 = message.indexOf("ID");
+  index2 += 3;
+  index3 = message.length -1;
+
+  //get ID , form URL
+  id = message.substring(index2, index3);
+  //url = "newOrderPage.html?update=1&id="+id;
+
+  //modify message
+  message = message.splice( index3, 0, "</a></strong>");
+  message = message.splice( index2, 0, '<strong><a href="'+ url +'">');
+  message = message.splice(index, 0, "</a></strong>");
+  message = message.splice(0, 0, '<strong><a href="'+ url +'">');
+
+  return message;
 }
+
+String.prototype.splice = function(idx, rem, str) {
+    return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
+};

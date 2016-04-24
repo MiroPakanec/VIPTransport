@@ -46,6 +46,28 @@
   font-size: 20px;
 }
 
+#updateRequestTextArea{
+
+  float: left;
+  margin-top: 2%;
+  width: inherit;
+}
+
+#sendRequest{
+
+  float: left;
+  margin-top: 4%;
+  margin-left: 1%;
+  height: 20% !important;
+}
+
+#cancelRequest{
+
+  float: left;
+  margin-top: 4%;
+  height: 20% !important;
+}
+
 .orderTableArea::-webkit-scrollbar {
     width: 1em;
 }

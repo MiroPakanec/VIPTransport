@@ -47,6 +47,24 @@
       return $errorCounter;
     }
 
+    public function validateNames($namesArray){
+
+      $errorCounter = 0;
+
+      $arrayCount = array_count_values($namesArray);
+      //check duplicates
+      foreach ($arrayCount as $key => $value) {
+        if($value > 1)
+          $errorCounter++;
+      }
+
+      foreach ($namesArray as $element) {
+        $errorCounter += $this->validateInput($element, '^[a-zA-Z ]+$^', 50, 3, false);
+      }
+
+      return $errorCounter;
+    }
+
     public function validateLogin($email, $password){
 
       $errorCounter = 0;

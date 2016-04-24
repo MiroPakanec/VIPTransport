@@ -172,6 +172,8 @@ function autoFillFields(id){
 
 function handleOrderResponse(response){
 
+  console.log(response);
+
   if(response == 1)
     window.location = "myTransportsPage.html?added=0&updated=-1";
   else if(response == 2){
@@ -185,7 +187,6 @@ function handleOrderResponse(response){
     });
   }
   else if(response == 3){
-
     window.location = "myTransportsPage.html?added=-1&updated="+getParameterByName('id');
   }
   else{

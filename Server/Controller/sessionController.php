@@ -27,7 +27,7 @@
 
       $userDataAccessObject = new UserSelectDatabaseAccess();
       $wClause = " WHERE Email = '" . $email . "'";
-      $userModelObject = $userDataAccessObject->getUserData($wClause);
+      $userModelObject = $userDataAccessObject->getUserData($wClause)[0];
 
       $_SESSION['email'] = $userModelObject->getEmail();
       $_SESSION['fname'] = $userModelObject->getFname();

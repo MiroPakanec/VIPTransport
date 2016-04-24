@@ -34,7 +34,6 @@ function getNotificationsAmmount(handleData){
       //dataType : 'json',
       data: {'ammount':'n'},
       success: function(response){
-          console.log(response);
           handleData(response);
       },
       error: function(response){
@@ -58,12 +57,9 @@ function getNotifications(handleData, ammount, skip, type){
       dataType : 'json',
       data: data,
       success: function(response){
-          console.log(response);
           handleData(response);
       },
       error: function(response){
-        console.log(response);
-
       }
   });
 }
@@ -75,7 +71,6 @@ function readNotifications(handleData, data){
       url: '../../Server/Responses/readNotifications.php',
       data: data,
       success: function(response){
-          console.log(response);
           handleData(response);
       },
       error: function(response){
@@ -91,7 +86,6 @@ function readAllNotifications(handleData){
       url: '../../Server/Responses/readAllNotifications.php',
       data: '',
       success: function(response){
-          console.log(response);
           handleData(response);
       },
       error: function(response){

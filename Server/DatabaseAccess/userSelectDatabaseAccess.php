@@ -15,6 +15,7 @@
         $query = "SELECT * FROM User " . $wClause;
 
         $response = @mysqli_query($dbc, $query);
+        $array = array();
 
         if($response){
             while($row = mysqli_fetch_array($response)){
@@ -27,13 +28,15 @@
               $phone = $row['Phone'];
               $type = $row['Type'];
               $date = $row['Registration_date'];
+
+              $userModelObject = new UserModel($email, $fname, $mname, $lname, $password, $phone, $type, $date);
+              array_push($array, $userModelObject);
             }
         }
 
         mysqli_close($dbc);
 
-        $userModelObject = new UserModel($email, $fname, $mname, $lname, $password, $phone, $type, $date);
-        return $userModelObject;
+        return $array;
       }
       catch(Exception $e){
 

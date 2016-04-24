@@ -44,7 +44,12 @@ $(function (){
   $(document).on('click','.editButton',function(){
 
     var id = $(this).parent().attr('id');
-    window.location = "newOrderPage.html?update=1&id="+id;
+    var buttonValue = $(this).html();
+
+    if(buttonValue === 'Update request')
+      updateRequest(id);
+    else if(buttonValue === 'Update')
+      window.location = "newOrderPage.html?update=1&id="+id;
   }),
 
   //delete
@@ -70,8 +75,48 @@ $(function (){
 
     id = $("input[name='deleteRowId']").attr('id');
     deleteOrder(id);
+  }),
+
+  $(document).on('click','#cancelRequest',function(){
+
+    $('#responseArea').html('').slideUp(300);
+  }),
+
+  $(document).on('click','#sendRequest',function(){
+
+    var id = $("input[name='updateRowId']").attr('id');
+    var text = $('#updateRequestTextArea').val();
+
+    if(text.length > 0)
+      requestOrderUpdate(id, text);
   })
 });
+
+function updateRequest(id){
+
+  var messageHtml = generateUpdateMessageField(id);
+
+  $('#responseArea').html(messageHtml).css({
+    'background-color' : 'rgba(255,255,255,0.1)',
+    'color' : 'white',
+    'border' : '1px solid rgba(255,255,255,0.3)',
+    'font-size' : '15px',
+    'height' : '15%'
+  }).html(messageHtml).slideDown(500);
+}
+
+function generateUpdateMessageField(id){
+
+  var message = "This order (ID: "+id+") has already been confirmed.</br> " +
+                "Please send a message to the manager and you will be notified about the changes shortly.</br>" +
+                "What would you like to change about the order?";
+
+  var html = '<textarea rows="3" cols="300" maxlength="150" id="updateRequestTextArea" autofocus placeholder="Example: Departure address - Veľká Okružná 2733/59, 010 01 Žilina, Slovakia"></textarea>' +
+             '<input type="button" id="sendRequest" class ="alertButton" value="Send">' +
+             '<input type="button" id="cancelRequest" class ="alertButton" value="Cancel">' +
+             '<input type="hidden" id = "'+id+'" name = "updateRowId">';
+  return message + html;
+}
 
 function generateDeleteAlert(id){
 
@@ -88,12 +133,57 @@ function deleteOrder(id){
     type: 'POST',
     data: 'id='+id,
     success: function(response){
+      console.log(response);
       handleDeleteResponse(response);
     },
     error: function(XMLHttpRequest, textStatus, errorThrown){
       alert('Something went wrong...');
     }
   })
+}
+
+function requestOrderUpdate(id, message){
+
+  var data = {};
+  data['id'] = id;
+  data['message'] = message;
+
+  $.ajax({
+    url: '../../Server/Responses/requestOrderUpdate.php',
+    type: 'POST',
+    data: data,
+    success: function(response){
+      handleRequestUpdateResnpose(response);
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown){
+      alert('Something went wrong...');
+    }
+  })
+}
+
+function handleRequestUpdateResnpose(response){
+
+  var responseText;
+  $('#responseArea').html('');
+
+  if(response == 1){
+
+    responseText = 'Update request was sent successfully.';
+    $('#responseArea').css({
+      'background-color' : 'rgba(0,255,0,0.1)',
+      'color' : 'green',
+      'border' : '1px solid rgba(0,255,0,0.3)'
+    }).html(responseText).slideDown(500);
+  }
+  else{
+
+    responseText = 'We are sorry, update request could not be processed. Please try again later.';
+    $('#responseArea').css({
+      'background-color' : 'rgba(255,0,0,0.1)',
+      'color' : 'red',
+      'border' : '1px solid rgba(255,0,0,0.3)'
+    }).html(responseText).slideDown(500);
+  }
 }
 
 function handleDeleteResponse(response){
@@ -103,6 +193,7 @@ function handleDeleteResponse(response){
   $('#responseArea').html('');
 
   if(response == 1){
+
     responseText = 'Order was successfully deleted';
     $('#responseArea').css({
       'background-color' : 'rgba(0,255,0,0.1)',
@@ -110,9 +201,18 @@ function handleDeleteResponse(response){
       'border' : '1px solid rgba(0,255,0,0.3)'
     }).html(responseText).slideDown(500);
     $('tr#'+id).remove();
-    //$("#titleOrder").trigger('click');
+  }
+  else if(response == 2){
+
+    responseText = 'Order has already been confirmed.</br>Request has been sent to the manager and you will be notified shortly about the confirmation.';
+    $('#responseArea').css({
+      'background-color' : 'rgba(255,255,255,0.1)',
+      'color' : 'white',
+      'border' : '1px solid rgba(255,255,255,0.3)'
+    }).html(responseText).slideDown(500);
   }
   else{
+
     responseText = 'We are sorry, order could not be deleted...';
     $('#responseArea').css({
       'background-color' : 'rgba(255,0,0,0.1)',

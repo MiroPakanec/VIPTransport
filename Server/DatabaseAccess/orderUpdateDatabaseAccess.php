@@ -47,12 +47,13 @@
         }
 
         //notice - no changes
-        if(strpos($error, 'n')){
+        if(strpos($error, 'e')){
+          $dbc->rollback();
+          return 4;
+        }
+        else if(strpos($error, 'n')){
           $dbc->commit();
           return 2;
-        }
-        else if(strpos($error, 'e')){
-          return 4;
         }
         else{
           $dbc->commit();
