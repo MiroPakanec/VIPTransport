@@ -6,12 +6,12 @@ $(function(){
           window.location="mainPage.html";
       }
 
-      if(data.type == 'customer'){
+      //if(data.type == 'customer'){
 
         //generate page for custoemr
         generateCustomerButtons();
         generateMessage(data.fname);
-      }
+      //}
     });
 
     loadNotificationsAmmount();

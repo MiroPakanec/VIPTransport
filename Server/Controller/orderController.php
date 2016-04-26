@@ -20,13 +20,12 @@
         if($this->validateDate($date, $timeHour, $timeMinute, 00, $clock) > 0)
           return 0;
 
+
         $datetimeString = $date." ".$timeHour.":".$timeMinute.":00 ".$clock;
         $datetime = Datetime::createFromFormat('d/m/Y H:i:s A', $datetimeString);
         $orderModelObject = new OrderModel('', $_SESSION['email'], $datetime, $from, $to, $pasangers, $payment, $phone, $names, '', '');
 
         if($validationControllerObject->validateOrder($orderModelObject) > 0)
-          return 0;
-        if($validationControllerObject->validateNames($orderModelObject->getNames()) > 0)
           return 0;
 
         $orderInsertDatabaseAccessObject = new OrderInsertDatabaseAccess();
@@ -49,24 +48,28 @@
 
         $this->startSession();
         $validationControllerObject = new ValidationController();
+
         if($this->validateDate($date, $timeHour, $timeMinute, 00, $clock) > 0)
           return 0;
 
+        $status = $this->getStatusBySession();
         $datetimeString = $date." ".$timeHour.":".$timeMinute.":00 ".$clock;
         $datetime = Datetime::createFromFormat('d/m/Y H:i:s A', $datetimeString);
-        $orderModelObject = new OrderModel($id, $_SESSION['email'], $datetime, $from, $to, $pasangers, $payment, $phone, $names, '', '');
+        $orderModelObject = new OrderModel($id, '', $datetime, $from, $to, $pasangers, $payment, $phone, $names, '', $status);
 
         if($validationControllerObject->validateOrder($orderModelObject) > 0)
           return 0;
-        if($validationControllerObject->validateNames($orderModelObject->getNames()) > 0)
-          return 0;
-
-        $wasNotified = $this->sendOrderNotifications($id, 'update', ' ');
-        if($wasNotified == 0)
+        if($this->checkOrderState($orderModelObject->getId()) > 0)
           return 0;
 
         $orderUpdateDatabaseAccessObject = new OrderUpdateDatabaseAccess();
-        return $orderUpdateDatabaseAccessObject->updateOrder($orderModelObject);
+        $updateResponse = $orderUpdateDatabaseAccessObject->updateOrder($orderModelObject);
+
+        $wasNotified = $this->sendOrderNotifications($id, 'update', ' ');
+        /*if($wasNotified == 0)
+          return 0;*/
+
+        return $updateResponse;
       }
 
       public function getOrders($id){
@@ -88,6 +91,7 @@
         $this->startSession();
         $orderDeleteDatabaseAccess = new OrderDeleteDatabaseAccess();
         $orderSelectDatabaseAccessObject = new OrderSelectDatabaseAccess();
+        $validationControllerObject = new ValidationController();
 
         //get order status
         $wClause = "WHERE id = ".$id;
@@ -103,9 +107,10 @@
           //0 - request failed
           return 0;
 
-        if($orderModelObject->getStatus() == "Stand by")
-          // 0/1 request faild / request successful
-          return $orderDeleteDatabaseAccess->deleteOrder($wClause);
+        if($validationControllerObject->validateOrderState($orderModelObject->getStatus(), $_SESSION['type']) > 0)
+          return 2;
+
+        return $orderDeleteDatabaseAccess->deleteOrder($wClause);
 
         //return 2 - request have been send to manager
         return 2;
@@ -129,6 +134,24 @@
         $sessionControllerObject->startSession();
     }
 
+    private function getStatusBySession(){
+
+      $this->startSession();
+      if($_SESSION['type'] == 'manager')
+        return 'Confirmed';
+      else if($_SESSION['type'] == 'customer')
+        return 'Stand by';
+    }
+
+    private function checkOrderState($id){
+
+      $validationControllerObject = new ValidationController();
+
+      $this->startSession();
+      $orderModelObject = $this->getOrders($id)[0];
+      return $validationControllerObject->validateOrderState($orderModelObject->getStatus(), $_SESSION['type']);
+    }
+
     private function sendOrderNotifications($id, $action, $message){
 
       $orderSelectDatabaseAccessObject = new OrderSelectDatabaseAccess();
@@ -148,7 +171,7 @@
 
       //get all managers
       $wClause = " WHERE type = 'manager'";
-      $userArray = $this->getUsers($wClause);
+      $userArray = $this->getUsers($wClause, $orderModelObject->getEmail());
 
       //get action from status
       $action = $this->getAction($orderModelObject->getStatus(), $action);
@@ -179,9 +202,12 @@
 
     private function getDeleteAction($status){
 
+      if($_SESSION['type'] == 'manager')
+        return 'deleted';
+
       if($status == 'Stand by')
         return 'deleted';
-      else if($status == 'Modified')
+      else if($status == 'Confirmed')
         return 'sent delete request on';
       else
         return '';
@@ -189,9 +215,12 @@
 
     private function getUpdateAction($status){
 
+      if($_SESSION['type'] == 'manager')
+        return 'updated';
+
       if($status == 'Stand by')
         return 'updated';
-      else if($status == 'Modified')
+      else if($status == 'Confirmed')
         return 'sent update request on';
       else
         return '';
@@ -225,7 +254,7 @@
       return $_SESSION['fname'].' '.$_SESSION['mname'].' '.$_SESSION['lname'].'('.$_SESSION['email'].')'.' has ';
     }
 
-    private function getUsers($wClause){
+    private function getUsers($wClause, $orderParticipant){
 
       $userControllerObject = new UserController();
       $userArray = $userControllerObject->getUserData($wClause);
@@ -235,7 +264,13 @@
 
         array_push($userEmailArray, $userModelObject->getEmail());
       }
-      array_push($userEmailArray, $_SESSION['email']);
+
+      //push other participants then manager
+      if($_SESSION['type'] != 'manager')
+        array_push($userEmailArray, $_SESSION['email']);
+      else
+        array_push($userEmailArray, $orderParticipant);
+
       return $userEmailArray;
     }
 
@@ -257,6 +292,8 @@
          if(strlen($id) != 0)
           $wClause .= " AND Id = ".$id;
       }
+      else if($_SESSION['type'] == 'manager' && strlen($id) != 0)
+        $wClause .= " WHERE Id = ".$id;
 
       return $wClause;
     }

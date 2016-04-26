@@ -26,6 +26,23 @@ function endSession(handleData){
   });
 }
 
+function getUserData(handleData, email){
+
+  $.ajax({
+      type: 'POST',
+      url: '../../Server/Responses/getUser.php',
+      dataType : 'json',
+      data: {'email' : email},
+      success: function(response){
+        handleData(response);
+      },
+      error: function(response){
+          handleData(response);
+      }
+  });
+}
+
+
 function getNotificationsAmmount(handleData){
 
   $.ajax({
@@ -117,13 +134,30 @@ function getTransports(handleData, id){
       dataType : 'json',
       data: {'id' : id},
       success: function(response){
-        console.log(response);
+          console.log(response);
           handleData(response);
       },
       error:function(response){
         console.log(response);
+
       }
   });
+}
+
+function deleteOrder(handleData, id){
+
+  $.ajax({
+    url: '../../Server/Responses/deleteOrder.php',
+    type: 'POST',
+    data: 'id='+id,
+    success: function(response){
+      console.log(response);
+      handleData(response);
+    },
+    error: function(XMLHttpRequest, textStatus, errorThrown){
+      alert('Something went wrong...');
+    }
+  })
 }
 
 function getOrderNames(handleNamesData, id){

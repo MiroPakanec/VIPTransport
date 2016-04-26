@@ -40,6 +40,8 @@
         $errorCounter += $this->validateInput($orderModelObject->getPayment(), '^[a-zA-Z ]+$^', 50, 3, false);
       if(null !== $orderModelObject->getPhone())
         $errorCounter += $this->validateInput($orderModelObject->getPhone(), '^[0-9]+$^', 20, 3, false);
+      if(null !== $orderModelObject->getNames())
+        $errorCounter += $this->validateNames($orderModelObject->getNames());
 
       /*if(null !== $orderModelObject->getNames())
         $errorCounter += $this->validateNames($orderModelObject->getNames(), $orderModelObject->getPasangers());*/
@@ -47,7 +49,17 @@
       return $errorCounter;
     }
 
-    public function validateNames($namesArray){
+    public function validateOrderState($orderState, $sessionType){
+
+      $errorCounter = 0;
+
+      if($orderState != 'Stand by' && $sessionType != 'manager')
+        $errorCounter += 1;
+
+      return $errorCounter;
+    }
+
+    private function validateNames($namesArray){
 
       $errorCounter = 0;
 

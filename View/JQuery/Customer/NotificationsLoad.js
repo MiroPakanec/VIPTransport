@@ -120,6 +120,7 @@ function processNotification(notification){
   var message = notification['text'];
   var date = notification['date'];
   var read = notification['read'];
+  var type = notification['type'];
   var userMessage = notification['message'];
   var action = notification['action'];
   var html = '';
@@ -127,7 +128,7 @@ function processNotification(notification){
   if(notificationExists(id)){return; }
 
   date = relative_time(date);
-  message = modifyMessageHtml(message);
+  message = modifyMessageHtml(message, type);
   userMessage = modifyUserMessageHtml(userMessage, action);
   message += '</br>' + userMessage + '</br>' + date;
   html = generateNotficationHtml(message, id, read);
@@ -232,7 +233,7 @@ function modifyUserMessageHtml(message, action){
   return message;
 }
 
-function modifyMessageHtml(message){
+function modifyMessageHtml(message, type){
 
   if(!message) {return;}
   var url = '#';
@@ -247,13 +248,15 @@ function modifyMessageHtml(message){
 
   //get ID , form URL
   id = message.substring(index2, index3);
-  //url = "newOrderPage.html?update=1&id="+id;
+  user = message.substring(0, index);
+
+  url = "notificationDetailPage.html";
 
   //modify message
   message = message.splice( index3, 0, "</a></strong>");
-  message = message.splice( index2, 0, '<strong><a href="'+ url +'">');
+  message = message.splice( index2, 0, '<strong><a href="'+ url + "?type="+type+"&id="+id +'">');
   message = message.splice(index, 0, "</a></strong>");
-  message = message.splice(0, 0, '<strong><a href="'+ url +'">');
+  message = message.splice(0, 0, '<strong><a href="'+ url + "?type=user&id="+user +'">');
 
   return message;
 }

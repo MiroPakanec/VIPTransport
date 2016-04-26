@@ -74,7 +74,11 @@ $(function (){
   $(document).on('click','#confirmDelete',function(){
 
     id = $("input[name='deleteRowId']").attr('id');
-    deleteOrder(id);
+
+    deleteOrder(function(data){
+
+        handleDeleteResponse(data);
+    },id);
   }),
 
   $(document).on('click','#cancelRequest',function(){
@@ -127,21 +131,6 @@ function generateDeleteAlert(id){
   return message + html;
 }
 
-function deleteOrder(id){
-  $.ajax({
-    url: '../../Server/Responses/deleteOrder.php',
-    type: 'POST',
-    data: 'id='+id,
-    success: function(response){
-      console.log(response);
-      handleDeleteResponse(response);
-    },
-    error: function(XMLHttpRequest, textStatus, errorThrown){
-      alert('Something went wrong...');
-    }
-  })
-}
-
 function requestOrderUpdate(id, message){
 
   var data = {};
@@ -153,6 +142,7 @@ function requestOrderUpdate(id, message){
     type: 'POST',
     data: data,
     success: function(response){
+      console.log(response);
       handleRequestUpdateResnpose(response);
     },
     error: function(XMLHttpRequest, textStatus, errorThrown){

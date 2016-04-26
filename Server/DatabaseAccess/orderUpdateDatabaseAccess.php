@@ -14,18 +14,19 @@
         $queryArray = array();
 
         $id = $dbc->real_escape_string(trim($orderModelObject->getId()));
-        $email = $dbc->real_escape_string(trim($orderModelObject->getEmail()));
+        //$email = $dbc->real_escape_string(trim($orderModelObject->getEmail()));
         $date = $dbc->real_escape_string(trim($orderModelObject->getDate()->format('Y-m-d h:i:s A')));
         $from = $dbc->real_escape_string(trim($orderModelObject->getFrom()));
         $to = $dbc->real_escape_string(trim($orderModelObject->getTo()));
         $pasangers = $dbc->real_escape_string(trim($orderModelObject->getPasangers()));
         $payment = $dbc->real_escape_string(trim($orderModelObject->getPayment()));
         $phone = $dbc->real_escape_string(trim($orderModelObject->getPhone()));
+        $status = $dbc->real_escape_string(trim($orderModelObject->getStatus()));
         $names = $orderModelObject->getNames();
 
         $query = "UPDATE Transport_order  SET ".
-                 "Email = '{$email}', DateTime = '{$date}', Departure_address = '{$from}', Arrival_address = '{$to}',".
-                 "Pasangers = '{$pasangers}', Payment_type = '{$payment}', Phone = '{$phone}', Status = 'Stand by' WHERE Id=".$id;
+                 "DateTime = '{$date}', Departure_address = '{$from}', Arrival_address = '{$to}',".
+                 "Pasangers = '{$pasangers}', Payment_type = '{$payment}', Phone = '{$phone}', Status = '{$status}' WHERE Id=".$id;
 
         $query1 = "DELETE FROM  Pasanger_name WHERE Order_id=".$id;
 
