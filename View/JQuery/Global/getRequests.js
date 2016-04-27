@@ -126,13 +126,21 @@ function getCompany(handleData){
   });
 }
 
-function getTransports(handleData, id){
+function getTransports(handleData, id, dateFrom, dateTo, email){
+
+  data = {};
+  data['id'] = id;
+  data['email'] = email;
+  data['dateFrom'] = dateFrom;
+  data['dateTo'] = dateTo;
+
+  console.log(data);
 
   $.ajax({
       type: 'POST',
       url: '../../Server/Responses/getTransports.php',
       dataType : 'json',
-      data: {'id' : id},
+      data: data,
       success: function(response){
           console.log(response);
           handleData(response);

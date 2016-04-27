@@ -72,11 +72,17 @@
         return $updateResponse;
       }
 
-      public function getOrders($id){
+      public function getOrders($id, $email, $dateFrom, $dateTo){
 
         $this->startSession();
+        $validationControllerObject = new ValidationController();
         $orderSelectDatabaseAccessObject = new OrderSelectDatabaseAccess();
-        return $orderSelectDatabaseAccessObject->getOrderData($this->getOrdersWClause($id));
+
+        $wClause = $this->getOrdersWClause($id, $email, $dateFrom, $dateTo);
+        if($validationControllerObject->validateOrderSearch($id, $email, $dateFrom, $dateTo) > 0)
+          $wClause = " WHERE 1";
+
+        return $orderSelectDatabaseAccessObject->getOrderData($wClause);
       }
 
       public function getOrderNames($id){
@@ -284,7 +290,8 @@
       return $validationControllerObject->validateDate($year, $month, $day, $hour, $minute, $second, $clock);
     }
 
-    private function getOrdersWClause($id){
+    private function getOrdersWClause($id, $email, $dateFrom, $dateTo){
+
 
       $wClause = '';
       if($_SESSION['type'] == 'customer'){
@@ -292,8 +299,27 @@
          if(strlen($id) != 0)
           $wClause .= " AND Id = ".$id;
       }
-      else if($_SESSION['type'] == 'manager' && strlen($id) != 0)
-        $wClause .= " WHERE Id = ".$id;
+      else if($_SESSION['type'] == 'manager')
+        $wClause = $this->getOrdersWClauseManager($id, $email, $dateFrom, $dateTo);
+
+      return $wClause;
+    }
+
+    private function getOrdersWClauseManager($id, $email, $dateFrom, $dateTo){
+
+      $wClause = 'WHERE 1';
+
+      if(strlen($id) > 0)
+        $wClause .= ' AND Id = '.$id;
+
+      if(strlen($email) > 0)
+        $wClause .= " AND Email='".$email."'";
+
+      if(strlen($dateFrom) > 0)
+        $wClause .=" AND DateTime > '".$dateFrom."'";
+
+      if(strlen($dateTo) > 0)
+        $wClause .=" AND DateTime < '".$dateTo."'";
 
       return $wClause;
     }

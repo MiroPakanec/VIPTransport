@@ -2,14 +2,15 @@
 
     require $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/orderController.php';
 
-    $id = '';
+    $id = $email = $dateFrom = $dateTo = '';
 
-    if(isset($_POST['id'])){
-      $id = $_POST['id'];
-    }
+    $id = $_POST['id'];
+    $email = $_POST['email'];
+    $dateFrom = $_POST['dateFrom'];
+    $dateTo = $_POST['dateTo'];
 
     $orderControllerObject = new OrderController();
-    $orderModelArray = $orderControllerObject->getOrders($id);
+    $orderModelArray = $orderControllerObject->getOrders($id, $email, $dateFrom, $dateTo);
 
     header('Content-Type: text/javascript');
 
@@ -28,6 +29,7 @@
       $arrayOrder['pasangers'] = $orderModelObject->getPasangers();
       $arrayOrder['creationDate'] = $orderModelObject->getCreationDate();
       $arrayOrder['status'] = $orderModelObject->getStatus();
+      $arrayOrder['type'] = $_SESSION['type'];
 
       array_push($array, $arrayOrder);
     }

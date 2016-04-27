@@ -90,6 +90,14 @@ body{
   height: 100%;
 }
 
+.headerButtonManager{
+
+  margin: 0px;
+  padding: 0px;
+  width: 12%;
+  height: 100%;
+}
+
 .main{
 
   height: 40%;

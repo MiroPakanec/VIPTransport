@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" type="text/css" href="../Css/generalPageStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/myTransportsStyles.css">
+    <link rel="stylesheet" type="text/css" href="../Css/widgetsStyles.css">
 
     <script src="../JQuery/Source/jquery.js"></script>
     <script src="../JQuery/jquery-ui/jquery-ui.js"></script>
@@ -11,6 +12,7 @@
     <script src="../JQuery/Global/headerButtons.js"></script>
     <script src="../JQuery/Customer/myTransportsLoad.js"></script>
     <script src="../JQuery/Customer/myTransportsClick.js"></script>
+    <script src="../JQuery/Manager/TransportsSearchBarClick.js"></script>
     <script src="../JQuery/Global/notificationsAmmount.js"></script>
 
     <meta charset="UTF-8">
@@ -30,8 +32,35 @@
           <div class="title largeText" id="titleOrder">My Orders</div>
           <div class="title largeText" id="titleTransport">My Transports</div>
         </div>
+        <div class="orderSearchBarArea">
+          <div class="idArea">
+            <input id="idInput" type="text" maxlength="4" placeholder="ID" class="searchBarStyle">
+            <input type="hidden" id="idRequest" val="">
+          </div>
+          <div class="dateFromArea">
+            <div id="dateFromInput" class="searchBarStyle">Date from</div>
+            <input type="hidden" id="dateFromRequest" val="">
+          </div>
+          <div class="dateFromArea">
+            <div id="dateToInput" class="searchBarStyle">Date to</div>
+            <input type="hidden" id="dateToRequest" val="">
+          </div>
+          <div class="emailArea">
+            <input id="emailInput" type="text" maxlength="30" placeholder="Email" class="searchBarStyle">
+            <input type="hidden" id="emailRequest" val="">
+          </div>
+          <div class="buttonArea">
+            <input id="searchButton" type="button" class="searchBarStyle" value="Search">
+            <input id="clearButton" type="button" class="searchBarStyle" value="Clear">
+          </div>
+        </div>
+        <div class="datePickerArea">
+          <input id="dateType" type="hidden" value="from">
+          <input id="dateState" type="hidden" value="0">
+        </div>
         <div class="orderTableArea" id="orderTableArea"></div>
         <div class="responseArea" id="responseArea"></div>
+        <input type="hidden" id="type" value="customer">
       </div>
     </div>
   </body>

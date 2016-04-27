@@ -6,8 +6,11 @@ $(function (){
 
   $('#titleOrder').click(function(){
 
+    loadSearchBar();
+    generateTableOrders();
+
     getTransports(function(data){
-      generateTableOrders();
+
       var added = getParameterByName('added');
       var updated= getParameterByName('updated');
       for (index in data){
@@ -16,27 +19,19 @@ $(function (){
 
         added = '-1';
       }
-    }, ''),
+    }, $('#idRequest').val(), $('#dateFromRequest').val() , $('#dateToRequest').val() , $('#emailRequest').val()),
 
-    $(this).css({
-      'background-color': 'rgba(255,255,255, 0.05)'
-    });
-    $('#titleTransport').css({
-      'background-color': 'rgba(255,255,255, 0.0)'
-    });
+    manageTitleCss('#titleOrder', '#titleTransport', '0.05');
+
     $('#responseArea').slideUp(300).html('');
   }),
 
   $('#titleTransport').click(function(){
 
     $('#orderTableArea').html('');
+    $('.orderSearchBarArea').slideUp(500);
 
-    $(this).css({
-      'background-color': 'rgba(255,255,255, 0.05)'
-    });
-    $('#titleOrder').css({
-      'background-color': 'rgba(255,255,255, 0.0)'
-    });
+    manageTitleCss('#titleTransport', '#titleOrder', '0.05');
     $('#responseArea').slideUp(300).html('');
   }),
 
@@ -95,6 +90,16 @@ $(function (){
       requestOrderUpdate(id, text);
   })
 });
+
+function manageTitleCss(id, id2, opacity){
+
+  $(id).css({
+    'background-color': 'rgba(255,255,255, '+opacity+')'
+  });
+  $(id2).css({
+    'background-color': 'rgba(255,255,255, 0.0)'
+  });
+}
 
 function updateRequest(id){
 
@@ -260,7 +265,7 @@ function generateTableRow(id, date, addressFrom, addressTo, pasangers, payment, 
 
 function generateButtonName(status, defaultValue){
 
-  if(status != 'Stand by'){
+  if(status != 'Stand by' && ($('#type').val()) != 'manager'){
 
     return defaultValue + ' request';
   }

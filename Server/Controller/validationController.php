@@ -59,6 +59,22 @@
       return $errorCounter;
     }
 
+    public function validateOrderSearch($id, $email, $dateFrom, $dateTo){
+
+      $errorCounter = 0;
+
+      if(strlen($id) > 0)
+        $errorCounter += $this->validateIntegerInput($id, 10000, 1, false);
+      if(strlen($email) > 0)
+        $errorCounter += $this->validateEmail($email);
+      if(strlen($dateFrom) > 0)
+        $errorCounter += $this->validateDateString($dateFrom);
+      if(strlen($dateTo) > 0)
+        $errorCounter += $this->validateDateString($dateTo);
+
+      return $errorCounter;
+    }
+
     private function validateNames($namesArray){
 
       $errorCounter = 0;
@@ -123,23 +139,6 @@
       return 0;
     }
 
-    /*private function validateNames($names, $pasangers){
-
-      $index = 0;
-
-      foreach ($names as $element) {
-        if($this->validateInput($element, '^[a-zA-Z]+$^', 50, 3, false ) > 0)
-          return 1;
-
-        $index++;
-      }
-
-      if($index != $pasangers)
-        return 1;
-
-      return 0;
-    }*/
-
     private function validateInput($value, $regex, $maxChars, $minChars, $skip){
 
       if(empty($value)){
@@ -160,7 +159,7 @@
 
     private function validateIntegerInput($value, $maxValue, $minValue, $skip){
 
-      $regex = '^[0-9]*$^';
+      $regex = '/^[1-9][0-9]{0,4}$/';
       if(empty($value)){
         if($skip)
           return 0;
@@ -175,6 +174,15 @@
         return 1;
 
       return 0;
+    }
+
+    private function validateDateString($date)
+    {
+        $d = DateTime::createFromFormat('Y-m-d', $date);
+        if($d && $d->format('Y-m-d') === $date)
+          return 0;
+
+        return 1;
     }
 
     private function validateEmail($email){
