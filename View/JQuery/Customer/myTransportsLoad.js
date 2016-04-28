@@ -25,7 +25,6 @@ $(function(){
 function loadButtons(){
 
   var type = $('#type').val();
-
   if(type == 'customer')
     generateCustomerButtons();
   else if(type == 'manager')

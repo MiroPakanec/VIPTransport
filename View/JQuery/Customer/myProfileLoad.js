@@ -1,7 +1,6 @@
 $(function(){
 
     getSessionData();
-    getCompanyData();
 
     hideElements();
     $('#formSelection').fadeIn(300);
@@ -21,6 +20,7 @@ function getSessionData(){
       //generate page for custoemr
       generateCustomerButtons();
     }
+    getCompanyData(data.email);
     loadData(data);
     loadProfilePicture(data.email);
   }),
@@ -28,7 +28,7 @@ function getSessionData(){
   loadNotificationsAmmount();
 }
 
-function getCompanyData(){
+function getCompanyData(email){
 
    getCompany(function(data){
 
@@ -41,7 +41,7 @@ function getCompanyData(){
      }
 
 
-   });
+   }, email);
 }
 
 function loadProfilePicture(email){

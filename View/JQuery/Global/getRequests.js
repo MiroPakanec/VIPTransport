@@ -111,13 +111,16 @@ function readAllNotifications(handleData){
   });
 }
 
-function getCompany(handleData){
+function getCompany(handleData, email){
+
+  var data = {};
+  data['email'] = email;
 
   $.ajax({
       type: 'GET',
       url: '../../Server/Responses/getCompany.php',
       dataType : 'json',
-      data: '',
+      data: data,
       success: function(response){
         handleData(response);
       },

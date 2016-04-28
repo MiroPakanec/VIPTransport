@@ -13,7 +13,7 @@
 
   class OrderController{
 
-      public function crearteOrder($date, $timeHour, $timeMinute, $clock, $from, $to, $pasangers, $payment, $phone, $names){
+      public function crearteOrder($email, $date, $timeHour, $timeMinute, $clock, $from, $to, $pasangers, $payment, $phone, $names){
 
         $this->startSession();
         $validationControllerObject = new ValidationController();
@@ -23,7 +23,7 @@
 
         $datetimeString = $date." ".$timeHour.":".$timeMinute.":00 ".$clock;
         $datetime = Datetime::createFromFormat('d/m/Y H:i:s A', $datetimeString);
-        $orderModelObject = new OrderModel('', $_SESSION['email'], $datetime, $from, $to, $pasangers, $payment, $phone, $names, '', '');
+        $orderModelObject = new OrderModel('', $email, $datetime, $from, $to, $pasangers, $payment, $phone, $names, '', '');
 
         if($validationControllerObject->validateOrder($orderModelObject) > 0)
           return 0;
@@ -44,7 +44,7 @@
         return $orderInsertDatabaseAccessObject->createOrderNames($orderModelObject);
       }
 
-      public function updateOrder($id, $date, $timeHour, $timeMinute, $clock, $from, $to, $pasangers, $payment, $phone, $names){
+      public function updateOrder($id, $email, $date, $timeHour, $timeMinute, $clock, $from, $to, $pasangers, $payment, $phone, $names){
 
         $this->startSession();
         $validationControllerObject = new ValidationController();
@@ -55,7 +55,7 @@
         $status = $this->getStatusBySession();
         $datetimeString = $date." ".$timeHour.":".$timeMinute.":00 ".$clock;
         $datetime = Datetime::createFromFormat('d/m/Y H:i:s A', $datetimeString);
-        $orderModelObject = new OrderModel($id, '', $datetime, $from, $to, $pasangers, $payment, $phone, $names, '', $status);
+        $orderModelObject = new OrderModel($id, $email, $datetime, $from, $to, $pasangers, $payment, $phone, $names, '', $status);
 
         if($validationControllerObject->validateOrder($orderModelObject) > 0)
           return 0;
@@ -154,7 +154,7 @@
       $validationControllerObject = new ValidationController();
 
       $this->startSession();
-      $orderModelObject = $this->getOrders($id)[0];
+      $orderModelObject = $this->getOrders($id, '', '', '')[0];
       return $validationControllerObject->validateOrderState($orderModelObject->getStatus(), $_SESSION['type']);
     }
 

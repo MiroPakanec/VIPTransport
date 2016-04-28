@@ -4,19 +4,22 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/comp
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/companySelectDatabaseAccess.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/companyUpdateDatabaseAccess.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/companyModel.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/sessionController.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validationController.php';
 
-  session_start();
 
   class CompanyController{
 
     public function insertCompanyRow($companyModelObject){
 
+      $this->startSession();
       $companyInsertDatabaseAccessObject = new CompanyInsertDatabaseAccess();
       return $companyInsertDatabaseAccessObject->insertCompanyRow($companyModelObject);
     }
 
     public function updateCompanyRow($companyModelObject){
 
+      $this->startSession();
       $companyUpdateDatabaseAccessObject = new CompanyUpdateDatabaseAccess();
       $wClause = " WHERE User_email = '".$companyModelObject->getEmail()."'";
       return $companyUpdateDatabaseAccessObject->updateCompanyRow($companyModelObject, $wClause);
@@ -24,6 +27,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/companyModel.
 
     public function updateCompany($name, $address, $ico, $dic){
 
+      $this->startSession();
       $companyModelObject = $this->getCompanyData($_SESSION['email']);
       if(strlen($companyModelObject->getName()) == 0){
 
@@ -39,9 +43,23 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/companyModel.
 
     public function getCompanyData($email){
 
+      $this->startSession();
+
       $companySelectDatabaseAccessObject = new CompanySelectDatabaseAccess();
+      $validationControllerObject = new validationController();
+
+      if($validationControllerObject->validateSessionEmail($email) > 0)
+        return 0;
+
       $wClause = " WHERE User_email = '".$email."'";
       return $companySelectDatabaseAccessObject->getCompanyData($wClause);
+    }
+
+    private function startSession(){
+
+      $sessionControllerObject = new SessionController();
+      if(!$sessionControllerObject->sessionStarted())
+        $sessionControllerObject->startSession();
     }
 
     private function setCompanyModelObject($name, $address, $ico, $dic){

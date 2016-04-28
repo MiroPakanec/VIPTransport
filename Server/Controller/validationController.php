@@ -30,6 +30,9 @@
 
       $errorCounter = 0;
 
+      $errorCounter += $this->validateSessionEmail($orderModelObject->getEmail());
+      if(null !== $orderModelObject->getEmail())
+        $errorCounter += $this->validateEmail($orderModelObject->getEmail());
       if(null !== $orderModelObject->getFrom())
         $errorCounter += $this->validateInput($orderModelObject->getFrom(), '^[a-zA-Z0-9 ]+$^', 50, 3, false);
       if(null !== $orderModelObject->getTo())
@@ -71,6 +74,17 @@
         $errorCounter += $this->validateDateString($dateFrom);
       if(strlen($dateTo) > 0)
         $errorCounter += $this->validateDateString($dateTo);
+
+      return $errorCounter;
+    }
+
+    public function validateSessionEmail($email){
+
+      $errorCounter = 0;
+
+      $errorCounter += $this->validateEmail($email);
+      if($_SESSION['type'] != 'manager' && $_SESSION['email'] != $email)
+        $errorCounter ++;
 
       return $errorCounter;
     }

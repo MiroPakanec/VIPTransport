@@ -33,6 +33,10 @@
         </div>
         <div class="mainParagraph">
           <form action="../../Server/Responses/newOrder.php" method="post" class="" id="orderForm">
+          <div class="mainRow" id="userEmailRow">
+            <div class="mainText">Customer email *</div><input type="text" id="orderEmail" value="" name="orderEmail" class="mainTextInput" maxlength="30">
+            <div class="errorMessage" id="errorOrderEmail"></div>
+          </div>
           <div class="mainRow">
             <div class="mainText">Departure date: *</div>
             <div class="button orderSelect" id="orderDate" name="orderDate">Select date</div>
@@ -85,6 +89,7 @@
             <input type="submit" name="submitOrder" value="Confirm" class="button" id="orderConfirmButton">
             <input type="button" name="clearOrder" value="Clear" class="button" id="orderClearButton">
           </div>
+          <input type="hidden" id="userType" value="customer">
         </form>
         </div>
       </div>

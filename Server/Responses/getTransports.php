@@ -21,6 +21,7 @@
     foreach ($orderModelArray as $orderModelObject) {
 
       $arrayOrder['id'] = $orderModelObject->getId();
+      $arrayOrder['email'] = $orderModelObject->getEmail();
       $arrayOrder['date'] = $orderModelObject->getDate()->format('d/m/Y h:i:s A');
       $arrayOrder['from'] = $orderModelObject->getFrom();
       $arrayOrder['to'] = $orderModelObject->getTo();

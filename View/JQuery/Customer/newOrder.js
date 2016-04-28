@@ -1,9 +1,18 @@
 //dynamic functionality order
 $(function(){
 
-  $('#notifications').on('click', function(){
-    window.location="notificationsPage.html";
-  }),
+    $('#notifications').on('click', function(){
+      window.location="notificationsPage.html";
+    }),
+
+    $('#orderEmail').on('blur', function(){
+
+      if($('#userType').val() != 'manager')
+        return;
+
+      
+      getCompanyData($(this).val());
+    })
 
     $('#orderDate').on('click', function(){
       $('#datepickerMain').slideToggle(500);

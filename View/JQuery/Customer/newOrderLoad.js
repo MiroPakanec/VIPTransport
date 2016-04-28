@@ -6,28 +6,64 @@ $(function(){
           window.location="mainPage.html";
       }
 
-      if(data.type == 'customer'){
+      $('#orderEmail').val(data.email);
 
-        //generate page for custoemr
-        generateCustomerButtons();
-        getCompany(function(data){
-
-          disableInvoice(data);
-        });
-      }
+      if(data.type == 'customer')
+        $('#userType').val('customer');
+      else if(data.type == 'manager')
+        $('#userType').val('manager');
     }),
 
     loadNotificationsAmmount();
+    loadDefaults();
 
-    $('.paymentSelection').hide(0);
-    $('#datepickerMain').hide();
-    $('#orderClock').val('AM');
-    $('#orderResponseField').hide();
-    generatePasangers($('#orderPasangers').html());
-    $('.errorMessage').hide();
-
-    updateOrder();
+    setTimeout(function(){
+        loadSessionDependencies();
+        updateOrder();
+    },100);
 })
+
+//LOAD
+
+function loadSessionDependencies(){
+
+  var type = $('#userType').val();
+
+  if(type == 'customer'){
+
+    generateCustomerButtons();
+    getCompanyData($('#orderEmail').val());
+  }
+  else if(type == 'manager'){
+
+    generateManagerButtons();
+    $('#orderEmail').val('');
+    getCompanyData($('#orderEmail').val());
+    $('#userEmailRow').slideDown(500);
+  }
+}
+
+function loadDefaults(){
+
+  $('#userEmailRow').hide();
+  $('.paymentSelection').hide(0);
+  $('#datepickerMain').hide();
+  $('#orderClock').val('AM');
+  $('#orderResponseField').hide();
+  generatePasangers($('#orderPasangers').html());
+  $('.errorMessage').hide();
+}
+
+function getCompanyData(email){
+
+  getCompany(function(data){
+
+    console.log(data);
+    checkInvoice(data);
+  }, email);
+}
+
+//****
 
 //form submit
 $(function(){
@@ -87,9 +123,10 @@ $(function(){
     })
 })
 
-function disableInvoice(data){
+function checkInvoice(data){
 
     if(data.address.length == 0){
+
       $('#paymentBill').css({
         'background-color' : 'rgba(255,0,0,0.2)',
         'color' : 'red',
@@ -97,6 +134,11 @@ function disableInvoice(data){
       }).off('click');
 
     $('#errorOrderPaymentType').html("To use invoice option, please add a company in 'My Profile'").slideDown(500);
+  }
+  else{
+
+    $('#paymentBill').hide();
+    $('#errorOrderPaymentType').html("");
   }
 }
 
@@ -107,6 +149,7 @@ function updateOrder(){
 
     $(".title").html('Update Order');
     $("#orderClearButton").val('Cancel changes');
+    $('#orderEmail').prop('disabled', true);
     //get data with ID
     id = getParameterByName('id');
     autoFillFields(id);
@@ -134,6 +177,8 @@ function autoFillFields(id){
 
     var dateString = data[0].date;
     var clock = dateString.substring(20,22);
+    var email = data[0].email;
+
     $('#orderDate').html(dateString.substring(0,10));
     $('#orderTimeHour').val(dateString.substring(11,13));
     $('#orderTimeMinute').val(dateString.substring(14,16));
@@ -157,6 +202,7 @@ function autoFillFields(id){
       });
     }
 
+    $('#orderEmail').val(email);
     $('#orderFrom').val(data[0].from);
     $('#orderTo').val(data[0].to);
     $('#orderPhone').val(data[0].phone);
@@ -164,10 +210,11 @@ function autoFillFields(id){
     $('#orderPasangers').html(data[0].pasangers);
 
     generatePasangers(data[0].pasangers);
+    getCompanyData($('#orderEmail').val());
     getNames(id);
     validateGenerated();
 
-  }, id)
+  }, id, '', '', '')
 }
 
 function handleOrderResponse(response){
@@ -266,11 +313,14 @@ function validateOrderConfirm(){
 //on blur
 $(function(){
 
+  var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   validateOrderTime('blur', '#orderTimeHour', '#errorOrderDepartureTime', /^[0-9]*$/, 12, 0, 'hour');
   validateOrderTime('blur', '#orderTimeMinute', '#errorOrderDepartureTime', /^[0-9]*$/, 59, 0, 'minute');
   validateOrderInput('blur', '#orderFrom', '#errorOrderFrom');
   validateOrderInput('blur', '#orderTo', '#errorOrderTo');
   validateOrderName('blur', '#orderPhone', '#errorOrderPhone', /^[0-9+]*$/);
+  validateOrderName('blur', '#orderEmail', '#errorOrderEmail', emailRegex);
 
   validateGenerated();
 })
@@ -327,6 +377,10 @@ function validateOrderInput(thisEvent, id, idErr){
 
     if(!value)
       $(idErr).html('Cannot be empty').slideDown(500);
+    else if(value.length <= 3)
+      $(idErr).html('Min 3 characters').slideDown(500);
+    else if(value.length > 30)
+      $(idErr).html('Max 30 characters').slideDown(500);
     else
       $(idErr).html('').slideUp(500);
   })

@@ -3,7 +3,7 @@
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/orderController.php';
 
   if(isset($_POST['Clock'],$_POST['Date'], $_POST['TimeHour'],
-        $_POST['TimeMinute'],$_POST['From'], $_POST['To'],
+        $_POST['TimeMinute'],$_POST['From'], $_POST['To'], $_POST['Email'],
         $_POST['Pasangers'],$_POST['Payment'], $_POST['Phone'], $_POST['Operation'])){
 
     $namesError = '';
@@ -20,11 +20,11 @@
     $orderControllerObject = new OrderController();
 
     if($_POST['Operation'] == 'create')
-      $response = $orderControllerObject->crearteOrder($_POST['Date'], $_POST['TimeHour'], $_POST['TimeMinute'], $_POST['Clock'],
+      $response = $orderControllerObject->crearteOrder($_POST['Email'], $_POST['Date'], $_POST['TimeHour'], $_POST['TimeMinute'], $_POST['Clock'],
                                 $_POST['From'], $_POST['To'], $_POST['Pasangers'], $_POST['Payment'], $_POST['Phone'], $_POST['Names']);
 
     else if($_POST['Operation'] == 'update')
-      $response = $orderControllerObject->updateOrder($_POST['Id'], $_POST['Date'], $_POST['TimeHour'], $_POST['TimeMinute'], $_POST['Clock'],
+      $response = $orderControllerObject->updateOrder($_POST['Id'], $_POST['Email'], $_POST['Date'], $_POST['TimeHour'], $_POST['TimeMinute'], $_POST['Clock'],
                                 $_POST['From'], $_POST['To'], $_POST['Pasangers'], $_POST['Payment'], $_POST['Phone'], $_POST['Names']);
 
     echo($response);
