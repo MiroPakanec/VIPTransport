@@ -155,6 +155,54 @@ function getTransports(handleData, id, dateFrom, dateTo, email){
   });
 }
 
+function getEmployeess(handleData, email, fname, lname, type){
+
+  data = {};
+  data['email'] = email;
+  data['fname'] = fname;
+  data['lname'] = lname;
+  data['type'] = type;
+
+  console.log(data);
+  $.ajax({
+      type: 'POST',
+      url: '../../Server/Responses/getEmployees.php',
+      dataType : 'json',
+      data: data,
+      success: function(response){
+          console.log(response);
+          handleData(response);
+      },
+      error:function(response){
+        console.log(response);
+      }
+  });
+}
+
+function updateUserType(email, type){
+
+  data = {};
+  data['email'] = email;
+  data['fname'] = fname;
+  data['lname'] = lname;
+  data['type'] = type;
+
+  console.log(data);
+  $.ajax({
+      type: 'POST',
+      url: '../../Server/Responses/getEmployees.php',
+      dataType : 'json',
+      data: data,
+      success: function(response){
+          console.log(response);
+          handleData(response);
+      },
+      error:function(response){
+        console.log(response);
+      }
+  });
+}
+
 function deleteOrder(handleData, id){
 
   $.ajax({

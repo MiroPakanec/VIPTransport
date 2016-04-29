@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../Css/generalPageStyles.css">
+    <link rel="stylesheet" type="text/css" href="../Css/usersStyles.css">
+    <link rel="stylesheet" type="text/css" href="../Css/tableStyles.css">
+
+    <script src="../JQuery/Source/jquery.js"></script>
+    <script src="../JQuery/jquery-ui/jquery-ui.js"></script>
+
+    <script src="../JQuery/Global/getRequests.js"></script>
+    <script src="../JQuery/Global/headerButtons.js"></script>
+    <script src="../JQuery/Manager/usersLoad.js"></script>
+    <script src="../JQuery/Manager/usersClick.js"></script>
+    <script src="../JQuery/Global/notificationsAmmount.js"></script>
+
+    <meta charset="UTF-8">
+    <title>My Transports</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="preheader"></div>
+       <div class="header">
+         <div class="homeHeaderLogo largeText">VIP Transport</div>
+         <div class="headerNotifications" id="notifications">
+           <div class="notificationAmmount smallText"></div>
+         </div>
+         <div class="headerButtonsContainer"></div>
+       </div>
+        <div class="titleArea">
+          <div class="title largeText">Users</div>
+        </div>
+        <div class="employeeSearchBarArea">
+          <div class="searchBarElement" id="typeArea">
+            <input type="button" value="Customers" id="customersButton" class="typeButton">
+            <input type="button" value="Transporters" id="transportersButton" class="typeButton">
+            <input type="button" value="Managers" id="managersButton" class="typeButton">
+            <input type="hidden" id="typeRequest" value="customer" class="request">
+          </div>
+          <div class="searchBarElement" id="emailArea">
+            <input id="emailInput" type="text" maxlength="30" placeholder="Email" class="searchBarStyle inputElement" value="">
+            <input type="hidden" id="emailRequest" value="" class="request">
+          </div>
+          <div class="searchBarElement" id="fnameArea">
+            <input id="fnameInput" type="text" maxlength="30" placeholder="First name" class="searchBarStyle inputElement" value="">
+            <input type="hidden" id="fnameRequest" value="" class="request">
+          </div>
+          <div class="searchBarElement" id="lnameArea">
+            <input id="lnameInput" type="text" maxlength="30" placeholder="Last name" class="searchBarStyle inputElement" value="">
+            <input type="hidden" id="lnameRequest" value="" class="request">
+          </div>
+          <div class="searchBarElement" id="buttonArea">
+            <input id="clearButton" type="button" class="searchBarStyle" value="Clear">
+          </div>
+        </div>
+        <div class="employeesTableArea" id="employeesTableArea"></div>
+        <div class="responseArea" id="responseArea"></div>
+        <input type="hidden" id="type" value="customer">
+      </div>
+    </div>
+  </body>
