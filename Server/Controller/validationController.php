@@ -22,6 +22,8 @@
         $errorCounter += $this->validateInput($userModelObject->getPassword(), '^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{2,}$^', 50, 8, false);
       if(null !== $userModelObject->getPhone())
         $errorCounter += $this->validateInput($userModelObject->getPhone(), '^[0-9+]*$^', 20, 5, false);
+      if(null !== $userModelObject->getType())
+        $errorCounter += $this->validateInput($userModelObject->getType(), '^[a-zA-Z]+$^', 20, 5, false);
 
       return $errorCounter;
     }

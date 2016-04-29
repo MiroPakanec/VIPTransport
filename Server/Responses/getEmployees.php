@@ -16,6 +16,7 @@
     $userControllerObject = new UserController();
 
     $userModelArray = $userControllerObject->getEmployees($email, $fname, $lname, $type);
+
     $array = array();
     $arrayUser = array();
 

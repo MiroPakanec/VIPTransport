@@ -14,19 +14,19 @@ $(function(){
   $('#emailInput').on('blur', function(){
 
     var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    manageInput($(this).val(), emailRegex, $(this).attr('id'), '#emailRequest');
+    manageInput($(this).val(), emailRegex, $(this).attr('id'), '#emailRequest', 3 ,50);
     search();
   });
 
   $('#fnameInput').on('blur', function(){
 
-    manageInput($(this).val(), /^[a-zA-Z]*$/, $(this).attr('id'), '#fnameRequest');
+    manageInput($(this).val(), /^[a-zA-Z]*$/, $(this).attr('id'), '#fnameRequest', 3 ,50);
     search();
   });
 
   $('#lnameInput').on('blur', function(){
 
-    manageInput($(this).val(), /^[a-zA-Z]*$/, $(this).attr('id'), '#lnameRequest');
+    manageInput($(this).val(), /^[a-zA-Z]*$/, $(this).attr('id'), '#lnameRequest', 3 ,50);
     search();
   });
 
@@ -71,15 +71,37 @@ $(function(){
 
   $(document).on('click', '.confirmType', function(){
 
-    var value = $(this).val();
+    var value = $(this).val().toLowerCase();
     var email = $('#userEmail').val();
 
     updateUserType(function(data){
 
-      alert(data);
+      handleUpdateResponse(data);
     }, email, value);
   });
 });
+
+function handleUpdateResponse(response){
+
+  if(response == 1){
+
+      $('#responseArea').html('User was successfully updated.').css({
+        'background-color' : 'rgba(0,255,0,0.1)',
+        'border-color' : 'rgba(0,255,0,0.4)',
+        'color' : 'green'
+      });
+      delaySlideUp('#responseArea', 5000);
+  }
+  else if(response == 0){
+
+    $('#responseArea').html('User could not be updated.').css({
+      'background-color' : 'rgba(255,0,0,0.1)',
+      'border-color' : 'rgba(255,0,0,0.1)',
+      'color' : 'red'
+    });
+    delaySlideUp('#responseArea', 5000);
+  }
+}
 
 function setTypeRequest(value){
 
@@ -91,15 +113,19 @@ function setTypeRequest(value){
     $('#typeRequest').val('transporter');
 }
 
-function manageInput(value, emailRegex, elementId, requestId){
+function manageInput(value, emailRegex, elementId, requestId, min, max){
 
   var color = 'rgba(255,0,0,0.1)';
 
-  if(!emailRegex.test(value)){
+  if(!emailRegex.test(value))
+    color = incorrectValue(requestId);
 
-    color = 'rgba(255,0,0,0.1)';
-    $(requestId).val('');
-  }
+  else if(value.length < min)
+    color = incorrectValue(requestId);
+
+  else if(value.length > max)
+    color = incorrectValue(requestId);
+
   else{
 
     color = 'rgba(255,255,255,0.2)';
@@ -108,6 +134,12 @@ function manageInput(value, emailRegex, elementId, requestId){
 
   $('#' + elementId).css({'background-color' : color});
   return value;
+}
+
+function incorrectValue(requestId){
+
+  $(requestId).val('');
+  return 'rgba(255,0,0,0.1)';
 }
 
 function search(){

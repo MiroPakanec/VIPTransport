@@ -24,6 +24,14 @@ function generateManagerButtons(){
   $('.headerButtonsContainer').html(html);
 }
 
+function delaySlideUp(id, delay){
+
+  setTimeout(function(){
+
+    $(id).slideUp(300).html('');
+  }, delay);
+}
+
 $(function(){
 
   $(document).on('click','#logOutButton',function(){

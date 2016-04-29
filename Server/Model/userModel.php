@@ -55,6 +55,10 @@ class UserModel{
       return $this->registrationDate;
     }
 
+    public function setEmail($value){
+      $this->email = $value;
+    }
+
     public function setFname($value){
       $this->fname = $value;
     }
@@ -69,10 +73,6 @@ class UserModel{
 
     public function setPassword($value){
       $this->password = $value;
-    }
-
-    public function setEmail($value){
-      $this->email = $value;
     }
 
     public function setPhone($value){

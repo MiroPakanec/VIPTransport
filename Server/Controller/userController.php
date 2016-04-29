@@ -63,10 +63,32 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validati
       return $userUpdateDataAccessObject->updatePassword($userModelObject->getPassword(), $wClause);
     }
 
+    public function updateType($email, $type){
+
+      $this->startSession();
+      if($_SESSION['type'] != 'manager')
+        return 0;
+
+      $validationControllerObject = new ValidationController();
+      $userUpdateDataAccessObject = new userUpdateDatabaseAccess();
+      $userModelObject = new UserModel($email, null, null, null, null, null , $type, null);
+
+      if($validationControllerObject->validateUser($userModelObject) > 0)
+        return 0;
+
+      $wClause = " WHERE Email = '".$email."'";
+      return $userUpdateDataAccessObject->updateType($type, $wClause);
+    }
+
     public function getEmployees($email, $fname, $lname, $type){
 
       $this->startSession();
       if($_SESSION['type'] != 'manager')
+        return 0;
+
+      $validationControllerObject = new ValidationController();
+      $userModelObject = $this->createModelObject($email, $fname, $lname, $type);
+      if($validationControllerObject->validateUser($userModelObject) > 0)
         return 0;
 
       $wClause = $this->getEmployeesWClause($email, $fname, $lname, $type);
@@ -126,6 +148,23 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validati
       $sessionControllerObject = new SessionController();
       if(!$sessionControllerObject->sessionStarted())
         $sessionControllerObject->startSession();
+    }
+
+    private function createModelObject($email, $fname, $lname, $type){
+
+      $userModelObject = new UserModel(null, null, null, null, null, null, $type, null);
+
+      if(strlen($email) > 0)
+        $userModelObject->setEmail($email);
+
+      if(strlen($fname) > 0)
+        $userModelObject->setFname($fname);
+
+      if(strlen($lname) > 0)
+        $userModelObject->setLname($lname);
+
+      return $userModelObject;
+
     }
 
     private function getEmployeesWClause($email, $fname, $lname, $type){
