@@ -14,7 +14,7 @@ $(function(){
     manageDateInput('to', '21.3%');
   });
 
-  $('#emailInput').on('blur', function(){
+  $('#emailInput').on('keyup', function(){
     var value = manageEmailInput($(this).val());
     $(this).val(value);
     search();
@@ -95,7 +95,7 @@ function manageSearchDate(date){
 
 function manageEmailInput(value){
 
-  var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  var emailRegex = /^[a-zA-Z0-9-_.@]*$/;
   var color = 'rgba(255,0,0,0.1)';
 
   if(!emailRegex.test(value))
@@ -182,7 +182,7 @@ function validateDate(id, type){
 function validateEmail(){
 
   var email = $('#emailInput').val();
-  var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  var emailRegex = /^[a-zA-Z0-9-_.@]*$/;
 
   if(email.length == 0)
     return 0;

@@ -13,22 +13,21 @@ $(function(){
   //manage text input
   $('#emailInput').on('keyup', function(){
 
-    /*var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    manageInput($(this).val(), emailRegex, $(this).attr('id'), '#emailRequest', 3 ,50);*/
+    manageInput($(this).val(), /^[a-zA-Z0-9-_.@]*$/, $(this).attr('id'), '#emailRequest');
     $('#emailRequest').val($(this).val());
     search();
   });
 
   $('#fnameInput').on('keyup', function(){
 
-    /*manageInput($(this).val(), /^[a-zA-Z]*$/, $(this).attr('id'), '#fnameRequest', 3 ,50);*/
+    manageInput($(this).val(), /^[a-zA-Z]*$/, $(this).attr('id'), '#fnameRequest');
     $('#fnameRequest').val($(this).val());
     search();
   });
 
   $('#lnameInput').on('keyup', function(){
 
-    /*manageInput($(this).val(), /^[a-zA-Z]*$/, $(this).attr('id'), '#lnameRequest', 3 ,50);*/
+    manageInput($(this).val(), /^[a-zA-Z]*$/, $(this).attr('id'), '#lnameRequest');
     $('#lnameRequest').val($(this).val());
     search();
   });
@@ -116,17 +115,11 @@ function setTypeRequest(value){
     $('#typeRequest').val('transporter');
 }
 
-function manageInput(value, emailRegex, elementId, requestId, min, max){
+function manageInput(value, emailRegex, elementId, requestId){
 
   var color = 'rgba(255,0,0,0.1)';
 
   if(!emailRegex.test(value))
-    color = incorrectValue(requestId);
-
-  else if(value.length < min)
-    color = incorrectValue(requestId);
-
-  else if(value.length > max)
     color = incorrectValue(requestId);
 
   else{

@@ -14,6 +14,15 @@ td{
   height: 30px;
 }
 
+td.idCol{
+
+  width: 5.3% !important;
+}
+
+td.dateCol{
+  width: 15%;
+}
+
 td>input{
 
   background-color: rgba(255,255,255,0.0);

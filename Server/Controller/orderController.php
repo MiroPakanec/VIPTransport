@@ -310,10 +310,10 @@
       $wClause = 'WHERE 1';
 
       if(strlen($id) > 0)
-        $wClause .= ' AND Id = '.$id;
+        $wClause .= ' AND Id LIKE '."'%".$id."%'";
 
       if(strlen($email) > 0)
-        $wClause .= " AND Email='".$email."'";
+        $wClause .= " AND Email LIKE '%".$email."%'";
 
       if(strlen($dateFrom) > 0)
         $wClause .=" AND DateTime > '".$dateFrom."'";

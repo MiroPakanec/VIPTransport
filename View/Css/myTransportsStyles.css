@@ -144,14 +144,13 @@
   padding: 0;
   margin: 0;
 
+  background-color: rgba(255,255,255,0) !important;
   text-align: center;
-
-  background-color: rgba(255,255,255,0.4);
 }
 
 #clearButton:hover{
 
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255,255,255,0.1) !important;
 }
 
 .datePickerArea{
@@ -235,21 +234,23 @@
   outline: 1px solid slategrey;
 }
 
-::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+/*
+::-webkit-input-placeholder {
     color:    white;
 }
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+:-moz-placeholder {
    color:    white;
    opacity:  1;
 }
-::-moz-placeholder { /* Mozilla Firefox 19+ */
+::-moz-placeholder {
    color:    white;
    opacity:  1;
 }
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
+:-ms-input-placeholder {
    color:    white;
 }
 
+*/
 
 .alertButton{
 

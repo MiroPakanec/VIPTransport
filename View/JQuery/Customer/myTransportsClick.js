@@ -222,7 +222,8 @@ function generateTableOrders(){
 
   var html = '<table class="smallText" id="orderTable">' +
                 '<tr class = "tableHeader">' +
-                  '<td>Date</td>' +
+                  '<td class="idCol">ID</td>' +
+                  '<td class="dateCol">Date</td>' +
                   '<td>Departure address</td>' +
                   '<td>Arrival address</td>' +
                   '<td>Pasangers</td>' +
@@ -241,6 +242,7 @@ function generateTableRow(id, date, addressFrom, addressTo, pasangers, payment, 
   var updateButtonValue = generateButtonName(status, 'Update');
 
   var html =      '<tr class = "tableRow" id="'+id+'">' +
+                    '<td><input type="text" class="tableInput tableInputSmall" name="date" value="'+ id +'" disabled></td>' +
                     '<td><input type="text" class="tableInput" name="date" value="'+ date +'" disabled></td>' +
                     '<td><input type="text" class="tableInput" name="from" value="'+ addressFrom +'" disabled></td>' +
                     '<td><input type="text" class="tableInput" name="to" value="'+ addressTo +'" disabled></td>' +

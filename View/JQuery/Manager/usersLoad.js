@@ -68,9 +68,11 @@ function generateTableRow(emial, fname, lname, type, phone){
 function setDefaults(){
 
   $('#customersButton').css({'background-color' : 'rgba(255,255,255,0.2)'});
+  $('.employeeSearchBarArea').slideDown(500);
 }
 
 function hideElementsOnload(){
 
+  $('.employeeSearchBarArea').hide();
   $('#responseArea').hide();
 }

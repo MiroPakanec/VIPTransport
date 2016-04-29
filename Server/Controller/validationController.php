@@ -54,14 +54,14 @@
       return $errorCounter;
     }
 
-    public function validateSearch($array){
+    public function validateSearch($email, $fname, $lname, $type){
 
       $errorCounter = 0;
 
-      foreach ($array as $value) {
-
-        $errorCounter += $this->validateInput($value, '^[a-zA-Z0-9@.-_]+$^', 50, 0, true);
-      }
+      $errorCounter += $this->validateInput($email, '^[a-zA-Z0-9@.-_]+$^', 50, 0, true);
+      $errorCounter += $this->validateInput($fname, '^[a-zA-Z]+$^', 50, 0, true);
+      $errorCounter += $this->validateInput($lname, '^[a-zA-Z]+$^', 50, 0, true);
+      $errorCounter += $this->validateInput($type, '^[a-zA-Z]+$^', 50, 0, true);
 
       return $errorCounter;
     }
@@ -80,10 +80,9 @@
 
       $errorCounter = 0;
 
-      if(strlen($id) > 0)
-        $errorCounter += $this->validateIntegerInput($id, 10000, 1, false);
-      if(strlen($email) > 0)
-        $errorCounter += $this->validateEmail($email);
+      $errorCounter += $this->validateIntegerInput($id, 10000, 1, true);
+      $errorCounter += $this->validateInput($email, '^[a-zA-Z0-9@.-_]+$^', 50, 0, true);
+
       if(strlen($dateFrom) > 0)
         $errorCounter += $this->validateDateString($dateFrom);
       if(strlen($dateTo) > 0)

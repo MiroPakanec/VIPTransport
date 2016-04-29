@@ -87,11 +87,10 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validati
         return 0;
 
       $validationControllerObject = new ValidationController();
-      $attrArray = array($email, $fname, $lname, $type);
-      if($validationControllerObject->validateSearch($attrArray) > 0)
-        return 0;
-
       $wClause = $this->getEmployeesWClause($email, $fname, $lname, $type);
+      if($validationControllerObject->validateSearch($email, $fname, $lname, $type) > 0)
+        $wClause = " WHERE type = '".$type."'";
+
       return $this->getUserData($wClause);
     }
 

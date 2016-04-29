@@ -53,8 +53,6 @@ function loadDatePicker(){
           showOtherMonths: true,
           dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
           dateFormat: "dd/mm/yy",
-          minDate: '+1D',
-          maxDate: '+6M',
           onSelect: function (date) {
 
               manageSearchDate(date);
