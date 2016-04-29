@@ -66,7 +66,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validati
     public function updateType($email, $type){
 
       $this->startSession();
-      if($_SESSION['type'] != 'manager')
+      if($_SESSION['type'] != 'manager' || $_SESSION['email'] == $email)
         return 0;
 
       $validationControllerObject = new ValidationController();
@@ -87,8 +87,8 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validati
         return 0;
 
       $validationControllerObject = new ValidationController();
-      $userModelObject = $this->createModelObject($email, $fname, $lname, $type);
-      if($validationControllerObject->validateUser($userModelObject) > 0)
+      $attrArray = array($email, $fname, $lname, $type);
+      if($validationControllerObject->validateSearch($attrArray) > 0)
         return 0;
 
       $wClause = $this->getEmployeesWClause($email, $fname, $lname, $type);
@@ -183,7 +183,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validati
       $wClause = '';
 
       if(strlen($value) > 0)
-        $wClause = "AND ".$name." = "."'".$value."' ";
+        $wClause = "AND ".$name." LIKE "."'%".$value."%' ";
 
       return $wClause;
     }

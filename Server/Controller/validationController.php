@@ -54,6 +54,18 @@
       return $errorCounter;
     }
 
+    public function validateSearch($array){
+
+      $errorCounter = 0;
+
+      foreach ($array as $value) {
+
+        $errorCounter += $this->validateInput($value, '^[a-zA-Z0-9@.-_]+$^', 50, 0, true);
+      }
+
+      return $errorCounter;
+    }
+
     public function validateOrderState($orderState, $sessionType){
 
       $errorCounter = 0;

@@ -11,22 +11,25 @@ $(function(){
   });
 
   //manage text input
-  $('#emailInput').on('blur', function(){
+  $('#emailInput').on('keyup', function(){
 
-    var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    manageInput($(this).val(), emailRegex, $(this).attr('id'), '#emailRequest', 3 ,50);
+    /*var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    manageInput($(this).val(), emailRegex, $(this).attr('id'), '#emailRequest', 3 ,50);*/
+    $('#emailRequest').val($(this).val());
     search();
   });
 
-  $('#fnameInput').on('blur', function(){
+  $('#fnameInput').on('keyup', function(){
 
-    manageInput($(this).val(), /^[a-zA-Z]*$/, $(this).attr('id'), '#fnameRequest', 3 ,50);
+    /*manageInput($(this).val(), /^[a-zA-Z]*$/, $(this).attr('id'), '#fnameRequest', 3 ,50);*/
+    $('#fnameRequest').val($(this).val());
     search();
   });
 
-  $('#lnameInput').on('blur', function(){
+  $('#lnameInput').on('keyup', function(){
 
-    manageInput($(this).val(), /^[a-zA-Z]*$/, $(this).attr('id'), '#lnameRequest', 3 ,50);
+    /*manageInput($(this).val(), /^[a-zA-Z]*$/, $(this).attr('id'), '#lnameRequest', 3 ,50);*/
+    $('#lnameRequest').val($(this).val());
     search();
   });
 
