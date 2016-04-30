@@ -26,6 +26,22 @@ function endSession(handleData){
   });
 }
 
+function registerUserRequest(handleData, data){
+
+  $.ajax({
+      type: 'POST',
+      url: '../../Server/Responses/register.php',
+      data: data,
+      success: function(response){
+        handleData(response);
+      },
+      error: function(response){
+          handleData(response);
+      }
+  });
+  console.log('I would like to register');
+}
+
 function getUserData(handleData, email){
 
   $.ajax({

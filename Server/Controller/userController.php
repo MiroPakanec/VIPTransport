@@ -9,12 +9,16 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validati
 
   class UserController{
 
-    public function registerUser($email, $fname, $mname, $lname, $password, $phone){
+    public function registerUser($email, $fname, $mname, $lname, $password, $phone, $type){
 
       $this->startSession();
       $validationControllerObject = new ValidationController();
       $userDataAccessObject = new UserInsertDatabaseAccess();
-      $userModelObject = new UserModel($email, $fname, $mname, $lname, $password, $phone, null, null);
+
+      if(strlen($type) == 0 || $_SESSION['type'] != 'manager')
+        $type = 'customer';
+
+      $userModelObject = new UserModel($email, $fname, $mname, $lname, $password, $phone, $type, null);
 
       if($validationControllerObject->validateUser($userModelObject) > 0)
         return 0;

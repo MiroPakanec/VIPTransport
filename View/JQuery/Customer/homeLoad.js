@@ -6,16 +6,16 @@ $(function(){
           window.location="mainPage.html";
       }
 
-      if(data.type == 'customer'){
-
+      if(data.type == 'customer')
         //generate page for custoemr
         generateCustomerButtons();
-        generateMessage(data.fname);
-      }
-      else if(data.type == 'manager'){
-
+      else if(data.type == 'transporter')
+        generateCustomerButtons();
+      else if(data.type == 'manager')
         generateManagerButtons();
-      }
+
+
+      generateMessage(data.fname);
     });
 
     loadNotificationsAmmount();

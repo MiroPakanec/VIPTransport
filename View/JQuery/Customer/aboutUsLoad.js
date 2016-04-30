@@ -2,15 +2,15 @@ $(function(){
 
     getSession(function(data){
 
-      if(data.email.length == 0){
-          window.location="mainPage.html";
-      }
+      if(data.email.length == 0)
+        window.location="mainPage.html";
 
-      if(data.type == 'customer'){
 
-        //generate page for custoemr
+      if(data.type == 'customer')
         generateCustomerButtons();
-      }
+      else if(data.type == 'manager')
+        generateManagerButtons();
+
     }),
 
     loadNotificationsAmmount();

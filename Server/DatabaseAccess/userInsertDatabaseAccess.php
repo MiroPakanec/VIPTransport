@@ -12,7 +12,7 @@
         $dbc = DatabaseConnection::openConnection();
 
         $query = "INSERT INTO User (Email, First_name, Middle_name, Last_name, Password, Phone, Type, Registration_date)" .
-                 " VALUES (?, ?, ?, ?, ?, ?, 'customer', NOW())";
+                 " VALUES (?, ?, ?, ?, ?, ?, ?, NOW())";
         $stmt = mysqli_prepare($dbc, $query);
 
         $email = $userModelObject->getEmail();
@@ -21,8 +21,9 @@
         $lname = $userModelObject->getLname();
         $password = $userModelObject->getPassword();
         $phone = $userModelObject->getPhone();
+        $type = $userModelObject->getType();
 
-        mysqli_stmt_bind_param($stmt, "ssssss", $email, $fname, $mname, $lname, $password, $phone);
+        mysqli_stmt_bind_param($stmt, "sssssss", $email, $fname, $mname, $lname, $password, $phone, $type);
 
         mysqli_stmt_execute($stmt);
         $affectedRows = mysqli_stmt_affected_rows($stmt);

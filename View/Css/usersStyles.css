@@ -3,7 +3,7 @@
   float: left;
   margin-left: 3%;
   margin-top: 0.5%;
-  height: 350px;
+  height: 35%;
   width: 94%;
   text-align: center;
   overflow-y: scroll;
@@ -177,7 +177,7 @@
 
 .responseArea{
 
-  height: 10%;
+  height: 8%;
   width: 72.5%;
   float: left;
   margin-left: 3%;
@@ -190,6 +190,207 @@
   font-family: myFont;
   font-size: 20px;
   color: white;
+}
+
+.registrationArea{
+
+  float: left;
+  height : 5%;
+  width: 83.5%;
+
+  margin-top: 1%;
+  margin-left: 3%;
+}
+
+.userButton{
+
+  float: right;
+  width: 11%;
+  height: 90%;
+  padding: 0;
+
+  background-color: rgba(255,255,255,0);
+  border : 1px solid rgba(255,255,255,0.3);
+  outline: none;
+  color: white;
+
+  font-size: 15px;
+  font-family: myFont;
+}
+
+.userButton:hover{
+
+  background-color: rgba(255,255,255,0.1);
+}
+
+#newUserButton{
+
+  float: right;
+  width: 11%;
+  height: 90%;
+  padding: 0;
+
+  background-color: rgba(255,255,255,0);
+  border : 1px solid rgba(255,255,255,0.3);
+  color: white;
+
+  font-size: 15px;
+  font-family: myFont;
+}
+
+#newUserButton:hover{
+
+  background-color: rgba(255,255,255,0.1);
+}
+
+#formArea{
+
+  background-color: rgba(255,255,255,0.1);
+  height: 0%;
+  transition: height 0.5s;
+}
+
+#registerTitle{
+
+  margin: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  font-size : 25px;
+}
+
+#columnArea{
+
+  height : 150px;
+  width: 100%;
+}
+
+.registerColumn{
+
+  float: left;
+  width: 35%;
+  height: 100%;
+}
+#leftErrColumn, #rightErrColumn{
+
+  width: 10%;
+}
+
+#leftErrColumn{
+
+  margin-left: 3.5%;
+}
+
+#leftColumn{
+
+  float: left;
+}
+
+#rightColumn{
+
+  float: left;
+  margin-left: 2%;
+}
+
+.registerRow{
+
+  float: left;
+  height : 40px;
+  width: 100%;
+  margin-top: 1%;
+
+}
+
+.rowError{
+
+  float: left;
+  width: 80%;
+  height: 90%;
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 10%;
+
+  background-color: rgba(255, 0,0,0.1);
+  border: 1px solid rgba(255,0,0,0.3);
+  color: red;
+}
+
+#phoneErr{
+
+  margin-top:  8%;
+}
+
+.rowTitle{
+
+  float: left;
+  height: 100%;
+  width: 40%;
+  text-align: left;
+  padding-right: 5%;
+  line-height: 200%;
+}
+
+.rowTextInput{
+
+  float: left;
+  margin-top: 1%;
+  padding-left: 5%;
+  height: 60%;
+  width: 45%;
+
+  outline: none;
+  font-family: myFont;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#passwordInput{
+
+  width: 30%;
+}
+
+#generatePasswordButton{
+
+  float: left;
+  width: 14%;
+  margin-left: 1%;
+  margin-top: 1%;
+  height: 75%;
+}
+
+.typeButtonArea{
+
+  height: 30px;
+  width: 100%;
+}
+
+.registerTypeButton{
+
+  float: left;
+}
+
+.registerTypeButton:hover{
+
+  background-color: rgba(255,255,255,0.1);
+}
+
+.registerActionButton{
+
+  float: left;
+  height : 130%;
+  margin-top: 1%;
+}
+
+#registerCustomerButton{
+
+  margin-left: 33.5%;
+  background-color: rgba(255,255,255,0.3);
+}
+
+#registerSubmitButton{
+
+  margin-left: 38.5%;
+  margin-right: 1%;
 }
 
 p{

@@ -54,6 +54,77 @@
           </div>
         </div>
         <div class="employeesTableArea" id="employeesTableArea"></div>
+        <div class="registrationArea">
+          <input type="button" value="New user" class="buttonHome" id="newUserButton">
+        </div>
+        <div class="registrationArea" id="formArea">
+          <div id="registerForm">
+            <div class="smallText" id="registerTitle">Register user</div>
+            <div id="columnArea">
+              <div class="registerColumn" id="leftErrColumn">
+                <div class="registerRow">
+                  <div class="rowError smallText" id="emailErr">Error</div>
+                </div>
+                <div class="registerRow">
+
+                </div>
+                <div class="registerRow">
+                  <div class="rowError smallText" id="phoneErr">Error</div>
+                </div>
+              </div>
+              <div class="registerColumn" id="leftColumn">
+                <div class="registerRow">
+                  <div class="rowTitle smallText">Email:*</div>
+                  <input type="text" class="rowTextInput" id="emailInput" name="email">
+                </div>
+                <div class="registerRow">
+                  <div class="rowTitle smallText">Password:*</div>
+                  <input type="text" class="rowTextInput" id="passwordInput" disabled name="password">
+                  <input type="button" class="userButton" id="generatePasswordButton" value="Generate">
+                </div>
+                <div class="registerRow">
+                  <div class="rowTitle smallText">Phone:*</div>
+                  <input type="text" class="rowTextInput" id="phoneInput" name="phone">
+                </div>
+              </div>
+              <div class="registerColumn" id="rightColumn">
+                <div class="registerRow">
+                  <div class="rowTitle smallText">First name:*</div>
+                  <input type="text" class="rowTextInput" id="fnameInput" name="firstName">
+                </div>
+                <div class="registerRow">
+                  <div class="rowTitle smallText">Middle name:</div>
+                  <input type="text" class="rowTextInput" id="mnameInput" name="middleName">
+                </div>
+                <div class="registerRow">
+                  <div class="rowTitle smallText">Last name:*</div>
+                  <input type="text" class="rowTextInput" id="lnameInput" name="lastName">
+                </div>
+              </div>
+              <div class="registerColumn" id="rightErrColumn">
+                <div class="registerRow">
+                  <div class="rowError smallText" id="fnameErr">Error</div>
+                </div>
+                <div class="registerRow">
+                  <div class="rowError smallText" id="mnameErr">Error</div>
+                </div>
+                <div class="registerRow">
+                  <div class="rowError smallText" id="lnameErr">Error</div>
+                </div>
+              </div>
+            </div>
+            <div class="typeButtonArea">
+              <input type="button" class="registerTypeButton userButton" id="registerCustomerButton" value="Customer">
+              <input type="button" class="registerTypeButton userButton" id="registerTransporterButton" value="Transporter">
+              <input type="button" class="registerTypeButton userButton" id="registerManagerButton" value="Manager">
+              <input type="hidden" value="customer" id="registerType" name="type">
+            </div>
+            <div class="typeButtonArea">
+              <input type="button" class="registerActionButton userButton" id="registerSubmitButton" value="Register">
+              <input type="button" class="registerActionButton userButton" id="registerCancelButton" value="Cancel">
+            </div>
+          </div>
+        </div>
         <div class="responseArea" id="responseArea"></div>
         <input type="hidden" id="type" value="customer">
       </div>

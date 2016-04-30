@@ -73,6 +73,8 @@ function setDefaults(){
 
 function hideElementsOnload(){
 
+  $('#registerForm').hide();
+  $('.rowError').hide();
   $('.employeeSearchBarArea').hide();
   $('#responseArea').hide();
 }
