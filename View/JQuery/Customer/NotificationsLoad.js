@@ -29,6 +29,7 @@ function loadNotifications(){
 
       for (var notificationIndex in data) {
 
+        console.log(data);
         processNotification(data[notificationIndex]);
       }
 
@@ -126,7 +127,9 @@ function processNotification(notification){
   if(notificationExists(id)){return; }
 
   date = relative_time(date);
-  message = modifyMessageHtml(message, type);
+  if(type == 'order')
+    message = modifyOrderMessageHtml(message, type);
+
   userMessage = modifyUserMessageHtml(userMessage, action);
   message += '</br>' + userMessage + '</br>' + date;
   html = generateNotficationHtml(message, id, read);
@@ -221,17 +224,21 @@ function modifyUserMessageHtml(message, action){
 
   if(!message) {return ' ';}
   if(message.length <= 0) {return ' '}
-  if (!/update request/i.test(action)) {return ' '}
+  if (!/update request/i.test(action) && !/register/i.test(action)) {return ' '}
 
   message = message.splice(0, 0, '<strong>Message: </strong>');
   if(message.length <= 95) {return message}
 
-  message = message.splice(95, 0, '</br>');
+  if(!message.indexOf('href'))
+    message = message.splice(130, 0, '</br>');
+
+  else
+    message = message.splice(120, 0, '</br>');
 
   return message;
 }
 
-function modifyMessageHtml(message, type){
+function modifyOrderMessageHtml(message){
 
   if(!message) {return;}
   var url = '#';
@@ -252,9 +259,10 @@ function modifyMessageHtml(message, type){
 
   //modify message
   message = message.splice( index3, 0, "</a></strong>");
-  message = message.splice( index2, 0, '<strong><a href="'+ url + "?type="+type+"&id="+id +'">');
+  message = message.splice( index2, 0, '<strong><a href="'+ url + "?type=order&id="+id +'">');
   message = message.splice(index, 0, "</a></strong>");
   message = message.splice(0, 0, '<strong><a href="'+ url + "?type=user&id="+user +'">');
+  console.log(message);
 
   return message;
 }

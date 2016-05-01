@@ -120,7 +120,7 @@ function generateUpdateMessageField(id){
                 "Please send a message to the manager and you will be notified about the changes shortly.</br>" +
                 "What would you like to change about the order?";
 
-  var html = '<textarea rows="3" cols="300" maxlength="150" id="updateRequestTextArea" autofocus placeholder="Example: Departure address - Veľká Okružná 2733/59, 010 01 Žilina, Slovakia"></textarea>' +
+  var html = '<textarea rows="3" cols="300" maxlength="100" id="updateRequestTextArea" autofocus placeholder="Example: Departure address - Veľká Okružná 2733/59, 010 01 Žilina, Slovakia"></textarea>' +
              '<input type="button" id="sendRequest" class ="alertButton" value="Send">' +
              '<input type="button" id="cancelRequest" class ="alertButton" value="Cancel">' +
              '<input type="hidden" id = "'+id+'" name = "updateRowId">';

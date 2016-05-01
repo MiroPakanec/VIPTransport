@@ -90,9 +90,11 @@ function getNotifications(handleData, ammount, skip, type){
       dataType : 'json',
       data: data,
       success: function(response){
+          console.log(response);
           handleData(response);
       },
       error: function(response){
+        console.log(response);
       }
   });
 }

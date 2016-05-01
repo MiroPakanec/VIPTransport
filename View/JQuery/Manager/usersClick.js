@@ -1,5 +1,9 @@
 $(function(){
 
+  $('#notifications').on('click', function(){
+    window.location="notificationsPage.html";
+  });
+
   //manage type input
   $('.typeButton').on('click', function(){
     $('.typeButton').each(function(){

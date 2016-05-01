@@ -5,7 +5,10 @@
   if(isset($_POST['email'], $_POST['firstName'], $_POST['middleName'], $_POST['lastName'],
           $_POST['password'], $_POST['phone'])){
 
-    $type = $_POST['type'];
+    $type = 'customer';
+    if(isset($_POST['type']))
+      $type = $_POST['type'];
+
     $userControllerObject = new UserController();
     $response = $userControllerObject->registerUser(
         $_POST['email'],

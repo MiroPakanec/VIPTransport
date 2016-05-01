@@ -6,6 +6,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/user
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/userModel.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/sessionController.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validationController.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/notificationController.php';
 
   class UserController{
 
@@ -15,7 +16,9 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validati
       $validationControllerObject = new ValidationController();
       $userDataAccessObject = new UserInsertDatabaseAccess();
 
-      if(strlen($type) == 0 || $_SESSION['type'] != 'manager')
+      if(!isset($_SESSION['type']))
+        $type = 'customer';
+      else if($_SESSION['type'] != 'manager')
         $type = 'customer';
 
       $userModelObject = new UserModel($email, $fname, $mname, $lname, $password, $phone, $type, null);
@@ -24,7 +27,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validati
         return 0;
 
       $userModelObject->setPassword(password_hash($password , PASSWORD_BCRYPT));
-      return $userDataAccessObject->registerUser($userModelObject);
+      $response = $userDataAccessObject->registerUser($userModelObject);
+
+      $this->notify($response, $userModelObject, 'registration', $this->getRegistrationMessage($userModelObject));
+
+      return $response;
     }
 
     public function updateUser($email, $fname, $mname, $lname, $phone){
@@ -118,12 +125,11 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validati
       $wClause = " WHERE Email = '" . $email . "'";
 
       //get populated user model from db
-      $userModelObject = $userDataAccessObject->getUserData($wClause)[0];
-
-      if(strlen($userModelObject->getPassword()) == 0)
+      $userModelArray = $userDataAccessObject->getUserData($wClause);
+      if(sizeof($userModelArray) == 0)
         return 'Incorrect email';
 
-      if(!password_verify($password, $userModelObject->getPassword()))
+      if(!password_verify($password, $userModelArray[0]->getPassword()))
         return 'Incorrect password';
       else
         return 'in';
@@ -151,6 +157,70 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validati
       $sessionControllerObject = new SessionController();
       if(!$sessionControllerObject->sessionStarted())
         $sessionControllerObject->startSession();
+    }
+
+    private function notify($registrationResponse, $userModelObject, $action, $message){
+
+      if($registrationResponse != 'Registration successful')
+        return 0;
+
+      $notificationControllerObject = new NotificationController();
+      $userArray = $this->getUserEmails($userModelObject->getEmail());
+
+      $errorCounter = 0;
+      foreach ($userArray as $userEmail) {
+
+        $notificationArray = $this->createNotificationArray($userEmail, $userModelObject, $message);
+        $errorCounter += $notificationControllerObject->createNotification($notificationArray);
+      }
+
+      if($errorCounter == 0)
+        return 1;
+
+      return 0;
+    }
+
+
+    private function getUserEmails($email){
+
+      $userArray = array();
+      array_push($userArray, $email);
+
+      //might need to add managers
+
+      return $userArray;
+    }
+
+    private function createNotificationArray($userEmail, $userModelObject, $message){
+
+      $notificationArray = array();
+      $notificationText = '<strong><a href="notificationDetailPage.html?type=user&id=You">You</a></strong> are registered!';
+
+      $notificationArray['text'] = $notificationText;
+      $notificationArray['reciever'] = $userEmail;
+      $notificationArray['type'] = 'user';
+      $notificationArray['action'] = 'register';
+      $notificationArray['message'] = $message;
+      $notificationArray['read'] = false;
+      $notificationArray['date'] = date("Y-m-d H:i:s");
+
+      return $notificationArray;
+    }
+
+    private function getRegistrationMessage($userModelObject){
+
+      $message = '';
+
+      if($userModelObject->getType() == 'customer')
+        $message = 'Welcome to VIPTransport '.$userModelObject->getFname().'! If you wish to create an order, click <a href="newOrderPage.html"><strong>HERE</strong></a>.'.
+                   'We wish you a pleasent journey.';
+      else if($userModelObject->getType() == 'transporter')
+        $message = 'Welcome on board '.$userModelObject->getFname().'! Click <strong><a href="myTransportsPage.html">HERE</a></strong>'.
+                   ' and check your scheduled transports. Have a sweet first journey.';
+      else if($userModelObject->getType() == 'manager')
+        $message = 'Welcome on board '.$userModelObject->getFname().'! We hope you will have a good time with VIPTransport.';
+
+      return $message;
     }
 
     private function createModelObject($email, $fname, $lname, $type){
