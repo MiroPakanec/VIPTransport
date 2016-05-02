@@ -147,6 +147,27 @@ function getCompany(handleData, email){
   });
 }
 
+function getCars(handleData, spz){
+
+  data = {};
+  data['spz'] = spz;
+
+  console.log(data);
+
+  $.ajax({
+      type: 'POST',
+      url: '../../Server/Responses/getCars.php',
+      dataType : 'json',
+      data: data,
+      success: function(response){
+          handleData(response);
+      },
+      error:function(response){
+        console.log(response);
+      }
+  });
+}
+
 function getTransports(handleData, id, dateFrom, dateTo, email){
 
   data = {};
@@ -155,20 +176,15 @@ function getTransports(handleData, id, dateFrom, dateTo, email){
   data['dateFrom'] = dateFrom;
   data['dateTo'] = dateTo;
 
-  console.log(data);
-
   $.ajax({
       type: 'POST',
       url: '../../Server/Responses/getTransports.php',
       dataType : 'json',
       data: data,
       success: function(response){
-          console.log(response);
           handleData(response);
       },
       error:function(response){
-        console.log(response);
-
       }
   });
 }

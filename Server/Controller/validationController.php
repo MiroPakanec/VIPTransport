@@ -54,6 +54,16 @@
       return $errorCounter;
     }
 
+    public function validateCar($carModelObject){
+
+      $errorCounter = 0;
+
+      if(!empty($carModelObject->getSpz()))
+        $errorCounter += $this->validateInput($carModelObject->getSpz(), '^[a-zA-Z0-9]+$^', 50, 6, false);
+
+      return $errorCounter;
+    }
+
     public function validateSearch($email, $fname, $lname, $type){
 
       $errorCounter = 0;
