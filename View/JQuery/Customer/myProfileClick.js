@@ -14,7 +14,7 @@ $(function (){
 
   $('#changePasswordSelection').on('click', function(){
 
-    $('#formSelection').hide();
+    $('#formSelection').hide(); 
     $('#passwordForm').fadeIn(500);
   }),
 

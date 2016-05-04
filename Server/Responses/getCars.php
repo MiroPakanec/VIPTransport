@@ -33,17 +33,19 @@
     $carArray['MandatoryInsurance'] = $carModelObject->getMandatoryInsurance();
     $carArray['AccidentInsurance'] = $carModelObject->getAccidentInsurance();
     $carArray['Mealige'] = $carModelObject->getMealige();
-    $carArray['Relative_mealige'] = $carModelObject->getRelativeMealige();
+    $carArray['RelativeMealige'] = $carModelObject->getRelativeMealige();
 
     //services
     $carServicesArray = array();
     $indexService = 0;
-    foreach ($carModelObject->getServices() as $CarServiceModel) {
+    foreach ($carModelObject->getServices() as $carServiceModel) {
 
       $serviceArray = array();
-      $serviceArray['Id'] = $CarServiceModel->getId();
-      $serviceArray['Spz'] = $CarServiceModel->getSpz();
-      $serviceArray['Issue'] = $CarServiceModel->getIssue();
+      $serviceArray['Id'] = $carServiceModel->getId();
+      $serviceArray['Spz'] = $carServiceModel->getSpz();
+      $serviceArray['Issue'] = $carServiceModel->getIssue();
+      $serviceArray['RepareDate'] = $carServiceModel->getRepareDate();
+      $serviceArray['Mealige'] = $carServiceModel->getMealige();
 
       $indexService++;
       $carServicesArray['Service '.$indexService] = $serviceArray;

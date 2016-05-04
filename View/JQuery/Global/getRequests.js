@@ -74,7 +74,6 @@ function getNotificationsAmmount(handleData){
   });
 }
 
-
 function getNotifications(handleData, ammount, skip, type){
 
   //skip = 0;
@@ -158,6 +157,42 @@ function getCars(handleData, spz){
       type: 'POST',
       url: '../../Server/Responses/getCars.php',
       dataType : 'json',
+      data: data,
+      success: function(response){
+
+          console.log(response);
+          handleData(response);
+      },
+      error:function(response){
+        console.log(response);
+      }
+  });
+}
+
+function updateCar(handleData, data){
+
+  console.log(data);
+
+  $.ajax({
+      type: 'POST',
+      url: '../../Server/Responses/updateCar.php',
+      data: data,
+      success: function(response){
+          handleData(response);
+      },
+      error:function(response){
+      }
+  });
+}
+
+function deleteCarSpz(handleData, spz){
+
+  data = {};
+  data['spz'] = spz;
+
+  $.ajax({
+      type: 'POST',
+      url: '../../Server/Responses/deleteCar.php',
       data: data,
       success: function(response){
           handleData(response);

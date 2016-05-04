@@ -58,8 +58,38 @@
 
       $errorCounter = 0;
 
-      if(!empty($carModelObject->getSpz()))
-        $errorCounter += $this->validateInput($carModelObject->getSpz(), '^[a-zA-Z0-9]+$^', 50, 6, false);
+      //if(!empty($carModelObject->getSpz()))
+        $errorCounter += $this->validateInput($carModelObject->getSpz(), '^[a-zA-Z0-9]+$^', 8, 8, false);
+      //if(!empty($carModelObject->getBrand()))
+        $errorCounter += $this->validateInput($carModelObject->getBrand(), '^[a-z]+$^', 50, 3, false);
+      //if(!empty($carModelObject->getType()))
+        $errorCounter += $this->validateInput($carModelObject->getType(), '^[a-zA-Z0-9-]+$^', 50, 3, false);
+      //if(!empty($carModelObject->getSeats()))
+        $errorCounter += $this->validateIntegerInput($carModelObject->getSeats(), 50, 2, false);
+      if(!empty($carModelObject->getEmissionCheck()))
+        $errorCounter += $this->validateDateString($carModelObject->getEmissionCheck());
+      if(!empty($carModelObject->getStk()))
+        $errorCounter += $this->validateDateString($carModelObject->getStk());
+      if(!empty($carModelObject->getMandatoryInsurance()))
+        $errorCounter += $this->validateDateString($carModelObject->getMandatoryInsurance());
+      if(!empty($carModelObject->getAccidentInsurance()))
+        $errorCounter += $this->validateDateString($carModelObject->getAccidentInsurance());
+      if(!empty($carModelObject->getMealige()))
+        $errorCounter += $this->validateDecimalInput($carModelObject->getMealige(), 1000000, 0, false);
+      if(!empty($carModelObject->getRelativeMealige()))
+        $errorCounter += $this->validateDecimalInput($carModelObject->getRelativeMealige(), 1000000, 0, false);
+
+      if(!empty($carModelObject->getStickers()))
+        foreach ($carModelObject->getStickers() as $sticker) {
+
+          $errorCounter += $this->validateSticker($sticker);
+        }
+
+      if(!empty($carModelObject->getServices()))
+        foreach ($carModelObject->getServices() as $service) {
+
+          $errorCounter += $this->validateService($service);
+        }
 
       return $errorCounter;
     }
@@ -213,6 +243,25 @@
       return 0;
     }
 
+    private function validateDecimalInput($value, $maxValue, $minValue, $skip){
+
+      $regex = '/^(\d+\.?\d{0,9}|\.\d{1,9})$/';
+      if(empty($value)){
+        if($skip)
+          return 0;
+
+        return 1;
+      }
+      else if($value > $maxValue)
+        return 1;
+      else if($value < $minValue)
+        return 1;
+      else if(!preg_match($regex, $value))
+        return 1;
+
+      return 0;
+    }
+
     private function validateDateString($date)
     {
         $d = DateTime::createFromFormat('Y-m-d', $date);
@@ -228,6 +277,27 @@
         return 1;
 
       return 0;
+    }
+
+    private function validateSticker($sticker){
+
+      $errorCounter = 0;
+
+      $errorCounter += $this->validateInput($sticker['country'], '^[A-Z]+$^', 2, 1, false);
+      $errorCounter += $this->validateDateString($sticker['expirationDate']);
+
+      return $errorCounter;
+    }
+
+    private function validateService($service){
+
+      $errorCounter = 0;
+
+      $errorCounter += $this->validateInput($service['issue'], '^[A-Za-z0-9]+$^', 50, 3, false);
+      $errorCounter += $this->validateDecimalInput($service['mealige'], 1000000, 0, false);
+      $errorCounter += $this->validateDateString($service['repareDate']);
+
+      return $errorCounter;
     }
 
     private function validateCorrectPassword($password, $storedPassword){

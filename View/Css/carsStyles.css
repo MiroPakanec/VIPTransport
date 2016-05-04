@@ -1,0 +1,299 @@
+.carTableArea{
+
+  float: left;
+  margin-left: 3%;
+  margin-top: 0.5%;
+  height: 350px;
+  width: 94%;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+  margin-bottom: 1%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  -webkit-transition: height 0.5s; /* Safari */
+  transition: height 0.5s;
+}
+
+.carTableArea::-webkit-scrollbar {
+    width: 1em;
+}
+
+.carTableArea::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.carTableArea::-webkit-scrollbar-thumb {
+  background-color: white;
+  outline: 1px solid slategrey;
+}
+
+.updateFormContainer::-webkit-scrollbar {
+    width: 1em;
+}
+
+.updateFormContainer::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.updateFormContainer::-webkit-scrollbar-thumb {
+  background-color: white;
+  outline: 1px solid slategrey;
+}
+
+.responseArea{
+
+  height: 8%;
+  width: 72.5%;
+  float: left;
+  margin-left: 3%;
+  margin-top: 1%;
+  padding: 1% 1%;
+
+  background-color: rgba(255,255,255,0.2);
+  border : 1px solid rgba(255,255,255,0.4);
+
+  font-family: myFont;
+  font-size: 20px;
+  color: white;
+}
+
+
+.alertButton{
+
+  width: 5%;
+  height: 30%;
+  margin-right: 1%;
+
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+
+  font-family: myFont;
+  outline: none;
+}
+
+.alertButton:hover{
+    background-color: rgba(255,255,255,0.3);
+}
+
+p{
+  margin: 0;
+  padding: 0;
+}
+
+strong{
+
+  text-decoration: none;
+  font-weight: normal;
+  color: red;
+}
+
+.subTitle{
+
+  font-size: 25px !important;
+  margin-left: 15% !important;
+}
+
+.newCarRow{
+
+  width: 100% !important;
+  margin: 0 !important;
+
+  -webkit-transition: opacity 0.9s; /* Safari */
+  transition: opacity 0.9s;
+
+  -webkit-transition: height 0.8s; /* Safari */
+  transition: height 0.8s;
+}
+
+#newCarButton{
+
+  float: right;
+  width: 10%;
+  height: 100%;
+  padding: 0;
+  margin-right: 13%;
+
+  background-color: rgba(255,255,255,0);
+  border : 1px solid rgba(255,255,255,0.3);
+  color: white;
+
+  font-size: 15px;
+  font-family: myFont;
+}
+
+#newCarButton:hover{
+
+  background-color: rgba(255,255,255,0.1);
+}
+
+.carButton{
+
+  float: left;
+  width: 11%;
+  height: 90%;
+  padding: 0;
+
+  background-color: rgba(255,255,255,0);
+  border : 1px solid rgba(255,255,255,0.3);
+  outline: none;
+  color: white;
+
+  font-size: 15px;
+  font-family: myFont;
+}
+
+.carButton:hover{
+
+  background-color: rgba(255,255,255,0.1);
+}
+
+.carActionButton{
+
+  float: left;
+  height : 90%;
+  margin-bottom: 2%;
+}
+
+/* UPDATE */
+.updateFormContainer{
+
+  height: 0%;
+  width: 70%;
+  float: left;
+  margin-left: 15%;
+
+  background-color: rgba(255,255,255,0.1);
+
+  transition: height 0.5s;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#formArea{
+
+  margin: auto;
+  width: 100%;
+}
+
+#carDetails{
+
+  margin: auto;
+  margin-top: 1%;
+  margin-bottom: 3%;
+  font-size : 35px;
+}
+
+.carRow{
+
+  float: left;
+  margin-left: 15%;
+  height : 35px;
+  width: 80%;
+  margin-top: 1%;
+}
+
+.rowTitle{
+
+  float: left;
+  height: 100%;
+  width: 35%;
+  text-align: right;
+  padding-right: 5%;
+  line-height: 180%;
+
+  font-size: 18px;
+}
+
+.rowTextInput{
+
+  float: left;
+  margin-top: 0.5%;
+  padding-left: 5%;
+  height: 60%;
+  width: 25%;
+
+  outline: none;
+  font-family: myFont;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.error{
+
+  float: left;
+  width: 25%;
+  height: 70%;
+  margin-top: 0.5%;
+  line-height: 130%;
+
+  color: red;
+  background-color: rgba(255,0,0,0.1);
+  border: 1px solid rgba(255,0,0,0.3);
+  text-align: center;
+  margin-left: 1%;
+
+  display: none;
+}
+
+.carSubArea{
+
+  width: 100%;
+  float: left;
+  border-top: 1px solid rgba(255,255,255,0.3);
+}
+
+.stateInput{
+
+  width:14.5%;
+  text-align: center;
+  line-height: 200%;
+}
+
+#readyButton{
+  margin-right: 1%;
+  background-color: rgba(255,255,255,0.2);
+}
+
+#offhandButton{
+
+  background-color: rgba(255,255,255,0);
+}
+
+#addStickerButton, #addServiceButton{
+
+  margin-left: 55%;
+}
+
+#removeStickerButton, #removeServiceButton{
+
+  margin-left: 1%;
+}
+
+#stickersArea, #servicesArea{
+
+  margin-top: 2%;
+  padding-top: 2%;
+}
+
+.stickerArea, .serviceArea{
+
+  float: left;
+  text-align: left;
+  width: 100%;
+  height: 100%;
+}
+
+.typeButtonArea{
+
+  float: left;
+  height: 40px;
+  width: 100%;
+}
+
+#carSubmitButton{
+
+  margin-left: 38.5%;
+  margin-right: 1%;
+}

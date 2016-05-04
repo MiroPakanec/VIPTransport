@@ -11,10 +11,11 @@
     <script src="../JQuery/Global/headerButtons.js"></script>
     <script src="../JQuery/Manager/carsLoad.js"></script>
     <script src="../JQuery/Manager/carsClick.js"></script>
+    <script src="../JQuery/Manager/carsValidate.js"></script>
     <script src="../JQuery/Global/notificationsAmmount.js"></script>
 
     <meta charset="UTF-8">
-    <title>About Us</title>
+    <title>Cars</title>
   </head>
   <body>
     <div class="container">
@@ -29,8 +30,82 @@
       <div class="titleArea">
         <div class="title largeText" id="titleOrder">Cars</div>
       </div>
-      <div class="employeesTableArea" id="employeesTableArea">
+      <div class="carTableArea" id="carTableArea"></div>
+      <div class="carRow newCarRow">
+        <input type="button" value="New car" class="buttonHome" id="newCarButton">
+      </div>
+      <div class="updateFormContainer">
+        <div id="formArea">
+          <div id="updateForm">
+            <div class="smallText" id="carDetails">Car details</div>
+            <div class="carRow">
+              <div class="rowTitle smallText">Spz:*</div>
+              <input type="text" class="rowTextInput carAttribute" id="spzInput" name="spz" placeholder="e.g. KM-201AL">
+              <div class="error smallText" id="spzError">Error</div>
+            </div>
+            <div class="carRow">
+              <div class="rowTitle smallText">Brand:*</div>
+              <input type="text" class="rowTextInput carAttribute" id="brandInput" name="brand" placeholder="e.g. hyundai">
+              <div class="error smallText" id="brandError">Error</div>
+            </div>
+            <div class="carRow">
+              <div class="rowTitle smallText">Type:*</div>
+              <input type="text" class="rowTextInput carAttribute" id="typeInput" name="type" placeholder="e.g. Santa Fe Sport">
+              <div class="error smallText" id="typeError">Error</div>
+            </div>
+            <div class="carRow">
+              <div class="rowTitle smallText">Number of seats:*</div>
+              <input type="text" class="rowTextInput carAttribute" id="seatsInput" name="seats" placeholder="e.g. 6">
+              <div class="error smallText" id="seatsError">Error</div>
+            </div>
+            <div class="carRow">
+              <div class="rowTitle smallText">State:*</div>
+              <div class="stateInput carButton" id="readyButton">Ready</div>
+              <div class="stateInput carButton" id="offhandButton">Offhand</div>
+              <input type="hidden" class="carAttribute" id="stateInput" value="ready" name="state">
+              <div class="error smallText" id="stateError">Error</div>
+            </div>
+            <div class="carRow">
+              <div class="rowTitle smallText">Emission check (expiration):</div>
+              <input type="text" class="rowTextInput carAttribute" id="emissionCheckInput" name="emissionCheck" placeholder="e.g. 2016-12-25">
+              <div class="error smallText" id="emissionCheckError">Error</div>
+            </div>
+            <div class="carRow">
+              <div class="rowTitle smallText">Stk (expiration):</div>
+              <input type="text" class="rowTextInput carAttribute" id="stkInput" name="stk" placeholder="e.g. 2016-12-25">
+              <div class="error smallText" id="stkError">Error</div>
+            </div>
+            <div class="carRow">
+              <div class="rowTitle smallText">Mandatory insurance (expiration):</div>
+              <input type="text" class="rowTextInput carAttribute" id="mandatoryInsuranceInput" name="mandatoryInsurance" placeholder="e.g. 2016-12-25">
+              <div class="error smallText" id="mandatoruInsuranceError">Error</div>
+            </div>
+            <div class="carRow">
+              <div class="rowTitle smallText">Accident insurance (expiration):</div>
+              <input type="text" class="rowTextInput carAttribute" id="accidentInsuranceInput" name="accidentInsurance" placeholder="e.g. 2016-12-25">
+              <div class="error smallText" id="accidentInsuranceError">Error</div>
+            </div>
+            <div class="carRow">
+              <div class="rowTitle smallText">Mealige:</div>
+              <input type="text" class="rowTextInput carAttribute" id="mealigeInput" name="mealige" placeholder="e.g. 205.6">
+              <div class="error smallText" id="mealigeError">Error</div>
+            </div>
+            <div class="carRow">
+              <div class="rowTitle smallText">Relative mealige:</div>
+              <input type="text" class="rowTextInput carAttribute" id="relativeMealigeInput" name="relativeMealige" placeholder="e.g. 35.1">
+              <div class="error smallText" id="relativeMealigeError">Error</div>
+            </div>
 
+            <div class="carSubArea" id="stickersArea"></div>
+            <div class="carSubArea" id="servicesArea"></div>
+
+            <div class="carRow"></div>
+            <div class="typeButtonArea">
+              <input type="button" class="carActionButton carButton" id="carSubmitButton" value="Submit">
+              <input type="button" class="carActionButton carButton" id="carCancelButton" value="Cancel">
+            </div>
+          </div>
+        </div>
       </div>
       <div class="responseArea" id="responseArea"></div>
       <input type="hidden" id="type" value="customer">

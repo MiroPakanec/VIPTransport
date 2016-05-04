@@ -25,7 +25,7 @@ $(function (){
 
     $('#responseArea').slideUp(300).html('');
   }),
-
+ 
   $('#titleTransport').click(function(){
 
     $('#orderTableArea').html('');

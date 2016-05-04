@@ -15,7 +15,7 @@ $(function(){
   });
 
   //manage text input
-  $('#emailInput').on('keyup', function(){
+  $('#emailInput').on('keyup', function(){ 
 
     manageInput($(this).val(), /^[a-zA-Z0-9-_.@]*$/, $(this).attr('id'), '#emailRequest');
     $('#emailRequest').val($(this).val());
