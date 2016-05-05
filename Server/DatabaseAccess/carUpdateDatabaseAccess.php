@@ -10,42 +10,66 @@
 
       try{
 
-        $carSuccess = $stickerSuccess = $serviceSuccess = false;
+        $errorString = '';
+        $dbc = DatabaseConnection::openConnection();
+        $dbc->autocommit(false);
 
-        $dbcCar = DatabaseConnection::openConnection();
-        $dbcStickers = DatabaseConnection::openConnection();
-        $dbcServices = DatabaseConnection::openConnection();
+        $carUpdateQuery = $this->getCarUpdateQuery($dbc, $carModelObject);
+        $stickerDeleteQuery = $this->getDeleteQuery($dbc, $carModelObject, 'car_sticker');
+        $stickerInsertArray = $this->getStickerInsertQueryArray($dbc, $carModelObject);
+        $serviceDeleteQuery = $this->getDeleteQuery($dbc, $carModelObject, 'car_service');
+        $serviceInsertArray = $this->getServiceInsertQueryArray($dbc, $carModelObject);
 
-        /*$dbcCar->autocommit(false);
-        $dbcStickers->autocommit(false);
-        $dbcServices->autocommit(false);*/
+        $dbc = $this->processCarUpdate($dbc, $carUpdateQuery);
+        $errorString .= $dbc->error;
+        $dbc = $this->processDeleteInsert($dbc, $stickerDeleteQuery, $stickerInsertArray);
+        $errorString .= $dbc->error;
+        $dbc = $this->processDeleteInsert($dbc, $serviceDeleteQuery, $serviceInsertArray);
+        $errorString .= $dbc->error;
 
-        $carSuccess = $this->commitCarUpdate($dbcCar, $carModelObject);
-        $stickerSuccess = $this->commitStickerUpdate($dbcStickers, $carModelObject);
-        $servicesSuccess = $this->commitServiceUpdate($dbcServices, $carModelObject);
 
-        if($carSuccess == 1 && $stickerSuccess == 1 && $servicesSuccess == 1){
+        //$errorString .= 'fuck up';
 
-          /*$dbcCar->commit();
-          $dbcStickers->commit();
-          $dbcServices->commit();*/
-          return 1;
+        if(strlen($errorString) == 0){
+
+            $dbc->commit();
+            return 1;
         }
         else{
 
-          /*$dbcCar->rollback();
-          $dbcStickers->rollback();
-          $dbcServices->rollback();*/
-          return 0;
+            $dbc->rollback();
+            return 0;
         }
       }
       catch(Exception $e){
 
+        $dbc->rollback();
         return 0;
       }
     }
 
-    private function commitCarUpdate($dbc, $carModelObject){
+    private function processCarUpdate($dbc, $query){
+
+      $dbc->query($query);
+      return $dbc;
+    }
+
+    private function processDeleteInsert($dbc, $deleteQuery, $insertQueryArray){
+
+      $dbc->query($deleteQuery);
+
+      if(empty($insertQueryArray))
+        return $dbc;
+
+      foreach ($insertQueryArray as $insertQuery) {
+
+        $dbc->query($insertQuery);
+      }
+
+      return $dbc;
+    }
+
+    private function getCarUpdateQuery($dbc, $carModelObject){
 
       try{
 
@@ -61,18 +85,13 @@
         $mealige = $dbc->real_escape_string(trim($carModelObject->getMealige()));
         $relativeMealige = $dbc->real_escape_string(trim($carModelObject->getRelativeMealige()));
 
-        $wClause = " WHERE Spz = '{$spz}'";
+        $wClause = $this->getWClause($dbc, $carModelObject);
         $queryCar = "UPDATE car SET Brand = '{$brand}', Type = '{$type}', Seats = {$seats}, State = '{$state}', ".
                     "Emission_check = '{$emissionCheck}', Stk = '{$stk}', Mandatory_insurance = '{$mandatoryInsurance}', ".
                     "Accident_insurance = '{$accidentInsurance}', Mealige = {$mealige}, Relative_mealige = {$relativeMealige}".
                     $wClause;
 
-        $dbc->query($queryCar);
-
-        if($dbc->error)
-         return 0;
-       else
-         return 1;
+        return $queryCar;
       }
       catch(Exception $e){
 
@@ -80,109 +99,76 @@
       }
     }
 
-    private function commitStickerUpdate($dbc, $carModelObject){
+    private function getStickerInsertQueryArray($dbc, $carModelObject){
 
       $spz = $dbc->real_escape_string(trim($carModelObject->getSpz()));
       $stickers = $carModelObject->getStickers();
+      $insertQueryArray = array();
 
-      $wClause = " WHERE Spz = '{$spz}'";
-
-      $this->deleteFromTable('car_sticker', $wClause);
       if(empty($stickers))
-        return true;
+        return $insertQueryArray;
 
-      $insertRowAffected = 0;
       foreach ($stickers as $sticker) {
 
-        $insertRowAffected += $this->insertSticker($spz, $sticker);
+         $query = $this->getStickerInsertQuery($dbc, $sticker, $spz);
+         array_push($insertQueryArray, $query);
       }
 
-      if($insertRowAffected == sizeof($stickers));
-        return true;
-
-      return false;
+      return $insertQueryArray;
     }
 
-    private function commitServiceUpdate($dbc, $carModelObject){
+    private function getServiceInsertQueryArray($dbc, $carModelObject){
 
       $spz = $dbc->real_escape_string(trim($carModelObject->getSpz()));
       $services = $carModelObject->getServices();
+      $insertQueryArray = array();
 
-      $wClause = " WHERE Spz = '{$spz}'";
-
-      $this->deleteFromTable('car_service', $wClause);
       if(empty($services))
-        return true;
+        return $insertQueryArray;
 
-      $insertRowAffected = 0;
       foreach ($services as $service) {
 
-        $insertRowAffected += $this->insertService($spz, $service);
+         $query = $this->getServiceInsertQuery($dbc, $service, $spz);
+         array_push($insertQueryArray, $query);
       }
 
-      if($insertRowAffected == sizeof($services));
-        return true;
-
-      return false;
+      return $insertQueryArray;
     }
 
-    private function deleteFromTable($table, $wClause){
+    private function getDeleteQuery($dbc, $carModelObject, $table){
 
-      try{
-
-        $dbc = DatabaseConnection::openConnection();
-
-        $query = "DELETE FROM ".$table.$wClause;
-        $dbc->query($query);
-        return $dbc->affected_rows;
-      }
-      catch(Exception $e){
-
-        return false;
-      }
+      $wClause = $this->getWClause($dbc, $carModelObject);
+      $query = "DELETE FROM ".$table.$wClause;
+      return $query;
     }
 
-    private function insertSticker($spz, $sticker){
+    private function getWClause($dbc, $carModelObject){
 
-      try{
-
-        $dbc = DatabaseConnection::openConnection();
-
-        $country = $dbc->real_escape_string(trim($sticker['country']));
-        $expirationDate = $dbc->real_escape_string(trim($sticker['expirationDate']));
-
-        $query = "INSERT INTO car_sticker (Spz, Country, Expiration_date)" .
-                 " VALUES ('{$spz}', '{$country}', '{$expirationDate}')";
-
-        $dbc->query($query);
-        return $dbc->affected_rows;
-      }
-      catch(Exception $e){
-
-        return false;
-      }
+      $spz = $dbc->real_escape_string(trim($carModelObject->getSpz()));
+      $wClause = " WHERE Spz = '{$spz}'";
+      return $wClause;
     }
 
-    private function insertService($spz, $service){
+    private function getStickerInsertQuery($dbc, $sticker, $spz){
 
-      try{
+      $country = $dbc->real_escape_string(trim($sticker['country']));
+      $expirationDate = $dbc->real_escape_string(trim($sticker['expirationDate']));
 
-        $dbc = DatabaseConnection::openConnection();
+      $query = "INSERT INTO car_sticker (Spz, Country, Expiration_date)" .
+               " VALUES ('{$spz}', '{$country}', '{$expirationDate}')";
 
-        $issue = $dbc->real_escape_string(trim($service['issue']));
-        $mealige = $dbc->real_escape_string(trim($service['mealige']));
-        $repareDate = $dbc->real_escape_string(trim($service['repareDate']));
+      return $query;
+    }
 
-        $query = "INSERT INTO car_service (Spz, Issue, Repare_date, Mealige)" .
-                 " VALUES ('{$spz}', '{$issue}', '{$repareDate}', '{$mealige}')";
+    private function getServiceInsertQuery($dbc, $service, $spz){
 
-        $dbc->query($query);
-        return $dbc->affected_rows;
-      }
-      catch(Exception $e){
+      $issue = $dbc->real_escape_string(trim($service['issue']));
+      $mealige = $dbc->real_escape_string(trim($service['mealige']));
+      $repareDate = $dbc->real_escape_string(trim($service['repareDate']));
 
-        return false;
-      }
+      $query = "INSERT INTO car_service (Spz, Issue, Repare_date, Mealige)" .
+               " VALUES ('{$spz}', '{$issue}', '{$repareDate}', '{$mealige}')";
+      return $query;
     }
   }
 
