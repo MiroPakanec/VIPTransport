@@ -4,9 +4,9 @@
   require_once('databaseConnection.php');
   require_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/carModel.php';
 
-  class CarUpdateDatabaseAccess{
+  class CarInsertDatabaseAccess{
 
-    public function updateCar($carModelObject){
+    public function insertCar($carModelObject){
 
       try{
 
@@ -14,21 +14,16 @@
         $dbc = DatabaseConnection::openConnection();
         $dbc->autocommit(false);
 
-        $carUpdateQuery = $this->getCarUpdateQuery($dbc, $carModelObject);
-        $stickerDeleteQuery = $this->getDeleteQuery($dbc, $carModelObject, 'car_sticker');
+        $carInsertQuery = $this->getCarInsertQuery($dbc, $carModelObject);
         $stickerInsertArray = $this->getStickerInsertQueryArray($dbc, $carModelObject);
-        $serviceDeleteQuery = $this->getDeleteQuery($dbc, $carModelObject, 'car_service');
         $serviceInsertArray = $this->getServiceInsertQueryArray($dbc, $carModelObject);
 
-        $dbc = $this->processCarUpdate($dbc, $carUpdateQuery);
+        $dbc = $this->processCarInsert($dbc, $carInsertQuery);
         $errorString .= $dbc->error;
-        $dbc = $this->processDeleteInsert($dbc, $stickerDeleteQuery, $stickerInsertArray);
+        $dbc = $this->processArrayInsert($dbc, $stickerInsertArray);
         $errorString .= $dbc->error;
-        $dbc = $this->processDeleteInsert($dbc, $serviceDeleteQuery, $serviceInsertArray);
+        $dbc = $this->processArrayInsert($dbc, $serviceInsertArray);
         $errorString .= $dbc->error;
-
-        //return 0;
-        //$errorString .= 'fuck up';
 
         if(strlen($errorString) == 0){
 
@@ -48,15 +43,13 @@
       }
     }
 
-    private function processCarUpdate($dbc, $query){
+    private function processCarInsert($dbc, $query){
 
       $dbc->query($query);
       return $dbc;
     }
 
-    private function processDeleteInsert($dbc, $deleteQuery, $insertQueryArray){
-
-      $dbc->query($deleteQuery);
+    private function processArrayInsert($dbc, $insertQueryArray){
 
       if(empty($insertQueryArray))
         return $dbc;
@@ -69,7 +62,7 @@
       return $dbc;
     }
 
-    private function getCarUpdateQuery($dbc, $carModelObject){
+    private function getCarInsertQuery($dbc, $carModelObject){
 
       try{
 
@@ -85,11 +78,9 @@
         $mealige = $dbc->real_escape_string(trim($carModelObject->getMealige()));
         $relativeMealige = $dbc->real_escape_string(trim($carModelObject->getRelativeMealige()));
 
-        $wClause = $this->getWClause($dbc, $carModelObject);
-        $queryCar = "UPDATE car SET Brand = '{$brand}', Type = '{$type}', Seats = {$seats}, State = '{$state}', ".
-                    "Emission_check = '{$emissionCheck}', Stk = '{$stk}', Mandatory_insurance = '{$mandatoryInsurance}', ".
-                    "Accident_insurance = '{$accidentInsurance}', Mealige = {$mealige}, Relative_mealige = {$relativeMealige}".
-                    $wClause;
+        $queryCar = "INSERT into car (Spz, Brand, Type, Seats, State, Emission_check, Stk, Mandatory_insurance, Accident_insurance, ".
+                 "Mealige, Relative_mealige) VALUES ('{$spz}', '{$brand}', '{$type}', '{$seats}', '{$state}', '{$emissionCheck}', ".
+                 "'{$stk}', '{$mandatoryInsurance}', '{$accidentInsurance}', '{$mealige}', '{$relativeMealige}')";
 
         return $queryCar;
       }
@@ -133,13 +124,6 @@
       }
 
       return $insertQueryArray;
-    }
-
-    private function getDeleteQuery($dbc, $carModelObject, $table){
-
-      $wClause = $this->getWClause($dbc, $carModelObject);
-      $query = "DELETE FROM ".$table.$wClause;
-      return $query;
     }
 
     private function getWClause($dbc, $carModelObject){

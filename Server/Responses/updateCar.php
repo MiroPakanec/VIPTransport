@@ -4,7 +4,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/carContr
 
 
   if(isset($_POST['spz'], $_POST['brand'], $_POST['type'], $_POST['seats'], $_POST['state'], $_POST['emissionCheck'],
-            $_POST['mandatoryInsurance'], $_POST['accidentInsurance'], $_POST['mealige'], $_POST['relativeMealige'])){
+            $_POST['mandatoryInsurance'], $_POST['accidentInsurance'], $_POST['mealige'], $_POST['relativeMealige'], $_POST['action'])){
 
 
     $stickers = $services = '';
@@ -16,15 +16,13 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/carContr
       $services = $_POST['services'];
 
     $carControllerObject = new CarController();
-    $response = $carControllerObject->updateCar($_POST['spz'], $_POST['brand'], $_POST['type'], $_POST['seats'], $_POST['state'], $_POST['emissionCheck'],
-                  $_POST['stk'], $_POST['mandatoryInsurance'], $_POST['accidentInsurance'], $_POST['mealige'],
-                  $_POST['relativeMealige'], $stickers, $services);
+
+    $response = $carControllerObject->manageCar($_POST['spz'], $_POST['brand'], $_POST['type'], $_POST['seats'], $_POST['state'], $_POST['emissionCheck'],
+                    $_POST['stk'], $_POST['mandatoryInsurance'], $_POST['accidentInsurance'], $_POST['mealige'],
+                    $_POST['relativeMealige'], $stickers, $services, $_POST['action']);
+
 
     echo $response;
-  }
-  else{
-
-    echo 'not set';
   }
 
 ?>

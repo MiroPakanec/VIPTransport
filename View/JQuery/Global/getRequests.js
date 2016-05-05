@@ -190,11 +190,13 @@ function deleteCarSpz(handleData, spz){
   data = {};
   data['spz'] = spz;
 
+  console.log(data);
   $.ajax({
       type: 'POST',
       url: '../../Server/Responses/deleteCar.php',
       data: data,
       success: function(response){
+          console.log(response);
           handleData(response);
       },
       error:function(response){

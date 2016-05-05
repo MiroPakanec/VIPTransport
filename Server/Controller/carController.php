@@ -2,6 +2,7 @@
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/carSelectDatabaseAccess.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/carUpdateDatabaseAccess.php';
+include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/carInsertDatabaseAccess.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/carDeleteDatabaseAccess.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/carModel.php';
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/sessionController.php';
@@ -22,10 +23,11 @@ class CarController{
     return $carSelectDatabaseAccessObject->getCars($wClause);
   }
 
-  public function updateCar($spz, $brand, $type, $seats, $state, $emissionCheck, $stk, $mandatoryInsurance,
-  $accidentInsurance, $mealige, $relativeMealige, $stickers, $services){
+  public function manageCar($spz, $brand, $type, $seats, $state, $emissionCheck, $stk, $mandatoryInsurance,
+  $accidentInsurance, $mealige, $relativeMealige, $stickers, $services, $action){
 
       $carUpdateDatabaseAccessObject = new CarUpdateDatabaseAccess();
+      $carInsertDatabaseAccessObject = new CarInsertDatabaseAccess();
       $carModelObject = new CarModel($spz, $brand, $type, $seats, $state, $emissionCheck, $stk, $mandatoryInsurance,
                                     $accidentInsurance, $mealige, $relativeMealige, $services, $stickers);
 
@@ -33,8 +35,12 @@ class CarController{
       if($this->validateCar($carModelObject, true) == 0)
         return 0;
 
-      return $carUpdateDatabaseAccessObject->updateCar($carModelObject);
-
+      if($action == 'update')
+        return $carUpdateDatabaseAccessObject->updateCar($carModelObject);
+      else if($action == 'insert')
+        return $carInsertDatabaseAccessObject->insertCar($carModelObject);
+      else
+        return 0;
   }
 
   public function deleteCar($spz){

@@ -1,5 +1,9 @@
 $(function (){
 
+  $('#notifications').on('click', function(){
+    window.location="notificationsPage.html";
+  });
+
   $(document).on('click', '.deleteButton', function(){
 
     var spz = $(this).parent().attr('id');
@@ -32,6 +36,7 @@ $(function (){
 
   $(document).on('click', '.editButton', function(){
 
+    $('#carAction').val('update');
     showDetails();
     var spz = $(this).parent().attr('id');
     loadCarDetails(spz);
@@ -53,11 +58,12 @@ $(function (){
 
   $(document).on('click', '#newCarButton', function(){
 
+    $('#carAction').val('insert');
     showDetails();
     generateSubHeader('Stickers', 'stickersArea');
     generateSubHeader('Services', 'servicesArea');
-    generateAddRemoveButton('StickerButton', 'stickersArea');
-    generateAddRemoveButton('ServiceButton', 'servicesArea');
+    generateAddButton('StickerButton', 'stickersArea');
+    generateAddButton('ServiceButton', 'servicesArea');
   });
 
   $(document).on('click', '#addStickerButton', function(){
@@ -69,19 +75,6 @@ $(function (){
     $(this).parent().prev().slideDown(500);
   });
 
-  $(document).on('click', '#removeStickerButton', function(){
-
-    var element = $(this).parent().prev();
-
-    if($(element).attr('class') != 'stickerArea')
-      return;
-
-    $(element).slideUp(500);
-    setTimeout(function(){
-        $(element).remove();
-    },500);
-  });
-
   $(document).on('click', '#addServiceButton', function(){
 
     var html = generateEmptyService();
@@ -91,12 +84,9 @@ $(function (){
     $(this).parent().prev().slideDown(500);
   });
 
-  $(document).on('click', '#removeServiceButton', function(){
+  $(document).on('click', '.removeButton', function(){
 
-    var element = $(this).parent().prev();
-
-    if($(element).attr('class') != 'serviceArea')
-      return;
+    var element = $(this).parent().parent();
 
     $(element).slideUp(500);
     setTimeout(function(){
@@ -104,8 +94,20 @@ $(function (){
     },500);
   });
 
+  $(document).on('click', '#carReloadButton', function(){
+
+    var spz = $('#spzInput').val();
+    clearFields();
+    hideErrors();
+    $('#stickersArea').html('');
+    $('#servicesArea').html('');
+
+    loadCarDetails(spz);
+  });
+
   $(document).on('click', '#carCancelButton', function(){
 
+    $('#carAction').val('');
     hideDetails();
     clearFields();
     hideErrors();
@@ -216,28 +218,33 @@ $(function (){
 function handleUpdateResponse(response){
 
   console.log(response);
+  var value = $('#carAction').val();
+  var verb = '';
+
+  if(value == 'update')
+    verb = 'updated';
+  else
+    verb = 'deleted';
+
   if(response == 1){
 
     $('#carCancelButton').trigger('click');
 
     setTimeout(function(){
 
-      $('#responseArea').html('Car was successfully updated.').css({
+      $('#responseArea').html('Car was successfully '+verb+'.').css({
         'background-color' : 'rgba(0,255,0,0.1)',
         'border-color' : 'rgba(0,255,0,0.4)',
         'color' : 'green'
       }).slideDown(500);
       delaySlideUp('#responseArea', 5000);
     }, 1000);
+    loadCars();
   }
   else if(response == 0){
 
-    /*$('#responseArea').html('Car could not be deleted.').css({
-      'background-color' : 'rgba(255,0,0,0.1)',
-      'border-color' : 'rgba(255,0,0,0.1)',
-      'color' : 'red'
-    });
-    delaySlideUp('#responseArea', 5000);*/
+    $('.innerResponseArea').html('Car could not be '+verb+'.').slideDown(500);
+    delaySlideUp('.innerResponseArea', 5000);
   }
 }
 
@@ -271,6 +278,8 @@ function hideErrors(){
 
     $(this).hide();
   });
+
+  $('.innerResponseArea').hide();
 }
 
 function getCarAttributes(data){
@@ -366,6 +375,7 @@ function handleDeleteResponse(response){
         'color' : 'green'
       });
       delaySlideUp('#responseArea', 5000);
+      loadCars();
   }
   else if(response == 0){
 
@@ -435,8 +445,16 @@ function handleCarDetailsResponse(data){
 
   var car = data['car1'];
 
-  if(car.Spz.length <= 0)
+  if(car == null){
+
+    $('#carCancelButton').trigger('click');
+    setTimeout(function(){
+
+      loadErrorResponse();
+    },1000);
     return;
+  }
+
 
   $('#spzInput').val(car.Spz);
   $('#brandInput').val(car.Brand);
@@ -464,8 +482,18 @@ function handleCarDetailsResponse(data){
     generateServicesHtml(car.Services[index], index);
   }
 
-  generateAddRemoveButton('StickerButton', 'stickersArea');
-  generateAddRemoveButton('ServiceButton', 'servicesArea');
+  generateAddButton('StickerButton', 'stickersArea');
+  generateAddButton('ServiceButton', 'servicesArea');
+}
+
+function loadErrorResponse(){
+
+  $('#responseArea').html('Error while loading the car.').css({
+    'background-color' : 'rgba(255,0,0,0.1)',
+    'border-color' : 'rgba(255,0,0,0.1)',
+    'color' : 'red'
+  }).slideDown(500);
+  delaySlideUp('#responseArea', 5000);
 }
 
 function manageState(state){
@@ -518,6 +546,9 @@ function generateStickerHtml(sticker, indexName){
                   '<input type="text" class="rowTextInput stickerDate generatedCarAttribute" id="'+ indexName + 'expirationDate'+'" name="expirationDate" value="'+sticker.ExpirationDate+'" placeholder="e.g. 2015-12-25">' +
                   '<div class="error smallText expirationDateError">Error</div>' +
                 '</div>' +
+                '<div class="carRow">' +
+                      '<input type="button" class="carActionButton carButton removeButton" value="-">' +
+                '</div>' +
               '</div>';
     $('#stickersArea').append(html);
 }
@@ -537,6 +568,9 @@ function generateEmptySticker(){
                   '<div class="rowTitle smallText">Expiration date:</div>' +
                   '<input type="text" class="rowTextInput stickerDate generatedCarAttribute" value="" placeholder="e.g. 2015-12-25">' +
                   '<div class="error smallText expirationDateError">Error</div>' +
+                '</div>' +
+                '<div class="carRow">' +
+                      '<input type="button" class="carActionButton carButton removeButton" value="-">' +
                 '</div>' +
               '</div>';
 
@@ -564,6 +598,9 @@ function generateEmptyService(){
                   '<input type="text" class="rowTextInput serviceRepareDate generatedCarAttribute" value="" placeholder="e.g. 2015-12-25">' +
                   '<div class="error smallText" id="spzError">Error</div>' +
                 '</div>' +
+                '<div class="carRow">' +
+                  '<input type="button" class="carActionButton carButton removeButton" value="-">' +
+                '</div>' +
               '</div>';
 
     return html;
@@ -590,15 +627,17 @@ function generateServicesHtml(service, indexName){
                   '<input type="text" class="rowTextInput serviceRepareDate generatedCarAttribute" id="'+ indexName + 'repareDate'+'" name="'+ indexName + 'repareDate'+'" value="'+service.RepareDate+'" placeholder="e.g. 2015-12-25">' +
                   '<div class="error smallText" id="spzError">Error</div>' +
                 '</div>' +
+                '<div class="carRow">' +
+                  '<input type="button" class="carActionButton carButton removeButton" value="-">' +
+                '</div>' +
               '</div>';
     $('#servicesArea').append(html);
 }
 
-function generateAddRemoveButton(name, id){
+function generateAddButton(name, id){
 
   var html =   '<div class="carRow">' +
                 '<input type="button" class="carActionButton carButton" id="'+ 'add' + name + '" value="+">' +
-                '<input type="button" class="carActionButton carButton" id="'+ 'remove' + name+'" value="-">' +
                '</div>';
 
   $('#' + id).append(html);

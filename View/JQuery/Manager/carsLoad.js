@@ -42,6 +42,7 @@ function hideElementsOnload(){
 
   $('#responseArea').hide();
   $('#formArea').hide();
+  $('.innerResponseArea').hide();
 
   $('.error').each(function(){
     $(this).hide();
@@ -50,6 +51,7 @@ function hideElementsOnload(){
 
 function loadCars(){
 
+  $('#carTable').html('');
   getCars(function(data){
 
       for(index in data){
