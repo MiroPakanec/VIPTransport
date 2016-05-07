@@ -18,6 +18,8 @@ function getSessionData(){
       generateCustomerButtons();
     else if(data.type == 'manager')
       generateManagerButtons();
+    else if(data.type == 'transporter')
+      generateTransporterButtons();
 
     getCompanyData(data.email);
     loadData(data);

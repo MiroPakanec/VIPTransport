@@ -9,6 +9,8 @@ $(function(){
         generateCustomerButtons();
       else if(data.type == 'manager')
         generateManagerButtons();
+      else if(data.type == 'transporter')
+        generateTransporterButtons();
     }),
     $('.notificationAmmount').html('0');
     $('#notificationsLoaded').val('0');

@@ -1,13 +1,15 @@
 .titleArea{
 
+  margin: auto;
   margin-top: 2%;
-  margin-left: 30%;
-  width: 50% !important;
+  margin-bottom: 1%;
+  margin-left: 10%;
+  width: 80% !important;
 }
 
 .title{
 
-  width: 40%;
+  width: 33%;
   float: left;
   background-color: rgba(255,255,255, 0.0);
 }

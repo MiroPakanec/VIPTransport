@@ -37,13 +37,21 @@ class CarController{
 
       if($action == 'update')
         return $carUpdateDatabaseAccessObject->updateCar($carModelObject);
-      else if($action == 'insert')
+      else if($action == 'insert'){
+
+        if($_SESSION['type'] != 'manager')
+          return 0;
+
         return $carInsertDatabaseAccessObject->insertCar($carModelObject);
+      }
       else
         return 0;
   }
 
   public function deleteCar($spz){
+
+    if($_SESSION['type'] != 'manager')
+      return 0;
 
     $carModelObject = new CarModel($spz, '', '', '', '', '', '', '', '', '', '', '', '');
     $carDeleteDatabaseAccessObject = new CarDeleteDatabaseAccess();
@@ -125,7 +133,7 @@ class CarController{
     //return $validationControllerObject->validateCar($carModelObject, $validateCar);
 
     $this->startSession();
-    if($_SESSION['type'] != 'manager')
+    if($_SESSION['type'] != 'manager' && $_SESSION['type'] != 'transporter')
       return 0;
 
     if(!$validateCar)

@@ -25,10 +25,30 @@ $(function(){
 function loadButtons(){
 
   var type = $('#type').val();
-  if(type == 'customer')
-    generateCustomerButtons();
-  else if(type == 'manager')
+  if(type == 'customer'){
+
+     generateCustomerButtons();
+     $('#titleOrder').show().css({'margin-left' : '15%'});
+     $('#titleTransport').show();
+  }
+  else if(type == 'manager'){
+
     generateManagerButtons();
+    $('#titleOrder').show();
+    $('#titleRoutes').show();
+    $('#titleTransport').show();
+  }
+  else if(type == 'transporter'){
+
+    alert();
+    generateTransporterButtons();
+    $('#titleRoutes').show().css({'margin-left' : '30%'});
+  }
+  else{
+
+    window.location="mainPage.html";
+  }
+
 
 }
 
@@ -48,6 +68,7 @@ function hideElementsOnload(){
   $('.confirmArea').hide();
   $('.confirmError').hide();
   $('.confirmFormArea').hide();
+  $('.title').hide();
 }
 
 function loadDatePicker(){

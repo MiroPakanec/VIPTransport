@@ -1,21 +1,16 @@
 $(function(){
 
     hideElementsOnload();
+
     getSession(function(data){
 
-      if(data.email.length == 0)
-          window.location="mainPage.html";
-      else if(data.type != 'manager')
-          window.location="homePage.html";
-
       $('#type').val(data.type);
-    }),
-
+    });
 
     setTimeout(function() {
 
       load();
-    },100);
+    },500);
 });
 
 function load(){
@@ -36,6 +31,12 @@ function loadButtons(){
     window.location="homePage.html";
   else if(type == 'manager')
     generateManagerButtons();
+  else if(type == 'transporter'){
+
+    generateTransporterButtons();
+    $('#newCarButton').hide();
+  }
+
 }
 
 function hideElementsOnload(){
@@ -80,14 +81,19 @@ function generateTableHead(){
 
 function generateTableRow(spz, brand, type, seats, state){
 
+  var type = $('#type').val();
   var html =      '<tr class = "tableRow" id="'+spz+'">' +
                     '<td><input type="text" class="tableInput" name="spz" value="'+ spz +'" disabled></td>' +
                     '<td><input type="text" class="tableInput" name="brand" value="'+ brand +'" disabled></td>' +
                     '<td><input type="text" class="tableInput" name="type" value="'+ type +'" disabled></td>' +
                     '<td><input type="text" class="tableInput" name="seats" value="'+ seats +'" disabled></td>' +
-                    '<td><input type="text" class="tableInput" name="state" value="'+ state +'" disabled></td>' +
-                    '<td class="buttonColumn deleteButton">Delete</td>' +
-                    '<td class="buttonColumn editButton">View/ Update</td>' +
+                    '<td><input type="text" class="tableInput" name="state" value="'+ state +'" disabled></td>';
+
+  if(type == 'manager')
+    html +=  '<td class="buttonColumn deleteButton">Delete</td>';
+
+
+    html +=         '<td class="buttonColumn editButton">View/ Update</td>' +
                   '</tr>';
 
   $('#carTable').append(html);
