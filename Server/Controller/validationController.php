@@ -94,6 +94,25 @@
       return $errorCounter;
     }
 
+    public function validateOrderSubmitInput($orderId, $transporterEmail, $carSpz, $countryCodes){
+
+      $errorCounter = 0;
+
+      $errorCounter += $this->validateIntegerInput($orderId, 1000000, 1, false);
+      $errorCounter += $this->validateEmail($transporterEmail);
+      $errorCounter += $this->validateInput($carSpz, '^[a-zA-Z0-9]+$^', 8, 8, false);
+
+      if(empty($countryCodes))
+        return $errorCounter;
+
+      foreach ($countryCodes as $code) {
+
+        $errorCounter += $this->validateInput($code, '^[A-Z]+$^', 2, 1, false);
+      }
+
+      return $errorCounter;
+    }
+
     public function validateSearch($email, $fname, $lname, $type){
 
       $errorCounter = 0;

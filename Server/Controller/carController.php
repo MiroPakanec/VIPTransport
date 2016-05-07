@@ -55,11 +55,67 @@ class CarController{
     return $carDeleteDatabaseAccessObject->deleteCar($wClause);
   }
 
+  public function checkCarSubmit($spz){
+
+    $carModelObject = $this->getCars($spz)[0];
+
+    if(empty($carModelObject))
+      return '(car does not exist)';
+    else if($carModelObject->getState() != 'ready')
+      return '(car is not ready for route)';
+    else if($this->checkCarDates($carModelObject) != 1)
+      return $this->checkCarDates($carModelObject);
+
+    return 1;
+  }
+
+  public function checkHighwayStickers($spz, $countryCodes){
+
+    $carModelObject = $this->getCars($spz)[0];
+    $stickers = $carModelObject->getStickers();
+    $stickerMessage = '';
+    $warningMessage = '';
+
+    foreach ($countryCodes as $countryCode) {
+
+      $codeFound = false;
+      foreach ($stickers as $stickerModelObject) {
+
+        if($countryCode == $stickerModelObject->getCountry())
+          $codeFound = true;
+      }
+
+      if($codeFound == false)
+        $stickerMessage .= $countryCode.' ';
+    }
+
+    if(strlen($stickerMessage) > 0)
+      $warningMessage = '<strong class="white">Notice:</strong> Your car is missing highway stickers for countries: '.$stickerMessage;
+    else
+      $warningMessage = 'All highway stickers are up to date.';
+
+    return $warningMessage;
+  }
+
   private function startSession(){
 
     $sessionControllerObject = new SessionController();
     if(!$sessionControllerObject->sessionStarted())
       $sessionControllerObject->startSession();
+  }
+
+  private function checkCarDates($carModelObject){
+
+    if((time()-(60*60*24)) > strtotime($carModelObject->getEmissionCheck()))
+      return '(emission check is not valid)';
+    else if ((time()-(60*60*24)) > strtotime($carModelObject->getStk()))
+      return '(stk is not valid)';
+    else if((time()-(60*60*24)) > strtotime($carModelObject->getMandatoryInsurance()))
+      return '(mandatory insurance is not valid)';
+    else if((time()-(60*60*24)) > strtotime($carModelObject->getAccidentInsurance()))
+      return '(accident insurance is not valid)';
+
+    return 1;
   }
 
   private function validateCar($carModelObject, $validateCar){

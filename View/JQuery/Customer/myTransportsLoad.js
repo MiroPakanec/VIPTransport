@@ -29,6 +29,7 @@ function loadButtons(){
     generateCustomerButtons();
   else if(type == 'manager')
     generateManagerButtons();
+
 }
 
 function loadSearchBar(){
@@ -44,6 +45,9 @@ function hideElementsOnload(){
   $('.orderSearchBarArea').hide();
   $('#responseArea').hide();
   $('.datePickerArea').hide();
+  $('.confirmArea').hide();
+  $('.confirmError').hide();
+  $('.confirmFormArea').hide();
 }
 
 function loadDatePicker(){

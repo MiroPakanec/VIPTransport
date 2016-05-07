@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" type="text/css" href="../Css/generalPageStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/myTransportsStyles.css">
+    <link rel="stylesheet" type="text/css" href="../Css/myTransportsConfirmStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/tableStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/widgetsStyles.css">
 
@@ -13,8 +14,10 @@
     <script src="../JQuery/Global/headerButtons.js"></script>
     <script src="../JQuery/Customer/myTransportsLoad.js"></script>
     <script src="../JQuery/Customer/myTransportsClick.js"></script>
-    <script src="../JQuery/Manager/TransportsSearchBarClick.js"></script>
+    <script src="../JQuery/Manager/transportsSearchBarClick.js"></script>
+    <script src="../JQuery/Manager/transportsConfirm.js"></script>
     <script src="../JQuery/Global/notificationsAmmount.js"></script>
+    <script src="../JQuery/Manager/carsValidate.js"></script>
 
     <meta charset="UTF-8">
     <title>My Transports</title>
@@ -59,6 +62,43 @@
           <input id="dateState" type="hidden" value="0">
         </div>
         <div class="orderTableArea" id="orderTableArea"></div>
+        <div class="confirmArea">
+          <div class="confirmFormArea">
+            <div class="column" id="orderInformationColumn">
+              <div id="detailsId" class="orderDetails smallText"></div>
+              <input type="hidden" id="detailsIdInput" value="">
+              <div id="detailsDate" class="orderDetails smallText"></div>
+              <div id="detailsFrom" class="orderDetails smallText"></div>
+              <div id="detailsTo" class="orderDetails smallText"></div>
+              <div id="detailsPayment" class="orderDetails smallText"></div>
+              <div id="detailsPasangerPhone" class="orderDetails smallText"></div>
+              <div id="detailsPasangers" class="orderDetails smallText"></div>
+              <div id="detailsNames" class="orderDetails smallText"></div>
+            </div>
+            <div id="confirmationTitle" class="smallText">Confirm order</div>
+            <div class="colum" id="managerOrderInputColumn">
+              <div class="selectionButton smallText" id="transporterSelect">Select Transporter</div>
+              <input type="text" class="confirmSelectionInput selectionButton smallText" id="transporterSelection">
+              <div class="confirmError smallText" id="transporterSelectError">ERROR</div>
+              <div class="selectionButton smallText" id="carSelect">Select Car</div>
+              <input type="text" class="confirmSelectionInput selectionButton smallText" id="carSelection">
+              <div class="confirmError smallText" id="carSelectError">ERROR</div>
+              <div class="confirmButtonRow">
+                <input id="clearConfirmButton" type="button" class="searchBarStyle confirmOrderButton" value="Clear">
+                <input id="submitConfirmButton" type="button" class="searchBarStyle confirmOrderButton" value="Submit">
+                <input id="cancelConfirmButton" type="button" class="searchBarStyle confirmOrderButton" value="Cancel">
+              </div>
+            </div>
+            <div class="colum" id="managerSelectionColumn">
+
+            </div>
+            <div class="colum" id="managerCountryColumn">
+              <div id="countriesTitle" class="smallText">Choose route (country code)</div>
+              <div id="selectedCounties" class="smallText"><strong>Selected: </strong></div>
+              <div id="countrySelection" class="smallText"></div>
+            </div>
+          </div>
+        </div>
         <div class="responseArea" id="responseArea"></div>
         <input type="hidden" id="type" value="customer">
       </div>

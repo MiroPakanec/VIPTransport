@@ -39,7 +39,6 @@ function registerUserRequest(handleData, data){
           handleData(response);
       }
   });
-  console.log('I would like to register');
 }
 
 function getUserData(handleData, email){
@@ -89,11 +88,9 @@ function getNotifications(handleData, ammount, skip, type){
       dataType : 'json',
       data: data,
       success: function(response){
-          console.log(response);
           handleData(response);
       },
       error: function(response){
-        console.log(response);
       }
   });
 }
@@ -151,7 +148,6 @@ function getCars(handleData, spz){
   data = {};
   data['spz'] = spz;
 
-  console.log(data);
 
   $.ajax({
       type: 'POST',
@@ -160,18 +156,15 @@ function getCars(handleData, spz){
       data: data,
       success: function(response){
 
-          console.log(response);
           handleData(response);
       },
       error:function(response){
-        console.log(response);
       }
   });
 }
 
 function updateCar(handleData, data){
 
-  console.log(data);
 
   $.ajax({
       type: 'POST',
@@ -190,17 +183,14 @@ function deleteCarSpz(handleData, spz){
   data = {};
   data['spz'] = spz;
 
-  console.log(data);
   $.ajax({
       type: 'POST',
       url: '../../Server/Responses/deleteCar.php',
       data: data,
       success: function(response){
-          console.log(response);
           handleData(response);
       },
       error:function(response){
-        console.log(response);
       }
   });
 }
@@ -219,9 +209,11 @@ function getTransports(handleData, id, dateFrom, dateTo, email){
       dataType : 'json',
       data: data,
       success: function(response){
+        console.log(response);
           handleData(response);
       },
       error:function(response){
+        console.log(response);
       }
   });
 }
@@ -234,18 +226,15 @@ function getEmployeess(handleData, email, fname, lname, type){
   data['lname'] = lname;
   data['type'] = type;
 
-  console.log(data);
   $.ajax({
       type: 'POST',
       url: '../../Server/Responses/getEmployees.php',
       dataType : 'json',
       data: data,
       success: function(response){
-          console.log(response);
           handleData(response);
       },
       error:function(response){
-        console.log(response);
       }
   });
 }
@@ -256,7 +245,6 @@ function updateUserType(handleData, email, type){
   data['email'] = email;
   data['type'] = type;
 
-  console.log(data);
   $.ajax({
       type: 'POST',
       url: '../../Server/Responses/updateUserType.php',
@@ -276,11 +264,29 @@ function deleteOrder(handleData, id){
     type: 'POST',
     data: 'id='+id,
     success: function(response){
-      console.log(response);
       handleData(response);
     },
     error: function(XMLHttpRequest, textStatus, errorThrown){
       alert('Something went wrong...');
+    }
+  })
+}
+
+function submitOrderRequest(handleData, data){
+
+  console.log(data);
+
+  $.ajax({
+    url: '../../Server/Responses/submitOrder.php',
+    type: 'POST',
+    dataType: 'json',
+    data: data,
+    success: function(response){
+      console.log(response);
+      handleData(response);
+    },
+    error: function(response){
+      console.log(response);
     }
   })
 }
@@ -308,4 +314,20 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function getCountriesEurope(handleData){
+
+  $.ajax({
+      type: 'GET',
+      url: 'https://restcountries.eu/rest/v1/region/europe',
+      data: '',
+
+      success: function(response){
+          handleData(response);
+      },
+      error: function(response){
+        //console.log('RESPONSE ERRROR' + response);
+      }
+  });
 }

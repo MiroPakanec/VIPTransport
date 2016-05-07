@@ -4,14 +4,57 @@
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderSelectDatabaseAccess.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderDeleteDatabaseAccess.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderUpdateDatabaseAccess.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderRouteConfirmDatabaseAccess.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/userController.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/carController.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/notificationController.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/sessionController.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/orderModel.php';
-  //include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validationController.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/userModel.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/routeModel.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/carModel.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validationController.php';
 
 
   class OrderController{
+
+      public function submitOrder($orderId, $transporter, $car, $countryCodes){
+
+        $this->startSession();
+        if($_SESSION['type'] != 'manager')
+          return $this->getSubmitOrderJson(0, '(only manager can confirm an order)', '');
+
+        $routeModelObject = new RouteModel('', $orderId, $transporter, $car, '');
+
+        //validate inputed values
+        $validationControllerObject = new ValidationController();
+        if($validationControllerObject->validateOrderSubmitInput($routeModelObject->getOrderId(),
+                                                                 $routeModelObject->getTransporterEmail(),
+                                                                 $routeModelObject->getCarSpz(),
+                                                                 $countryCodes) > 0)
+          return $this->getSubmitOrderJson(0, '(invalid data)', '');
+
+        //validate if inputs exist in system and are correct
+        $existValidationMessage =  $this->validateOrderSubmitInputExists($routeModelObject->getOrderId(),
+                                                                         $routeModelObject->getTransporterEmail(),
+                                                                         $routeModelObject->getCarSpz());
+        if($existValidationMessage != 1)
+          return $this->getSubmitOrderJson(0, $existValidationMessage, '');
+
+        //validate countryCodes
+        $carControllerObject = new CarController();
+        $highwayStickersWarningMessage = $carControllerObject->checkHighwayStickers($routeModelObject->getCarSpz(), $countryCodes);
+        $routeModelObject->setMessage($highwayStickersWarningMessage);
+
+        //confirm order
+        $wasNotified = $this->sendOrderNotifications($routeModelObject->getOrderId(), 'confirm', ' ');
+
+        $orderRouteConfirmDatabaseAccessObject = new OrderRouteConfirmDatabaseAccess();
+        $confirmStatusCode = $orderRouteConfirmDatabaseAccessObject->confirmOrder($routeModelObject);
+        //$confirmStatusCode = 1;
+
+        return $this->getSubmitOrderJson($confirmStatusCode, '', $routeModelObject->getMessage());
+      }
 
       public function crearteOrder($email, $date, $timeHour, $timeMinute, $clock, $from, $to, $pasangers, $payment, $phone, $names){
 
@@ -140,6 +183,51 @@
         $sessionControllerObject->startSession();
     }
 
+    private function getSubmitOrderJson($statusCode, $responseMessage, $warningMessage){
+
+      $array = array();
+      $array['status'] = $statusCode;
+      $array['message'] = $responseMessage;
+      $array['warning'] = $warningMessage;
+      return $array;
+    }
+
+    private function validateOrderSubmitInputExists($orderId, $transporterEmail, $carSpz){
+
+      $userControllerObject = new UserController();
+      $carControllerObject = new CarController();
+
+      $orderResponse = $this->checkOrderSubmit($orderId, $transporterEmail);
+      $userResponse = $userControllerObject->checkUserSubmit($transporterEmail);
+      $carResponse = $carControllerObject->checkCarSubmit($carSpz);
+
+      if($orderResponse != 1)
+        return $orderResponse;
+
+      if($userResponse != 1)
+        return $userResponse;
+
+      if($carResponse != 1)
+        return $carResponse;
+
+      return 1;
+    }
+
+    private function checkOrderSubmit($id, $email){
+
+      //check order attributes
+      $orderModelObjectArray = $this->getOrders($id, '', '', '');
+
+      if(empty($orderModelObjectArray))
+        return '(order does not exist)';
+      else if($orderModelObjectArray[0]->getStatus() != 'Stand by')
+        return '(order was already confirmed)';
+
+      //check transporters routes
+
+      return 1;
+    }
+
     private function getStatusBySession(){
 
       $this->startSession();
@@ -204,6 +292,8 @@
        return $this->getUpdateAction($status);
       else if($action == 'create')
        return 'created';
+      else if($action == 'confirm')
+       return 'confirmed';
     }
 
     private function getDeleteAction($status){

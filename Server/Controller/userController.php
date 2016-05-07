@@ -152,6 +152,20 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/notifica
       return $userDataAccessObject->getImage($wClause);
     }
 
+    public function checkUserSubmit($email){
+
+      $userWClause = "WHERE Email = '".$email."'";
+      $userModelObjectArray = $this->getUserData($userWClause);
+
+      if(empty($userModelObjectArray))
+        return '(incorrect user email)';
+
+      if($userModelObjectArray[0]->getType() != 'transporter')
+        return '(incorrect user type)';
+
+      return 1;
+    }
+
     private function startSession(){
 
       $sessionControllerObject = new SessionController();

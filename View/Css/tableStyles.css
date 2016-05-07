@@ -16,11 +16,15 @@ td{
 
 td.idCol{
 
-  width: 5.3% !important;
+  width: 5.3%;
 }
 
 td.dateCol{
   width: 15%;
+}
+
+td.emailCol{
+  width: 40%;
 }
 
 td>input{
@@ -34,6 +38,11 @@ td>input{
 
 
   font-family: myFont;
+}
+
+td>input.invalidRow{
+
+  color: rgba(255,0,0,1);
 }
 
 td>input:focus{
@@ -55,13 +64,18 @@ td>input:hover{
   font-size: 14px;
 }
 
+.confirmedInput{
+
+  background-color: rgba(255,255,255,0.2);
+}
+
 .buttonColumnHeader{
 
   background-color:rgba(255,0,0,0.0);
   border: none;
   font-size: 18px;
   border: 1px solid rgba(0,0,0,0.0);
-  width: 10% !important;
+  width: 10%;
 }
 
 .buttonColumn{
@@ -73,7 +87,7 @@ td>input:hover{
 
 .editButton{
 
-  background-color:rgba(255,255,255,0.1) !important;
+  background-color:rgba(255,255,255,0.1);
   border: none;
   font-size: 18px;
 }
@@ -81,6 +95,33 @@ td>input:hover{
 .editButton:hover{
 
   background-color:rgba(255,255,255,0.2) !important;
+}
+
+.confirmButton{
+
+  background-color:rgba(255, 255, 255,0.2);
+}
+
+.emptyButton{
+
+  background-color:rgba(255, 255, 255,0.05);
+  border: none;
+}
+
+.selectButton{
+
+  background-color: rgba(255, 255, 255,0.2);
+  width: 15%;
+}
+
+.selectButton:hover{
+
+  background-color: rgba(255, 255, 255,0.3) !important;
+}
+
+.confirmButton:hover{
+
+  background-color:rgba(255, 255, 255,0.3) !important;
 }
 
 .buttonColumn:hover{

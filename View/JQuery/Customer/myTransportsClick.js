@@ -22,10 +22,11 @@ $(function (){
     }, $('#idRequest').val(), $('#dateFromRequest').val() , $('#dateToRequest').val() , $('#emailRequest').val()),
 
     manageTitleCss('#titleOrder', '#titleTransport', '0.05');
+    manageButtonsCss();
 
     $('#responseArea').slideUp(300).html('');
   }),
- 
+
   $('#titleTransport').click(function(){
 
     $('#orderTableArea').html('');
@@ -90,6 +91,16 @@ $(function (){
       requestOrderUpdate(id, text);
   })
 });
+
+function manageButtonsCss(){
+
+  if($('#type').val() != 'manager')
+    return;
+
+  $("body").bind("DOMNodeInserted", function() {
+     $(this).find('.buttonColumnHeader').css({'width' : '6.7%'});
+  });
+}
 
 function manageTitleCss(id, id2, opacity){
 
@@ -230,9 +241,12 @@ function generateTableOrders(){
                   '<td>Payment</td>' +
                   '<td>Created</td>' +
                   '<td class="buttonColumnHeader"></td>' +
-                  '<td class="buttonColumnHeader"></td>' +
-                '</tr>';
+                  '<td class="buttonColumnHeader"></td>';
 
+  if($('#type').val() == 'manager')
+    html+= '<td class="buttonColumnHeader"></td>';
+
+  html += '</tr>';
    $('#orderTableArea').html(html);
 }
 
@@ -240,18 +254,24 @@ function generateTableRow(id, date, addressFrom, addressTo, pasangers, payment, 
 
   var deleteButtonValue = generateButtonName(status, 'Delete');
   var updateButtonValue = generateButtonName(status, 'Update');
+  var type = $('#type').val();
+  var html =      '<tr class = "tableRow" id="'+id+'">';
 
-  var html =      '<tr class = "tableRow" id="'+id+'">' +
-                    '<td><input type="text" class="tableInput tableInputSmall" name="date" value="'+ id +'" disabled></td>' +
-                    '<td><input type="text" class="tableInput" name="date" value="'+ date +'" disabled></td>' +
-                    '<td><input type="text" class="tableInput" name="from" value="'+ addressFrom +'" disabled></td>' +
-                    '<td><input type="text" class="tableInput" name="to" value="'+ addressTo +'" disabled></td>' +
-                    '<td><input type="text" class="tableInput" name="pasangers" value="'+ pasangers +'" disabled></td>' +
-                    '<td><input type="text" class="tableInput" name="payment" value="'+ payment +'" disabled></td>' +
-                    '<td><input type="text" class="tableInput" name="creationDate" value="'+ creationDate +'" disabled></td>' +
-                    '<td class="buttonColumn deleteButton">'+deleteButtonValue+'</td>' +
-                    '<td class="buttonColumn editButton">'+updateButtonValue+'</td>' +
-                  '</tr>';
+  if(status == 'Confirmed' && type == 'manager')
+    html += getConfirmedRow(id, date, addressFrom, addressTo, pasangers, payment, creationDate);
+  else
+    html += getNonConfirmedRow(id, date, addressFrom, addressTo, pasangers, payment, creationDate);
+
+  html +=      '<td class="buttonColumn deleteButton">'+deleteButtonValue+'</td>' +
+               '<td class="buttonColumn editButton">'+updateButtonValue+'</td>';
+
+  if(type == 'manager' && status == 'Confirmed')
+    html+= '<td class="emptyButton" id="test"></td>';
+  else if(type == 'manager' && status == 'Stand by')
+    html+= '<td class="buttonColumn confirmButton" id="test">Confirm</td>';
+
+  html += '</tr>';
+
 
   $('#orderTable').append(html);
   if(added == '0')
@@ -263,6 +283,31 @@ function generateTableRow(id, date, addressFrom, addressTo, pasangers, payment, 
       'background-color' : 'rgba(255,255,255,0.3)'
     });
   }
+}
+
+function getNonConfirmedRow(id, date, addressFrom, addressTo, pasangers, payment, creationDate){
+
+  var html =          '<td><input type="text" class="tableInput tableInputSmall" name="date" value="'+ id +'" disabled></td>' +
+                      '<td><input type="text" class="tableInput" name="date" value="'+ date +'" disabled></td>' +
+                      '<td><input type="text" class="tableInput" name="from" value="'+ addressFrom +'" disabled></td>' +
+                      '<td><input type="text" class="tableInput" name="to" value="'+ addressTo +'" disabled></td>' +
+                      '<td><input type="text" class="tableInput" name="pasangers" value="'+ pasangers +'" disabled></td>' +
+                      '<td><input type="text" class="tableInput" name="payment" value="'+ payment +'" disabled></td>' +
+                      '<td><input type="text" class="tableInput" name="creationDate" value="'+ creationDate +'" disabled></td>';
+  return html;
+}
+
+function getConfirmedRow(id, date, addressFrom, addressTo, pasangers, payment, creationDate){
+
+  var html =          '<td><input type="text" class="tableInput tableInputSmall confirmedInput" name="date" value="'+ id +'" disabled></td>' +
+                      '<td><input type="text" class="tableInput confirmedInput" name="date" value="'+ date +'" disabled></td>' +
+                      '<td><input type="text" class="tableInput confirmedInput" name="from" value="'+ addressFrom +'" disabled></td>' +
+                      '<td><input type="text" class="tableInput confirmedInput" name="to" value="'+ addressTo +'" disabled></td>' +
+                      '<td><input type="text" class="tableInput confirmedInput" name="pasangers" value="'+ pasangers +'" disabled></td>' +
+                      '<td><input type="text" class="tableInput confirmedInput" name="payment" value="'+ payment +'" disabled></td>' +
+                      '<td><input type="text" class="tableInput confirmedInput" name="creationDate" value="'+ creationDate +'" disabled></td>';
+
+  return html;
 }
 
 function generateButtonName(status, defaultValue){
