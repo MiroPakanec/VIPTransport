@@ -6,15 +6,15 @@ class RouteModel{
     private $orderId;
     private $transporterEmail;
     private $carSpz;
-    private $message;
+    private $countries;
 
-    public function __construct($id, $orderId, $transporterEmail, $carSpz, $message){
+    public function __construct($id, $orderId, $transporterEmail, $carSpz, $countries){
 
       $this->id = $id;
       $this->orderId = $orderId;
       $this->transporterEmail = $transporterEmail;
       $this->carSpz = $carSpz;
-      $this->message = $message;
+      $this->countries = $countries;
     }
 
     public function getId(){
@@ -33,8 +33,8 @@ class RouteModel{
       return $this->carSpz;
     }
 
-    public function getMessage(){
-      return $this->message;
+    public function getCountries(){
+      return $this->countries;
     }
 
     public function setId($value){
@@ -53,8 +53,8 @@ class RouteModel{
       $this->carSpz = $value;
     }
 
-    public function setMessage($value){
-      $this->message = $value;
+    public function setCountries($value){
+      $this->countries = $value;
     }
   }
 

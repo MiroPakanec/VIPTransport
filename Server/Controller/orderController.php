@@ -24,7 +24,7 @@
         if($_SESSION['type'] != 'manager')
           return $this->getSubmitOrderJson(0, '(only manager can confirm an order)', '');
 
-        $routeModelObject = new RouteModel('', $orderId, $transporter, $car, '');
+        $routeModelObject = new RouteModel('', $orderId, $transporter, $car, $countryCodes);
 
         //validate inputed values
         $validationControllerObject = new ValidationController();
@@ -43,17 +43,15 @@
 
         //validate countryCodes
         $carControllerObject = new CarController();
-        $highwayStickersWarningMessage = $carControllerObject->checkHighwayStickers($routeModelObject->getCarSpz(), $countryCodes);
-        $routeModelObject->setMessage($highwayStickersWarningMessage);
-
+        $highwayStickersWarningMessage = $carControllerObject->checkHighwayStickers($routeModelObject->getCarSpz(),
+                                                                                    $routeModelObject->getCountries());
         //confirm order
         $wasNotified = $this->sendOrderNotifications($routeModelObject->getOrderId(), 'confirm', ' ');
 
         $orderRouteConfirmDatabaseAccessObject = new OrderRouteConfirmDatabaseAccess();
         $confirmStatusCode = $orderRouteConfirmDatabaseAccessObject->confirmOrder($routeModelObject);
-        //$confirmStatusCode = 1;
 
-        return $this->getSubmitOrderJson($confirmStatusCode, '', $routeModelObject->getMessage());
+        return $this->getSubmitOrderJson($confirmStatusCode, '', $highwayStickersWarningMessage);
       }
 
       public function crearteOrder($email, $date, $timeHour, $timeMinute, $clock, $from, $to, $pasangers, $payment, $phone, $names){

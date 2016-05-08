@@ -102,6 +102,23 @@ td>input:hover{
   background-color:rgba(255, 255, 255,0.2);
 }
 
+.routeStickersButton{
+
+  background-color:rgba(255, 255, 255,0.2);
+  width: 10%;
+}
+
+.routeConfirmButton{
+
+  background-color:rgba(255, 255, 255,0.2);
+  width: 7%;
+}
+
+.routeStickersButton:hover, .routeConfirmButton:hover{
+
+  background-color:rgba(255, 255, 255,0.3) !important;
+}
+
 .emptyButton{
 
   background-color:rgba(255, 255, 255,0.05);

@@ -195,6 +195,45 @@ function deleteCarSpz(handleData, spz){
   });
 }
 
+function checkStickers(handleData, spz, routeId){
+
+  data = {};
+  data['spz'] = spz;
+  data['routeId'] = routeId;
+
+  $.ajax({
+      type: 'GET',
+      url: '../../Server/Responses/checkStickers.php',
+      data: data,
+      success: function(response){
+          handleData(response);
+      },
+      error:function(response){
+      }
+  });
+}
+
+function getRoutes(handleData, email){
+
+  data = {};
+  data['email'] = email;
+
+
+  $.ajax({
+      type: 'GET',
+      url: '../../Server/Responses/getRoutes.php',
+      dataType : 'json',
+      data: data,
+      success: function(response){
+
+          handleData(response);
+      },
+      error:function(response){
+        console.log(response);
+      }
+  });
+}
+
 function getTransports(handleData, id, dateFrom, dateTo, email){
 
   data = {};

@@ -16,9 +16,7 @@ $(function(){
     setTimeout(function() {
 
         loadButtons();
-        loadSearchBar();
         loadNotificationsAmmount();
-        $("#titleOrder").trigger('click');
     },10);
 });
 
@@ -30,6 +28,7 @@ function loadButtons(){
      generateCustomerButtons();
      $('#titleOrder').show().css({'margin-left' : '15%'});
      $('#titleTransport').show();
+     $("#titleOrder").trigger('click');
   }
   else if(type == 'manager'){
 
@@ -37,12 +36,14 @@ function loadButtons(){
     $('#titleOrder').show();
     $('#titleRoutes').show();
     $('#titleTransport').show();
+    loadSearchBar();
+    $("#titleOrder").trigger('click');
   }
   else if(type == 'transporter'){
 
-    alert();
     generateTransporterButtons();
     $('#titleRoutes').show().css({'margin-left' : '30%'});
+    $("#titleRoutes").trigger('click');
   }
   else{
 

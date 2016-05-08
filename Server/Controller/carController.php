@@ -89,7 +89,7 @@ class CarController{
       $codeFound = false;
       foreach ($stickers as $stickerModelObject) {
 
-        if($countryCode == $stickerModelObject->getCountry())
+        if($countryCode == $stickerModelObject->getCountry() && (time()-(60*60*24)) <= strtotime($stickerModelObject->getExpirationDate()))
           $codeFound = true;
       }
 
