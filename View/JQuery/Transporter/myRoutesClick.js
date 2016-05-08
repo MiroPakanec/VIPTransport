@@ -24,9 +24,18 @@ $(function(){
     }, spz, routeId);
   });
 
-  $(document).on('click', '.routeDeleteButton', function(){
+  $(document).on('click','.routeDeleteButton',function(){
 
-    
+    var orderId = $(this).parent().find($('input[name = "oid"]')).val();
+    var routeId = $(this).parent().find($('input[name = "id"]')).val();
+    //put id into the hidden field
+    var alertText = generateDeleteAlertRoute(routeId, orderId);
+
+    $('#responseArea').html(alertText).css({
+      'background-color' : 'rgba(255,255,255,0.1)',
+      'color' : 'white',
+      'border' : '1px solid rgba(255,255,255,0.3)'
+    }).html(alertText).slideDown(500);
   });
 });
 
@@ -105,4 +114,13 @@ function getCountryString(countryCodes){
   }
 
   return countryString;
+}
+
+function generateDeleteAlertRoute(routeId, orderId){
+
+  var message = "Are you sure, that you want to delete this route (ID: "+routeId+") and order (ID: "+orderId+") with it assosiated?";
+  var html = '<br><input type = "button" id="confirmDelete" class ="alertButton" value="YES">' +
+              '<input type="button" id="denyDelete" class ="alertButton" value="NO">' +
+              '<input type="hidden" id = "'+orderId+'" name = "deleteRowId">';
+  return message + html;
 }

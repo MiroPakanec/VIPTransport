@@ -298,15 +298,18 @@ function updateUserType(handleData, email, type){
 
 function deleteOrder(handleData, id){
 
+  console.log(id);
+
   $.ajax({
     url: '../../Server/Responses/deleteOrder.php',
     type: 'POST',
     data: 'id='+id,
     success: function(response){
+      console.log(response);
       handleData(response);
     },
-    error: function(XMLHttpRequest, textStatus, errorThrown){
-      alert('Something went wrong...');
+    error: function(response){
+      console.log(response);
     }
   })
 }

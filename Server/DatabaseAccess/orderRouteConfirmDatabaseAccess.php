@@ -17,10 +17,21 @@
         $orderQuery = "UPDATE transport_order SET Status = 'Confirmed' ".$orderWCluase;
         $routeQuery = $this->getRouteInsertQuery($dbc, $routeModelObject);
 
+        //delete routes for this order - (just in case to keep data constistancy)
+        $wClauseRoute = " WHERE Order_id = ".$routeModelObject->getOrderId();
+        $routeDeleteQuery = "DELETE FROM transport_route ".$wClauseRoute;
+
+        $dbc->query($routeDeleteQuery);
+        $errorString .= $dbc->error;
         $dbc->query($orderQuery);
         $errorString .= $dbc->error;
         $dbc->query($routeQuery);
         $routeId = $dbc->insert_id;
+        $errorString .= $dbc->error;
+
+        $wClauseRouteCountryCodes = " WHERE Route_id = ".$routeId;
+        $queryRouteCountry = "DELETE FROM transport_route_country_code ".$wClauseRouteCountryCodes;
+        $dbc->query($queryRouteCountry);
         $errorString .= $dbc->error;
 
         $countryCodeQueryArray = $this->getCountryCodeInsertQueryArray($dbc, $routeModelObject, $routeId);

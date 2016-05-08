@@ -157,7 +157,7 @@
         if($validationControllerObject->validateOrderState($orderModelObject->getStatus(), $_SESSION['type']) > 0)
           return 2;
 
-        return $orderDeleteDatabaseAccess->deleteOrder($wClause);
+        return $orderDeleteDatabaseAccess->deleteOrder($id);
 
         //return 2 - request have been send to manager
         return 2;

@@ -134,7 +134,7 @@ function generateUpdateMessageField(id){
 
 function generateDeleteAlert(id){
 
-  var message = "Are you sure, that you want to delete this order?";
+  var message = "Are you sure, that you want to delete this order (ID: "+id+")?";
   var html = '<br><input type = "button" id="confirmDelete" class ="alertButton" value="YES">' +
               '<input type="button" id="denyDelete" class ="alertButton" value="NO">' +
               '<input type="hidden" id = "'+id+'" name = "deleteRowId">';
