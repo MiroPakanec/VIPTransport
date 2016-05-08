@@ -5,6 +5,7 @@
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderDeleteDatabaseAccess.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderUpdateDatabaseAccess.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderRouteConfirmDatabaseAccess.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderRouteUpdateDatabaseAccess.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/userController.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/carController.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/notificationController.php';
@@ -18,13 +19,13 @@
 
   class OrderController{
 
-      public function submitOrder($orderId, $transporter, $car, $countryCodes){
+      public function submitOrder($routeId, $orderId, $transporter, $car, $countryCodes, $action){
 
         $this->startSession();
         if($_SESSION['type'] != 'manager')
           return $this->getSubmitOrderJson(0, '(only manager can confirm an order)', '');
 
-        $routeModelObject = new RouteModel('', $orderId, $transporter, $car, $countryCodes);
+        $routeModelObject = new RouteModel($routeId, $orderId, $transporter, $car, $countryCodes);
 
         //validate inputed values
         $validationControllerObject = new ValidationController();
@@ -37,7 +38,7 @@
         //validate if inputs exist in system and are correct
         $existValidationMessage =  $this->validateOrderSubmitInputExists($routeModelObject->getOrderId(),
                                                                          $routeModelObject->getTransporterEmail(),
-                                                                         $routeModelObject->getCarSpz());
+                                                                         $routeModelObject->getCarSpz(), $action);
         if($existValidationMessage != 1)
           return $this->getSubmitOrderJson(0, $existValidationMessage, '');
 
@@ -46,10 +47,18 @@
         $highwayStickersWarningMessage = $carControllerObject->checkHighwayStickers($routeModelObject->getCarSpz(),
                                                                                     $routeModelObject->getCountries());
         //confirm order
-        $wasNotified = $this->sendOrderNotifications($routeModelObject->getOrderId(), 'confirm', ' ');
+        $wasNotified = $this->sendOrderNotifications($routeModelObject->getOrderId(), 'update confirm', ' ');
 
-        $orderRouteConfirmDatabaseAccessObject = new OrderRouteConfirmDatabaseAccess();
-        $confirmStatusCode = $orderRouteConfirmDatabaseAccessObject->confirmOrder($routeModelObject);
+        if($action == 'confirm'){
+
+          $orderRouteConfirmDatabaseAccessObject = new OrderRouteConfirmDatabaseAccess();
+          $confirmStatusCode = $orderRouteConfirmDatabaseAccessObject->confirmOrder($routeModelObject);
+        }
+        else if($action == 'update'){
+
+          $orderRouteUpdateDatabaseAccessObject = new OrderRouteUpdateDatabaseAccess();
+          $confirmStatusCode = $orderRouteUpdateDatabaseAccessObject->updateRoute($routeModelObject);
+        }
 
         return $this->getSubmitOrderJson($confirmStatusCode, '', $highwayStickersWarningMessage);
       }
@@ -190,12 +199,12 @@
       return $array;
     }
 
-    private function validateOrderSubmitInputExists($orderId, $transporterEmail, $carSpz){
+    private function validateOrderSubmitInputExists($orderId, $transporterEmail, $carSpz, $action){
 
       $userControllerObject = new UserController();
       $carControllerObject = new CarController();
 
-      $orderResponse = $this->checkOrderSubmit($orderId, $transporterEmail);
+      $orderResponse = $this->checkOrderSubmit($orderId, $transporterEmail, $action);
       $userResponse = $userControllerObject->checkUserSubmit($transporterEmail);
       $carResponse = $carControllerObject->checkCarSubmit($carSpz);
 
@@ -211,14 +220,14 @@
       return 1;
     }
 
-    private function checkOrderSubmit($id, $email){
+    private function checkOrderSubmit($id, $email, $action){
 
       //check order attributes
       $orderModelObjectArray = $this->getOrders($id, '', '', '');
 
       if(empty($orderModelObjectArray))
         return '(order does not exist)';
-      else if($orderModelObjectArray[0]->getStatus() != 'Stand by')
+      else if($orderModelObjectArray[0]->getStatus() != 'Stand by' && $action != 'update')
         return '(order was already confirmed)';
 
       //check transporters routes
@@ -292,6 +301,8 @@
        return 'created';
       else if($action == 'confirm')
        return 'confirmed';
+      else if($action == 'update confirm')
+        return 'updated confirmed';
     }
 
     private function getDeleteAction($status){

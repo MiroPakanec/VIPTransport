@@ -37,7 +37,73 @@ $(function(){
       'border' : '1px solid rgba(255,255,255,0.3)'
     }).html(alertText).slideDown(500);
   });
+
+  $(document).on('click', '.routeUpdateButton', function(){
+
+    var element = $(this);
+    updateRoute(element);
+
+    setTimeout(function(){
+      $('.confirmFormArea').fadeIn(500);
+    },400);
+  });
 });
+
+function updateRoute(element){
+
+  var id = getOrderIdFromRoute(element);
+  $('#confirmOrderAction').val('update');
+
+  hideSections();
+  loadOrder(id);
+  loadCountries();
+  checkAction(id);
+  $('#transporterSelect').trigger('click');
+}
+
+function loadConfirmationFields(id){
+
+  getRoutes(function(data){
+
+    var route = data[0];
+    var countries = [];
+    $('#detailsIdRouteInput').val(route[0]);
+    $('#transporterSelection').val(route[3]);
+    $('#carSelection').val(route[4]);
+    countries = route[5];
+
+    setTimeout(function(){
+      highlightCountries(countries);
+    },1000);
+
+  }, '', id);
+}
+
+function highlightCountries(countries){
+
+
+  $('.countryCodeArea').each(function(){
+
+    var title = $(this).find('.countryCodeTitle').html();
+
+    for (index in countries){
+
+      if(countries[index] == title){
+
+        $('#selectedCounties').append(title + ' ');
+        $(this).css({'background-color' : 'rgba(255, 0, 0,0.1)'});
+        $(this).find('input').val('1');
+      }
+    }
+  });
+
+}
+
+function getOrderIdFromRoute(element){
+
+  var routeId = $(element).parent().find($('input[name = "oid"]')).val();
+  return routeId;
+}
 
 function loadRoutes(){
 
@@ -47,17 +113,17 @@ function loadRoutes(){
       generateTableRowRoutes(data[index][0], data[index][1], data[index][2], data[index][3], data[index][4], data[index][5]);
 
     }
-  }, '');
+  }, '', '');
 }
 
 function closeElementsOnLoadRoutes(){
 
-  $('.confirmFormArea').fadeOut(500);
+  var height = ( 100 * parseFloat($('#orderTableArea').css('height')) / parseFloat($('#orderTableArea').parent().css('height')) );
+  if(height < 20)
+    $('#cancelConfirmButton').trigger('click');
 
-
-  $('#orderTableArea').html('');
-  $('.orderSearchBarArea').slideUp(500);
   manageTitleCss('#titleRoutes', '#titleOrder', '#titleTransport', '0.05');
+  $('.orderSearchBarArea').slideUp(500);
   $('#responseArea').slideUp(300).html('');
 }
 
@@ -93,7 +159,8 @@ function generateTableRowRoutes(id, oid, date, email, spz, countryCodes){
                       '<td><input type="text" class="tableInput" name="spz" value="'+ spz +'" disabled></td>' +
                       '<td><input type="text" class="tableInput" name="countries" value="'+ countryString +'" disabled></td>';
   if($('#type').val() == 'manager')
-    html += '<td class="buttonColumn routeDeleteButton">Delete</td>';
+    html += '<td class="buttonColumn routeDeleteButton">Delete</td>' +
+            '<td class="buttonColumn routeUpdateButton">Update</td>';
 
   html +=             '<td class="buttonColumn routeStickersButton">Check stickers</td>' +
                       '<td class="buttonColumn routeConfirmButton">Confirm</td>' +

@@ -3,9 +3,9 @@
 
   require_once('databaseConnection.php');
 
-  class OrderRouteConfirmDatabaseAccess{
+  class OrderRouteUpdateDatabaseAccess{
 
-    public function confirmOrder($routeModelObject){
+    public function updateRoute($routeModelObject){
 
       try{
 
@@ -13,28 +13,18 @@
         $dbc->autocommit(false);
         $errorString = '';
 
-        $orderWCluase = "WHERE Id = ".$routeModelObject->getOrderId();
-        $orderQuery = "UPDATE transport_order SET Status = 'Confirmed' ".$orderWCluase;
-        $routeQuery = $this->getRouteInsertQuery($dbc, $routeModelObject);
+        $routeWClause = " WHERE Order_id = ".$routeModelObject->getOrderId();
+        $routeQuery = $this->getRouteUpdateQuery($dbc, $routeModelObject, $routeWClause);
 
-        //delete routes for this order - (just in case to keep data constistancy)
-        $wClauseRoute = " WHERE Order_id = ".$routeModelObject->getOrderId();
-        $routeDeleteQuery = "DELETE FROM transport_route ".$wClauseRoute;
-
-        $dbc->query($routeDeleteQuery);
-        $errorString .= $dbc->error;
-        $dbc->query($orderQuery);
-        $errorString .= $dbc->error;
         $dbc->query($routeQuery);
-        $routeId = $dbc->insert_id;
         $errorString .= $dbc->error;
 
-        $wClauseRouteCountryCodes = " WHERE Route_id = ".$routeId;
+        $wClauseRouteCountryCodes = " WHERE Route_id = ".$routeModelObject->getId();
         $queryRouteCountry = "DELETE FROM transport_route_country_code ".$wClauseRouteCountryCodes;
         $dbc->query($queryRouteCountry);
         $errorString .= $dbc->error;
 
-        $countryCodeQueryArray = $this->getCountryCodeInsertQueryArray($dbc, $routeModelObject, $routeId);
+        $countryCodeQueryArray = $this->getCountryCodeInsertQueryArray($dbc, $routeModelObject);
         $dbc = $this->processInsert($dbc, $countryCodeQueryArray);
         $errorString .= $dbc->error;
 
@@ -68,7 +58,7 @@
       return $dbc;
     }
 
-    private function getRouteInsertQuery($dbc, $routeModelObject){
+    private function getRouteUpdateQuery($dbc, $routeModelObject, $wClause){
 
       try{
 
@@ -76,9 +66,7 @@
         $transporterEmail = $dbc->real_escape_string(trim($routeModelObject->getTransporterEmail()));
         $carSpz = $dbc->real_escape_string(trim($routeModelObject->getCarSpz()));
 
-        $queryRoute = "INSERT into transport_route(Order_id, Transporter_email, Car_spz) ".
-                    "VALUES('{$orderId}', '{$transporterEmail}', '{$carSpz}')";
-
+        $queryRoute = "UPDATE transport_route SET Transporter_email = '{$transporterEmail}', Car_spz = '{$carSpz}' ".$wClause;
         return $queryRoute;
       }
       catch(Exception $e){
@@ -87,7 +75,7 @@
       }
     }
 
-    private function getCountryCodeInsertQueryArray($dbc, $routeModelObject, $routeId){
+    private function getCountryCodeInsertQueryArray($dbc, $routeModelObject){
 
       $insertQueryArray = array();
       if(empty($routeModelObject->getCountries()))
@@ -95,7 +83,7 @@
 
         foreach ($routeModelObject->getCountries() as $countryCode) {
 
-           $query = $this->getCountryCodeInsertQuery($dbc, $countryCode, $routeId);
+           $query = $this->getCountryCodeInsertQuery($dbc, $countryCode, $routeModelObject->getId());
            array_push($insertQueryArray, $query);
         }
 

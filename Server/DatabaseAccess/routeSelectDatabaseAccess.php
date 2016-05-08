@@ -15,7 +15,7 @@
         $query = "SELECT transport_route.Id, transport_route.Order_id, transport_order.DateTime, ".
                  "transport_route.Transporter_email, transport_route.Car_spz ".
                  "FROM transport_route INNER JOIN transport_order ".
-                 "ON transport_route.Order_id = transport_order.Id ";
+                 "ON transport_route.Order_id = transport_order.Id ".$wClause;
 
         $response = @mysqli_query($dbc, $query);
         $array = array();

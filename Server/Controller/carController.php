@@ -98,7 +98,8 @@ class CarController{
     }
 
     if(strlen($stickerMessage) > 0)
-      $warningMessage = '<strong class="white">Notice:</strong> Your car is missing highway stickers for countries: '.$stickerMessage;
+      $warningMessage = '<strong class="white">Notice:</strong> Your car is missing highway stickers for countries: <strong class="white">'.
+                        $stickerMessage."</strong>";
     else
       $warningMessage = 'All highway stickers are up to date.';
 

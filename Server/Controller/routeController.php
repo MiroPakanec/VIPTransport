@@ -8,14 +8,14 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/routeModel.ph
 
 class RouteController{
 
-  public function getRoutes($email){
+  public function getRoutes($email, $orderId){
 
     $this->startSession();
     if($_SESSION['type'] != 'manager' && $_SESSION['type'] != 'transporter')
       return 0;
 
     $routeSelectDatabaseAccessObject = new RouteSelectDatabaseAccess();
-    $wClause = $this->getWClause();
+    $wClause = $this->getWClause($orderId);
     return $routeSelectDatabaseAccessObject->getRoutes($wClause);
   }
 
@@ -33,12 +33,16 @@ class RouteController{
     return $message;
   }
 
-  private function getWClause(){
+  private function getWClause($orderId){
 
     $wClause =  " WHERE 1";
 
     if($_SESSION['type'] == 'transporter')
       $wClause .= " AND Transporter_email = '".$_SESSION['email']."'";
+
+    if(!empty($orderId)){
+      $wClause .= " AND Order_id = '".$orderId."'";
+    }
 
     return $wClause;
   }

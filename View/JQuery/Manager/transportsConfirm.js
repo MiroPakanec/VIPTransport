@@ -56,11 +56,10 @@ $(function(){
 
   $(document).on('click', '#clearConfirmButton', function(){
 
-    $('#transporterSelection').val('');
-    $('#carSelection').val('');
-    $('#transporterSelect').trigger('click');
-    $('.confirmError').slideUp(500);
-    resetCountryCodes();
+    if($('#confirmOrderAction').val() == 'confirm')
+      clearConfirmationFields();
+    else if($('#confirmOrderAction').val() == 'update')
+      restoreConfirmationFields();
   });
 
   $(document).on('click', '#cancelConfirmButton', function(){
@@ -94,21 +93,46 @@ $(function(){
   });
 });
 
+function clearConfirmationFields(){
+
+  $('#transporterSelection').val('');
+  $('#carSelection').val('');
+  $('#transporterSelect').trigger('click');
+  $('.confirmError').slideUp(500);
+  $('#detailsIdRouteInput').val('');
+  $('#detailsIdInput').val('');
+  $('#confirmOrderAction').val('confirm');
+  resetCountryCodes();
+}
+
+function restoreConfirmationFields(){
+
+  var id = $('#detailsIdInput').val();
+  resetCountryCodes();
+  loadConfirmationFields(id);
+  $('#transporterSelect').trigger('click');
+  $('.confirmError').slideUp(500);
+}
+
 function submitOrderConfirmation(){
 
   if(validateOrderSubmit() == false)
     return;
 
+  var routeId = $('#detailsIdRouteInput').val();
   var orderId = $('#detailsIdInput').val();
   var countryArray = getAllCountryCodes();
   var transporter =  $('#transporterSelection').val();
   var car = $('#carSelection').val();
+  var action = $('#confirmOrderAction').val();
   var data = {};
 
   data['countryCodes'] = countryArray;
   data['transporter'] = transporter;
   data['car'] = car;
   data['orderId'] = orderId;
+  data['routeId'] = routeId;
+  data['action'] = action;
 
   $('#cancelConfirmButton').trigger('click');
 
@@ -123,6 +147,8 @@ function handleSubmitResponse(responseData){
   if(responseData === null)
     return;
 
+  $('#cancelConfirmButton').trigger('click');
+  clearConfirmationFields();
   var responseText = getResponseText(responseData);
   var responseStatus = responseData.status;
 
@@ -160,9 +186,9 @@ function getResponseText(responseData){
   var responseText = '';
 
   if(responseStatus == 1)
-    responseText = 'Order was confirmed successfully. </br>' + responseWarning;
+    responseText = 'Order was confirmed/updated successfully. </br>' + responseWarning;
   else if(responseText == 0)
-    responseText = 'Order could not be confirmed. </br>' + responseMessage;
+    responseText = 'Order could not be confirmed/updated. </br>' + responseMessage;
 
   return responseText;
 }
@@ -233,10 +259,31 @@ function manageSelectionButtonCss(element){
 function confirmOrder(element){
 
   var id = getOrderId(element);
+  $('#confirmOrderAction').val('confirm');
   hideSections();
+  clearConfirmationFields();
   loadOrder(id);
   loadCountries();
+  checkAction();
   $('#transporterSelect').trigger('click');
+}
+
+function checkAction(id){
+
+  var action = $('#confirmOrderAction').val();
+
+  if(action == 'confirm'){
+
+    $('#clearConfirmButton').val('Clear');
+    $('#submitConfirmButton').val('Submit');
+  }
+  else if(action == 'update'){
+
+    $('#clearConfirmButton').val('Restore');
+    $('#submitConfirmButton').val('Update');
+    loadConfirmationFields(id);
+  }
+
 }
 
 function hideSections(){
