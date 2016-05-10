@@ -121,7 +121,7 @@
         $orderUpdateDatabaseAccessObject = new OrderUpdateDatabaseAccess();
         $updateResponse = $orderUpdateDatabaseAccessObject->updateOrder($orderModelObject);
 
-        $wasNotified = $this->sendOrderNotifications($orderModelObject, 'update', ' ');
+        $wasNotified = $this->sendOrderNotifications($orderModelObject->getId(), 'update', ' ');
         /*if($wasNotified == 0)
           return 0;*/
 

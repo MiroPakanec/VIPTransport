@@ -8,13 +8,8 @@ $(function(){
 
 function closeElementsOnLoadTransport(){
 
-  $('.confirmFormArea').fadeOut(500);
-  setTimeout(function(){
-
-      $('.confirmArea').slideUp(300);
-      $('#orderTableArea').css({'height' : '40%'});
-
-  },500);
+  hideDetails();
+  hideConfirm();
 
   $('#orderTableArea').html('');
   $('.orderSearchBarArea').slideUp(500);

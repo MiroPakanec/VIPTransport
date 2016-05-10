@@ -9,6 +9,8 @@ $(function (){
     loadSearchBar();
     generateTableOrders();
 
+    hideDetails();
+    hideConfirm();
     getTransports(function(data){
 
       var added = getParameterByName('added');

@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="../Css/generalPageStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/myTransportsStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/myTransportsConfirmStyles.css">
+    <link rel="stylesheet" type="text/css" href="../Css/routesStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/tableStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/widgetsStyles.css">
 
@@ -102,6 +103,65 @@
               <div id="selectedCounties" class="smallText"><strong>Selected: </strong></div>
               <div id="countrySelection" class="smallText"></div>
             </div>
+          </div>
+        </div>
+        <div class="routeDetailsArea">
+          <div class="routeDetailsFormArea">
+            <div class="lineBreak"></div>
+            <div class="routeDetailsTitle largeText">Route details</div>
+            <div class="informationContainer" id="detailsRoute">
+              <div class="lineBreak"></div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Route ID :</div>
+                <div class="rowDetailsValue smallText" id="detailsRouteId"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Order ID :</div>
+                <div class="rowDetailsValue smallText" id="detailsOrderId"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Transporters email:</div>
+                <div class="rowDetailsValue smallText" id="detailsTransporter"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Car spz:</div>
+                <div class="rowDetailsValue smallText" id="detailsCar"></div>
+              </div>
+              <div class="detailsSubContainer" id="detailsCountriesContainer"></div>
+            </div>
+            <div class="informationContainer" id="detailsOrder">
+              <div class="lineBreak"></div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Date and time :</div>
+                <div class="rowDetailsValue smallText" id="detailsOrderDate"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">From :</div>
+                <div class="rowDetailsValue smallText" id="detailsOrderFrom"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">To :</div>
+                <div class="rowDetailsValue smallText" id="detailsOrderTo"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Payment type :</div>
+                <div class="rowDetailsValue smallText" id="detailsOrderPayment"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Pasangers phone :</div>
+                <div class="rowDetailsValue smallText" id="detailsOrderPasangerPhone"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Number of pasangers :</div>
+                <div class="rowDetailsValue smallText" id="detailsOrderPasangers"></div>
+              </div>
+              <div class="detailsSubContainer" id="detailsCountriesNames"></div>
+            </div>
+            <div class="detailsButtonRow">
+              <input id="checkStickersButton" type="button" class="searchBarStyle detailsButton" value="Check Stickers">
+              <input id="cancelDetailsButton" type="button" class="searchBarStyle detailsButton" value="Cancel">
+            </div>
+            <div class="detailsResponseArea smallText"></div>
           </div>
         </div>
         <div class="responseArea" id="responseArea"></div>

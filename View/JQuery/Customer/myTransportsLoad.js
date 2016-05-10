@@ -70,6 +70,7 @@ function hideElementsOnload(){
   $('.confirmError').hide();
   $('.confirmFormArea').hide();
   $('.title').hide();
+  $('.routeDetailsArea').hide();
 }
 
 function loadDatePicker(){

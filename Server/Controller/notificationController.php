@@ -34,7 +34,7 @@
           return 0;
 
         $notificationFindDatabaseAccessObject = new NotificationFindDatabaseAccess();
-        $cursor = $notificationFindDatabaseAccessObject->getNotifications($ammount, $skip, $type, $receiver);
+        return $cursor = $notificationFindDatabaseAccessObject->getNotifications($ammount, $skip, $type, $receiver);
 
         //return var_dump($cursor);
         //return var_dump($cursor);
@@ -50,11 +50,7 @@
           return 0;
 
         $notificationFindDatabaseAccessObject = new NotificationFindDatabaseAccess();
-        $cursor = $notificationFindDatabaseAccessObject->getAllNotification($receiver);
-
-        $document = $this->manageNotificationCursor($cursor);
-        return $this->manageNotificationsAggregate($document, 'false');
-
+        return $notificationFindDatabaseAccessObject->getAllNotification($receiver);
     }
 
     public function readNotifications($id, $value){
@@ -94,13 +90,6 @@
         $sessionControllerObject->startSession();
     }
 
-    private function manageNotificationsAggregate($document){
-
-      if(empty($document))
-        return 0;
-
-      return $document[0]['total'];
-    }
 
     private function countNotifications($cursor){
 
@@ -139,7 +128,7 @@
       return $array;
     }*/
 
-    private function manageNotificationCursor($cursor){
+    /*private function manageNotificationCursor($cursor){
       $array = array();
       foreach ($cursor as $document) {
 
@@ -164,7 +153,7 @@
       return (string)$value;
     }
 
-    private function manageNotificationObject($object){
+    /*private function manageNotificationObject($object){
 
       $objectArray = array();
 
@@ -173,5 +162,5 @@
       }
 
       return $objectArray;
-    }
+    }*/
   }

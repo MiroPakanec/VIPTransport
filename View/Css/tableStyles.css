@@ -120,7 +120,13 @@ td>input:hover{
   width: 7%;
 }
 
-.routeStickersButton:hover, .routeConfirmButton:hover, .routeUpdateButton:hover{
+.routeDetailsButton{
+
+  background-color:rgba(255, 255, 255,0.1);
+  width: 5%;
+}
+
+.routeStickersButton:hover, .routeConfirmButton:hover, .routeUpdateButton:hover, .routeDetailsButton:hover{
 
   background-color:rgba(255, 255, 255,0.3) !important;
 }

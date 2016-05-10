@@ -1,0 +1,124 @@
+.routeDetailsArea{
+
+  float: left;
+  height: 50%;
+  width: 100%;
+  background-color: rgba(255,255,255,0.1);
+}
+
+.routeDetailsFormArea{
+
+  margin: auto;
+  height: 100%;
+  width: 65%;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.routeDetailsFormArea::-webkit-scrollbar {
+    width: 1em;
+}
+
+.routeDetailsFormArea::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.routeDetailsFormArea::-webkit-scrollbar-thumb {
+  background-color: white;
+  outline: 1px solid slategrey;
+}
+
+.routeDetailsTitle{
+
+  float: left;
+  margin-top: 1%;
+  height: 13%;
+  width: 100%;
+}
+
+.informationContainer{
+
+  height: auto;
+  width: 100%;
+  margin-top: 1%;
+  text-align: center;
+  float: left;
+}
+
+.detailsSubContainer{
+
+  width: 100%;
+  height: auto;
+  float: left;
+}
+
+.routeDetailsRow{
+
+  height: 15%;
+  width: 100%;
+  float: left;
+}
+
+.rowDetailsTitle{
+
+  float: left;
+  height: 100%;
+  width: 47%;
+  text-align: right;
+  padding-right: 3%;
+
+  color: red;
+}
+
+.rowDetailsValue{
+
+  float: left;
+  height: 100%;
+  width: 47%;
+  margin-left: 3%;
+  text-align: left;
+}
+
+.lineBreak{
+
+  float: left;
+  height: auto;
+  width: 100%;
+  border-bottom : 1px solid rgba(255,255,255,0.3);
+
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+.detailsButton{
+
+  float: left;
+  height: 30px;
+  width: 15%;
+  margin-bottom: 3%;
+
+  background-color: rgba(255,255,255,0);
+}
+
+#checkStickersButton{
+
+  margin-left: 35%;
+}
+
+#cancelDetailsButton{
+
+  margin-left: 2%;
+}
+
+.detailsResponseArea{
+
+  height: 20%;
+  width: 90%;
+  float: left;
+  margin-left: 5%;
+  margin-bottom: 3%;
+
+  background-color: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.3);
+}
