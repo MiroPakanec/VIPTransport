@@ -131,6 +131,8 @@ function processNotification(notification){
   date = relative_time(date);
   if(type == 'order')
     message = modifyOrderMessageHtml(message, type);
+  else if(type == 'route employee' || type == 'route customer')
+    message = modifyRouteMessageHtml(message, type);
 
   userMessage = modifyUserMessageHtml(userMessage, action);
   message += '</br>' + userMessage + '</br>' + date;
@@ -226,7 +228,7 @@ function modifyUserMessageHtml(message, action){
 
   if(!message) {return ' ';}
   if(message.length <= 0) {return ' '}
-  if (!/update request/i.test(action) && !/register/i.test(action)) {return ' '}
+  if (!/update request/i.test(action) && !/register/i.test(action) && !/update transporter/i.test(action)) {return ' '}
 
   message = message.splice(0, 0, '<strong>Message: </strong>');
   if(message.length <= 95) {return message}
@@ -262,6 +264,41 @@ function modifyOrderMessageHtml(message){
   //modify message
   message = message.splice( index3, 0, "</a></strong>");
   message = message.splice( index2, 0, '<strong><a href="'+ url + "?type=order&id="+id +'">');
+  message = message.splice(index, 0, "</a></strong>");
+  message = message.splice(0, 0, '<strong><a href="'+ url + "?type=user&id="+user +'">');
+  console.log(message);
+
+  return message;
+}
+
+function modifyRouteMessageHtml(message, type){
+
+  if(!message) {return;}
+  var url = '#';
+  var index, index2, index3, id = -1;
+
+  //find indexes for user identification and ID
+  index = message.indexOf("has ");
+  if(index == -1){index = message.indexOf("have ");}
+  index2 = message.indexOf("order ID");
+  index2 += 9;
+  index3 = message.indexOf("Please have");
+  index3 -= 3;
+  index4 = message.indexOf("DETAILS");
+  index5 = index4 + 7;
+
+  //get ID , form URL
+  id = message.substring(index2, index3);
+  user = message.substring(0, index);
+
+  url = "notificationDetailPage.html";
+
+  if(type == 'route employee'){
+
+    message = message.splice( index5, 0, "</a></strong>");
+    message = message.splice( index4, 0, '<strong><a href="'+ url + "?type=route&id="+id +'">');
+  }
+
   message = message.splice(index, 0, "</a></strong>");
   message = message.splice(0, 0, '<strong><a href="'+ url + "?type=user&id="+user +'">');
   console.log(message);

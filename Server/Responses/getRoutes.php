@@ -5,7 +5,7 @@
     header('Content-Type: text/javascript');
 
     $routesControllerObject = new RouteController();
-    $email = $orderId = '';
+    $id = $email = $orderId = '';
 
     if(!empty($_GET['email']))
       $email = $_GET['email'];
@@ -13,7 +13,10 @@
     if(!empty($_GET['orderId']))
       $orderId = $_GET['orderId'];
 
-    $routesArray = $routesControllerObject->getRoutes($email, $orderId);
+    if(!empty($_GET['id']))
+      $id = $_GET['id'];
+
+    $routesArray = $routesControllerObject->getRoutes($id, $email, $orderId);
 
     echo json_encode($routesArray, JSON_PRETTY_PRINT);
 ?>

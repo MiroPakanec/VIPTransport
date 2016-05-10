@@ -7,6 +7,7 @@
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderRouteConfirmDatabaseAccess.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/DatabaseAccess/orderRouteUpdateDatabaseAccess.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/userController.php';
+  include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/routeController.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/carController.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/notificationController.php';
   include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/sessionController.php';
@@ -26,6 +27,7 @@
           return $this->getSubmitOrderJson(0, '(only manager can confirm an order)', '');
 
         $routeModelObject = new RouteModel($routeId, $orderId, $transporter, $car, $countryCodes);
+        $routeControllerObject = new RouteController();
 
         //validate inputed values
         $validationControllerObject = new ValidationController();
@@ -46,18 +48,22 @@
         $carControllerObject = new CarController();
         $highwayStickersWarningMessage = $carControllerObject->checkHighwayStickers($routeModelObject->getCarSpz(),
                                                                                     $routeModelObject->getCountries());
-        //confirm order
-        $wasNotified = $this->sendOrderNotifications($routeModelObject->getOrderId(), 'update confirm', ' ');
 
-        if($action == 'confirm'){
+        if($action == 'update'){
+
+          $orderRouteUpdateDatabaseAccessObject = new OrderRouteUpdateDatabaseAccess();
+          $confirmStatusCode = $orderRouteUpdateDatabaseAccessObject->updateRoute($routeModelObject);
+        }
+        else if($action == 'confirm'){
 
           $orderRouteConfirmDatabaseAccessObject = new OrderRouteConfirmDatabaseAccess();
           $confirmStatusCode = $orderRouteConfirmDatabaseAccessObject->confirmOrder($routeModelObject);
         }
-        else if($action == 'update'){
 
-          $orderRouteUpdateDatabaseAccessObject = new OrderRouteUpdateDatabaseAccess();
-          $confirmStatusCode = $orderRouteUpdateDatabaseAccessObject->updateRoute($routeModelObject);
+        if($confirmStatusCode == 1){
+
+          $orderModelObject = $this->getOrders($routeModelObject->getOrderId(), '', '', '')[0];
+          $routeControllerObject->sendRouteNotifications($orderModelObject, $action);
         }
 
         return $this->getSubmitOrderJson($confirmStatusCode, '', $highwayStickersWarningMessage);
@@ -115,7 +121,7 @@
         $orderUpdateDatabaseAccessObject = new OrderUpdateDatabaseAccess();
         $updateResponse = $orderUpdateDatabaseAccessObject->updateOrder($orderModelObject);
 
-        $wasNotified = $this->sendOrderNotifications($id, 'update', ' ');
+        $wasNotified = $this->sendOrderNotifications($orderModelObject, 'update', ' ');
         /*if($wasNotified == 0)
           return 0;*/
 
@@ -291,7 +297,7 @@
       return 0;
     }
 
-    private function getAction($status, $action){
+    public function getAction($status, $action){
 
       if($action == 'delete')
         return $this->getDeleteAction($status);
@@ -351,7 +357,7 @@
       return $notificationArray;
     }
 
-    private function getNotificationUserMessage($userEmail){
+    public function getNotificationUserMessage($userEmail){
 
       if($_SESSION['email'] === $userEmail)
         return 'You have ';

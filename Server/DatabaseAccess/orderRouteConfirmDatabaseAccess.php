@@ -38,6 +38,8 @@
         $dbc = $this->processInsert($dbc, $countryCodeQueryArray);
         $errorString .= $dbc->error;
 
+        //return $errorString;
+
         if(strlen($errorString) == 0){
 
             $dbc->commit();

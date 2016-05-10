@@ -12,7 +12,6 @@ class NotificationFindDatabaseAccess{
       //$receiver = "miroslav@gmail.com";
 
       $collection = DatabaseMongodbConnection::getCollection("VIPTransport", "notifications");
-
       //$cursor = $collection->find(array("reciever"=> $receiver, "read"=> false));
       if($type === 'all')
         $cursor = $collection->find(array("reciever"=> $receiver), array('limit' => $ammount, 'skip' => $skip, 'sort' => array('date' => -1)));

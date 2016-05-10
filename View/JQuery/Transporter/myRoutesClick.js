@@ -76,7 +76,7 @@ function loadConfirmationFields(id){
       highlightCountries(countries);
     },1000);
 
-  }, '', id);
+  }, '', '', id);
 }
 
 function highlightCountries(countries){
@@ -113,7 +113,7 @@ function loadRoutes(){
       generateTableRowRoutes(data[index][0], data[index][1], data[index][2], data[index][3], data[index][4], data[index][5]);
 
     }
-  }, '', '');
+  }, '', '', '');
 }
 
 function closeElementsOnLoadRoutes(){
@@ -183,7 +183,7 @@ function getCountryString(countryCodes){
   return countryString;
 }
 
-function generateDeleteAlertRoute(routeId, orderId){
+function generateDeleteAlertRoute(routeId, orderId){ 
 
   var message = "Are you sure, that you want to delete this route (ID: "+routeId+") and order (ID: "+orderId+") with it assosiated?";
   var html = '<br><input type = "button" id="confirmDelete" class ="alertButton" value="YES">' +

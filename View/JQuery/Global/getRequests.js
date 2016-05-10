@@ -88,9 +88,11 @@ function getNotifications(handleData, ammount, skip, type){
       dataType : 'json',
       data: data,
       success: function(response){
+        console.log(response);
           handleData(response);
       },
       error: function(response){
+        console.log(response);
       }
   });
 }
@@ -213,12 +215,13 @@ function checkStickers(handleData, spz, routeId){
   });
 }
 
-function getRoutes(handleData, email, orderId){
+function getRoutes(handleData, id, email, orderId){
 
   data = {};
+  data['id'] = id;
   data['email'] = email;
   data['orderId'] = orderId;
-
+  console.log(data);
 
   $.ajax({
       type: 'GET',
@@ -228,6 +231,7 @@ function getRoutes(handleData, email, orderId){
       success: function(response){
 
           handleData(response);
+          console.log(response);
       },
       error:function(response){
         console.log(response);

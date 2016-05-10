@@ -11,6 +11,8 @@ $(function(){
         generateCustomerButtons();
       else if(data.type == 'manager')
         generateManagerButtons();
+      else if(data.type == 'transporter')
+        generateTransporterButtons();
 
     $('.notificationAmmount').html('0');
     $('#notificationsLoaded').val('0');
@@ -50,7 +52,7 @@ function loadDetails(){
 
     case 'order' : loadOrder(id); break;
     case 'user'  : loadUser(id); break;
-
+    case 'route' : loadRoute(id); break;
   }
 }
 
@@ -69,6 +71,26 @@ function loadUser(id){
     }
     processUser(dataUser);
   }, email);
+}
+
+function loadRoute(id){
+
+  getRoutes(function(dataRoute){
+
+    var route = dataRoute[0];
+    console.log(dataRoute);
+
+    if(dataRoute.length == 0){
+
+      processEmpty();
+      return;
+    }
+
+    processRoute(route);
+
+  }, '', '', id);
+
+  loadOrder(id);
 }
 
 function loadOrder(id){
@@ -101,6 +123,26 @@ function loadOrder(id){
 function processEmpty(){
 
   $('#notificationsArea').html('</br>This notification points to something that no longer exists in out system.');
+}
+
+function processRoute(route){
+
+  var html = '';
+  var countryString = '';
+
+  html += generateRow('Route ID:', route[0]);
+  html += generateRow('Order ID:', route[1]);
+  html += generateRow('Transporter (email):', route[3]);
+  html += generateRow('Car (spz):', route[4]);
+
+  for (var countryIndex in route[5]) {
+
+    countryString += route[5][countryIndex] + ' ';
+  }
+  html += generateRow('Countries:', countryString);
+  html += generateRow(' ', ' ');
+
+  $('#notificationsArea').append(html);
 }
 
 function processUser(data){
