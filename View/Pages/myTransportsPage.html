@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="../Css/myTransportsStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/myTransportsConfirmStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/routesStyles.css">
+    <link rel="stylesheet" type="text/css" href="../Css/routeConfirmStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/tableStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/widgetsStyles.css">
 
@@ -20,7 +21,8 @@
     <script src="../JQuery/Manager/transportsSearchBarClick.js"></script>
     <script src="../JQuery/Manager/transportsConfirm.js"></script>
     <script src="../JQuery/Global/notificationsAmmount.js"></script>
-    <script src="../JQuery/Manager/carsValidate.js"></script>
+    <script src="../JQuery/Manager/validate.js"></script>
+    <script src="../JQuery/Manager/validate.js"></script>
 
     <meta charset="UTF-8">
     <title>My Transports</title>
@@ -40,7 +42,8 @@
           <div class="title largeText" id="titleRoutes">My Routes</div>
           <div class="title largeText" id="titleTransport">My Transports</div>
         </div>
-        <div class="orderSearchBarArea">
+
+        <div class="orderSearchBarArea searchBar">
           <div class="idArea">
             <input id="idInput" type="text" maxlength="4" placeholder="ID" class="searchBarStyle">
             <input type="hidden" id="idRequest" val="">
@@ -105,8 +108,8 @@
             </div>
           </div>
         </div>
-        <div class="routeDetailsArea">
-          <div class="routeDetailsFormArea">
+        <div class="routeDetailsArea area">
+          <div class="routeDetailsFormArea formArea">
             <div class="lineBreak"></div>
             <div class="routeDetailsTitle largeText">Route details</div>
             <div class="informationContainer" id="detailsRoute">
@@ -131,6 +134,10 @@
             </div>
             <div class="informationContainer" id="detailsOrder">
               <div class="lineBreak"></div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Customer email: </div>
+                <div class="rowDetailsValue smallText" id="detailsOrderCustomerEmail"></div>
+              </div>
               <div class="routeDetailsRow">
                 <div class="rowDetailsTitle smallText">Date and time :</div>
                 <div class="rowDetailsValue smallText" id="detailsOrderDate"></div>
@@ -162,6 +169,156 @@
               <input id="cancelDetailsButton" type="button" class="searchBarStyle detailsButton" value="Cancel">
             </div>
             <div class="detailsResponseArea smallText"></div>
+          </div>
+        </div>
+        <div class="routeConfirmArea area">
+          <div class="routeConfirmFormArea routeFormArea">
+            <div class="lineBreak"></div>
+            <div class="routeDetailsTitle largeText" id="routeConfirmTitle">Enter information about transport</div>
+            <div class="lineBreak"></div>
+            <div class="routeDetailsRow">
+              <div class="rowDetailsTitle smallText">Price: </div>
+              <input type="text" class="smallText routeConfirmInput" id="routeConfirmPrice">
+              <div class="smallText routeConfirmError" id="routeConfirmPriceError">ERROR</div>
+              <div class="smallLineBreak"></div>
+            </div>
+            <div class="routeDetailsRow">
+              <div class="rowDetailsTitle smallText">Mealige: </div>
+              <input type="text" class="smallText routeConfirmInput" id="routeConfirmMealige">
+              <div class="smallText routeConfirmError" id="routeConfirmMealigeError">ERROR</div>
+              <div class="smallLineBreak"></div>
+            </div>
+            <div class="routeDetailsRow">
+              <div class="rowDetailsTitle smallText">Arrival date: </div>
+              <div class="button smallText" id="transportDate">Select date</div>
+              <div class="button smallText" id="transportTodayDate">Today</div>
+              <div class="smallLineBreak"></div>
+            </div>
+            <div id="datePickerRouteConfirm"></div>
+            <div class="routeDetailsRow">
+              <div class="rowDetailsTitle smallText">Arrival time: </div>
+              <input type="text" class="smallText routeConfirmInput" id="routeConfirmTimeHour" max="2" placeholder="HH">
+              <div class="smallText" id="routeConfirmArrivalTimeColon">:</div>
+              <input type="text" class="smallText routeConfirmInput" id="routeConfirmTimeMinute" max="2" placeholder="MM">
+              <div class="button smallText" id="transportTimeNow">Now</div>
+              <div class="smallText routeConfirmError" id="routeConfirmTimeError">ERROR</div>
+              <div class="smallLineBreak"></div>
+            </div>
+            <div class="routeDetailsRow">
+              <div class="rowDetailsTitle smallText">Transport type: </div>
+              <div class="button smallText transportTypeButton transportTypeHighlighted" id="transportTypeOfficial">Official</div>
+              <div class="button smallText transportTypeButton" id="transportTypePersonal">Personal</div>
+              <input type="hidden" value="official" id="transportTypeValue">
+              <div class="smallLineBreak"></div>
+            </div>
+            <div class="lineBreak"></div>
+            <div class="detailsButtonRow">
+              <input id="cancelRouteConfirmButton" type="button" class="searchBarStyle detailsButton" value="Cancel">
+              <input id="proceedRouteConfirmButton" type="button" class="searchBarStyle detailsButton" value="Proceed">
+            </div>
+            <div class="routeDetailsRow">
+              <div id="routeConfirmPageNumber" class="smallText">1/2</div>
+            </div>
+            <input type="hidden" val="" id="routeConfirmOrderId">
+            <input type="hidden" val="" id="routeConfirmRouteId">
+          </div>
+          <div class="routeValidateFromArea routeFormArea">
+            <div class="lineBreak"></div>
+            <div class="routeDetailsTitle largeText">Submit transport</div>
+            <div class="informationContainer" id="submitRoute">
+              <div class="lineBreak"></div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Route ID :</div>
+                <div class="rowDetailsValue smallText" id="submitRouteId"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Order ID :</div>
+                <div class="rowDetailsValue smallText" id="submitOrderId"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Transporters email:</div>
+                <div class="rowDetailsValue smallText" id="submitTransporter"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Car spz:</div>
+                <div class="rowDetailsValue smallText" id="submitCar"></div>
+              </div>
+              <div class="detailsSubContainer" id="submitCountriesContainer"></div>
+            </div>
+            <div class="informationContainer" id="submitOrder">
+              <div class="lineBreak"></div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Customer email: </div>
+                <div class="rowDetailsValue smallText" id="submitOrderCustomerEmail"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Date and time:</div>
+                <div class="rowDetailsValue smallText" id="submitOrderDate"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">From: </div>
+                <div class="rowDetailsValue smallText" id="submitOrderFrom"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">To: </div>
+                <div class="rowDetailsValue smallText" id="submitOrderTo"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Payment type: </div>
+                <div class="rowDetailsValue smallText" id="submitOrderPayment"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Pasangers phone: </div>
+                <div class="rowDetailsValue smallText" id="submitOrderPasangerPhone"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Number of pasangers: </div>
+                <div class="rowDetailsValue smallText" id="submitOrderPasangers"></div>
+              </div>
+              <div class="detailsSubContainer" id="submitCountriesNames"></div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Price: </div>
+                <div class="rowDetailsValue smallText" id="submitPrice"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Mealige: </div>
+                <div class="rowDetailsValue smallText" id="submitMealige"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Arrival date: </div>
+                <div class="rowDetailsValue smallText" id="submitArrivalDate"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Arrival time: </div>
+                <div class="rowDetailsValue smallText" id="submitArrivalTime"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Transport type: </div>
+                <div class="rowDetailsValue smallText" id="submitTransportType"></div>
+              </div>
+              <div class="lineBreak"></div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Confirmed by: </div>
+                <div class="rowDetailsValue smallText" id="submitConfirmedBy"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Type: </div>
+                <div class="rowDetailsValue smallText" id="submitType"></div>
+              </div>
+              <div class="lineBreak"></div>
+              <div class="detailsButtonRow">
+                <input id="backRouteConfirmRepeatButton" type="button" class="searchBarStyle detailsButton" value="Back">
+                <input id="cancelRouteConfirmRepeatButton" type="button" class="searchBarStyle detailsButton" value="Cancel">
+                <input id="finishRouteConfirmButton" type="button" class="searchBarStyle detailsButton" value="Finish">
+              </div>
+              <div class="routeDetailsRow">
+                <div id="routeConfirmPageNumber" class="smallText">2/2</div>
+              </div>
+              <div class="smallLineBreak"></div>
+            </div>
+            <div class="detailsButtonRow">
+
+            </div>
           </div>
         </div>
         <div class="responseArea" id="responseArea"></div>

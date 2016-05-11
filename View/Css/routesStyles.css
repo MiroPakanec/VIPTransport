@@ -1,4 +1,4 @@
-.routeDetailsArea{
+.area{
 
   float: left;
   height: 50%;
@@ -6,7 +6,7 @@
   background-color: rgba(255,255,255,0.1);
 }
 
-.routeDetailsFormArea{
+.formArea{
 
   margin: auto;
   height: 100%;
@@ -16,15 +16,15 @@
   overflow-x: hidden;
 }
 
-.routeDetailsFormArea::-webkit-scrollbar {
+.formArea::-webkit-scrollbar {
     width: 1em;
 }
 
-.routeDetailsFormArea::-webkit-scrollbar-track {
+.formArea::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
 
-.routeDetailsFormArea::-webkit-scrollbar-thumb {
+.formArea::-webkit-scrollbar-thumb {
   background-color: white;
   outline: 1px solid slategrey;
 }
@@ -85,10 +85,21 @@
   float: left;
   height: auto;
   width: 100%;
-  border-bottom : 1px solid rgba(255,255,255,0.3);
+  /*border-bottom : 1px solid rgba(255,255,255,0.3);*/
 
   margin-bottom: 2%;
   margin-top: 2%;
+}
+
+.smallLineBreak{
+
+  float: left;
+  height: auto;
+  width: 100%;
+  /*border-bottom : 1px solid rgba(255,255,255,0.3);*/
+
+  margin-bottom: 0.5%;
+  margin-top: 0.5%;
 }
 
 .detailsButton{

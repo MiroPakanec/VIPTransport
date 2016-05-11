@@ -1,0 +1,148 @@
+.routeFormArea{
+
+  width: 60%;
+  height: 100%;
+  margin-left: 20%;
+
+  background-color: rgba(255,255,255,0.05);
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.routeFormArea::-webkit-scrollbar {
+    width: 1em;
+}
+
+.routeFormArea::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.routeFormArea::-webkit-scrollbar-thumb {
+  background-color: white;
+  outline: 1px solid slategrey;
+}
+
+#routeConfirmPageNumber{
+
+  width: 10%;
+  float: left;
+
+  margin-top: 2%;
+  margin-left: 45%;
+}
+
+#routeConfirmTitle{
+
+  width: 100%;
+  float: right;
+}
+
+.routeConfirmInput{
+
+  color: black;
+  font-weight: bold;
+
+  height: 50%;
+}
+
+#transportDate{
+
+  float: left;
+  width: 21%;
+
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+#transportTodayDate{
+
+  float: left;
+  width: 8%;
+  margin-left: 1%;
+
+  background-color: rgba(255,255,255,0.0);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+#routeConfirmTimeHour, #routeConfirmTimeMinute{
+
+  float: left;
+  width: 8%;
+}
+
+#routeConfirmArrivalTimeColon{
+
+  float: left;
+  width: 4.5%;
+  height: 100%;
+}
+
+#transportTimeNow{
+
+  float: left;
+  background-color: rgba(255,255,255,0);
+  border: 1px solid rgba(255,255,255,0.3);
+  margin-left: 1%;
+  width: 8%;
+}
+
+#transportTodayDate:hover, #transportTimeNow:hover{
+
+  background-color: rgba(255,255,255,0.1);
+}
+
+.transportTypeButton{
+
+  float: left;
+  width: 10%;
+
+  background-color: rgba(255,255,255,0.0);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.transportTypeHighlighted{
+
+  background-color: rgba(255,255,255,0.2);
+}
+
+#transportTypePersonal{
+
+  margin-left: 1%;
+}
+
+#datePickerRouteConfirm{
+
+  height: 85%;
+  width: 50%;
+  float: right;
+
+  margin-right: 18%;
+}
+
+#cancelRouteConfirmButton{
+
+  margin-left: 35%;
+}
+
+#backRouteConfirmRepeatButton{
+
+  margin-left: 26%;
+}
+
+#cancelRouteConfirmRepeatButton, #finishRouteConfirmButton, #proceedRouteConfirmButton{
+
+  margin-left: 1%;
+}
+
+.routeConfirmError{
+
+  float: right;
+  width: 18%;
+  height: 55%;
+
+  background-color: rgba(255,0,0,0.1);
+  border: 1px solid rgba(255,0,0,0.3);
+  color: red;
+
+}

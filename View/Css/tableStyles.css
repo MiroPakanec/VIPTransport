@@ -23,6 +23,10 @@ td.dateCol{
   width: 15%;
 }
 
+td.dateColRoute{
+  width: 30%;
+}
+
 td.emailCol{
   width: 40%;
 }

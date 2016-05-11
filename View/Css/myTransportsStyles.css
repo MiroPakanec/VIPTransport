@@ -24,7 +24,7 @@
   background-color: rgba(255,255,255, 0.2) !important;
 }
 
-.orderSearchBarArea{
+.searchBar{
 
   float: left;
   width: 93.5%;
@@ -33,6 +33,11 @@
   margin-bottom: 0.5%;
 
   background-color: rgba(255,255,255,0.0);
+}
+
+.orderSearchBarArea{
+
+
 }
 
 .idArea{
