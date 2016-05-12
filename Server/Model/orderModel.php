@@ -77,6 +77,10 @@
       $this->id = $value;
     }
 
+    public function setEmail($value){
+      $this->email = $value;
+    }
+
     public function setDate($value){
       $this->date = $value;
     }
@@ -94,11 +98,11 @@
     }
 
     public function setPayment($value){
-      $this->pasangers = $value;
+      $this->payment = $value;
     }
 
     public function setPhone($value){
-      $this->pasangers = $value;
+      $this->phone = $value;
     }
 
     public function setNames($value){

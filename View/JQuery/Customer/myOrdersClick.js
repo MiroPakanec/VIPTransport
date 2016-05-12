@@ -9,8 +9,7 @@ $(function (){
     loadSearchBar();
     generateTableOrders();
 
-    hideDetails();
-    hideConfirm();
+    closeSubElementsOnLoad();
     getTransports(function(data){
 
       var added = getParameterByName('added');
@@ -25,8 +24,6 @@ $(function (){
 
     manageTitleCss('#titleOrder', '#titleTransport', '#titleRoutes', '0.05');
     manageButtonsCss();
-
-    $('#responseArea').slideUp(300).html('');
   });
 
   //edit

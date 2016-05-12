@@ -28,6 +28,63 @@
       return $errorCounter;
     }
 
+    public function validateCompany($companyModelObject){
+
+      $errorCounter = 0;
+
+      if(null !== $companyModelObject->getEmail())
+        $errorCounter += $this->validateEmail($companyModelObject->getEmail());
+      if(null !== $companyModelObject->getName())
+        $errorCounter += $this->validateInput($companyModelObject->getName(), '^[a-zA-Z]+$^', 50, 3, false);
+      if(null !== $companyModelObject->getAddress())
+        $errorCounter += $this->validateInput($companyModelObject->getAddress(), '^[a-zA-Z0-9-. ]+$^', 50, 1, true);
+      if(null !== $companyModelObject->getIco())
+        $errorCounter += $this->validateInput($companyModelObject->getIco(), '^[0-9]+$^', 8, 8, false);
+      if(null !== $companyModelObject->getDic())
+        $errorCounter += $this->validateInput($companyModelObject->getDic(), '^[0-9]+$^', 10, 10, false);
+
+      return $errorCounter;
+    }
+
+    public function validateRoute($routeModelObject){
+
+      $errorCounter = 0;
+
+      if(null !== $routeModelObject->getId())
+        $errorCounter += $this->validateIntegerInput($routeModelObject->getId(), 1000000, 1, false);
+      if(null !== $routeModelObject->getOrderId())
+        $errorCounter += $this->validateIntegerInput($routeModelObject->getOrderId(), 1000000, 1, false);
+      if(null !== $routeModelObject->getTransporterEmail())
+        $errorCounter += $this->validateEmail($routeModelObject->getTransporterEmail());
+      if(null !== $routeModelObject->getCarSpz());
+        $errorCounter += $this->validateInput($routeModelObject->getCarSpz(), '^[a-zA-Z0-9]+$^', 8, 8, false);
+      if(null !== $routeModelObject->getCountries()){
+
+        foreach ($routeModelObject->getCountries() as $country) {
+
+          $errorCounter += $this->validateInput($country, '^[A-Z]+$^', 2, 1, false);
+        }
+      }
+
+      return $errorCounter;
+    }
+
+    public function validateTransport($transportModelObject){
+
+      $errorCounter = 0;
+
+      if(null !== $transportModelObject->getPrice())
+        $errorCounter += $this->validateDecimalInput($transportModelObject->getPrice(), 10000, 5, false);
+      if(null !== $transportModelObject->getMealige())
+        $errorCounter += $this->validateDecimalInput($transportModelObject->getMealige(), 100000000, 4, false);
+      if(null !== $transportModelObject->getArrivalDate())
+        $errorCounter += $this->validateDateString($transportModelObject->getArrivalDate()->format('d/m/Y h:i:s'), 'd/m/Y h:i:s');
+      if(null !== $transportModelObject->getType());
+        $errorCounter += $this->validateInput($transportModelObject->getType(), '^[a-zA-Z]+$^', 15, 5, false);
+
+      return $errorCounter;
+    }
+
     public function validateOrder($orderModelObject){
 
       $errorCounter = 0;
@@ -67,13 +124,13 @@
       //if(!empty($carModelObject->getSeats()))
         $errorCounter += $this->validateIntegerInput($carModelObject->getSeats(), 50, 2, false);
       if(!empty($carModelObject->getEmissionCheck()))
-        $errorCounter += $this->validateDateString($carModelObject->getEmissionCheck());
+        $errorCounter += $this->validateDateString($carModelObject->getEmissionCheck(), 'Y-m-d');
       if(!empty($carModelObject->getStk()))
-        $errorCounter += $this->validateDateString($carModelObject->getStk());
+        $errorCounter += $this->validateDateString($carModelObject->getStk(), 'Y-m-d');
       if(!empty($carModelObject->getMandatoryInsurance()))
-        $errorCounter += $this->validateDateString($carModelObject->getMandatoryInsurance());
+        $errorCounter += $this->validateDateString($carModelObject->getMandatoryInsurance(), 'Y-m-d');
       if(!empty($carModelObject->getAccidentInsurance()))
-        $errorCounter += $this->validateDateString($carModelObject->getAccidentInsurance());
+        $errorCounter += $this->validateDateString($carModelObject->getAccidentInsurance(), 'Y-m-d');
       if(!empty($carModelObject->getMealige()))
         $errorCounter += $this->validateDecimalInput($carModelObject->getMealige(), 1000000, 0, false);
       if(!empty($carModelObject->getRelativeMealige()))
@@ -281,10 +338,10 @@
       return 0;
     }
 
-    private function validateDateString($date)
+    private function validateDateString($date, $format)
     {
-        $d = DateTime::createFromFormat('Y-m-d', $date);
-        if($d && $d->format('Y-m-d') === $date)
+        $d = DateTime::createFromFormat($format, $date);
+        if($d && $d->format($format) === $date)
           return 0;
 
         return 1;
@@ -303,7 +360,7 @@
       $errorCounter = 0;
 
       $errorCounter += $this->validateInput($sticker['country'], '^[A-Z]+$^', 2, 1, false);
-      $errorCounter += $this->validateDateString($sticker['expirationDate']);
+      $errorCounter += $this->validateDateString($sticker['expirationDate'], 'Y-m-d');
 
       return $errorCounter;
     }
@@ -314,7 +371,7 @@
 
       $errorCounter += $this->validateInput($service['issue'], '^[A-Za-z0-9]+$^', 50, 3, false);
       $errorCounter += $this->validateDecimalInput($service['mealige'], 1000000, 0, false);
-      $errorCounter += $this->validateDateString($service['repareDate']);
+      $errorCounter += $this->validateDateString($service['repareDate'], 'Y-m-d');
 
       return $errorCounter;
     }

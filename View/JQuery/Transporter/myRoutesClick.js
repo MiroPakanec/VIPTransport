@@ -2,7 +2,8 @@ $(function(){
 
   $('#titleRoutes').click(function(){
 
-    closeElementsOnLoadRoutes();
+    closeSubElementsOnLoad();
+    manageTitleCss('#titleRoutes', '#titleTransport', '#titleOrder', '0.05');
     generateTableRoutes();
     loadRoutes();
   });
@@ -138,6 +139,7 @@ $(function(){
           onSelect: function (date) {
                   $('#transportDate').html(date);
                   $('#datePickerRouteConfirm').slideToggle(500);
+                  validateDateHtml('#transportDate', '#routeConfirmDateError', /^[0-9/]*$/, 'Incorrect date', false);
               }
   });
 
@@ -176,6 +178,7 @@ $(function(){
 
     today = dd+'/'+mm+'/'+yyyy;
     $('#transportDate').html(today);
+    validateDateHtml('#transportDate', '#routeConfirmDateError', /^[0-9/]*$/, 'Incorrect date', false);
   });
 
   $('#transportTimeNow').on('click', function(){
@@ -195,6 +198,50 @@ $(function(){
 function insertTransport(){
 
   var data = getRouteConfirmDataArray();
+
+  submitTransport(function(response){
+
+    handleRouteConfirmResponse(response);
+  }, data);
+}
+
+function handleRouteConfirmResponse(response){
+
+  console.log(response);
+  $('#cancelRouteConfirmRepeatButton').trigger('click');
+
+  setTimeout(function(){
+
+    if(response == 1)
+      routeConfirmPositiveResponse();
+    else
+      routeConfirmNegativeResponse();
+
+    generateTableRoutes();
+    loadRoutes();
+  }, 500);
+}
+
+function routeConfirmPositiveResponse(){
+
+  var responseText = "Route was confirmed successfully.";
+  $('#responseArea').css({
+    'background-color' : 'rgba(0,255,0,0.1)',
+    'border' : 'rgba(0,255,0,0.3)',
+    'color' : 'green'
+  }).html(responseText).slideDown(500);
+  delaySlideUp('#responseArea', 5000);
+}
+
+function routeConfirmNegativeResponse(){
+
+  var responseText = "Route could not be confirmed.";
+  $('#responseArea').css({
+    'background-color' : 'rgba(255,0,0,0.1)',
+    'border' : 'rgba(255,0,0,0.3)',
+    'color' : 'red'
+  }).html(responseText).slideDown(500);
+  delaySlideUp('#responseArea', 5000);
 }
 
 function getRouteConfirmDataArray(){
@@ -204,13 +251,15 @@ function getRouteConfirmDataArray(){
   var route = getRouteDataArray();
   var transport = getTransportDataArray();
   var employee = getEmployeeDataArray();
+  var company = getCompanyDataArray();
 
   data['order'] = order;
   data['route'] = route;
   data['transport'] = transport;
   data['employee'] = employee;
+  data['company'] = company;
 
-  console.log(data);
+  return data;
 
 }
 function getOrderDataArray(){
@@ -249,7 +298,7 @@ function getRouteDataArray(){
 
   route['routeId'] = $('#submitRouteId').html();
   route['orderId'] = $('#submitOrderId').html();
-  route['transporterEmal'] = $('#submitTransporter').html();
+  route['transporterEmail'] = $('#submitTransporter').html();
   route['carSpz'] = $('#submitCar').html();
   route['countries'] = getCountriesDataArray();
 
@@ -273,9 +322,12 @@ function getCountriesDataArray(){
 function getTransportDataArray(){
 
   var transport = {};
+  var price = $('#submitPrice').html();
+  var mealige = $('#submitMealige').html();
 
-  transport['price'] = $('#submitPrice').html();
-  transport['mealige'] = $('#submitMealige').html();
+
+  transport['price'] = price.substring(0, (price.length - 4));
+  transport['mealige'] = mealige.substring(0, (mealige.length -3));
   transport['arrivalDate'] = $('#submitArrivalDate').html();
   transport['arrivalTime'] = $('#submitArrivalTime').html();
   transport['type'] = $('#submitTransportType').html();
@@ -293,6 +345,18 @@ function getEmployeeDataArray(){
   return employee;
 }
 
+function getCompanyDataArray(){
+
+  var company = {};
+
+  company['name'] = $('#submitCompanyName').html();
+  company['address'] = $('#submitCompanyAddress').html();
+  company['ico'] = $('#submitCompanyIco').html();
+  company['dic'] = $('#submitCompanyDic').html();
+
+  return company;
+}
+
 function validateRouteConfirm(){
 
   var errorCounter = 0;
@@ -300,6 +364,8 @@ function validateRouteConfirm(){
   $('.routeConfirmInput').each(function(){
     $(this).trigger('keyup');
   });
+
+  validateDateHtml('#transportDate', '#routeConfirmDateError', /^[0-9/]*$/, 'Incorrect date', false);
 
   $('.routeConfirmError').each(function(){
     if($(this).is(":visible"))
@@ -439,10 +505,12 @@ function hideRouteConfirm(){
 function clearRouteConfirm(){
 
   //page 1/2
-  $('#transporterSelection').html('');
-  $('#routeConfirmMealige').html('');
-  $('#transportDate').val('Select date');
+  $('#routeConfirmPrice').val('');
+  $('#routeConfirmMealige').val('');
+  $('#transportDate').html('Select date');
   $('#datePickerRouteConfirm').slideUp(300);
+  $('#routeConfirmTimeHour').val('');
+  $('#routeConfirmTimeMinute').val('');
   $('#transportTypeOfficial').trigger('click');
 
   //page 2/2
@@ -496,6 +564,10 @@ function loadRouteConfirmRepeat(routeId, orderId){
   getTransports(function(data){
 
     fillSubmitOrderFiels(data[0]);
+    getCompany(function(dataCompany){
+
+      fillCompanyFields(dataCompany);
+    }, data[0]['email']);
   }, orderId, '', '', '');
 
   getOrderNames(function(data){
@@ -506,6 +578,7 @@ function loadRouteConfirmRepeat(routeId, orderId){
   fillTransportDetails();
 
   getSession(function(data){
+
     fillSenderDetails(data);
   });
 }
@@ -529,6 +602,8 @@ function loadRouteDetails(routeId, orderId){
 }
 
 function fillSubmitRouteFiels(route){
+
+  calculateDistance(route[4], $('#routeConfirmMealige').val());
 
   $('#submitRouteId').html(route[0]);
   $('#submitOrderId').html(route[1]);
@@ -627,6 +702,37 @@ function fillSenderDetails(sender){
   $('#submitType').html(sender['type']);
 }
 
+function fillCompanyFields(dataCompany){
+
+  if(dataCompany['name'].length <= 0){
+
+    $('#submitCompanyName').html('-');
+    $('#submitCompanyAddress').html('-');
+    $('#submitCompanyIco').html('-');
+    $('#submitCompanyDic').html('-');
+  }
+  else{
+
+    $('#submitCompanyName').html(dataCompany['name']);
+    $('#submitCompanyAddress').html(dataCompany['address']);
+    $('#submitCompanyIco').html(dataCompany['ico']);
+    $('#submitCompanyDic').html(dataCompany['dic']);
+  }
+}
+
+function calculateDistance(spz, transportMealige){
+
+  var distance = 0;
+  var carMealige = 0;
+
+  getCars(function(data){
+
+  carMealige = data['car1'].Mealige;
+  distance = transportMealige - carMealige;
+  $('#submitDistance').html(distance + ' km');
+  }, spz);
+}
+
 function generateDetailsRow(title, value, id){
 
   var html =    '<div class="routeDetailsRow">' +
@@ -660,20 +766,18 @@ function loadRoutes(){
   }, '', '', '');
 }
 
-function closeElementsOnLoadRoutes(){
+function closeSubElementsOnLoad(){
 
-  var height = ( 100 * parseFloat($('#orderTableArea').css('height')) / parseFloat($('#orderTableArea').parent().css('height')) );
-  if(height < 20)
-    $('#cancelConfirmButton').trigger('click');
-
-  manageTitleCss('#titleRoutes', '#titleOrder', '#titleTransport', '0.05');
-  $('.orderSearchBarArea').slideUp(500);
+  hideDetails();
+  hideConfirm();
+  hideRouteConfirm();
   $('#responseArea').slideUp(300).html('');
 }
 
 
 function generateTableRoutes(){
 
+  $('#orderTableArea').html('');
   var html = '<table class="smallText" id="routesTable">' +
                 '<tr class = "tableHeader">' +
                   '<td class="idCol">ID</td>' +

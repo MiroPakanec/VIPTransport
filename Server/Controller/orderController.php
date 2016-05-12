@@ -138,6 +138,7 @@
         if($validationControllerObject->validateOrderSearch($id, $email, $dateFrom, $dateTo) > 0)
           $wClause = " WHERE 1";
 
+        $wClause .= " AND Status <> 'Completed' ";
         return $orderSelectDatabaseAccessObject->getOrderData($wClause);
       }
 

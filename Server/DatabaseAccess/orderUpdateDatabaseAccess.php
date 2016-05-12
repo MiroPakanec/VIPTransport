@@ -82,6 +82,91 @@
 
         return $queryArray;
     }
+
+    public function updateOrderStatus($status, $transportModelObject){
+
+      $transportInsertDatabaseAccessObject = new TransportInsertDatabaseAccess();
+
+      try{
+
+        $errorString = '';
+        $dbc = DatabaseConnection::openConnection();
+        $dbc->autocommit(false);
+
+        $orderId = $transportModelObject->getRoute()->getOrderId();
+        $routeId = $transportModelObject->getRoute()->getId();
+        $carSpz = $transportModelObject->getRoute()->getCarSpz();
+        $transportMealige = $transportModelObject->getMealige();
+
+        $orderWClause = " WHERE id=".$orderId;
+        $orderQuery = "UPDATE transport_order SET Status='".$status."' ".$orderWClause;
+        $dbc->query($orderQuery);
+        $errorString .= $dbc->error;
+
+        if($status == 'Completed'){
+
+          $dbc = $this->deleteRouteCountries($dbc, $routeId);
+          $errorString .= $dbc->error;
+
+          $dbc = $this->deleteRoute($dbc, $routeId);
+          $errorString .= $dbc->error;
+
+          $dbc = $this->updateCarMealige($dbc, $carSpz, $transportMealige);
+          $errorString .= $dbc->error;
+        }
+
+        if(strlen($errorString) == 0){
+
+            //insert transport to mongo db
+            $mongodbInserted = $transportInsertDatabaseAccessObject->createTransport($transportModelObject);
+            if($mongodbInserted < 1){
+
+              $dbc->rollback();
+              return 0;
+            }
+
+            $dbc->commit();
+            return 1;
+        }
+        else{
+
+            $dbc->rollback();
+            return 0;
+        }
+      }
+      catch(Exception $e){
+
+        $dbc->rollback();
+        return 0;
+      }
+    }
+
+    private function deleteRouteCountries($dbc, $routeId){
+
+      $routeWClause = " WHERE Route_id=".$routeId;
+      $deleteRouteQuery = "Delete from transport_route_country_code".$routeWClause;
+      $dbc->query($deleteRouteQuery);
+
+      return $dbc;
+    }
+
+    private function deleteRoute($dbc, $routeId){
+
+      $routeWClause = " WHERE Id=".$routeId;
+      $deleteRouteQuery = "Delete from transport_route".$routeWClause;
+      $dbc->query($deleteRouteQuery);
+
+      return $dbc;
+    }
+
+    private function updateCarMealige($dbc, $carSpz, $transportMealige){
+
+      $carWClause = " WHERE Spz = '".$carSpz."'";
+      $carUpdateQuery = "UPDATE car SET Mealige=".$transportMealige;
+      $dbc->query($carUpdateQuery);
+
+      return $dbc;
+    }
   }
 
 ?>

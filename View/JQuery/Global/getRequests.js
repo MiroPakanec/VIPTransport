@@ -319,6 +319,21 @@ function deleteOrder(handleData, id){
   })
 }
 
+function submitTransport(handleData, data){
+
+  $.ajax({
+    url: '../../Server/Responses/submitTransport.php',
+    type: 'POST',
+    data: data,
+    success: function(response){
+      handleData(response);
+    },
+    error: function(response){
+      console.log(response);
+    }
+  })
+}
+
 function submitOrderRequest(handleData, data){
 
   console.log(data);

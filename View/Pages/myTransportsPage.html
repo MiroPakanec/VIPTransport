@@ -178,13 +178,13 @@
             <div class="lineBreak"></div>
             <div class="routeDetailsRow">
               <div class="rowDetailsTitle smallText">Price: </div>
-              <input type="text" class="smallText routeConfirmInput" id="routeConfirmPrice">
+              <input type="text" class="smallText routeConfirmInput" id="routeConfirmPrice" value = "100">
               <div class="smallText routeConfirmError" id="routeConfirmPriceError">ERROR</div>
               <div class="smallLineBreak"></div>
             </div>
             <div class="routeDetailsRow">
               <div class="rowDetailsTitle smallText">Mealige: </div>
-              <input type="text" class="smallText routeConfirmInput" id="routeConfirmMealige">
+              <input type="text" class="smallText routeConfirmInput" id="routeConfirmMealige" value="100">
               <div class="smallText routeConfirmError" id="routeConfirmMealigeError">ERROR</div>
               <div class="smallLineBreak"></div>
             </div>
@@ -192,6 +192,7 @@
               <div class="rowDetailsTitle smallText">Arrival date: </div>
               <div class="button smallText" id="transportDate">Select date</div>
               <div class="button smallText" id="transportTodayDate">Today</div>
+              <div class="smallText routeConfirmError" id="routeConfirmDateError">ERROR</div>
               <div class="smallLineBreak"></div>
             </div>
             <div id="datePickerRouteConfirm"></div>
@@ -248,6 +249,23 @@
             <div class="informationContainer" id="submitOrder">
               <div class="lineBreak"></div>
               <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Company name: </div>
+                <div class="rowDetailsValue smallText" id="submitCompanyName"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Company address: </div>
+                <div class="rowDetailsValue smallText" id="submitCompanyAddress"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">ICO: </div>
+                <div class="rowDetailsValue smallText" id="submitCompanyIco"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">DIC: </div>
+                <div class="rowDetailsValue smallText" id="submitCompanyDic"></div>
+              </div>
+              <div class="lineBreak"></div>
+              <div class="routeDetailsRow">
                 <div class="rowDetailsTitle smallText">Customer email: </div>
                 <div class="rowDetailsValue smallText" id="submitOrderCustomerEmail"></div>
               </div>
@@ -283,6 +301,10 @@
               <div class="routeDetailsRow">
                 <div class="rowDetailsTitle smallText">Mealige: </div>
                 <div class="rowDetailsValue smallText" id="submitMealige"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Distance: </div>
+                <div class="rowDetailsValue smallText" id="submitDistance"></div>
               </div>
               <div class="routeDetailsRow">
                 <div class="rowDetailsTitle smallText">Arrival date: </div>

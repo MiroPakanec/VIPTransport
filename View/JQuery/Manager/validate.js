@@ -68,6 +68,22 @@ function validateDate(id, idErr, regex, customeMessage, skip){
     $(idErr).html('').slideUp(500);
 }
 
+function validateDateHtml(id, idErr, regex, customeMessage, skip){
+
+  var value = $(id).html().trim();
+  var date = new Date(value);
+  $(id).val(value);
+
+  if(!value && !skip)
+    $(idErr).html('Cannot be empty').slideDown(500);
+  else if(!regex.test(value))
+    $(idErr).html('Incorrect format').slideDown(500);
+  else if(date == 'Invalid Date' && !skip)
+    $(idErr).html(customeMessage).slideDown(500);
+  else
+    $(idErr).html('').slideUp(500);
+}
+
 function validateGeneratedString(input, error, regex, max, min, skip){
 
   var value = $(input).val();
