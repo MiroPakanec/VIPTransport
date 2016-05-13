@@ -14,14 +14,16 @@ class TransportInsertDatabaseAccess{
     try{
 
       $host = DatabaseMongodbConnection::openConnection();
-      $collection = DatabaseMongodbConnection::getCollection("VIPTransport", "notifications");
+      $collection = DatabaseMongodbConnection::getCollection("VIPTransport", "transports");
       $bulk = new MongoDB\Driver\BulkWrite(['ordered' => true]);
 
       $bulk->insert([
                       'price' => (double)$transportModelObject->getPrice(),
                       'mealige' => (double)$transportModelObject->getMealige(),
                       'distance' => (double)$transportModelObject->getDistance(),
-                      'arrivalDate' => $transportModelObject->getArrivalDate(),
+                      'arrivalDatePickUp' => $transportModelObject->getArrivalDatePickUp(),
+                      'arrivalDateDestination' => $transportModelObject->getArrivalDateDestination(),
+                      'duration' => $transportModelObject->getDuration(),
                       'type' => $transportModelObject->getType(),
                       'employee' => $userArray,
                       'route' => $routeArray,

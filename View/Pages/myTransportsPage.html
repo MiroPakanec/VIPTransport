@@ -189,7 +189,7 @@
               <div class="smallLineBreak"></div>
             </div>
             <div class="routeDetailsRow">
-              <div class="rowDetailsTitle smallText">Arrival date: </div>
+              <div class="rowDetailsTitle smallText">Arrived to pick up place at (date): </div>
               <div class="button smallText" id="transportDate">Select date</div>
               <div class="button smallText" id="transportTodayDate">Today</div>
               <div class="smallText routeConfirmError" id="routeConfirmDateError">ERROR</div>
@@ -197,12 +197,28 @@
             </div>
             <div id="datePickerRouteConfirm"></div>
             <div class="routeDetailsRow">
-              <div class="rowDetailsTitle smallText">Arrival time: </div>
-              <input type="text" class="smallText routeConfirmInput" id="routeConfirmTimeHour" max="2" placeholder="HH">
+              <div class="rowDetailsTitle smallText">Arrived to pick up place at (time): </div>
+              <input type="text" class="smallText routeConfirmInput" id="routeConfirmTimeHour" maxlength="2" placeholder="HH">
               <div class="smallText" id="routeConfirmArrivalTimeColon">:</div>
-              <input type="text" class="smallText routeConfirmInput" id="routeConfirmTimeMinute" max="2" placeholder="MM">
-              <div class="button smallText" id="transportTimeNow">Now</div>
+              <input type="text" class="smallText routeConfirmInput" id="routeConfirmTimeMinute" maxlength="2" placeholder="MM">
               <div class="smallText routeConfirmError" id="routeConfirmTimeError">ERROR</div>
+              <div class="smallLineBreak"></div>
+            </div>
+            <div class="routeDetailsRow">
+              <div class="rowDetailsTitle smallText">Arrived to destination at (date): </div>
+              <div class="button smallText" id="transportDestinationDate">Select date</div>
+              <div class="button smallText" id="transportDestinationTodayDate">Today</div>
+              <div class="smallText routeConfirmError" id="routeConfirmDestinationDateError">ERROR</div>
+              <div class="smallLineBreak"></div>
+            </div>
+            <div id="datePickerRouteConfirmDestination"></div>
+            <div class="routeDetailsRow">
+              <div class="rowDetailsTitle smallText">Arrived to destination up place at (time): </div>
+              <input type="text" class="smallText routeConfirmInput" id="routeConfirmDestinationTimeHour" maxlength="2" placeholder="HH">
+              <div class="smallText" id="routeConfirmArrivalTimeColon">:</div>
+              <input type="text" class="smallText routeConfirmInput" id="routeConfirmDestinationTimeMinute" maxlength="2" placeholder="MM">
+              <div class="button smallText" id="transportDestinationTimeNow">Now</div>
+              <div class="smallText routeConfirmError" id="routeConfirmDestinationTimeError">ERROR</div>
               <div class="smallLineBreak"></div>
             </div>
             <div class="routeDetailsRow">
@@ -307,12 +323,24 @@
                 <div class="rowDetailsValue smallText" id="submitDistance"></div>
               </div>
               <div class="routeDetailsRow">
-                <div class="rowDetailsTitle smallText">Arrival date: </div>
+                <div class="rowDetailsTitle smallText">Arrival date (pick up): </div>
                 <div class="rowDetailsValue smallText" id="submitArrivalDate"></div>
               </div>
               <div class="routeDetailsRow">
-                <div class="rowDetailsTitle smallText">Arrival time: </div>
+                <div class="rowDetailsTitle smallText">Arrival time (pick up): </div>
                 <div class="rowDetailsValue smallText" id="submitArrivalTime"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Arrival date (destination): </div>
+                <div class="rowDetailsValue smallText" id="submitDestinationArrivalDate"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Arrival time (destination): </div>
+                <div class="rowDetailsValue smallText" id="submitDestinationArrivalTime"></div>
+              </div>
+              <div class="routeDetailsRow">
+                <div class="rowDetailsTitle smallText">Duration: </div>
+                <div class="rowDetailsValue smallText" id="submitDuration"></div>
               </div>
               <div class="routeDetailsRow">
                 <div class="rowDetailsTitle smallText">Transport type: </div>

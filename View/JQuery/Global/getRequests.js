@@ -239,6 +239,22 @@ function getRoutes(handleData, id, email, orderId){
   });
 }
 
+function getFinishedTransports(handleData){
+
+  $.ajax({
+      type: 'GET',
+      url: '../../Server/Responses/getFinishedTransports.php',
+      dataType : 'json',
+      data: '',
+      success: function(response){
+          handleData(response);
+      },
+      error:function(response){
+        console.log(response);
+      }
+  });
+}
+
 function getTransports(handleData, id, dateFrom, dateTo, email){
 
   data = {};

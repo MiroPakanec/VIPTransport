@@ -3,6 +3,7 @@ $(function(){
   $('#titleRoutes').click(function(){
 
     closeSubElementsOnLoad();
+    $('.orderSearchBarArea').slideUp(500);
     manageTitleCss('#titleRoutes', '#titleTransport', '#titleOrder', '0.05');
     generateTableRoutes();
     loadRoutes();
@@ -130,21 +131,46 @@ $(function(){
     validateNumber('#routeConfirmTimeMinute', '#routeConfirmTimeError', /^[0-9]*$/, 'Incorrect minute', 0, 59, false);
   });
 
+  $('#routeConfirmDestinationTimeHour').on('keyup', function(){
+    validateNumber('#routeConfirmDestinationTimeHour', '#routeConfirmDestinationTimeError', /^[0-9]*$/, 'Incorrect hour', 0, 24, false);
+  });
+
+  $('#routeConfirmDestinationTimeMinute').on('keyup', function(){
+    validateNumber('#routeConfirmDestinationTimeMinute', '#routeConfirmDestinationTimeError', /^[0-9]*$/, 'Incorrect minute', 0, 59, false);
+  });
+
   $("#datePickerRouteConfirm").datepicker({
           inline: true,
           showOtherMonths: true,
           dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-          dateFormat: "dd/mm/yy",
+          dateFormat: "yy-mm-dd",
           maxDate: '+6M',
           onSelect: function (date) {
                   $('#transportDate').html(date);
                   $('#datePickerRouteConfirm').slideToggle(500);
-                  validateDateHtml('#transportDate', '#routeConfirmDateError', /^[0-9/]*$/, 'Incorrect date', false);
+                  validateDateHtml('#transportDate', '#routeConfirmDateError', /^[0-9-]*$/, 'Incorrect date', false);
+              }
+  });
+
+  $("#datePickerRouteConfirmDestination").datepicker({
+          inline: true,
+          showOtherMonths: true,
+          dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+          dateFormat: "yy-mm-dd",
+          maxDate: '+6M',
+          onSelect: function (date) {
+                  $('#transportDestinationDate').html(date);
+                  $('#datePickerRouteConfirmDestination').slideToggle(500);
+                  validateDateHtml('#transportDestinationDate', '#routeConfirmDestinationDateError', /^[0-9-]*$/, 'Incorrect date', false);
               }
   });
 
   $('#transportDate').on('click', function(){
     $('#datePickerRouteConfirm').slideToggle(500);
+  });
+
+  $('#transportDestinationDate').on('click', function(){
+    $('#datePickerRouteConfirmDestination').slideToggle(500);
   });
 
   $('#transportTypePersonal').on('click', function(){
@@ -163,22 +189,16 @@ $(function(){
 
   $('#transportTodayDate').on('click', function(){
 
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
-
-    if(dd<10) {
-        dd='0'+dd
-    }
-
-    if(mm<10) {
-        mm='0'+mm
-    }
-
-    today = dd+'/'+mm+'/'+yyyy;
+    var today = getTodayDate();
     $('#transportDate').html(today);
-    validateDateHtml('#transportDate', '#routeConfirmDateError', /^[0-9/]*$/, 'Incorrect date', false);
+    validateDateHtml('#transportDate', '#routeConfirmDateError', /^[0-9-]*$/, 'Incorrect date', false);
+  });
+
+  $('#transportDestinationTodayDate').on('click', function(){
+
+    var today = getTodayDate();
+    $('#transportDestinationDate').html(today);
+    validateDateHtml('#transportDestinationDate', '#routeConfirmDestinationDateError', /^[0-9-]*$/, 'Incorrect date', false);
   });
 
   $('#transportTimeNow').on('click', function(){
@@ -193,11 +213,45 @@ $(function(){
     $('#routeConfirmTimeHour').trigger('keyup');
     $('#routeConfirmTimeMinute').trigger('keyup');
   });
+
+  $('#transportDestinationTimeNow').on('click', function(){
+
+    var date = new Date;
+    var minutes = date.getMinutes();
+    var hour = date.getHours();
+
+    $('#routeConfirmDestinationTimeHour').val(hour);
+    $('#routeConfirmDestinationTimeMinute').val(minutes);
+
+    $('#routeConfirmDestinationTimeHour').trigger('keyup');
+    $('#routeConfirmDestinationTimeMinute').trigger('keyup');
+  });
 });
+
+function getTodayDate(){
+
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if(dd<10) {
+      dd='0'+dd
+  }
+
+  if(mm<10) {
+      mm='0'+mm
+  }
+
+  today = yyyy+'-'+mm+'-'+dd;
+
+  return today;
+}
 
 function insertTransport(){
 
   var data = getRouteConfirmDataArray();
+  console.log(data);
 
   submitTransport(function(response){
 
@@ -330,6 +384,9 @@ function getTransportDataArray(){
   transport['mealige'] = mealige.substring(0, (mealige.length -3));
   transport['arrivalDate'] = $('#submitArrivalDate').html();
   transport['arrivalTime'] = $('#submitArrivalTime').html();
+  transport['arrivalDestinationDate'] = $('#submitDestinationArrivalDate').html();
+  transport['arrivalDestinationTime'] = $('#submitDestinationArrivalTime').html();
+  transport['duration'] = $('#submitDuration').html();
   transport['type'] = $('#submitTransportType').html();
 
   return transport;
@@ -365,7 +422,7 @@ function validateRouteConfirm(){
     $(this).trigger('keyup');
   });
 
-  validateDateHtml('#transportDate', '#routeConfirmDateError', /^[0-9/]*$/, 'Incorrect date', false);
+  validateDateHtml('#transportDate', '#routeConfirmDateError', /^[0-9-]*$/, 'Incorrect date', false);
 
   $('.routeConfirmError').each(function(){
     if($(this).is(":visible"))
@@ -460,6 +517,7 @@ function openRouteConfirm(){
   hideDetails();
   $('.routeValidateFromArea').hide();
   $('#datePickerRouteConfirm').hide();
+  $('#datePickerRouteConfirmDestination').hide();
   $('.detailsResponseArea').hide().html('');
   $('#orderTableArea').css({'height' : '5%'});
   $('#responseArea').slideUp(300);
@@ -508,9 +566,13 @@ function clearRouteConfirm(){
   $('#routeConfirmPrice').val('');
   $('#routeConfirmMealige').val('');
   $('#transportDate').html('Select date');
+  $('#transportDestinationDate').html('Select date');
   $('#datePickerRouteConfirm').slideUp(300);
+  $('#datePickerRouteConfirmDestination').slideUp(300);
   $('#routeConfirmTimeHour').val('');
   $('#routeConfirmTimeMinute').val('');
+  $('#routeConfirmDestinationTimeHour').val('');
+  $('#routeConfirmDestinationTimeMinute').val('');
   $('#transportTypeOfficial').trigger('click');
 
   //page 2/2
@@ -688,12 +750,21 @@ function fillTransportDetails(){
   var arrivalHour = $('#routeConfirmTimeHour').val();
   var arrivalMinute = $('#routeConfirmTimeMinute').val();
   var arrivalTime = arrivalHour + ':' + arrivalMinute + ':00';
+  var arrivalDestinationDate = $('#transportDestinationDate').html();
+  var arrivalDestinationHour = $('#routeConfirmDestinationTimeHour').val();
+  var arrivalDestinationMinute = $('#routeConfirmDestinationTimeMinute').val();
+  var arrivalDestinationTime = arrivalDestinationHour + ':' + arrivalDestinationMinute + ':00';
+  var durationSeconds = calculateTransportDuration(arrivalDate, arrivalTime, arrivalDestinationDate, arrivalDestinationTime);
+  var durationTime = durationSeconds.toString().toHHMMSS();
 
   $('#submitPrice').html(price + ' EUR');
   $('#submitMealige').html(mealige + ' km');
-  $('#submitArrivalDate').html(arrivalDate);
   $('#submitTransportType').html(transportType);
+  $('#submitArrivalDate').html(arrivalDate);
   $('#submitArrivalTime').html(arrivalTime);
+  $('#submitDestinationArrivalDate').html(arrivalDestinationDate);
+  $('#submitDestinationArrivalTime').html(arrivalDestinationTime);
+  $('#submitDuration').html(durationTime);
 }
 
 function fillSenderDetails(sender){
@@ -731,6 +802,31 @@ function calculateDistance(spz, transportMealige){
   distance = transportMealige - carMealige;
   $('#submitDistance').html(distance + ' km');
   }, spz);
+}
+
+function calculateTransportDuration(date1, time1, date2, time2){
+
+  var datetime1 = new Date(date1 + ' ' + time1);
+  var datetime2 = new Date(date2 + ' ' + time2);
+
+  if(datetime1 == 'Invalid Date' || datetime2 == 'Invalid Date')
+    return 'unknown';
+
+  var totalTime = (datetime2 - datetime1)/1000;
+  return totalTime;
+
+}
+
+String.prototype.toHHMMSS = function () {
+    var sec_num = parseInt(this, 10); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return hours+':'+minutes+':'+seconds;
 }
 
 function generateDetailsRow(title, value, id){
@@ -818,10 +914,25 @@ function generateTableRowRoutes(id, oid, date, email, spz, countryCodes){
             '<td class="buttonColumn routeUpdateButton">Update</td>';
 
   html +=             //'<td class="buttonColumn routeStickersButton">Check stickers</td>' +
-                      '<td class="buttonColumn routeDetailsButton">Details</td>' +
-                      '<td class="buttonColumn routeConfirmButton">Confirm</td>' +
-                    '</tr>';
+                      '<td class="buttonColumn routeDetailsButton">Details</td>';
+  if(checkRouteDate(date) == true)
+    html += '<td class="buttonColumn routeConfirmButton routeStandardWidth">Confirm</td>';
+  else
+    html += '<td class="buttonColumn emptyButton routeStandardWidth"></td>';
+
+    html += '</tr>';
   $('#routesTable').append(html);
+}
+
+function checkRouteDate(date){
+
+  var todayDate = new Date();
+  var transportDate = new Date(date);
+
+  if(todayDate > transportDate)
+    return true;
+
+  return false;
 }
 
 function getCountryString(countryCodes){

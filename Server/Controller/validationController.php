@@ -77,8 +77,12 @@
         $errorCounter += $this->validateDecimalInput($transportModelObject->getPrice(), 10000, 5, false);
       if(null !== $transportModelObject->getMealige())
         $errorCounter += $this->validateDecimalInput($transportModelObject->getMealige(), 100000000, 4, false);
-      if(null !== $transportModelObject->getArrivalDate())
-        $errorCounter += $this->validateDateString($transportModelObject->getArrivalDate()->format('d/m/Y h:i:s'), 'd/m/Y h:i:s');
+      if(null !== $transportModelObject->getDistance())
+        $errorCounter += $this->validateDecimalInput($transportModelObject->getDistance(), 10000, 0, false);
+      if(null !== $transportModelObject->getArrivalDatePickUp())
+        $errorCounter += $this->validateDateString($transportModelObject->getArrivalDatePickUp()->format('Y-m-d h:i:s'), 'Y-m-d h:i:s');
+      if(null !== $transportModelObject->getArrivalDateDestination())
+        $errorCounter += $this->validateDateString($transportModelObject->getArrivalDateDestination()->format('Y-m-d h:i:s'), 'Y-m-d h:i:s');
       if(null !== $transportModelObject->getType());
         $errorCounter += $this->validateInput($transportModelObject->getType(), '^[a-zA-Z]+$^', 15, 5, false);
 

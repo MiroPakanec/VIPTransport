@@ -115,7 +115,11 @@ td>input:hover{
 .routeConfirmButton{
 
   background-color:rgba(255, 255, 255,0.2);
-  width: 7%;
+}
+
+.routeStandardWidth{
+
+  width: 8%
 }
 
 .routeUpdateButton{
@@ -127,7 +131,7 @@ td>input:hover{
 .routeDetailsButton{
 
   background-color:rgba(255, 255, 255,0.1);
-  width: 5%;
+  width: 7%;
 }
 
 .routeStickersButton:hover, .routeConfirmButton:hover, .routeUpdateButton:hover, .routeDetailsButton:hover{
@@ -137,7 +141,7 @@ td>input:hover{
 
 .emptyButton{
 
-  background-color:rgba(255, 255, 255,0.05);
+  background-color:rgba(255, 255, 255,0.05) !important;
   border: none;
 }
 

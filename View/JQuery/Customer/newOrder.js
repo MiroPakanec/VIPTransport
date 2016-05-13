@@ -10,7 +10,7 @@ $(function(){
       if($('#userType').val() != 'manager')
         return;
 
-      
+
       getCompanyData($(this).val());
     })
 
@@ -23,7 +23,7 @@ $(function(){
             showOtherMonths: true,
             dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
             dateFormat: "dd/mm/yy",
-            minDate: '+1D',
+            minDate: '+0D',
             maxDate: '+6M',
             onSelect: function (date) {
                     $('#orderDate').html(date);

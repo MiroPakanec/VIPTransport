@@ -46,7 +46,7 @@
   height: 50%;
 }
 
-#transportDate{
+#transportDate, #transportDestinationDate{
 
   float: left;
   width: 21%;
@@ -55,7 +55,7 @@
   border: 1px solid rgba(255,255,255,0.3);
 }
 
-#transportTodayDate{
+#transportTodayDate, #transportDestinationTodayDate{
 
   float: left;
   width: 8%;
@@ -65,7 +65,7 @@
   border: 1px solid rgba(255,255,255,0.3);
 }
 
-#routeConfirmTimeHour, #routeConfirmTimeMinute{
+#routeConfirmTimeHour, #routeConfirmTimeMinute, #routeConfirmDestinationTimeHour, #routeConfirmDestinationTimeMinute{
 
   float: left;
   width: 8%;
@@ -78,7 +78,7 @@
   height: 100%;
 }
 
-#transportTimeNow{
+#transportTimeNow, #transportDestinationTimeNow{
 
   float: left;
   background-color: rgba(255,255,255,0);
@@ -87,7 +87,7 @@
   width: 8%;
 }
 
-#transportTodayDate:hover, #transportTimeNow:hover{
+#transportTodayDate:hover, #transportTimeNow:hover, #transportDestinationTodayDate:hover{
 
   background-color: rgba(255,255,255,0.1);
 }
@@ -111,7 +111,7 @@
   margin-left: 1%;
 }
 
-#datePickerRouteConfirm{
+#datePickerRouteConfirm, #datePickerRouteConfirmDestination{
 
   height: 85%;
   width: 50%;

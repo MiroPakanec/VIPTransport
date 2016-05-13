@@ -69,11 +69,13 @@ class TransportController{
 
     private function getTransportModelFromArray($orderArray, $routeArray, $transportArray, $employeeArray, $companyArray){
 
-      $transportModelObject = new TransportModel(null, null, null, null, null, null, null, null, null);
+      $transportModelObject = new TransportModel(null, null, null, null, null, null, null, null, null, null, null);
       $transportModelObject->setPrice($transportArray['price']);
       $transportModelObject->setMealige($transportArray['mealige']);
       $transportModelObject->setDistance($this->calculateTransportDistance($transportArray['mealige'], $routeArray['carSpz']));
-      $transportModelObject->setArrivalDate($this->getDateObject($transportArray['arrivalDate'].$transportArray['arrivalTime']));
+      $transportModelObject->setArrivalDatePickUp($this->getDateObject($transportArray['arrivalDate'].$transportArray['arrivalTime']));
+      $transportModelObject->setArrivalDateDestination($this->getDateObject($transportArray['arrivalDestinationDate'].$transportArray['arrivalDestinationTime']));
+      $transportModelObject->setDuration($transportArray['duration']);
       $transportModelObject->setType($transportArray['type']);
       $transportModelObject->setOrder($this->getOrderModelFromArray($orderArray));
       $transportModelObject->setRoute($this->getRouteModelFromArray($routeArray));
@@ -85,7 +87,7 @@ class TransportController{
 
     private function getDateObject($dateTimeString){
 
-      $datetime = Datetime::createFromFormat('d/m/Y H:i:s', $dateTimeString);
+      $datetime = Datetime::createFromFormat('Y-m-d H:i:s', $dateTimeString);
       return $datetime;
     }
 

@@ -4,19 +4,24 @@ class TransportModel{
 
     private $price;
     private $mealige;
-    private $arrivalDate;
+    private $distance;
+    private $arrivalDatePickUp;
+    private $arrivalDateDestination;
+    private $duration;
     private $type;
     private $route;
     private $order;
     private $employee;
     private $company;
 
-    public function __construct($price, $mealige, $distance, $arrivalDate, $type, $route, $order, $employee, $company){
+    public function __construct($price, $mealige, $distance, $arrivalDatePickUp, $arrivalDateDestination, $duration, $type, $route, $order, $employee, $company){
 
       $this->price = $price;
       $this->mealige = $mealige;
       $this->distance = $distance;
-      $this->arrivalDate = $arrivalDate;
+      $this->arrivalDatePickUp = $arrivalDatePickUp;
+      $this->arrivalDateDestination = $arrivalDateDestination;
+      $this->duration = $duration;
       $this->type = $type;
       $this->route = $route;
       $this->order = $order;
@@ -36,8 +41,16 @@ class TransportModel{
       return $this->distance;
     }
 
-    public function getArrivalDate(){
-      return $this->arrivalDate;
+    public function getArrivalDatePickUp(){
+      return $this->arrivalDatePickUp;
+    }
+
+    public function getArrivalDateDestination(){
+      return $this->arrivalDateDestination;
+    }
+
+    public function getDuration(){
+      return $this->duration;
     }
 
     public function getType(){
@@ -72,8 +85,16 @@ class TransportModel{
       $this->distance = $value;
     }
 
-    public function setArrivalDate($value){
-      $this->arrivalDate = $value;
+    public function setArrivalDatePickUp($value){
+      $this->arrivalDatePickUp = $value;
+    }
+
+    public function setArrivalDateDestination($value){
+      $this->arrivalDateDestination = $value;
+    }
+
+    public function setDuration($value){
+      $this->duration = $value;
     }
 
     public function setType($value){

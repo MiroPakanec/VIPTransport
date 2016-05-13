@@ -142,6 +142,14 @@
         return $orderSelectDatabaseAccessObject->getOrderData($wClause);
       }
 
+      public function getFinishedOrders(){
+
+        $this->startSession();
+        $wClause = $this->getFinishedOrdersWClause($_SESSION['type']);
+        $orderSelectDatabaseAccessObject = new OrderSelectDatabaseAccess();
+        return $orderSelectDatabaseAccessObject->getOrderData($wClause);
+      }
+
       public function getOrderNames($id){
 
         $this->startSession();
@@ -177,6 +185,32 @@
 
         //return 2 - request have been send to manager
         return 2;
+    }
+
+    public function orderModelArrayToArray($orderModelArray){
+
+      $index = 0;
+      $array = array();
+      $arrayOrder = array();
+
+      foreach ($orderModelArray as $orderModelObject) {
+
+        $arrayOrder['id'] = $orderModelObject->getId();
+        $arrayOrder['email'] = $orderModelObject->getEmail();
+        $arrayOrder['date'] = $orderModelObject->getDate()->format('d/m/Y h:i:s A');
+        $arrayOrder['from'] = $orderModelObject->getFrom();
+        $arrayOrder['to'] = $orderModelObject->getTo();
+        $arrayOrder['payment'] = $orderModelObject->getPayment();
+        $arrayOrder['phone'] = $orderModelObject->getPhone();
+        $arrayOrder['pasangers'] = $orderModelObject->getPasangers();
+        $arrayOrder['creationDate'] = $orderModelObject->getCreationDate();
+        $arrayOrder['status'] = $orderModelObject->getStatus();
+        $arrayOrder['type'] = $_SESSION['type'];
+
+        array_push($array, $arrayOrder);
+      }
+
+      return $array;
     }
 
     public function requestUpdate($id, $message){
@@ -407,6 +441,27 @@
       }
       else if($_SESSION['type'] == 'manager')
         $wClause = $this->getOrdersWClauseManager($id, $email, $dateFrom, $dateTo);
+
+      return $wClause;
+    }
+
+    private function getFinishedOrdersWClause($type){
+
+      $wClause = '';
+
+      switch ($type) {
+        case 'manager':
+          $wClause = " WHERE 1 AND Status = 'Completed'";
+          break;
+
+        case 'customer':
+          $wClause = " WHERE Email = '".$_SESSION['email']."' AND Status = 'Completed'";
+          break;
+
+        default:
+          $wClause = " WHERE 0";
+          break;
+      }
 
       return $wClause;
     }
