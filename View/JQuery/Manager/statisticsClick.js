@@ -25,6 +25,15 @@ $(function(){
     generateIncomeSubSelectionArea();
     $('#incomeCar').trigger('click');
   });
+
+  //date selections
+  $('#dateFromButton').on('click', function(){
+    $("#datePickerAreaFrom").slideToggle(300);
+  });
+
+  $('#dateToButton').on('click', function(){
+    $("#datePickerAreaTo").slideToggle(300);
+  });
 });
 
 function mainStatisticsSelectionClick(element){
@@ -53,8 +62,8 @@ function generateIncomeSubSelectionArea(){
   $('.subSelectionArea').html('').hide();
   var html = '<input type="button" id="incomeCar" class="subStatisticsSelection subStatisticsSelectionSelected statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="per Car">'
             +'<input type="button" id="incomeTransporter" class="subStatisticsSelection statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="per Transporter">'
-            +'<input type="button" id="incomepCompany" class="subStatisticsSelection statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="per Company">'
-            +'<input type="button" id="incomePeriod" class="subStatisticsSelection statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="per Period">';
+            +'<input type="button" id="incomepCompany" class="subStatisticsSelection statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="per Company">';
+            //+'<input type="button" id="incomePeriod" class="subStatisticsSelection statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="per Period">';
 
   $('.subSelectionArea').html(html).fadeIn(500);
 }
@@ -64,13 +73,27 @@ function loadStatistics(element){
   var group = $('#mainSelected').val().toLowerCase();
   var typeValue = $(element).val();
   var type = typeValue.slice(4,typeValue.length).toLowerCase();
+  var dateFrom = getDate('dateFromButton');
+  var dateTo = getDate('dateToButton');
   var data = {};
 
   data['group'] = group;
   data['type'] = type;
+  data['dateFrom'] = dateFrom;
+  data['dateTo'] = dateTo;
 
   getStatistics(function(data){
 
     console.log(data);
   }, data);
+}
+
+function getDate(id){
+
+  var date = ($('#' + id).val());
+
+  if(date.indexOf('Date') >= 0)
+    return '2000-01-01';
+
+  return date;
 }

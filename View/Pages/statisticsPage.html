@@ -3,6 +3,7 @@
   <head>
     <link rel="stylesheet" type="text/css" href="../Css/generalPageStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/statisticsStyles.css">
+    <link rel="stylesheet" type="text/css" href="../Css/datePickerStatisticsStyles.css">
 
     <link rel="stylesheet" href="../Css/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="../Css/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
@@ -41,6 +42,16 @@
       </div>
       <div class="space"></div>
       <div class="subSelectionArea"></div>
+      <div class="dateSelectionArea">
+        <div id="dateSelectionFrom" class="dateSubSelectionArea">
+          <input type="button" id="dateFromButton" class="dateSelectionButton statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="Date from">
+          <div id="datePickerAreaFrom" class="datePickerArea"></div>
+        </div>
+        <div id="dateSelectionTo" class="dateSubSelectionArea">
+          <input type="button" id="dateToButton" class="dateSelectionButton statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="Date to">
+          <div id="datePickerAreaTo" class="datePickerArea"></div>
+        </div>
+      </div>
       <div class="space"></div>
       <div class="responseArea smallText">
         <textarea name="responseTextArea" id="responseTextArea" cols="30" rows="10"></textarea>

@@ -22,6 +22,7 @@ function load(){
   loadButtons();
   loadNotificationsAmmount();
   loadSelectionArea();
+  loadDatePickers();
 }
 
 function loadButtons(){
@@ -39,4 +40,32 @@ function loadButtons(){
 function loadSelectionArea(){
 
   $('#mainIncome').trigger('click');
+}
+
+function loadDatePickers(){
+
+  $("#datePickerAreaFrom").datepicker({
+          inline: true,
+          showOtherMonths: true,
+          dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+          dateFormat: "yy-mm-dd",
+          onSelect: function (date) {
+                  $('#dateFromButton').val(date);
+                  $('#datePickerAreaFrom').slideToggle(500);
+              }
+  });
+
+  $("#datePickerAreaTo").datepicker({
+          inline: true,
+          showOtherMonths: true,
+          dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+          dateFormat: "yy-mm-dd",
+          onSelect: function (date) {
+                  $('#dateToButton').val(date);
+                  $('#datePickerAreaTo').slideToggle(500);
+              }
+  });
+
+  $("#datePickerAreaTo").hide();
+  $("#datePickerAreaFrom").hide();
 }

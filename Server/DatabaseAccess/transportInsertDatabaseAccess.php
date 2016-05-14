@@ -17,12 +17,17 @@ class TransportInsertDatabaseAccess{
       $collection = DatabaseMongodbConnection::getCollection("VIPTransport", "transports");
       $bulk = new MongoDB\Driver\BulkWrite(['ordered' => true]);
 
+      $arrivalPickUpTimeStamp =  strtotime($transportModelObject->getArrivalDatePickUp()->format('Y-m-d H:i:s')) * 1000;
+      $arrivalPickUpIsoDate = new MongoDB\BSON\UTCDateTime($arrivalPickUpTimeStamp);
+      $arrivalDestinationTimeStamp =  strtotime($transportModelObject->getArrivalDateDestination()->format('Y-m-d H:i:s')) * 1000;
+      $arrivalDestinationIsoDate = new MongoDB\BSON\UTCDateTime($arrivalDestinationTimeStamp);
+
       $bulk->insert([
                       'price' => (double)$transportModelObject->getPrice(),
                       'mealige' => (double)$transportModelObject->getMealige(),
                       'distance' => (double)$transportModelObject->getDistance(),
-                      'arrivalDatePickUp' => $transportModelObject->getArrivalDatePickUp(),
-                      'arrivalDateDestination' => $transportModelObject->getArrivalDateDestination(),
+                      'arrivalDatePickUp' => $arrivalPickUpIsoDate,
+                      'arrivalDateDestination' => $arrivalDestinationIsoDate,
                       'duration' => $transportModelObject->getDuration(),
                       'type' => $transportModelObject->getType(),
                       'employee' => $userArray,
