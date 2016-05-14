@@ -127,6 +127,21 @@ function readAllNotifications(handleData){
   });
 }
 
+function getStatistics(handleData, data){
+
+  $.ajax({
+      type: 'GET',
+      url: '../../Server/Responses/getStatistics.php',
+      data: data,
+      success: function(response){
+          handleData(response);
+      },
+      error: function(response){
+          alert(response);
+      }
+  });
+}
+
 function getCompany(handleData, email){
 
   var data = {};

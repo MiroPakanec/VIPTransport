@@ -1,0 +1,175 @@
+@media all and (max-width: 1400px) { /* screen size until 1200px */
+    .containerStatistics {
+      font-size: 70% !important; /* 1.5x default size */
+    }
+    .headerButtonManager{
+      font-size: 100% !important; /* 1.5x default size */
+    }
+    .homeHeaderLogo{
+      font-size: 320% !important; /* 1.5x default size */
+      line-height: 230%;
+    }
+    .headerNotifications{
+      width: 6%;
+    }
+    .notificationAmmount{
+      width: 10%;
+    }
+}
+@media all and (max-width: 991px) { /* screen size until 1000px */
+    .containerStatistics {
+        font-size: 95% !important; /* 1.2x default size */
+    }
+    .homeHeaderLogo{
+        width: 10%;
+        line-height: 580%;
+        font-size: 100% !important; /* 1.5x default size */
+    }
+    .headerButtonsContainer{
+      width: 77%;
+    }
+    .headerNotifications{
+      width: 8%;
+    }
+    #mainIncome{
+      margin-left: 0 !important;
+    }
+    .selectionArea{
+      width: 30% !important;
+    }
+    .subSelectionArea{
+      margin-top: 23% !important;
+      width: 30% !important;
+    }
+    .titleArea{
+      height: 9%;
+    }
+    .buttonSelection{
+      height: 30% !important;
+    }
+    .responseArea{
+      margin-right: 40% !important;
+      margin-top: 5% !important;
+      height: 20% !important;
+    }
+  }
+
+.containerStatistics{
+
+  background-image: url("Images/backgroundImage.jpg");
+  background-size:cover;
+  width: 100%;
+  height: 100vh;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.containerStatistics::-webkit-scrollbar {
+    width: 1em;
+}
+
+.containerStatistics::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.containerStatistics::-webkit-scrollbar-thumb {
+  background-color: white;
+  outline: 1px solid slategrey;
+}
+
+.selectionArea{
+
+  height: 5%;
+  width: 60%;
+  margin: auto;
+}
+
+#mainIncome{
+
+  margin-left: 15%;
+}
+
+.mainStatisticsSelection{
+
+  height: 100%;
+  width: 15%;
+  margin: auto;
+}
+
+.subStatisticsSelection{
+
+  height: 80%;
+  margin: auto;
+  margin-top: 2%;
+  margin-right: 10% !important;
+
+  line-height: normal;
+  font-size: 100% !important;
+}
+
+#incomePeriod{
+
+  margin-right: 0 !important;
+}
+
+.statisticsButton{
+
+  margin-right: 1%;
+  border: 1px solid rgba(255,255,255,0.3);
+  background-color: rgba(255,255,255,0.0);
+
+  outline: none;
+  font-size: 120%;
+}
+
+.buttonSelection{
+
+  width: 100%;
+  height: 20%;
+}
+
+.subSelectionArea{
+
+  width: 50%;
+  height: 5%;
+  margin: auto;
+  margin-top: 1%;
+}
+
+.mainStatisticsSelectionSelected, .subStatisticsSelectionSelected{
+
+  background-color: rgba(255,255,255,0.1);
+}
+
+.responseArea{
+
+  width:48%;
+  height: 30%;
+  float: left;
+  margin-top: 0%;
+  margin-left: 25%;
+  margin-bottom: 10%;
+}
+
+#responseTextArea{
+
+  height: 100%;
+  width: 100%;
+  padding: 5%;
+
+  outline: none;
+  background-color: rgba(255,255,255,0.1);
+}
+
+#mainEmpty{
+
+  border-right: 1px solid rgba(255,255,255,0.3);
+}
+
+.space{
+
+  height: 5%;
+  width: 100%;
+  float: left;
+}

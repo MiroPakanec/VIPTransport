@@ -2,22 +2,25 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="../Css/generalPageStyles.css">
-    <link rel="stylesheet" type="text/css" href="../Css/aboutUsStyles.css">
+    <link rel="stylesheet" type="text/css" href="../Css/statisticsStyles.css">
+
+    <link rel="stylesheet" href="../Css/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="../Css/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
     <script src="../JQuery/Source/jquery.js"></script>
     <script src="../JQuery/jquery-ui/jquery-ui.js"></script>
 
     <script src="../JQuery/Global/getRequests.js"></script>
     <script src="../JQuery/Global/headerButtons.js"></script>
-    <script src="../JQuery/Customer/aboutUsLoad.js"></script>
-    <script src="../JQuery/Customer/aboutUs.js"></script>
+    <script src="../JQuery/Manager/statisticsLoad.js"></script>
+    <script src="../JQuery/Manager/statisticsClick.js"></script>
     <script src="../JQuery/Global/notificationsAmmount.js"></script>
 
     <meta charset="UTF-8">
-    <title>About Us</title>
+    <title>Statistics</title>
   </head>
   <body>
-    <div class="container">
+    <div class="containerStatistics">
       <div class="preheader"></div>
        <div class="header">
          <div class="homeHeaderLogo largeText">VIP Transport</div>
@@ -29,8 +32,20 @@
       <div class="titleArea">
         <div class="title largeText" id="titleOrder">Statistics</div>
       </div>
-
-
+      <div class="selectionArea">
+        <input type="button" id="mainIncome" class="mainStatisticsSelection mainStatisticsSelectionSelected statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="Income">
+        <input type="button" id="mainNo" class="mainStatisticsSelection statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="No Transports">
+        <input type="button" id="mainMost" class="mainStatisticsSelection statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="Most freaquent">
+        <input type="button" id="mainAvarage" class="mainStatisticsSelection statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="Avarage">
+        <input type="hidden" value="income" id="mainSelected">
+      </div>
+      <div class="space"></div>
+      <div class="subSelectionArea"></div>
+      <div class="space"></div>
+      <div class="responseArea smallText">
+        <textarea name="responseTextArea" id="responseTextArea" cols="30" rows="10"></textarea>
+      </div>
     </div>
+    <input type="hidden" id="type" value="customer">
   </div>
 </body>
