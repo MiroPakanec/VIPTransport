@@ -68,13 +68,13 @@ class StatisticsController{
         case 'transporter':
           $mapReduceQuery = $this->getIncomeQuery($query);
           $mapReduce =  $this->getMapReduceCode('route.transporter', 'price', $mapReduceQuery);
-          return $this->getMapReduceResultIncome($mapReduce, 'EMAIL');
+          return $this->getMapReduceResultIncome($mapReduce, 'Email');
           break;
 
         case 'company':
           $mapReduceQuery = $this->getIncomeQuery($query);
-          $mapReduce =  $this->getMapReduceCode('company.name', 'price', $mapReduceQuery);
-          return $this->getMapReduceResultIncome($mapReduce, 'NAME');
+          $mapReduce =  $this->getMapReduceCodeCompany('price', $mapReduceQuery);
+          return $this->getMapReduceResultIncomeCompany($mapReduce);
           break;
 
         default:
@@ -92,6 +92,28 @@ class StatisticsController{
       $mapReduce['query'] = $query;
       $mapReduce['out'] = array("merge" => "eventCounts");
       return $mapReduce;
+    }
+
+    private function getMapReduceCodeCompany($group, $query){
+
+      $mapReduce = array();
+      $mapReduce['mapreduce'] = "transports";
+      $mapReduce['map'] = $this->getCompanyMap($group);
+      $mapReduce['reduce'] = "function(key, values){ return Array.sum( values)}";
+      $mapReduce['query'] = $query;
+      $mapReduce['out'] = array("merge" => "eventCounts");
+      return $mapReduce;
+    }
+
+    private function getCompanyMap($group){
+
+      $map = "function(){ emit({ " .
+                "name: this.company.name, " .
+                "address: this.company.address, " .
+                "ico : this.company.ico, " .
+                "dic : this.company.dic, " .
+              "}, this.price)}";
+      return $map;
     }
 
     private function getIncomeQuery($query){
@@ -117,10 +139,17 @@ class StatisticsController{
 
       $statisticsFindDatabaseAccessObject = new StatisticsFindDatabaseAccess();
       $result = $statisticsFindDatabaseAccessObject->getStatistics($mapReduce);
-      return $this->getIncomeCarOutputString($result, $title);
+      return $this->getIncomeOutputString($result, $title);
     }
 
-    private function getIncomeCarOutputString($result, $title){
+    private function getMapReduceResultIncomeCompany($mapReduce){
+
+      $statisticsFindDatabaseAccessObject = new StatisticsFindDatabaseAccess();
+      $result = $statisticsFindDatabaseAccessObject->getStatistics($mapReduce);
+      return $this->getIncomeCompanyOutputString($result);
+    }
+
+    private function getIncomeOutputString($result, $title){
 
       if(empty($result))
         return 0;
@@ -130,6 +159,25 @@ class StatisticsController{
       foreach ($result as $document) {
 
         $outputString .= $title.' : ' . $document['_id'] . 'break' . 'Revenue : ' . $document['value'] . ' EUR' . 'break break';
+      }
+
+      return $outputString;
+    }
+
+    private function getIncomeCompanyOutputString($result){
+
+      if(empty($result))
+        return 0;
+
+      $outputString = '';
+
+      foreach ($result as $document) {
+
+        $outputString .= 'Name : ' . $document['_id']['name'] . 'break' .
+                         'Address : '. $document['_id']['address'] . 'break' .
+                         'ICO : '. $document['_id']['ico'] . 'break' .
+                         'DIC : '. $document['_id']['dic'] . 'break' .
+                         'Revenue : ' . $document['value'] . ' EUR' . 'break break';
       }
 
       return $outputString;

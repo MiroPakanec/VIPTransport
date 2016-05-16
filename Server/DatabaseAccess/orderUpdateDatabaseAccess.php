@@ -21,12 +21,12 @@
         $pasangers = $dbc->real_escape_string(trim($orderModelObject->getPasangers()));
         $payment = $dbc->real_escape_string(trim($orderModelObject->getPayment()));
         $phone = $dbc->real_escape_string(trim($orderModelObject->getPhone()));
-        $status = $dbc->real_escape_string(trim($orderModelObject->getStatus()));
+        //$status = $dbc->real_escape_string(trim($orderModelObject->getStatus()));
         $names = $orderModelObject->getNames();
 
         $query = "UPDATE Transport_order  SET ".
                  "DateTime = '{$date}', Departure_address = '{$from}', Arrival_address = '{$to}',".
-                 "Pasangers = '{$pasangers}', Payment_type = '{$payment}', Phone = '{$phone}', Status = '{$status}' WHERE Id=".$id;
+                 "Pasangers = '{$pasangers}', Payment_type = '{$payment}', Phone = '{$phone}' WHERE Id=".$id;
 
         $query1 = "DELETE FROM  Pasanger_name WHERE Order_id=".$id;
 

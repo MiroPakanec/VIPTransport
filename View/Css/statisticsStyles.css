@@ -65,7 +65,7 @@
       width: 50% !important;
       margin-bottom: 0 !important;
     }
-    #invoiceButton{
+    #paymentAllButton{
       margin-left: 25% !important;
       margin-top: 5%;
     }
@@ -175,14 +175,14 @@
   font-size: 100%;
 }
 
-#invoiceButton{
+#creditCardButton{
 
-  margin-left:6%;
+  margin-right: 0%;
 }
 
 #paymentAllButton{
 
-  margin-right: 0%;
+  margin-left:6%;
 }
 
 .mainStatisticsSelectionSelected, .subStatisticsSelectionSelected, .companyStatisticsSelectionSelected{

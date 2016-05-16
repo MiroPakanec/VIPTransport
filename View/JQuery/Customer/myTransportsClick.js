@@ -4,6 +4,7 @@ $(function(){
 
     closeElementsOnLoadTransport();
     closeSubElementsOnLoad();
+    closeDateArea();
     generateTableTransports();
     loadTransports();
   });

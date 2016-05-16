@@ -3,6 +3,7 @@ $(function(){
   $('#titleRoutes').click(function(){
 
     closeSubElementsOnLoad();
+    closeDateArea();
     $('.orderSearchBarArea').slideUp(500);
     manageTitleCss('#titleRoutes', '#titleTransport', '#titleOrder', '0.05');
     generateTableRoutes();
@@ -868,6 +869,7 @@ function closeSubElementsOnLoad(){
   hideConfirm();
   hideRouteConfirm();
   $('#responseArea').slideUp(300).html('');
+
 }
 
 

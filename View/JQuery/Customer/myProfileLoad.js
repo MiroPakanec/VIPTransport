@@ -53,14 +53,17 @@ function loadProfilePicture(email){
       data: 'email='+email,
       success: function(response){
 
+        console.log(response);
         if(response.length > 23)
         $('#profilePicture').css({
           'background-image' : 'url(' + response + ')'
-        })
-        else
-        $('#profilePicture').css({
+        });
+        else{
+          alert();
+        }
+        /*$('#profilePicture').css({
           'background-image' : 'url(../Css/Images/ProfilePictures/profileDefault.png)'
-        })
+        })*/
       }
   });
 }

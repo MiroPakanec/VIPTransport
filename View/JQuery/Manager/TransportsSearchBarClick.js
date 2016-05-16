@@ -45,6 +45,19 @@ function manageIdInput(value){
   return value;
 }
 
+function closeDateArea(){
+
+  if($('#dateState').val() == 0)
+    return;
+
+  if($('#dateType').val() == 'from')
+    $('#dateFromInput').trigger('click');
+  else if ($('#dateType').val() == 'to')
+    $('#dateToInput').trigger('click');
+
+  $('#dateState').val('0');
+}
+
 function manageDateInput(value, margin){
 
   $('#dateType').val(value);

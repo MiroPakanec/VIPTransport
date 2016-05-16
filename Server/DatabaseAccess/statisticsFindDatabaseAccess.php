@@ -54,7 +54,16 @@ class StatisticsFindDatabaseAccess{
 
   private function manageObjectId($value){
 
-    return (string)$value;
+    if(!is_object($value))
+      return (string)$value;
+
+    $array = array();
+    foreach ($value as $key => $value) {
+
+      $array[$key] = $value;
+    }
+
+    return $array;
   }
 }
 ?>

@@ -4,6 +4,10 @@
 
   if(isset($_POST['email'])){
 
+    $sessionControllerObject = new SessionController();
+    if(!$sessionControllerObject->sessionStarted())
+      $sessionControllerObject->startSession();
+
     $email = trim($_POST['email']);
     if($_POST['email'] === 'session')
       $email = $_SESSION['email'];

@@ -108,10 +108,10 @@
         if($this->validateDate($date, $timeHour, $timeMinute, 00, $clock) > 0)
           return 0;
 
-        $status = $this->getStatusBySession();
+        //$status = $this->getStatusBySession();
         $datetimeString = $date." ".$timeHour.":".$timeMinute.":00 ".$clock;
         $datetime = Datetime::createFromFormat('d/m/Y H:i:s A', $datetimeString);
-        $orderModelObject = new OrderModel($id, $email, $datetime, $from, $to, $pasangers, $payment, $phone, $names, '', $status);
+        $orderModelObject = new OrderModel($id, $email, $datetime, $from, $to, $pasangers, $payment, $phone, $names, '', '');
 
         if($validationControllerObject->validateOrder($orderModelObject) > 0)
           return 0;

@@ -106,11 +106,11 @@ function companyStatisticsSelectionClick(element){
 
 function getCompanySubAreaHtml(){
 
-  var html =  '<input type="button" id="invoiceButton" class="companyStatisticsSelectionSelected statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2 paymentTypeButton" value="Invoice">'
+  var html =  '<input type="button" id="paymentAllButton" class="companyStatisticsSelectionSelected statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2 paymentTypeButton" value="All">'
+             +'<input type="button" id="invoiceButton" class="statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2 paymentTypeButton" value="Invoice">'
              +'<input type="button" id="cashButton" class="statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2 paymentTypeButton" value="Cash">'
              +'<input type="button" id="creditCardButton" class="statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2 paymentTypeButton" value="Credit Card">'
-             +'<input type="button" id="paymentAllButton" class="statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2 paymentTypeButton" value="All">'
-             +'<input type="hidden" class="subtype" id="subtypeCompany" value="Invoice">';
+             +'<input type="hidden" class="subtype" id="subtypeCompany" value="All">';
   return html;
 }
 
