@@ -157,7 +157,15 @@ function updateOrder(){
     setTimeout(function() {
       $("#orderConfirmButton").val('Update');
     },10);
+
+    appendBackButton('#orderClearButton');
   }
+}
+
+function appendBackButton(id){
+
+  var html = '<input type="button" name="clearOrder" value="Back" class="button" id="orderBackButton">';
+  $(id).after(html);
 }
 
 function getNames(id){

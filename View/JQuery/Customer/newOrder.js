@@ -94,7 +94,12 @@ $(function(){
       $('#timeButtonAM').css({
         'background-color' : 'rgba(255, 255, 255, 0.0)'
       });
-    })
+    });
+
+    $(document).on('click', '#orderBackButton', function(){
+
+      window.location="myTransportsPage.html";
+    });
   });
 
   function generatePasangers(num){

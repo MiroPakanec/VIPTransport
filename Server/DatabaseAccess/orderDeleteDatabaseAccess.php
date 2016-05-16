@@ -13,7 +13,7 @@
         $dbc->autocommit(false);
         $errorString = '';
 
-        $routeId = $this->getRouteId($orderId); 
+        $routeId = $this->getRouteId($orderId);
         $wClauseOrder = " WHERE Id = ".$orderId;
         $queryOrder = "DELETE FROM transport_order ".$wClauseOrder;
         $wClauseRoute = " WHERE Id = ".$routeId;
@@ -23,7 +23,7 @@
 
         if($routeId < 0){
 
-          $dbc->query($queryRouteCountry);
+          $dbc->query($queryOrder);
           $errorString .= $dbc->error;
         }
         else{
