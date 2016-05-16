@@ -200,16 +200,35 @@
   float: left;
   margin-top: 0%;
   margin-left: 25%;
+
+  font-size: 100%;
+}
+
+#responseTextArea::-webkit-scrollbar {
+    width: 1em;
+}
+
+#responseTextArea::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+#responseTextArea::-webkit-scrollbar-thumb {
+  background-color: white;
+  outline: 1px solid slategrey;
 }
 
 #responseTextArea{
 
   height: 100%;
   width: 100%;
-  padding: 5%;
+  padding: 2%;
+  padding-left: 5%;
 
   outline: none;
   background-color: rgba(255,255,255,0.1);
+
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #mainEmpty{

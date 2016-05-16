@@ -15,10 +15,19 @@ Class DatabaseMongodbConnection{
     return $col;
   }
 
+  public static function getDb($database){
+
+    $host = 'mongodb://localhost:27017';
+
+    $mongo = new MongoDB\Client($host);
+    $db = $mongo->$database;
+    return $db;
+  }
+
   public static function openConnection(){
 
     $host = 'mongodb://localhost:27017';
-    return $host; 
+    return $host;
   }
 }
 

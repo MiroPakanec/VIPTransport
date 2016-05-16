@@ -137,6 +137,7 @@ function getStatistics(handleData, data){
           handleData(response);
       },
       error: function(response){
+          console.log(response);
           alert(response);
       }
   });

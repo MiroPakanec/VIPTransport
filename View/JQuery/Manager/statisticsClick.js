@@ -73,18 +73,25 @@ function loadStatistics(element){
   var group = $('#mainSelected').val().toLowerCase();
   var typeValue = $(element).val();
   var type = typeValue.slice(4,typeValue.length).toLowerCase();
+  var query = {};
   var dateFrom = getDate('dateFromButton');
   var dateTo = getDate('dateToButton');
   var data = {};
 
+  query['dateFrom'] = dateFrom;
+  query['dateTo'] = dateTo;
+
   data['group'] = group;
   data['type'] = type;
-  data['dateFrom'] = dateFrom;
-  data['dateTo'] = dateTo;
+  data['query'] = query;
 
-  getStatistics(function(data){
+  console.log(data);
 
-    console.log(data);
+  getStatistics(function(response){
+
+    console.log(response);
+    var response = response.replace(/break/g, "\n");
+    $('#responseTextArea').val(response);
   }, data);
 }
 
@@ -92,8 +99,29 @@ function getDate(id){
 
   var date = ($('#' + id).val());
 
-  if(date.indexOf('Date') >= 0)
+  if(date.indexOf('Date from') >= 0)
     return '2000-01-01';
+  else if (date.indexOf('Date to') >= 0)
+    return getTodayDate();
 
   return date;
+}
+
+function getTodayDate(){
+
+  var today = new Date();
+  var dd = today.getDate()+1;
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if(dd<10) {
+      dd='0'+dd
+  }
+
+  if(mm<10) {
+      mm='0'+mm
+  }
+
+  today = yyyy+'-'+mm+'-'+dd;
+  return today;
 }

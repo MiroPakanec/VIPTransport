@@ -1,11 +1,11 @@
 <?php
 
-  /*require $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/statisticsController.php';
+  require $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/statisticsController.php';
 
-  if(isset($_GET['gourp'], $_GET['type'])){
+  if(isset($_GET['group'], $_GET['type'], $_GET['query'])){
 
     $statisticsControllerObject = new StatisticsController();
-  }*/
-
-  echo 'test';
+    $response = $statisticsControllerObject->getStatistics($_GET['group'], $_GET['type'], $_GET['query']);
+    echo $response;
+  }
 ?>

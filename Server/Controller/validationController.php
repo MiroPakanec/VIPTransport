@@ -211,6 +211,18 @@
       return $errorCounter;
     }
 
+    public function validateStatistics($group, $type, $query){
+
+      $errorCounter = 0;
+
+      $errorCounter += $this->validateInput($group, '^[a-z]+$^', 10, 3, true);
+      $errorCounter += $this->validateInput($type, '^[a-z]+$^', 10, 3, true);
+      $errorCounter += $this->validateDateString($query['dateFrom'], 'Y-m-d');
+      $errorCounter += $this->validateDateString($query['dateTo'], 'Y-m-d');
+
+      return $errorCounter;
+    }
+
     public function validateSessionEmail($email){
 
       $errorCounter = 0;
