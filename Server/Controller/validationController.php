@@ -215,8 +215,9 @@
 
       $errorCounter = 0;
 
-      $errorCounter += $this->validateInput($group, '^[a-z]+$^', 10, 3, true);
-      $errorCounter += $this->validateInput($type, '^[a-z]+$^', 10, 3, true);
+      $errorCounter += $this->validateInput($group, '^[a-z]+$^', 15, 3, true);
+      $errorCounter += $this->validateInput($type, '^[a-z]+$^', 15, 3, true);
+      $errorCounter += $this->validateInput($query['payment'], '^[a-z]+$^', 15, 3, true);
       $errorCounter += $this->validateDateString($query['dateFrom'], 'Y-m-d');
       $errorCounter += $this->validateDateString($query['dateTo'], 'Y-m-d');
 

@@ -52,6 +52,23 @@
     .dateSubSelectionArea{
       width: 100% !important;
     }
+    #dateClearButton{
+      width: 20% !important;
+      margin-left: 41% !important;
+      height: 30px !important;
+    }
+    .dateSelectionArea{
+      width: 50% !important;
+    }
+    .paymentTypeButton{
+      margin-left: 25%;
+      width: 50% !important;
+      margin-bottom: 0 !important;
+    }
+    #invoiceButton{
+      margin-left: 25% !important;
+      margin-top: 5%;
+    }
   }
 
 .containerStatistics{
@@ -142,14 +159,40 @@
   margin-top: 1%;
 }
 
-.mainStatisticsSelectionSelected, .subStatisticsSelectionSelected{
+.companySubSelectionArea{
+
+  width: 40%;
+  height: 4%;
+  margin: auto;
+}
+
+.paymentTypeButton{
+
+  margin-top: 3% !important;
+  width: 20%;
+  margin-right: 5%;
+  height: 100%;
+  font-size: 100%;
+}
+
+#invoiceButton{
+
+  margin-left:6%;
+}
+
+#paymentAllButton{
+
+  margin-right: 0%;
+}
+
+.mainStatisticsSelectionSelected, .subStatisticsSelectionSelected, .companyStatisticsSelectionSelected{
 
   background-color: rgba(255,255,255,0.1);
 }
 
 .dateSelectionArea{
 
-  width: 50%;
+  width: 60%;
   float: left;
 
   margin-left: 24%;
@@ -158,9 +201,9 @@
 .dateSubSelectionArea{
 
   margin-top: 5%;
-  margin-left: 1%;
+  margin-left: 2%;
 
-  width: 49%;
+  width: 39%;
 }
 
 .dateSelectionButton{
@@ -190,7 +233,21 @@
 
 #dateSelectionTo{
 
-  float: right;
+  float: left;
+}
+
+#dateClearButton{
+
+  float: left;
+  width: 10%;
+  height: 40px;
+  margin-top: 5%;
+  margin-left: 1%;
+}
+
+#dateClearButton:hover{
+
+  background-color: rgba(255,255,255,0.1);
 }
 
 .responseArea{

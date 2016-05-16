@@ -15,6 +15,7 @@ $(function(){
 function hideElementsOnload(){
 
   $('.subSelectionInputArea').hide();
+  $('.companySubSelectionArea').hide();
 }
 
 function load(){
@@ -52,6 +53,7 @@ function loadDatePickers(){
           onSelect: function (date) {
                   $('#dateFromButton').val(date);
                   $('#datePickerAreaFrom').slideToggle(500);
+                  loadStatistics();
               }
   });
 
@@ -63,6 +65,7 @@ function loadDatePickers(){
           onSelect: function (date) {
                   $('#dateToButton').val(date);
                   $('#datePickerAreaTo').slideToggle(500);
+                  loadStatistics();
               }
   });
 

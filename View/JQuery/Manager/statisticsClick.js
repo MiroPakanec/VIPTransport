@@ -13,10 +13,14 @@ $(function(){
   $(document).on('click', '.subStatisticsSelection', function(){
 
     var element = $(this);
-    //button colors
-    subStatisticsSelectionClick(element);
-    loadStatistics(element);
 
+    subStatisticsSelectionClick(element);
+
+    if($(this).attr('id') == 'incomeCompany')
+      incomeCompanyClick();
+
+    //button colors
+    loadStatistics();
   });
 
   //main selection area buttons
@@ -24,6 +28,18 @@ $(function(){
 
     generateIncomeSubSelectionArea();
     $('#incomeCar').trigger('click');
+  });
+
+  //company selection buttons
+  $(document).on('click', '.paymentTypeButton', function(){
+
+    var element = $(this);
+    var value = $(element).val();
+
+    //subtypeCompany
+    companyStatisticsSelectionClick(element);
+    $('#subtypeCompany').val(value);
+    loadStatistics();
   });
 
   //date selections
@@ -34,6 +50,12 @@ $(function(){
   $('#dateToButton').on('click', function(){
     $("#datePickerAreaTo").slideToggle(300);
   });
+
+  $('#dateClearButton').on('click', function(){
+    $('#dateFromButton').val('Date from');
+    $('#dateToButton').val('Date to');
+    loadStatistics();
+  })
 });
 
 function mainStatisticsSelectionClick(element){
@@ -46,15 +68,50 @@ function mainStatisticsSelectionClick(element){
 
   $('#mainSelected').val(value);
   $(element).addClass('mainStatisticsSelectionSelected');
+
+  //hide payment row
+  $('.companySubSelectionArea').html('').fadeOut(500);
 }
 
 function subStatisticsSelectionClick(element){
+
+  var typeValue = $(element).val();
+  var type = typeValue.slice(4,typeValue.length).toLowerCase();
 
   $('.subStatisticsSelection').each(function(){
     $(this).removeClass('subStatisticsSelectionSelected');
   });
 
+  $('#subSelected').val(type);
   $(element).addClass('subStatisticsSelectionSelected');
+
+  //hide payment row
+  $('.companySubSelectionArea').html('').fadeOut(500);
+}
+
+function incomeCompanyClick(){
+
+  var html = getCompanySubAreaHtml();
+  $('.companySubSelectionArea').html(html).fadeIn(500);
+}
+
+function companyStatisticsSelectionClick(element){
+
+  $('.paymentTypeButton').each(function(){
+    $(this).removeClass('companyStatisticsSelectionSelected');
+  });
+
+  $(element).addClass('companyStatisticsSelectionSelected');
+}
+
+function getCompanySubAreaHtml(){
+
+  var html =  '<input type="button" id="invoiceButton" class="companyStatisticsSelectionSelected statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2 paymentTypeButton" value="Invoice">'
+             +'<input type="button" id="cashButton" class="statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2 paymentTypeButton" value="Cash">'
+             +'<input type="button" id="creditCardButton" class="statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2 paymentTypeButton" value="Credit Card">'
+             +'<input type="button" id="paymentAllButton" class="statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2 paymentTypeButton" value="All">'
+             +'<input type="hidden" class="subtype" id="subtypeCompany" value="Invoice">';
+  return html;
 }
 
 function generateIncomeSubSelectionArea(){
@@ -62,24 +119,27 @@ function generateIncomeSubSelectionArea(){
   $('.subSelectionArea').html('').hide();
   var html = '<input type="button" id="incomeCar" class="subStatisticsSelection subStatisticsSelectionSelected statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="per Car">'
             +'<input type="button" id="incomeTransporter" class="subStatisticsSelection statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="per Transporter">'
-            +'<input type="button" id="incomepCompany" class="subStatisticsSelection statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="per Company">';
-            //+'<input type="button" id="incomePeriod" class="subStatisticsSelection statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="per Period">';
-
+            +'<input type="button" id="incomeCompany" class="subStatisticsSelection statisticsButton smallText col-xs-12 col-sm-12	col-md-2 col-lg-2" value="per Company">'
+            +'<input type="hidden" value="car" id="subSelected">'
   $('.subSelectionArea').html(html).fadeIn(500);
 }
 
-function loadStatistics(element){
+function loadStatistics(){
 
   var group = $('#mainSelected').val().toLowerCase();
-  var typeValue = $(element).val();
-  var type = typeValue.slice(4,typeValue.length).toLowerCase();
+  var type = $('#subSelected').val();
+  var payment = $('#subtypeCompany').val();
   var query = {};
   var dateFrom = getDate('dateFromButton');
   var dateTo = getDate('dateToButton');
   var data = {};
 
+  if(payment == null)
+    payment = 'null';
+
   query['dateFrom'] = dateFrom;
   query['dateTo'] = dateTo;
+  query['payment'] = payment;
 
   data['group'] = group;
   data['type'] = type;

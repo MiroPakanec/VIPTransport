@@ -15,7 +15,6 @@ class StatisticsController{
         return 0;
 
       return $this->getMapReduceResult($group, $type, $query);
-      //return $getStatisticsDatabaseAccessObject->getStatistics($mapReduce);
     }
 
     private function startSession(){
@@ -61,9 +60,21 @@ class StatisticsController{
 
       switch ($type) {
         case 'car':
-          $mapReduceQuery = $this->getIncomeCarQuery($query);
+          $mapReduceQuery = $this->getIncomeQuery($query);
           $mapReduce =  $this->getMapReduceCode('route.car', 'price', $mapReduceQuery);
-          return $this->getMapReduceResultIncomeCar($mapReduce);
+          return $this->getMapReduceResultIncome($mapReduce, 'SPZ');
+          break;
+
+        case 'transporter':
+          $mapReduceQuery = $this->getIncomeQuery($query);
+          $mapReduce =  $this->getMapReduceCode('route.transporter', 'price', $mapReduceQuery);
+          return $this->getMapReduceResultIncome($mapReduce, 'EMAIL');
+          break;
+
+        case 'company':
+          $mapReduceQuery = $this->getIncomeQuery($query);
+          $mapReduce =  $this->getMapReduceCode('company.name', 'price', $mapReduceQuery);
+          return $this->getMapReduceResultIncome($mapReduce, 'NAME');
           break;
 
         default:
@@ -83,7 +94,7 @@ class StatisticsController{
       return $mapReduce;
     }
 
-    private function getIncomeCarQuery($query){
+    private function getIncomeQuery($query){
 
 
 
@@ -96,17 +107,20 @@ class StatisticsController{
                                      '$lt' => new MongoDB\BSON\UTCDateTime($timeStampTo)]
       );
 
+      if($query['payment'] != 'null' && $query['payment'] != 'All')
+        $mpQuery["order.payment"] = $query['payment'];
+
       return $mpQuery;
     }
 
-    private function getMapReduceResultIncomeCar($mapReduce){
+    private function getMapReduceResultIncome($mapReduce, $title){
 
       $statisticsFindDatabaseAccessObject = new StatisticsFindDatabaseAccess();
       $result = $statisticsFindDatabaseAccessObject->getStatistics($mapReduce);
-      return $this->getIncomeCarOutputString($result);
+      return $this->getIncomeCarOutputString($result, $title);
     }
 
-    private function getIncomeCarOutputString($result){
+    private function getIncomeCarOutputString($result, $title){
 
       if(empty($result))
         return 0;
@@ -115,7 +129,7 @@ class StatisticsController{
 
       foreach ($result as $document) {
 
-        $outputString .= 'SPZ : ' . $document['_id'] . 'break' . 'Revenue : ' . $document['value'] . 'break break';
+        $outputString .= $title.' : ' . $document['_id'] . 'break' . 'Revenue : ' . $document['value'] . ' EUR' . 'break break';
       }
 
       return $outputString;
