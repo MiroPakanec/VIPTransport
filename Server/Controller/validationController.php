@@ -229,7 +229,7 @@
       $errorCounter = 0;
 
       $errorCounter += $this->validateEmail($email);
-      if($_SESSION['type'] != 'manager' && $_SESSION['email'] != $email)
+      if($_SESSION['type'] != 'manager' && $_SESSION['type'] != 'transporter' && $_SESSION['email'] != $email)
         $errorCounter ++;
 
       return $errorCounter;

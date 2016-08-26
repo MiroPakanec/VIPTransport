@@ -48,6 +48,9 @@
 
       session_start();
       session_destroy();
+
+      //if($this->sessionStarted())
+      //  session_destroy();
     }
 
     public function sessionStarted(){

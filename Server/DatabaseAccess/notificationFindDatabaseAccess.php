@@ -10,7 +10,7 @@ class NotificationFindDatabaseAccess{
 
       //testing
       //$receiver = "miroslav@gmail.com";
-
+      return 1;
       $collection = DatabaseMongodbConnection::getCollection("VIPTransport", "notifications");
       //$cursor = $collection->find(array("reciever"=> $receiver, "read"=> false));
       if($type === 'all')
@@ -33,7 +33,7 @@ class NotificationFindDatabaseAccess{
 
       //testing
       //$receiver = "miroslav@gmail.com";
-
+      return 0;
       $collection = DatabaseMongodbConnection::getCollection("VIPTransport", "notifications");
       $cursor = $collection->aggregate([[ '$match' => ['reciever' => $receiver, 'read' => false]], [ '$group' => [ '_id' => '$read', 'total' => [ '$sum' => 1]]]]);
 

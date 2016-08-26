@@ -20,7 +20,7 @@
         $payment = $dbc->real_escape_string(trim($orderModelObject->getPayment()));
         $phone = $dbc->real_escape_string(trim($orderModelObject->getPhone()));
 
-        $query = "INSERT INTO Transport_order (Email, DateTime, Departure_address, Arrival_address, Pasangers, Payment_type, Phone, Creation_date, Status)" .
+        $query = "INSERT INTO transport_order (Email, DateTime, Departure_address, Arrival_address, Pasangers, Payment_type, Phone, Creation_date, Status)" .
                  " VALUES ('{$email}', '{$date}', '{$from}', '{$to}', '{$pasangers}', '{$payment}', '{$phone}', NOW(), 'Stand by')";
 
         $dbc->query($query);
@@ -48,7 +48,7 @@
 
           $name = $dbc->real_escape_string(trim($element));
 
-          $query = "INSERT INTO Pasanger_name (Order_id, Pasanger_name)" .
+          $query = "INSERT INTO pasanger_name (Order_id, Pasanger_name)" .
                    " VALUES ('{$id}', '{$name}')";
 
           $dbc->query($query);

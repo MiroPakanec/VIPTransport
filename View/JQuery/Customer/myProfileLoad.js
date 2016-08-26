@@ -59,7 +59,8 @@ function loadProfilePicture(email){
           'background-image' : 'url(' + response + ')'
         });
         else{
-          alert();
+
+    
         }
         /*$('#profilePicture').css({
           'background-image' : 'url(../Css/Images/ProfilePictures/profileDefault.png)'

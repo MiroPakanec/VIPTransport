@@ -24,7 +24,7 @@
         //$status = $dbc->real_escape_string(trim($orderModelObject->getStatus()));
         $names = $orderModelObject->getNames();
 
-        $query = "UPDATE Transport_order  SET ".
+        $query = "UPDATE transport_order  SET ".
                  "DateTime = '{$date}', Departure_address = '{$from}', Arrival_address = '{$to}',".
                  "Pasangers = '{$pasangers}', Payment_type = '{$payment}', Phone = '{$phone}' WHERE Id=".$id;
 
@@ -74,7 +74,7 @@
         foreach ($names as $value) {
 
           $name = $dbc->real_escape_string(trim($value));
-          $query = "INSERT INTO Pasanger_name (Order_id, Pasanger_name)" .
+          $query = "INSERT INTO pasanger_name (Order_id, Pasanger_name)" .
                    " VALUES ('{$id}', '{$name}')";
 
           array_push($queryArray, $query);

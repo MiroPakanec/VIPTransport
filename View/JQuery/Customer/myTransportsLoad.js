@@ -10,14 +10,16 @@ $(function(){
       }
 
       $('#type').val(data.type);
+      $('#transportToken').val(data.token);
     }),
+
 
 
     setTimeout(function() {
 
         loadButtons();
         loadNotificationsAmmount();
-    },10);
+    },100);
 });
 
 function loadButtons(){

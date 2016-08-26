@@ -11,7 +11,7 @@
 
         $dbc = DatabaseConnection::openConnection();
 
-        $query = "INSERT INTO User (Email, First_name, Middle_name, Last_name, Password, Phone, Type, Registration_date)" .
+        $query = "INSERT INTO user (Email, First_name, Middle_name, Last_name, Password, Phone, Type, Registration_date)" .
                  " VALUES (?, ?, ?, ?, ?, ?, ?, NOW())";
         $stmt = mysqli_prepare($dbc, $query);
 

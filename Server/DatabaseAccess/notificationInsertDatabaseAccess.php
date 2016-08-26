@@ -8,14 +8,15 @@ class NotificationInsertDatabaseAccess{
 
     try{
 
-      //testing
-      //$receiver = "miroslav@gmail.com";
-
+      return 1;
       $host = DatabaseMongodbConnection::openConnection();
       $collection = DatabaseMongodbConnection::getCollection("VIPTransport", "notifications");
-      $bulk = new MongoDB\Driver\BulkWrite(['ordered' => true]);
+      $bulk = new MongoDB\Driver\BulkWrite(['ordered' => false]);
 
-      $bulk->insert(['text'=> $notificationArray['text'], 'reciever' => $notificationArray['reciever'], 'action' => $notificationArray['action'], 'type' => $notificationArray['type'], 'message' => $notificationArray['message'], 'read' => $notificationArray['read'], 'date' => $notificationArray['date']]);
+      $bulk->insert(['text'=> $notificationArray['text'], 'reciever' => $notificationArray['reciever'],
+                    'action' => $notificationArray['action'], 'type' => $notificationArray['type'],
+                    'message' => $notificationArray['message'], 'read' => $notificationArray['read'],
+                    'date' => $notificationArray['date']]);
 
       $manager = new MongoDB\Driver\Manager($host);
       $writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 100);

@@ -8,9 +8,7 @@ class NotificationUpdateDatabaseAccess{
 
     try{
 
-      //testing
-      //$email = "miroslav@gmail.com";
-
+      return 1;
       $host = DatabaseMongodbConnection::openConnection();
       $collection = DatabaseMongodbConnection::getCollection("VIPTransport", "notifications");
 

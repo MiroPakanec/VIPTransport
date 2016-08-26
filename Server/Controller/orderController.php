@@ -138,6 +138,7 @@
         if($validationControllerObject->validateOrderSearch($id, $email, $dateFrom, $dateTo) > 0)
           $wClause = " WHERE 1";
 
+
         $wClause .= " AND Status <> 'Completed' ";
         return $orderSelectDatabaseAccessObject->getOrderData($wClause);
       }
@@ -216,6 +217,7 @@
     public function requestUpdate($id, $message){
 
       $this->startSession();
+      //$safeMessage = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
       $wasNotified = $this->sendOrderNotifications($id, 'update', $message);
 
       if($wasNotified == 0)
@@ -432,14 +434,13 @@
 
     private function getOrdersWClause($id, $email, $dateFrom, $dateTo){
 
-
       $wClause = '';
       if($_SESSION['type'] == 'customer'){
          $wClause = " WHERE Email = '".$_SESSION['email']."'";
          if(strlen($id) != 0)
           $wClause .= " AND Id = ".$id;
       }
-      else if($_SESSION['type'] == 'manager')
+      else if($_SESSION['type'] == 'manager' || $_SESSION['type'] == 'transporter')
         $wClause = $this->getOrdersWClauseManager($id, $email, $dateFrom, $dateTo);
 
       return $wClause;

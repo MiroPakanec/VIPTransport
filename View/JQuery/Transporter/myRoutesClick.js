@@ -576,6 +576,15 @@ function clearRouteConfirm(){
   $('#routeConfirmDestinationTimeMinute').val('');
   $('#transportTypeOfficial').trigger('click');
 
+  /*$('#routeConfirmPrice').val('100');
+  $('#routeConfirmMealige').val('9001');
+  $('#transportDate').html('2016-05-05');
+  $('#transportDestinationDate').html('2016-05-05');
+  $('#routeConfirmTimeHour').val('10');
+  $('#routeConfirmTimeMinute').val('00');
+  $('#routeConfirmDestinationTimeHour').val('10');
+  $('#routeConfirmDestinationTimeMinute').val('50');*/
+
   //page 2/2
   $('#submitRouteId').html('');
   $('#submitOrderId').html('');
@@ -629,6 +638,7 @@ function loadRouteConfirmRepeat(routeId, orderId){
     fillSubmitOrderFiels(data[0]);
     getCompany(function(dataCompany){
 
+      console.log(dataCompany);
       fillCompanyFields(dataCompany);
     }, data[0]['email']);
   }, orderId, '', '', '');

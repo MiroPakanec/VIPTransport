@@ -31,7 +31,6 @@ function loadNotifications(){
 
       for (var notificationIndex in data) {
 
-        console.log(data);
         processNotification(data[notificationIndex]);
       }
 
@@ -266,7 +265,6 @@ function modifyOrderMessageHtml(message){
   message = message.splice( index2, 0, '<strong><a href="'+ url + "?type=order&id="+id +'">');
   message = message.splice(index, 0, "</a></strong>");
   message = message.splice(0, 0, '<strong><a href="'+ url + "?type=user&id="+user +'">');
-  console.log(message);
 
   return message;
 }
@@ -301,7 +299,6 @@ function modifyRouteMessageHtml(message, type){
 
   message = message.splice(index, 0, "</a></strong>");
   message = message.splice(0, 0, '<strong><a href="'+ url + "?type=user&id="+user +'">');
-  console.log(message);
 
   return message;
 }

@@ -15,7 +15,7 @@ function generateManagerButtons(){
   var html = '<a href="homePage.html"><input type="button" class="headerButtonManager buttonHome smallText" value="Home"></a>'
             +'<a href="newOrderPage.html"><input type="button" class="headerButtonManager buttonHome smallText" value="New Order"></a>'
             +'<a href="myTransportsPage.html"><input type="button" class="headerButtonManager buttonHome smallText" value="Transports"></a>'
-            +'<a href="statisticsPage.html"><input type="button" class="headerButtonManager buttonHome smallText" value="Statistics"></a>'
+            //+'<a href="statisticsPage.html"><input type="button" class="headerButtonManager buttonHome smallText" value="Statistics"></a>'
             +'<a href="carsPage.html"><input type="button" class="headerButtonManager buttonHome smallText" value="Cars"></a>'
             +'<a href="usersPage.html"><input type="button" class="headerButtonManager buttonHome smallText" value="Users"></a>'
             +'<a href="myProfile.html"><input type="button" class="headerButtonManager buttonHome smallText" value="My Profile"></a>'

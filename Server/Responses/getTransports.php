@@ -2,6 +2,13 @@
 
     require $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/orderController.php';
     header('Content-Type: text/javascript');
+    session_start();
+
+    //if(!isset($_POST['token']))
+      //return;
+
+    //if($_POST['token'] != $_SESSION['token'])
+      //return;
 
     $id = $email = $dateFrom = $dateTo = '';
 

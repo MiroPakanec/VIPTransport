@@ -51,7 +51,7 @@
         $image = 0;
 
         $dbc = DatabaseConnection::openConnection();
-        $query = "SELECT Image FROM User " . $wClause;
+        $query = "SELECT Image FROM user " . $wClause;
 
         $response = @mysqli_query($dbc, $query);
 

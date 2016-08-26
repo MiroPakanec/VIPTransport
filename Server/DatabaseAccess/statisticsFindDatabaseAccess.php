@@ -4,7 +4,7 @@ require_once('databaseMongodbConnection.php');
 
 class StatisticsFindDatabaseAccess{
 
-  public function getStatistics($mapReduce){
+  public function getStatistics($mapReduce){ 
 
     try{
 

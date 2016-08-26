@@ -6,6 +6,7 @@ function getSession(handleData){
       dataType : 'json',
       data: '',
       success: function(response){
+        console.log(response);
           handleData(response);
       }
   });
@@ -88,11 +89,9 @@ function getNotifications(handleData, ammount, skip, type){
       dataType : 'json',
       data: data,
       success: function(response){
-        console.log(response);
           handleData(response);
       },
       error: function(response){
-        console.log(response);
       }
   });
 }
@@ -107,7 +106,6 @@ function readNotifications(handleData, data){
           handleData(response);
       },
       error: function(response){
-          alert(response);
       }
   });
 }
@@ -122,7 +120,6 @@ function readAllNotifications(handleData){
           handleData(response);
       },
       error: function(response){
-          alert(response);
       }
   });
 }
@@ -137,8 +134,6 @@ function getStatistics(handleData, data){
           handleData(response);
       },
       error: function(response){
-          console.log(response);
-          alert(response);
       }
   });
 }
@@ -157,6 +152,7 @@ function getCompany(handleData, email){
         handleData(response);
       },
       error: function(response){
+        handleData(response);
       }
   });
 }
@@ -237,7 +233,6 @@ function getRoutes(handleData, id, email, orderId){
   data['id'] = id;
   data['email'] = email;
   data['orderId'] = orderId;
-  console.log(data);
 
   $.ajax({
       type: 'GET',
@@ -247,10 +242,8 @@ function getRoutes(handleData, id, email, orderId){
       success: function(response){
 
           handleData(response);
-          console.log(response);
       },
       error:function(response){
-        console.log(response);
       }
   });
 }
@@ -266,7 +259,6 @@ function getFinishedTransports(handleData){
           handleData(response);
       },
       error:function(response){
-        console.log(response);
       }
   });
 }
@@ -278,6 +270,7 @@ function getTransports(handleData, id, dateFrom, dateTo, email){
   data['email'] = email;
   data['dateFrom'] = dateFrom;
   data['dateTo'] = dateTo;
+  data['token'] = $('#transportToken').val();
 
   $.ajax({
       type: 'POST',
@@ -285,8 +278,9 @@ function getTransports(handleData, id, dateFrom, dateTo, email){
       dataType : 'json',
       data: data,
       success: function(response){
-        console.log(response);
           handleData(response);
+          console.log(response);
+
       },
       error:function(response){
         console.log(response);
@@ -335,18 +329,15 @@ function updateUserType(handleData, email, type){
 
 function deleteOrder(handleData, id){
 
-  console.log(id);
 
   $.ajax({
     url: '../../Server/Responses/deleteOrder.php',
     type: 'POST',
     data: 'id='+id,
     success: function(response){
-      console.log(response);
       handleData(response);
     },
     error: function(response){
-      console.log(response);
     }
   })
 }
@@ -358,7 +349,6 @@ function submitTransport(handleData, data){
     type: 'POST',
     data: data,
     success: function(response){
-      console.log(response);
       handleData(response);
     },
     error: function(response){
@@ -369,7 +359,6 @@ function submitTransport(handleData, data){
 
 function submitOrderRequest(handleData, data){
 
-  console.log(data);
 
   $.ajax({
     url: '../../Server/Responses/submitOrder.php',
@@ -377,7 +366,6 @@ function submitOrderRequest(handleData, data){
     dataType: 'json',
     data: data,
     success: function(response){
-      console.log(response);
       handleData(response);
     },
     error: function(response){

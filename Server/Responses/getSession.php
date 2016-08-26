@@ -26,13 +26,13 @@
     $date = $_SESSION['registrationDate'];
   }
 
-  if(isset($_SESSION['token']))
-    $token = $tokenControllerObject->getToken();
-  else{
+  //if(isset($_SESSION['token']))
+  //  $token = $tokenControllerObject->getToken();
+  //else{
     //$sessionControllerObject->startSession();
     $tokenControllerObject->generateToken();
     $token = $tokenControllerObject->getToken();
-  }
+  //}
 
   $data = array(
       'token' => $token,
