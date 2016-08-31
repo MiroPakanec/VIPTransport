@@ -12,14 +12,14 @@ function generateCustomerButtons(){
 
 function generateManagerButtons(){
 
-  var html = '<a href="homePage.html"><input type="button" class="headerButtonManager buttonHome smallText" value="Home"></a>'
-            +'<a href="newOrderPage.html"><input type="button" class="headerButtonManager buttonHome smallText" value="New Order"></a>'
-            +'<a href="myTransportsPage.html"><input type="button" class="headerButtonManager buttonHome smallText" value="Transports"></a>'
-            //+'<a href="statisticsPage.html"><input type="button" class="headerButtonManager buttonHome smallText" value="Statistics"></a>'
-            +'<a href="carsPage.html"><input type="button" class="headerButtonManager buttonHome smallText" value="Cars"></a>'
-            +'<a href="usersPage.html"><input type="button" class="headerButtonManager buttonHome smallText" value="Users"></a>'
-            +'<a href="myProfile.html"><input type="button" class="headerButtonManager buttonHome smallText" value="My Profile"></a>'
-            +'<a href="AboutUsPage.html"><input type="button" class="headerButtonManager buttonHome smallText" value="About Us"></a>'
+  var html = '<a href="homePage.html"><input type="button" class="headerButtonManager buttonHome smallText" id="headerButtonManager" value="Home"></a>'
+            +'<a href="newOrderPage.html"><input type="button" class="headerButtonManager buttonHome smallText" id="headerButtonManager" value="New Order"></a>'
+            +'<a href="myTransportsPage.html"><input type="button" class="headerButtonManager buttonHome smallText" id="headerButtonManager" value="Transports"></a>'
+            +'<a href="statisticsPage.html"><input type="button" class="headerButtonManager buttonHome smallText" id="headerButtonManager" value="Statistics"></a>'
+            +'<a href="carsPage.html"><input type="button" class="headerButtonManager buttonHome smallText" id="headerButtonManager" value="Cars"></a>'
+            +'<a href="usersPage.html"><input type="button" class="headerButtonManager buttonHome smallText" id="headerButtonManager" value="Users"></a>'
+            +'<a href="myProfile.html"><input type="button" class="headerButtonManager buttonHome smallText" id="headerButtonManager" value="My Profile"></a>'
+            +'<a href="AboutUsPage.html"><input type="button" class="headerButtonManager buttonHome smallText" id="headerButtonManager" value="About Us"></a>'
             +'<a href="#"><input type="button" class="headerButtonManager buttonHome smallText" id="logOutButton" style="border-right: 0px" value="Log Out"></a>';
 
   $('.headerButtonsContainer').html(html);

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="../Css/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="../Css/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
     <link rel="stylesheet" type="text/css" href="../Css/homeStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/widgetsStyles.css">
 
@@ -22,24 +25,30 @@
         <div class="headerMenu">
           <div class="homeHeaderLogo largeText">VIP Transport</div>
           <div class="headerNotifications" id="notifications">
-            <div class="notificationAmmount smallText"></div>
+            <div class="notificationAmmount smallText" id="notificationAmount"></div>
           </div>
           <div class="headerButtonsContainer"></div>
         </div>
       </div>
       <div class="main">
         <div id="welcomeMessage" class="largeText"></div>
-        <div class="paragraph" id="newOrderParagraph">
-          <div class="mediumText">Proceed to order</div>
-          <a href="newOrderPage.html"><div class="paragraphPicture" id="newOrder"></div></a>
+        <div class="homeIconContainer col-xs-12 col-sm-12	col-md-4 col-lg-4">
+          <div class="paragraph" id="newOrderParagraph">
+            <div class="mediumText homeIconDescription">Proceed to order</div>
+            <a href="newOrderPage.html"><div class="paragraphPicture" id="newOrder"></div></a>
+          </div>
         </div>
-        <div class="paragraph" id="checkTransportsParagraph">
-          <div class="mediumText" id="checkTransportsTitle">Check your transports</div>
-          <a href="myTransportsPage.html"><div class="paragraphPicture" id="myOrders"></div></a>
+        <div class="homeIconContainer col-xs-12 col-sm-12	col-md-4 col-lg-4">
+          <div class="paragraph" id="checkTransportsParagraph">
+            <div class="mediumText homeIconDescription" id="checkTransportsTitle">Check your transports</div>
+            <a href="myTransportsPage.html"><div class="paragraphPicture" id="myOrders"></div></a>
+          </div>
         </div>
-        <div class="paragraph">
-          <div class="mediumText">Find out about us</div>
-          <a href="aboutUsPage.html"><div class="paragraphPicture" id="aboutUs"></div></a>
+        <div class="homeIconContainer col-xs-12 col-sm-12	col-md-4 col-lg-4">
+          <div class="paragraph">
+            <div class="mediumText homeIconDescription">Find out about us</div>
+            <a href="aboutUsPage.html"><div class="paragraphPicture" id="aboutUs"></div></a>
+          </div>
         </div>
       </div>
     </div>

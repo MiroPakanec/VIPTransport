@@ -1,3 +1,7 @@
+html{
+    height: 100vh;
+}
+
 body{
   margin: 0;
   padding: 0;
@@ -8,13 +12,75 @@ body{
     src: url("Fonts/PoiretOne-Regular.ttf");
 }
 
+@media all and (max-width: 1400px) { /* screen size until 1200px */
+    .container {
+      font-size: 70% !important; /* 1.5x default size */
+    }
+    .homeHeaderLogo{
+      font-size: 320% !important; /* 1.5x default size */
+      line-height: 230%;
+    }
+    .headerNotifications{
+      width: 8% !important;
+    }
+    #notificationAmount{
+      font-size: 50% !important;
+      margin-top: 60% !important;
+      margin-left: 70% !important;
+    }
+    .paragraph{
+      margin-top: 3% !important;
+    }
+    #welcomeMessage{
+      height: 23% !important;
+      margin-top: 6% !important;
+      font-size: 400% !important;
+      margin-bottom: 5%;
+    }
+}
+
+@media all and (max-width: 1000px) { /* screen size until 1000px */
+    .container {
+        font-size: 95% !important; /* 1.2x default size */
+    }
+    .homeHeaderLogo{
+        width: 10%;
+        line-height: 250% !important;
+        font-size: 200% !important; /* 1.5x default size */
+    }
+    .headerButtonsContainer{
+      width: 67% !important;
+    }
+    .headerNotifications{
+      width: 8%;
+    }
+    .headerButtonManager{
+      font-size: 75% !important;
+      width: 11% !important;
+    }
+    .mediumText{
+      font-size: 250% !important;
+    }
+    .homeIconContainer{
+      border-top: 1px solid rgba(255,255,255,0.2) !important;
+      margin-bottom: 2% !important;
+    }
+    #welcomeMessage{
+      border: none !important;
+    }
+  }
 /* DIVS */
 .container{
 
-  background-image: url("Images/backgroundImage.jpg");
-  background-size:cover;
+  background: url("Images/backgroundImage.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
   width: 100%;
   height: 100vh;
+  padding: 0;
 }
 
 .header{
@@ -25,6 +91,7 @@ body{
   background-color: rgba(0, 0, 0, 0.2);
   background-image: url("Images/NewOrder/picture1.jpg");
   background-size:cover;
+  background-position: center;
 }
 
 .headerMenu{
@@ -90,14 +157,19 @@ body{
   height: 100%;
 }
 
-.headerButtonManager{
+#headerButtonManager{
 
   margin: 0px;
   padding: 0px;
   width: 10%;
   height: 100%;
 
-  font-size: 100% !important;
+  font-size: 100%;
+}
+
+#logOutButton{
+  font-size: 100%;
+  height: 100%;
 }
 
 .main{
@@ -105,13 +177,14 @@ body{
   height: 40%;
 }
 
+.homeIconDescription{
+  width: 100% !important;
+}
+
 .paragraph{
 
-  width: 20%;
   height: 70%;
-  margin-left: 10%;
-  float: left;
-  margin-top: 2%;
+  margin-top: 15%;
 }
 
 .paragraphPicture{
