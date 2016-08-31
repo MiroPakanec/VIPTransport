@@ -4,6 +4,14 @@
     <link rel="stylesheet" type="text/css" href="../Css/mainStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/mainPreviewStyles.css">
 
+    <link rel="stylesheet" href="../Css/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="../Css/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="../Css/font-awesome-4.6.3/css/font-awesome.css">
+    <!--Bootstrap Social -->
+    <link rel="stylesheet" href="../Css/bootstrap-social-gh-pages/bootstrap-social.css">
+
     <script src="../JQuery/Source/jquery.js"></script>
     <script src="../JQuery/Source/jquery-easing.js"></script>
     <script src="../JQuery/jquery-ui/jquery-ui.js"></script>
@@ -17,133 +25,162 @@
     <title>VIP Transport | Main page</title>
   </head>
   <body>
-    <div class="container">
-      <div class="mainMenuContainer">
-        <div class="mainMenuSelection">
-          <ul class="mainMenu">
-            <a href="#mainLogin"><li class="mainMenuElement">Login</li></a>
-            <a href="#mainRegister"><li class="mainMenuElement">Register</li></a>
-            <a href="#mainAboutUs"><li class="mainMenuElement">About us</li></a>
-            <a href="#mainTransporters"><li class="mainMenuElement">Transporters</li></a>
-            <a href="#mainCars"><li class="mainMenuElement">Cars</li></a>
-            <a href="#mainContact"><li class="mainMenuElement">Contact</li></a>
-          </ul>
+    <div class="containerMainPage">
+      <div class="coverSection">
+        <div class="mainMenuContainer">
+          <div class="mainMenuLeft col-xs-6 col-sm-5	col-md-4 col-lg-3">
+            <div class="pageTitle">
+              VIP Transport
+            </div>
+          </div>
+          <div class="mainMenuRight col-xs-6 col-sm-7	col-md-2 col-lg-2">
+              <ul class="mainMenuSelection">
+                <a href="#mainLogin"><li class="mainMenuElement">Login</li></a>
+                <a href="#mainRegister"><li class="mainMenuElement">Register</li></a>
+                <a href="#mainAboutUs"><li class="mainMenuElement">About us</li></a>
+                <a href="#mainContact"><li class="mainMenuElement">Contact</li></a>
+              </ul>
+          </div>
+          <div class="mainPreviewContainer col-xs-12 col-sm-12	col-md-6 col-lg-7">
+            <div class="mainPreview">
+                <div class="mainPicture main1"></div>
+              </div>
+            </div>
         </div>
-        <div class="mainMenuLeft"></div>
-        <div class="mainMenuRight">
-          <div class="pageTitle">
-            VIP Transport
+      </div>
+      <div class="authenticationSection">
+        <div class="authenticationLeft col-xs-12 col-sm-12	col-md-6 col-lg-6">
+          <div id="mainLogin" class="mainTitle mainTextStyle">Login</div>
+          <div class="mainParagraph">
+            <form action="../../Server/Responses/login.php" method="post" class="ajax" id="loginForm">
+              <div class="mainRow">
+                <div class="mainText col-xs-12 col-sm-12	col-md-2 col-lg-3">Email:</div>
+                <input type="text" id="loginEmail" class="mainTextInput col-xs-12 col-sm-12	col-md-5 col-lg-4" maxlength="30" name="email">
+                <div class="errorMessage errorMessageLogin col-xs-12 col-sm-12	col-md-5 col-lg-5" id="errorLoginEmail"></div>
+              </div>
+              <div class="mainRow">
+                <div class="mainText col-xs-12 col-sm-12	col-md-2 col-lg-3">Password:</div>
+                <input type="password" id="loginPassword" class="mainTextInput col-xs-12 col-sm-12	col-md-5 col-lg-4" maxlength="30" name="password">
+                  <div class="errorMessage errorMessageLogin col-xs-12 col-sm-12	col-md-5 col-lg-5" id="errorLoginPassword"></div>
+              </div>
+              <div class="mainRow mainResponseRow" id="loginResponseField">
+                <div class="mainText mainResponseText" id="loginResponseText"></div>
+              </div>
+              <div class="mainRow mainButtonRow">
+                <input type="hidden" name ="token" id="loginToken" value="">
+                <input type="submit" value="Login" class="button" id="loginSubmitButton">
+                <input type="button" value="Clear" class="button" id="loginClearButton">
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="authenticationRight col-xs-12 col-sm-12	col-md-6 col-lg-6">
+          <div class="mainTitle mainTextStyle" id="mainRegister">Register</div>
+          <div class="mainParagraph">
+            <form action="../../Server/Responses/register.php" method="post" class="ajax" id="registerForm">
+              <div class="mainRow">
+                <div class="mainText col-xs-12 col-sm-12	col-md-2 col-lg-3">Email: *</div>
+                <input type="text" name="email" id="registrationEmail" class="mainTextInput col-xs-12 col-sm-12	col-md-5 col-lg-4" maxlength="30">
+                <div class="errorMessageRegister errorMessage col-xs-12 col-sm-12	col-md-5 col-lg-5" id="errorRegistrationEmail"></div>
+              </div>
+              <div class="mainRow">
+                <div class="mainText col-xs-12 col-sm-12	col-md-2 col-lg-3">First name: *</div>
+                <input type="text" name="firstName" id="registrationFirstName" class="mainTextInput col-xs-12 col-sm-12	col-md-5 col-lg-4" maxlength="30">
+                <div class="errorMessageRegister errorMessage col-xs-12 col-sm-12	col-md-5 col-lg-5" id="errorRegistrationFirstName"></div>
+              </div>
+              <div class="mainRow">
+                <div class="mainText col-xs-12 col-sm-12	col-md-2 col-lg-3">Middle name:</div>
+                <input type="text" name="middleName" id="registrationMiddleName" class="mainTextInput col-xs-12 col-sm-12	col-md-5 col-lg-4" maxlength="30">
+                <div class="errorMessageRegister errorMessage canSkip col-xs-12 col-sm-12	col-md-5 col-lg-5" id="errorRegistrationMiddleName"></div>
+              </div>
+              <div class="mainRow">
+                <div class="mainText col-xs-12 col-sm-12	col-md-2 col-lg-3">Last name: *</div>
+                <input type="text" name="lastName" id="registrationLastName" class="mainTextInput col-xs-12 col-sm-12	col-md-5 col-lg-4" maxlength="30">
+                <div class="errorMessageRegister errorMessage col-xs-12 col-sm-12	col-md-5 col-lg-5" id="errorRegistrationLastName"></div>
+              </div>
+              <div class="mainRow">
+                <div class="mainText col-xs-12 col-sm-12	col-md-2 col-lg-3">Password: *</div>
+                <input type="password" name="password" id="registrationPassword" class="mainTextInput col-xs-12 col-sm-12	col-md-5 col-lg-4" maxlength="30">
+                <div class="errorMessageRegister errorMessage col-xs-12 col-sm-12	col-md-5 col-lg-5" id="errorRegistrationPassword"></div>
+              </div>
+              <div class="mainRow">
+                <div class="mainText col-xs-12 col-sm-12	col-md-2 col-lg-3">Confirm password: *</div>
+                <input type="password" id="registrationConfirmPassword" class="mainTextInput col-xs-12 col-sm-12	col-md-5 col-lg-4" maxlength="30">
+                <div class="errorMessageRegister errorMessage col-xs-12 col-sm-12	col-md-5 col-lg-5" id="errorRegistrationConfirmPassword"></div>
+              </div>
+              <div class="mainRow">
+                <div class="mainText col-xs-12 col-sm-12	col-md-2 col-lg-3">Phone number: *</div>
+                <input type="text" name="phone" id="registrationPhone" class="mainTextInput col-xs-12 col-sm-12	col-md-5 col-lg-4" maxlength="30">
+                <div class="errorMessageRegister errorMessage col-xs-12 col-sm-12	col-md-5 col-lg-5" id="errorRegistrationPhone"></div>
+              </div>
+              <div class="mainRow mainResponseRow" id="registrationResponseField">
+                <div class="mainText mainResponseText" id="registrationResponseText"></div>
+              </div>
+              <div class="mainRow mainButtonRow">
+                <input type="submit" name="submitRegistration" value="Register" class="button" id=registrationSubmitButton>
+                <input type="button" name="clearRegistration" value="Clear" class="button" id="registrationClearButton">
+              </div>
+            </form>
           </div>
         </div>
       </div>
-      <div class="mainPreviewContainer">
-        <div class="mainPreview">
-            <div class="mainPicture main1"></div>
-            <div class="mainPicture main2"></div>
-            <div class="mainPicture main3"></div>
-            <div class="mainPicture main4"></div>
-            <div id="mainLogin" class="mainTitle mainTextStyle">Login</div>
-            <div class="mainParagraph">
-              <form action="../../Server/Responses/login.php" method="post" class="ajax" id="loginForm">
-                <div class="mainRow">
-                  <div class="mainText">Email:</div><input type="text" id="loginEmail" class="mainTextInput" maxlength="30" name="email">
-                  <div class="errorMessage errorMessageLogin" id="errorLoginEmail"></div>
-                </div>
-                <div class="mainRow">
-                  <div class="mainText">Password:</div><input type="password" id="loginPassword" class="mainTextInput" maxlength="30" name="password">
-                    <div class="errorMessage errorMessageLogin" id="errorLoginPassword"></div>
-                </div>
-                <div class="mainRow mainResponseRow" id="loginResponseField">
-                  <div class="mainText mainResponseText" id="loginResponseText"></div>
-                </div>
-                <div class="mainRow mainButtonRow">
-                  <input type="hidden" name ="token" id="loginToken" value="">
-                  <input type="submit" value="Login" class="button" id="loginSubmitButton">
-                  <input type="button" value="Clear" class="button" id="loginClearButton">
-                </div>
-              </form>
-            </div>
-            <div class="mainTitle mainTextStyle" id="mainRegister">Register</div>
-            <div class="mainParagraph">
-              <form action="../../Server/Responses/register.php" method="post" class="ajax" id="registerForm">
-                <div class="mainRow">
-                  <div class="mainText">Email: *</div><input type="text" name="email" id="registrationEmail" class="mainTextInput" maxlength="30">
-                  <div class="errorMessageRegister errorMessage" id="errorRegistrationEmail"></div>
-                </div>
-                <div class="mainRow">
-                  <div class="mainText">First name: *</div><input type="text" name="firstName" id="registrationFirstName" class="mainTextInput" maxlength="30">
-                  <div class="errorMessageRegister errorMessage" id="errorRegistrationFirstName"></div>
-                </div>
-                <div class="mainRow">
-                  <div class="mainText">Middle name:</div><input type="text" name="middleName" id="registrationMiddleName" class="mainTextInput" maxlength="30">
-                  <div class="errorMessageRegister errorMessage canSkip" id="errorRegistrationMiddleName"></div>
-                </div>
-                <div class="mainRow">
-                  <div class="mainText">Last name: *</div><input type="text" name="lastName" id="registrationLastName" class="mainTextInput" maxlength="30">
-                  <div class="errorMessageRegister errorMessage" id="errorRegistrationLastName"></div>
-                </div>
-                <div class="mainRow">
-                  <div class="mainText">Password: *</div><input type="password" name="password" id="registrationPassword" class="mainTextInput" maxlength="30">
-                  <div class="errorMessageRegister errorMessage" id="errorRegistrationPassword"></div>
-                </div>
-                <div class="mainRow">
-                  <div class="mainText">Confirm password: *</div><input type="password" id="registrationConfirmPassword" class="mainTextInput" maxlength="30">
-                  <div class="errorMessageRegister errorMessage" id="errorRegistrationConfirmPassword"></div>
-                </div>
-                <div class="mainRow">
-                  <div class="mainText">Phone number: *</div><input type="text" name="phone" id="registrationPhone" class="mainTextInput" maxlength="30">
-                  <div class="errorMessageRegister errorMessage" id="errorRegistrationPhone"></div>
-                </div>
-                <div class="mainRow mainResponseRow" id="registrationResponseField">
-                  <div class="mainText mainResponseText" id="registrationResponseText"></div>
-                </div>
-                <div class="mainRow mainButtonRow">
-                  <input type="submit" name="submitRegistration" value="Register" class="button" id=registrationSubmitButton>
-                  <input type="button" name="clearRegistration" value="Clear" class="button" id="registrationClearButton">
-                </div>
-              </form>
-            </div>
-            <div id="mainAboutUs" class="mainTitle mainTextStyle">About us</div>
-            <div class="mainParagraph mainTextStyle">
-              <p id="parAboutUs"></p>
-            </div>
-            <div id="mainTransporters" class="mainTitle mainTextStyle">Transporters</div>
-            <div class="mainParagraph mainTextStyle">
-              <p id="parTransporters"></p>
-            </div>
-            <div class="mainPicture transporter1"></div>
-            <div class="mainPicture transporter2"></div>
-            <div class="mainSpace"></div>
-            <div id="mainCars" class="mainTitle mainTextStyle">Cars</div>
-            <div class="mainParagraph mainTextStyle">
-              <p id="parCars1"></p>
-              <p id="parCars2"></p>
-            </div>
-            <div class="mainPicture car1"></div>
-            <div class="mainPicture car2"></div>
-            <div class="mainPicture car3"></div>
-            <div class="mainPicture car4"></div>
-            <div class="mainPicture car5"></div>
-            <div class="mainSpace"></div>
-            <div class="mainSpace"></div>
-            <div id="mainContact" class="mainTitle mainTextStyle">Contact</div>
-            <div class="mainRow">
-              <div class="mainText">Company name:</div><div class="mainText">VIP transport s.r.o.</div>
-              <div class="mainText">Address:</div><div class="mainText">Gemerská 4, 01008, Žilina</div>
-              <div class="mainText">IČO:</div><div class="mainText">46304959</div>
-              <div class="mainText">DIČ:</div><div class="mainText">2023323511</div>
-              <div class="mainText">Mail:</div><div class="mainText">info@viptransport.sk</div>
-              <div class="mainText">Phone:</div><div class="mainText">+421 911 301 111</div>
-              <div class="mainSpace"></div>
-              <div class="mainSpace"></div>
-              <div class="mainSpace"></div>
-              <div class="mainSpace"></div>
-              <div class="mainSpace"></div>
-            </div>
+      <div class="aboutUsSection">
+        <div id="mainAboutUs" class="mainTitle mainTextStyle">Why VIP Transport?</div>
+        <div class="mainParagraph mainTextStyle">
+          <p id="parAboutUs"></p>
+        </div>
+        <div class="mainParagraph mainTextStyle">
+          <p id="parTransporters"></p>
+        </div>
+        <div class="mainParagraph mainTextStyle">
+          <p id="parCars1"></p>
+          <p id="parCars2"></p>
+        </div>
+        <div class="aboutUsImages">
+          <div class="aboutUsImage col-xs-12 col-sm-12	col-md-6 col-lg-6" id="aboutUsImage1"></div>
+          <div class="aboutUsImage col-xs-12 col-sm-12	col-md-6 col-lg-6" id="aboutUsImage2"></div>
         </div>
       </div>
-    </div>
 
+      <div class="contactSection">
+        <div id="mainContact" class="mainTitle mainTextStyle">Contact</div>
+        <div class="contactsContainer">
+          <div class="contactRow">
+            <div class="mainText col-xs-6 col-sm-6	col-md-6 col-lg-6">Company name:</div>
+            <div class="mainText col-xs-6 col-sm-6	col-md-6 col-lg-6">VIP transport s.r.o.</div>
+          </div>
+          <div class="contactRow">
+            <div class="mainText col-xs-6 col-sm-6	col-md-6 col-lg-6">Address:</div>
+            <div class="mainText col-xs-6 col-sm-6	col-md-6 col-lg-6">Gemerská 4, 01008, Žilina</div>
+          </div>
+          <div class="contactRow">
+            <div class="mainText col-xs-6 col-sm-6	col-md-6 col-lg-6">DIČ:</div>
+            <div class="mainText col-xs-6 col-sm-6	col-md-6 col-lg-6">2023323511</div>
+          </div>
+          <div class="contactRow">
+            <div class="mainText col-xs-6 col-sm-6	col-md-6 col-lg-6">IČO:</div>
+            <div class="mainText col-xs-6 col-sm-6	col-md-6 col-lg-6">46304959</div>
+          </div>
+          <div class="contactRow">
+            <div class="mainText col-xs-6 col-sm-6	col-md-6 col-lg-6">Mail:</div>
+            <div class="mainText col-xs-6 col-sm-6	col-md-6 col-lg-6">info@viptransport.sk</div>
+          </div>
+          <div class="contactRow">
+            <div class="mainText col-xs-6 col-sm-6	col-md-6 col-lg-6">Phone:</div>
+            <div class="mainText col-xs-6 col-sm-6	col-md-6 col-lg-6">+421 911 301 111</div>
+          </div>
+        </div>
+      </div>
+      <footer class="footer">
+        <div class="container footerContainer">
+          <p class="text-muted">&copy; 2016 VIPTransport.com</p>
+
+          <a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/viptransport.sk/?fref=ts">
+            <span class="fa fa-facebook"></span>
+          </a>
+        </div>
+      </footer>
+      </div>
 
   </body>
 </html>

@@ -3,85 +3,253 @@
     src: url("Fonts/PoiretOne-Regular.ttf");
 }
 
-body{
-  margin: 0px;
+@media all and (max-width: 991px) { /* screen size until 1000px */
+
+  .mainMenuLeft, .mainMenuRight{
+    height: 30% !important;
+    border-right: 0px !important;
+  }
+
+  .mainMenuRight{
+    margin-top: 20% !important;
+    border-left: 1px solid rgba(255,255,255,0.5);
+  }
+
+  .mainMenuSelection{
+    font-size: 250% !important;
+  }
+
+  .mainPreview{
+    width: 80% !important;
+    height: 40% !important;
+  }
+
+  .mainRow{
+    padding: 0% 30% !important;
+  }
+
+  .mainText{
+    font-size: 200% !important;
+  }
+
+  .mainTitle{
+    font-size: 400% !important;
+  }
+
+  .authenticationLeft{
+    height: 40% !important;
+  }
+
+  .authenticationRight{
+    border-left: 0px !important;
+    border-top: 1px solid rgba(255,255,255,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+  }
+
+  .authenticationSection, .aboutUsSection, .contactSection{
+    height: auto !important;
+    border-bottom: 0 !important;
+  }
+
+  .footerContainer{
+    width: 100% !important;
+    margin-top: 50px !important;
+  }
+
+  .button{
+
+    width: 200px !important;
+    height: 50px !important;
+    margin-top: 5% !important;
+  }
+
+  .mainButtonRow{
+    margin-left: 20% !important;
+  }
+
+  .mainTextInput{
+    padding: 3% !important;
+  }
+
+  .aboutUsSection{
+    border: 0 !important;
+  }
+
+  #mainAboutUs{
+    margin-top: 5% !important;
+  }
+
+  .aboutUsImages{
+    height: 500px !important;
+  }
+
+  .aboutUsImage{
+    margin: 2% 2% !important;
+  }
 }
 
-.container{
+body{
+  margin: 0;
+  padding: 0;
 
-  background-image: url("Images/backgroundImage.jpg");
-  background-size:cover;
+  background: url("Images/backgroundImage.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.footerContainer{
+  float:left;
+  padding: 2% 15% !important;
+}
+
+.containerMainPage{
+
   width: 100%;
+  height: 100%;
+}
+
+.coverSection, .authenticationSection, .aboutUsSection{
+
   height: 100vh;
+  width: 100%;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.contactSection{
+
+  height: 80vh;
+  width: 100%;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .mainMenuContainer{
-  width: 40%;
+  width: 100%;
   float: left;
   height: inherit;
 }
 
 .mainPreviewContainer{
+  float: left;
   width: 60%;
   height: inherit;
-  margin-left: 40%;
 }
 
 .mainMenuLeft{
 
   width: 49%;
   height: inherit;
-  border-right: 1px solid white;
+  border-right: 1px solid rgba(255,255,255,0.8);
   opacity: 0.3;
   float: left;
+  text-align: right;
 }
 
 .mainMenuRight{
 
-  width: 50%;
-  height: inherit;
+  height: 50%;
+  width: 100%;
+
   float: right;
+  margin-top: 15%;
 }
 
 .pageTitle{
 
   font-family: myFont;
-  font-size: 40px;
+  font-size: 300%;
   font-weight: 200;
   color: white;
   text-align: left;
 
   height: 300px;
   width: 100%;
-  margin: 50% 0 0 5%;
+  margin: 30% 0 0 20%;
 }
 
 .mainMenuSelection{
-  position: absolute;
-  height: 43%;
-  margin: 19% 0% 0% 5%;
-  width: 35%;
-}
 
-.mainMenu{
-  text-align: right;
-  list-style-type: none;
+  width: 100%;
+  height: 100%;
 
   font-family: myFont;
-  font-size: 25px;
+  font-size: 130%;
   color: white;
+
+  text-decoration: none;
 }
 
 .mainMenuElement{
-  margin-top: 2px;
-  padding: 10px 20px 10px 10px;
-}
 
-.mainMenuElement:hover{
-  background-color: rgba(255,255,255,0.1);
-}
-
-a:link, a:visited, a:active {
+  width: 100%;
+  text-align: left;
+  padding: 5px 30px 10px 10px;
   text-decoration: none;
+}
+
+.aboutUsImages{
+
+  height: 30%;
+  width: 100%;
+
+  padding: 1% 15% 1% 15%;
+}
+
+.aboutUsImage{
+
+  height: 100%;
+  width: 49%;
+}
+
+#aboutUsImage1{
+
+  background-image: url("Images/Cars/car1.jpg");
+  background-size:cover;
+  background-position: 50% 70%;
+}
+
+#aboutUsImage2{
+  background-image: url("Images/Cars/car2.jpg");
+  background-size:cover;
+  background-position: 50% 70%;
+}
+
+#mainContact{
+
+  text-align: center;
+}
+
+.contactRow{
+
+  padding: 0 20%;
+  margin-left: 5%;
+}
+
+
+ul:hover, li:hover, ul, li{
+
+  text-decoration: none;
+  list-style-type: none;
   color: white;
+}
+
+
+a, a:link, a:visited, a:active {
+
+  color: white !important;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    text-decoration: none !important;
+    cursor: auto;
+}
+
+p{
+
+  padding: 0;
+  margin: 0;
 }

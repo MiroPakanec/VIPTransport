@@ -4,86 +4,19 @@
   width: 80%;
   height: 67%;
   float: left;
-  margin: 18% 10% 0% 10%;
-  padding: 0.5%;
-  overflow-y: scroll;
-  overflow-x: hidden;
 
+  margin: 18% 10% 0% 10%;
+
+  padding: 0.5%;
   background-color: rgba(0,0,0,0.3);
 }
 
-.mainPreview::-webkit-scrollbar {
-    width: 1em;
-}
-
-.mainPreview::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-}
-
-.mainPreview::-webkit-scrollbar-thumb {
-  background-color: white;
-  outline: 1px solid slategrey;
-}
-
 .mainPicture{
-  width: 48%;
-  height: 48%;
+
+  width: 97%;
+  height: 97%;
   margin: 1%;
   float:inherit;
-}
-
-.main1{
-
-  background-image: url("Images/MainImages/main6.jpg");
-  background-size:cover;
-}
-
-.main2{
-
-  background-image: url("Images/MainImages/main2.jpg");
-  background-size:cover;
-}
-
-.main3{
-
-  background-image: url("Images/MainImages/main1.jpg");
-  background-size:cover;
-}
-
-.main4{
-
-  background-image: url("Images/MainImages/main5.jpg");
-  background-size:cover;
-}
-
-.car1{
-
-  background-image: url("Images/Cars/car1.jpg");
-  background-size:cover;
-}
-
-.car2{
-
-  background-image: url("Images/Cars/car2.jpg");
-  background-size:cover;
-}
-
-.car3{
-
-  background-image: url("Images/Cars/car3.jpg");
-  background-size:cover;
-}
-
-.car4{
-
-  background-image: url("Images/Cars/car4.jpg");
-  background-size:cover;
-}
-
-.car5{
-
-  background-image: url("Images/Cars/car5.jpg");
-  background-size:cover;
 }
 
 .mainTextStyle{
@@ -96,19 +29,45 @@
 .mainTitle{
 
   padding: 3% 0% 0% 5%;
-  font-size: 30px;
-  border-top: 1px solid rgba(255,255,255,0.3);
+  font-size: 250%;
   float: left;
 
+  margin-bottom: 5%;
+}
+
+.mainPicture{
+
+  width: 97%;
+  height: 97%;
+  margin: 1%;
+  float:inherit;
+}
+
+.main1{
+
+  background-image: url("Images/MainImages/main6.jpg");
+  background-size:cover;
+}
+
+.authenticationLeft{
+
+  height: 100%;
+  padding: 2% 2% 2% 5%;
+}
+
+.authenticationRight{
+
+  height: 100%;
+  padding: 2%;
+
+  border-left: 1px solid rgba(255,255,255,0.4);
 }
 
 .mainParagraph{
 
   float: left;
-  font-size: 16px;
-  padding: 2% 0% 0% 2%;
-  margin-bottom: 5%;
-  width: 98%;
+  padding: 1% 10% 0% 15%;
+  margin-bottom: 1%;
 }
 
 .transporter1{
@@ -130,7 +89,7 @@
 }
 
 .mainText{
-  font-size: 20px;
+  font-size: 100%;
   font-family: myFont;
   color: white;
   padding: 2.5% 0% 0% 15%;
@@ -148,17 +107,16 @@
 .mainResponseRow{
   background-color: rgba(255, 0, 0, 0.1);
   margin-top: 2%;
-  width: 60% !important;
-  margin-left: 15%;
+  width: 80% !important;
+  margin-left: 10%;
 }
 
 .mainTextInput{
   float: left;
   margin-top: 2%;
-  width: 30%;
   padding: 1% 1%;
-  text-align: center;
-  font-size: 12px;
+  text-align: left;
+  font-size: 100%;
 }
 
 .smallTextInput{
@@ -180,6 +138,8 @@
 .mainRow{
   width: 100%;
   height: 20%;
+
+  padding: 0% 8%;
   float: left;
 }
 
@@ -188,6 +148,12 @@
   margin-top: 2%;
   width: 100%;
   float: left;
+}
+
+#mainAboutUs{
+
+  text-align: center;
+  margin-top: 2%;
 }
 
 #paymentTypeButton, .paymentSelection{
@@ -206,11 +172,14 @@
 }
 
 .mainButtonRow{
-  margin: 2% 0% 0% 48.8%;
+
+  margin: 7% 0% 0% 40%;
+  width: auto;
 }
 
 .button{
   padding: 1% 3%;
+  width: 80px;
   background-color:rgba(255,255,255,0);
   color: white;
   border: 1px solid white;
@@ -284,10 +253,9 @@
 
 .errorMessage{
 
-  width: 22%;
   margin-top: 2%;
-  margin-left: 2%;
   padding: 1%;
+  padding-left: 10%
 
   font-size: 15px;
   font-family: myFont;
