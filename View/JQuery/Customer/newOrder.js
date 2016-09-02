@@ -142,9 +142,9 @@ $(function(){
 
     var html = '';
     html += '<div class="mainRow" style="margin-bottom: 1%">' +
-            '<div class="mainText">Full name ' + (counter+1) + ': *</div>'+
-            '<input type="text" name="pasangerName'+counter+'" class="mainTextInput generatedInputField" id="orderPasangerName'+counter+'" maxlength="30">'+
-            '<div id="errorOrderPasangerName'+counter+'" class="errorMessage errorMessageGenerated"></div>' +
+            '<div class="mainText col-sm-12 col-md-5 col-lg-5">Full name ' + (counter+1) + ': *</div>'+
+            '<input type="text" name="pasangerName'+counter+'" class="mainTextInput generatedInputField col-sm-12 col-md-4 col-lg-4" id="orderPasangerName'+counter+'" maxlength="30">'+
+            '<div id="errorOrderPasangerName'+counter+'" class="errorMessage errorMessageGenerated col-sm-12 col-md-3 col-lg-3"></div>' +
             '</div>'
     return html;
   }

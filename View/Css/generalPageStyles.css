@@ -8,6 +8,56 @@ body{
     src: url("Fonts/PoiretOne-Regular.ttf");
 }
 
+/*Screen adjustments*/
+@media all and (max-width: 1400px) { /* screen size until 1200px */
+    .myContainer {
+      font-size: 70% !important; /* 1.5x default size */
+    }
+    .homeHeaderLogo{
+      font-size: 320% !important; /* 1.5x default size */
+      line-height: 230%;
+    }
+    .headerNotifications{
+      width: 8% !important;
+    }
+    #notificationAmount{
+      font-size: 50% !important;
+      margin-top: 60% !important;
+      margin-left: 70% !important;
+    }
+    .titleArea{
+      margin-top: 5% !important;
+      height: 15% !important;
+    }
+    .largeText{
+      font-size: 300% !important;
+    }
+}
+@media all and (max-width: 991px) { /* screen size until 1000px */
+
+  .myContainer {
+      font-size: 95% !important; /* 1.2x default size */
+  }
+  .homeHeaderLogo{
+      width: 10%;
+      line-height: 250% !important;
+      font-size: 200% !important; /* 1.5x default size */
+  }
+  .headerButtonsContainer{
+    width: 67% !important;
+  }
+  .headerNotifications{
+    width: 8%;
+  }
+  .headerButtonManager{
+    font-size: 90% !important;
+    width: 11% !important;
+  }
+  .mainButtonRow{
+    border: none !important;
+  }
+}
+
 /* DIVS */
 .container{
 

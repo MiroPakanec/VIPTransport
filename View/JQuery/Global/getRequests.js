@@ -149,6 +149,7 @@ function getCompany(handleData, email){
       dataType : 'json',
       data: data,
       success: function(response){
+        console.log(response);
         handleData(response);
       },
       error: function(response){

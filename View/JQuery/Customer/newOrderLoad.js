@@ -125,7 +125,7 @@ $(function(){
 
 function checkInvoice(data){
 
-    if(data.address.length == 0){
+    if(data == null){
 
       $('#paymentBill').css({
         'background-color' : 'rgba(255,0,0,0.2)',

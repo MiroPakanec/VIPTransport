@@ -1,5 +1,5 @@
 @media all and (max-width: 1400px) { /* screen size until 1200px */
-    .containerStatistics {
+    .containerStatistics { 
       font-size: 70% !important; /* 1.5x default size */
     }
     .headerButtonManager{
@@ -13,7 +13,7 @@
       width: 6%;
     }
     .notificationAmmount{
-      width: 10%; 
+      width: 10%;
     }
 }
 @media all and (max-width: 991px) { /* screen size until 1000px */

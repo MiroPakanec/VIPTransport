@@ -49,7 +49,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/validati
       $validationControllerObject = new validationController();
 
       if($validationControllerObject->validateSessionEmail($email) > 0)
-        return 0;
+        return $email;
 
       $wClause = " WHERE User_email = '".$email."'";
       return $companySelectDatabaseAccessObject->getCompanyData($wClause);

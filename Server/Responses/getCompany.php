@@ -3,7 +3,9 @@
     require $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/companyController.php';
     require_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Model/companyModel.php';
 
-    if(isset($_GET['email'])){
+    if(isset($_GET['email']) && strlen($_GET['email']) > 1){
+
+      echo  strlen($_GET['email']);
       $companyControllerObject = new CompanyController();
       $companyModelObject = $companyControllerObject->getCompanyData($_GET['email']);
       $array = array();

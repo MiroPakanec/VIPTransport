@@ -8,6 +8,50 @@ body{
     src: url("Fonts/PoiretOne-Regular.ttf");
 }
 
+/*Screen adjustments*/
+@media all and (max-width: 991px) { /* screen size until 1000px */
+
+  .mainRow{
+    padding: 0 30% !important;
+    padding-bottom: 2% !important;
+    margin-bottom: 5% !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    height: auto !important;
+  }
+  .paymentType{
+    padding: 0 30% !important;
+    padding-bottom: 2% !important;
+    margin-bottom: 5% !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    height: auto !important;
+  }
+  .mainText{
+    text-align: center !important;
+    padding-bottom: 5% !important;
+  }
+  #datepickerMain{
+    margin-left: 5% !important;
+  }
+  #paymentTypeButton{
+    margin: auto !important;
+    width: 100% !important;
+    padding: 0% 0 !important;
+  }
+  #paymentTypeTitle{
+    padding-left: 0 !important;
+    padding-bottom: 2% !important;
+  }
+  #orderConfirmButton{
+    padding: 8% !important;
+    float: right !important;
+    margin-right: 5% !important;
+  }
+  #orderClearButton{
+    padding: 8% !important;
+    float: right !important;
+  }
+}
+
 /*ORDER*/
 
 .mainParagraph{
@@ -15,7 +59,7 @@ body{
   float: left;
   font-size: 16px;
   width: 70%;
-  height: 145%;
+  height: 150%;
   margin-left: 20%;
   margin-top: 1%;
   padding: 2% 0% 0% 2%;
@@ -45,7 +89,7 @@ body{
 .mainRow{
   width: 100%;
   height: 10.5%;
-  margin-top: 0%;
+  margin-top: 1%;
   float: left;
 }
 
@@ -79,15 +123,12 @@ body{
   font-family: myFont;
   color: white;
   padding: 0% 0% 0% 10%;
-  margin-right: 5%;
-  width: 15%;
   text-align: left;
   float: left;
 }
 
 .mainTextInput{
   float: left;
-  width: 19%;
   padding: 0.7% 1%;
   text-align: center;
   font-size: 12px;
@@ -98,12 +139,12 @@ body{
   font-family: myFont;
   font-size: 20px;
   float: left;
-  margin-top: 0%;
-  padding: 0% 1.5%;
+  width: 5% !important;
+
+  padding: 0 !important;
 }
 
 .largerMediumTextInput{
-  width: 6.4%;
   padding: 0.9% 1.1%;
 }
 
@@ -113,11 +154,24 @@ body{
 }
 
 /*ELEMENTS*/
+.inputSection{
+  padding: 0;
+}
 
+.timeInputElement{
+  float: left;
+  width: 20%;
+  height: 100%;
+  padding: 2% 0;
+  margin: 0;
+}
 
+#timeButtonAM, #timeButtonPM{
+  float: right;
+}
 
 .button{
-  padding: 0.7% 3%;
+  padding: 0.5% 3%;
   background-color:rgba(255,255,255,0);
   color: white;
   border: 1px solid white;
@@ -136,7 +190,6 @@ body{
 }
 
 .orderSelect{
-  width: 15.2%;
   float: left;
   background-color: rgba(255,255,255,0.05);
 }
@@ -146,32 +199,32 @@ body{
   float: left;
   font-size: 14px;
   margin-left: 1% !important;
-  padding: 1% 0%;
+  padding: 1.7% 0%;
 }
 
-.orderButton{
-  margin-left: 0.5%;
-  width: 8%;
-  height: 80%;
+#minusButton{
+
+  width: 20%;
+  float: right;
 }
 
 #plusButton{
-  margin-left: 0%;
+
+  width: 20%;
+  float: right;
 }
 
 .paymentType{
 
   width: 100%;
   float: left;
-  margin-bottom: 1%;
+  margin: 1% 0%;
 }
 
 #paymentTypeButton, .paymentSelection{
-  width: 15.2%;
-  margin-left: 30%;
   background-color: rgba(255, 255, 255, 0.05);
+  padding: 1.7% 0;
 }
-
 
 #orderDateButton{
   margin-left: 3.2%;
@@ -183,15 +236,17 @@ body{
   float: left;
   height: 280px;
   width: 80%;
-  margin-bottom: 2%;
+  margin: 2% 0%;
+}
+
+#orderPasangers{
+  width: 45%;
 }
 
 .errorMessage{
 
-  width: 18%;
   margin-top: 0%;
-  margin-right: 10%;
-  padding: 1%;
+  padding: 0.7% 0%;
 
   font-size: 15px;
   font-family: myFont;
