@@ -9,39 +9,19 @@ body{
 }
 
 /*Screen adjustments*/
-@media all and (max-width: 1400px) { /* screen size until 1200px */
-    .myContainer {
-      font-size: 70% !important; /* 1.5x default size */
-    }
-    .homeHeaderLogo{
-      font-size: 320% !important; /* 1.5x default size */
-      line-height: 230%;
-    }
-    .headerNotifications{
-      width: 8% !important;
-    }
-    #notificationAmount{
-      font-size: 50% !important;
-      margin-top: 60% !important;
-      margin-left: 70% !important;
-    }
-    .titleArea{
-      margin-top: 5% !important;
-      height: 15% !important;
-    }
-    .largeText{
-      font-size: 300% !important;
-    }
-}
-@media all and (max-width: 991px) { /* screen size until 1000px */
+
+@media all and (max-width: 1200px) { /* screen size until 1000px */
 
   .myContainer {
       font-size: 95% !important; /* 1.2x default size */
   }
   .homeHeaderLogo{
-      width: 10%;
+      width: 5%;
       line-height: 250% !important;
       font-size: 200% !important; /* 1.5x default size */
+  }
+  .headerNotifications{
+    width: 8% !important;
   }
   .headerButtonsContainer{
     width: 67% !important;
@@ -55,6 +35,9 @@ body{
   }
   .mainButtonRow{
     border: none !important;
+  }
+  .titleArea{
+    margin-top: 30px !important;
   }
 }
 

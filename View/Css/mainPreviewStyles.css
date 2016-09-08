@@ -52,6 +52,7 @@
 .authenticationLeft{
 
   height: 100%;
+  overflow: auto;
   padding: 2% 2% 2% 5%;
 }
 

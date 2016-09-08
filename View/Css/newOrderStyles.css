@@ -18,6 +18,10 @@ body{
     border-bottom: 1px solid rgba(255,255,255,0.1);
     height: auto !important;
   }
+  .mainParagraph{
+    width: 90% !important;
+    margin-left: 5% !important;
+  }
   .paymentType{
     padding: 0 30% !important;
     padding-bottom: 2% !important;
@@ -50,6 +54,7 @@ body{
     padding: 8% !important;
     float: right !important;
   }
+
 }
 
 /*ORDER*/

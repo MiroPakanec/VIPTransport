@@ -115,11 +115,14 @@ function loadPicture(url){
   $('#pictureArea').hide();
   $('#pictureArea').fadeIn(500);
 
-  if(url.length > 0)
+  if(url.length > 0){
+
     $('#pictureArea').css({
-    'background-image' : 'url(' + url + ')',
-    'background-size' : 'cover'
-    })
+    'background-image' : 'url(' + url + ')'
+    });
+    $('#pictureArea').addClass('aboutUsPicture');
+
+  }
   else
     $('#pictureArea').css({
         'background-image' : 'none',

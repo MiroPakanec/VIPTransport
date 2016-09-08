@@ -8,6 +8,27 @@ body{
     src: url("Fonts/PoiretOne-Regular.ttf");
 }
 
+@media all and (max-width: 1600px) { /* screen size until 1000px */
+
+  .menu{
+    width: 90% !important;
+    margin-left: 5% !important;
+    height:100px !important;
+  }
+  #textArea{
+    margin-bottom: 5%;
+  }
+  .previewImages{
+    position: 70% 50% !important;
+  }
+  #pictureArea{
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+  .aboutUsPicture{
+  }
+}
+
 .titleArea{
 
   margin-bottom: 0%;
@@ -85,6 +106,11 @@ li{
   margin-top : 2%;
   margin-left : 14.5%;
   display: none;
+}
+
+.aboutUsPicture{
+
+  background-size' : cover;
 }
 
 table{

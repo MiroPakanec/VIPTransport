@@ -97,7 +97,7 @@ body{
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-} 
+}
 
 .footerContainer{
   float:left;
@@ -165,9 +165,20 @@ body{
   color: white;
   text-align: left;
 
-  height: 300px;
+  height: auto;
   width: 100%;
-  margin: 30% 0 0 20%;
+  margin: 30% 0 80% 20%;
+}
+
+.pageMotto{
+
+  opacity: 1 !important;
+  font-family: myFont;
+  font-size: 200%;
+  color: rgba(255,255,255,1);
+  font-style: italic;
+
+  padding: 0 15%;
 }
 
 .mainMenuSelection{
@@ -220,6 +231,26 @@ body{
 #mainContact{
 
   text-align: center;
+}
+
+.loginPicture{
+
+  float: left;
+  margin-top: 0.2%;
+
+  background-size:cover;
+  background-position: center;
+}
+
+#loginPicture{
+
+  width: 135%;
+  margin-left: -21%;
+  height: 200px !important;
+  margin-top: 20%;
+  background-image: url("Images/Cars/car8.png");
+  background-position: 50% 85%;
+
 }
 
 .contactRow{
