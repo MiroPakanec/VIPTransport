@@ -33,7 +33,7 @@ function getCompanyData(email){
 
    getCompany(function(data){
 
-     if(!data.name.length == 0){
+     if(!data == null){
 
        $('#companyName').val(data.name);
        $('#invoiceAddress').val(data.address);
@@ -60,7 +60,7 @@ function loadProfilePicture(email){
         });
         else{
 
-    
+
         }
         /*$('#profilePicture').css({
           'background-image' : 'url(../Css/Images/ProfilePictures/profileDefault.png)'

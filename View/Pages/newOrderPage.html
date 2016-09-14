@@ -37,19 +37,19 @@
         <div class="mainParagraph">
           <form action="../../Server/Responses/newOrder.php" method="post" class="" id="orderForm">
           <div class="mainRow" id="userEmailRow">
-            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 mainText">Customer email *</div>
-            <input type="text" id="orderEmail" value="" name="orderEmail" class="col-xs-12 col-sm-12 col-md-4 col-lg-4 mainTextInput" maxlength="30">
-            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 errorMessage" id="errorOrderEmail"></div>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 mainText">Customer email *</div>
+            <input type="text" id="orderEmail" value="" name="orderEmail" class="col-xs-4 col-sm-4 col-md-4 col-lg-4 mainTextInput" maxlength="30">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 errorMessage" id="errorOrderEmail"></div>
           </div>
           <div class="mainRow">
-            <div class="mainText col-xs-12 col-sm-12 col-md-5 col-lg-5">Departure date: *</div>
-            <div class="button orderSelect col-xs-12 col-sm-12 col-md-4 col-lg-4" id="orderDate" name="orderDate">Select date</div>
-            <div class="errorMessage col-xs-12 col-sm-12 col-md-3 col-lg-3" id="errorOrderDepartureDate"></div>
+            <div class="mainText col-xs-5 col-sm-5 col-md-5 col-lg-5">Departure date: *</div>
+            <div class="button orderSelect col-xs-4 col-sm-4 col-md-4 col-lg-4" id="orderDate" name="orderDate">Select date</div>
+            <div class="errorMessage col-xs-3 col-sm-3 col-md-3 col-lg-3" id="errorOrderDepartureDate"></div>
           </div>
           <div id = "datepickerMain" ></div>
           <div class="mainRow">
-            <div class="mainText col-xs-12 col-sm-12 col-md-5 col-lg-5">Departure time: *</div>
-            <div class="inputSection col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="mainText col-xs-5 col-sm-5 col-md-5 col-lg-5">Departure time: *</div>
+            <div class="inputSection col-xs-4 col-sm-4 col-md-4 col-lg-4">
               <input type="text" id="orderTimeHour" name="orderTimeHour" class="mainTextInput largerMediumTextInput timeInputElement" value="" maxlength="2">
               <div class = "midText timeInputElement">:</div>
               <input type="text" id="orderTimeMinute" name="orderTimeMinute" class="mainTextInput largerMediumTextInput timeInputElement" value="" maxlength="2">
@@ -57,41 +57,41 @@
               <input type="button" name="pmButton" value="PM" class="button smallButton orderButton timeInputElement" id="timeButtonPM">
               <input type="hidden" name="orderClock" value="" id="orderClock">
             </div>
-            <div class="errorMessage col-xs-12 col-sm-12 col-md-3 col-lg-3" id="errorOrderDepartureTime"></div>
+            <div class="errorMessage col-xs-3 col-sm-3 col-md-3 col-lg-3" id="errorOrderDepartureTime"></div>
           </div>
           <div class="mainRow">
-            <div class="mainText col-xs-12 col-sm-12 col-md-5 col-lg-5">From (address): *</div>
-            <input type="text" id="orderFrom" name="orderFrom" class="mainTextInput col-xs-12 col-sm-12 col-md-4 col-lg-4" maxlength="30">
-            <div class="errorMessage col-xs-12 col-sm-12 col-md-3 col-lg-3" id="errorOrderFrom"></div>
+            <div class="mainText col-xs-5 col-sm-5 col-md-5 col-lg-5">From (address): *</div>
+            <input type="text" id="orderFrom" name="orderFrom" class="mainTextInput col-xs-4 col-sm-4 col-md-4 col-lg-4" maxlength="30">
+            <div class="errorMessage col-xs-3 col-sm-3 col-md-3 col-lg-3" id="errorOrderFrom"></div>
           </div>
           <div class="mainRow">
-            <div class="mainText col-xs-12 col-sm-12 col-md-5 col-lg-5">To (address): *</div>
-            <input type="text" id="orderTo" name="orderTo" class="mainTextInput col-xs-12 col-sm-12 col-md-4 col-lg-4" maxlength="30">
-            <div class="errorMessage col-xs-12 col-sm-12 col-md-3 col-lg-3" id="errorOrderTo"></div>
+            <div class="mainText col-xs-5 col-sm-5 col-md-5 col-lg-5">To (address): *</div>
+            <input type="text" id="orderTo" name="orderTo" class="mainTextInput col-xs-4 col-sm-4 col-md-4 col-lg-4" maxlength="30">
+            <div class="errorMessage col-xs-3 col-sm-3 col-md-3 col-lg-3" id="errorOrderTo"></div>
           </div>
           <div class="paymentType">
-            <div class="mainText col-xs-12 col-sm-12 col-md-5 col-lg-5" id="paymentTypeTitle">Payment type: *</div>
-            <div class="inputSection col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="mainText col-xs-5 col-sm-5 col-md-5 col-lg-5" id="paymentTypeTitle">Payment type: *</div>
+            <div class="inputSection col-xs-4 col-sm-4 col-md-4 col-lg-4">
               <div class="button" id="paymentTypeButton" name="orderPayment">Select payment</div>
               <div class="button paymentSelection">Credit Card</div>
               <div class="button paymentSelection">Cash</div>
               <div class="button paymentSelection" id="paymentBill">Invoice</div>
             </div>
-            <div class="errorMessage col-xs-12 col-sm-12 col-md-3 col-lg-3" id="errorOrderPaymentType"></div>
+            <div class="errorMessage col-xs-3 col-sm-3 col-md-3 col-lg-3" id="errorOrderPaymentType"></div>
           </div>
           <div class="mainRow">
-            <div class="mainText col-sm-12 col-md-5 col-lg-5">Phone on pasanger:*</div>
-            <input type="text" id="orderPhone" name="orderPhone" class="mainTextInput col-sm-12 col-md-4 col-lg-4" maxlength="30">
-            <div class="errorMessage col-sm-12 col-md-3 col-lg-3" id="errorOrderPhone"></div>
+            <div class="mainText col-xs-5 col-sm-5 col-md-5 col-lg-5">Phone on pasanger:*</div>
+            <input type="text" id="orderPhone" name="orderPhone" class="mainTextInput col-xs-4 col-sm-4 col-md-4 col-lg-4" maxlength="30">
+            <div class="errorMessage col-xs-3 col-sm-3 col-md-3 col-lg-3" id="errorOrderPhone"></div>
           </div>
           <div class="mainRow">
-            <div class="mainText col-sm-12 col-md-5 col-lg-5">Pasangers: *</div>
-            <div class="inputSection col-sm-12 col-md-4 col-lg-4">
+            <div class="mainText col-xs-5 col-sm-5 col-md-5 col-lg-5">Pasangers: *</div>
+            <div class="inputSection col-xs-4 col-sm-4 col-md-4 col-lg-4">
               <div class="button orderSelect"  id="orderPasangers" name="orderPasangers">2</div>
               <input type="button" name="minusButton" value="-" class="button smallButton orderButton" id="minusButton">
               <input type="button" name="plusButton" value="+" class="button smallButton orderButton" id="plusButton">
             </div>
-            <div class="errorMessage col-sm-12 col-md-3 col-lg-3" id="errorOrderPasangers"></div>
+            <div class="errorMessage col-xs-3 col-sm-3 col-md-3 col-lg-3" id="errorOrderPasangers"></div>
           </div>
           <div id="pasangerNames"></div>
           <div class="mainRow orderResponseRow" id="orderResponseField">

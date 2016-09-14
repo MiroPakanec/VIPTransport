@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="../Css/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="../Css/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
     <link rel="stylesheet" type="text/css" href="../Css/generalPageStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/usersStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/tableStyles.css">
@@ -54,62 +57,51 @@
           </div>
         </div>
         <div class="employeesTableArea" id="employeesTableArea"></div>
-        <div class="registrationArea">
+        <div class="">
           <input type="button" value="New user" class="buttonHome" id="newUserButton">
         </div>
         <div class="registrationArea" id="formArea">
           <div id="registerForm">
             <div class="smallText" id="registerTitle">Register user</div>
             <div id="columnArea">
-              <div class="registerColumn" id="leftErrColumn">
-                <div class="registerRow">
-                  <div class="rowError smallText" id="emailErr">Error</div>
-                </div>
-                <div class="registerRow">
-
-                </div>
-                <div class="registerRow">
-                  <div class="rowError smallText" id="phoneErr">Error</div>
-                </div>
-              </div>
-              <div class="registerColumn" id="leftColumn">
-                <div class="registerRow">
-                  <div class="rowTitle smallText">Email:*</div>
-                  <input type="text" class="rowTextInput" id="emailInput" name="email">
-                </div>
-                <div class="registerRow">
-                  <div class="rowTitle smallText">Password:*</div>
-                  <input type="text" class="rowTextInput" id="passwordInput" disabled name="password">
-                  <input type="button" class="userButton" id="generatePasswordButton" value="Generate">
-                </div>
-                <div class="registerRow">
-                  <div class="rowTitle smallText">Phone:*</div>
-                  <input type="text" class="rowTextInput" id="phoneInput" name="phone">
+              <div class="col-xs-12 col-sm-12	col-md-6 col-lg-6">
+                <div class="registerColumn" id="leftColumn">
+                  <div class="registerRow col-xs-12 col-sm-12	col-md-12 col-lg-12">
+                    <div class="rowTitle smallText col-xs-5 col-sm-5	col-md-5 col-lg-5">Email:*</div>
+                    <input type="text" class="rowTextInput col-xs-4 col-sm-4	col-md-4 col-lg-4" id="emailInput" name="email">
+                    <div class="rowError smallText col-xs-3 col-sm-3	col-md-3 col-lg-3" id="emailErr">Error</div>
+                  </div>
+                  <div class="registerRow col-xs-12 col-sm-12	col-md-12 col-lg-12">
+                    <div class="rowTitle smallText col-xs-5 col-sm-5	col-md-5 col-lg-5">Password:*</div>
+                    <input type="text" class="rowTextInput col-xs-4 col-sm-4	col-md-4 col-lg-4" id="passwordInput" disabled name="password">
+                    <input type="button" class="userButton col-xs-2 col-sm-2	col-md-2 col-lg-2" id="generatePasswordButton" value="Generate">
+                  </div>
+                  <div class="registerRow col-xs-12 col-sm-12	col-md-12 col-lg-12">
+                    <div class="rowTitle smallText col-xs-5 col-sm-5	col-md-5 col-lg-5">Phone:*</div>
+                    <input type="text" class="rowTextInput col-xs-4 col-sm-4	col-md-4 col-lg-4" id="phoneInput" name="phone">
+                    <div class="rowError smallText col-xs-3 col-sm-3	col-md-3 col-lg-3" id="phoneErr">Error</div>
+                  </div>
                 </div>
               </div>
-              <div class="registerColumn" id="rightColumn">
-                <div class="registerRow">
-                  <div class="rowTitle smallText">First name:*</div>
-                  <input type="text" class="rowTextInput" id="fnameInput" name="firstName">
+              <div class="col-xs-12 col-sm-12	col-md-6 col-lg-6">
+                <div class="registerColumn" id="rightColumn">
+                  <div class="registerRow col-xs-12 col-sm-12	col-md-12 col-lg-12">
+                    <div class="rowTitle smallText col-xs-5 col-sm-5	col-md-5 col-lg-5">First name:*</div>
+                    <input type="text" class="rowTextInput col-xs-4 col-sm-4	col-md-4 col-lg-4" id="fnameInput" name="firstName">
+                    <div class="rowError smallText col-xs-3 col-sm-3	col-md-3 col-lg-3" id="fnameErr">Error</div>
+                  </div>
+                  <div class="registerRow col-xs-12 col-sm-12	col-md-12 col-lg-12">
+                    <div class="rowTitle smallText col-xs-5 col-sm-5	col-md-5 col-lg-5">Middle name:</div>
+                    <input type="text" class="rowTextInput col-xs-4 col-sm-4	col-md-4 col-lg-4" id="mnameInput" name="middleName">
+                    <div class="rowError smallText col-xs-3 col-sm-3	col-md-3 col-lg-3" id="mnameErr">Error</div>
+                  </div>
+                  <div class="registerRow col-xs-12 col-sm-12	col-md-12 col-lg-12">
+                    <div class="rowTitle smallText col-xs-5 col-sm-5	col-md-5 col-lg-5">Last name:*</div>
+                    <input type="text" class="rowTextInput col-xs-4 col-sm-4	col-md-4 col-lg-4" id="lnameInput" name="lastName">
+                    <div class="rowError smallText col-xs-3 col-sm-3	col-md-3 col-lg-3" id="lnameErr">Error</div>
+                  </div>
                 </div>
-                <div class="registerRow">
-                  <div class="rowTitle smallText">Middle name:</div>
-                  <input type="text" class="rowTextInput" id="mnameInput" name="middleName">
-                </div>
-                <div class="registerRow">
-                  <div class="rowTitle smallText">Last name:*</div>
-                  <input type="text" class="rowTextInput" id="lnameInput" name="lastName">
-                </div>
-              </div>
-              <div class="registerColumn" id="rightErrColumn">
-                <div class="registerRow">
-                  <div class="rowError smallText" id="fnameErr">Error</div>
-                </div>
-                <div class="registerRow">
-                  <div class="rowError smallText" id="mnameErr">Error</div>
-                </div>
-                <div class="registerRow">
-                  <div class="rowError smallText" id="lnameErr">Error</div>
+                <div class="registerColumn" id="rightErrColumn">
                 </div>
               </div>
             </div>

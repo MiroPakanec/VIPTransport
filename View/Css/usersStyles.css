@@ -1,3 +1,26 @@
+html{
+    height: 100vh;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+
+  background: url("Images/backgroundImage.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+@media all and (max-width: 992px) { /* screen size until 1000px */
+
+  .typeButtonArea{
+    margin-top: 20%;
+  }
+}
+
 .employeesTableArea{
 
   float: left;
@@ -32,8 +55,8 @@
 
   float: left;
   width: 93.5%;
-  height: 5%;
-  margin-left: 3.2%;
+  height: 50px;
+  margin-left: 2%;
   margin-bottom: 0.5%;
 
   background-color: rgba(255,255,255,0.0);
@@ -43,27 +66,25 @@
 
   float: left;
   height: 100%;
-  margin-right: 0.4%;
 }
 
 #typeArea{
 
-  width: 30%;
+  width: 40%;
 }
 
 #emailArea{
-
-  width: 23.8%;
+    width: 20%;
 }
 
 #fnameArea{
 
-  width: 12%;
+  width: 15%;
 }
 
 #lnameArea{
 
-  width: 12%;
+  width: 15%;
 }
 
 #buttonArea{
@@ -91,8 +112,8 @@
 .typeButton{
 
   height: 95%;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 3%;
+  padding-right: 3%;
 
   background-color: rgba(255,255,255,0.0);
   border: 1px solid rgba(255,255,255,0.5);
@@ -136,33 +157,35 @@
 
 .inputElement{
 
-  width: 80%;
+  width: 97%;
   height: 90%;
   padding: 0;
-  padding-left: 20%;
+  padding-left: 5%;
+  margin: 1% 0;
 }
 
 #customersButton{
 
-  width: 32.7%;
+  width: auto;
+  margin-left: 3%;
 }
 
 #transportersButton{
 
-  width: 32.7%;
+  width: auto;
 }
 
 #managersButton{
 
-  width: 32.7%;
+  width: auto;
 }
 
 #clearButton{
 
   float: left;
-  width: 100%;
+  width: auto;
   height: 95%;
-  padding: 0;
+  padding: 0 5%;
   margin: 0;
 
   text-align: center;
@@ -200,14 +223,29 @@
 
   margin-top: 1%;
   margin-left: 3%;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.registrationArea::-webkit-scrollbar {
+    width: 1em;
+}
+
+.registrationArea::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.registrationArea::-webkit-scrollbar-thumb {
+  background-color: white;
+  outline: 1px solid slategrey;
 }
 
 .userButton{
 
   float: right;
-  width: 11%;
-  height: 90%;
-  padding: 0;
+  height: auto;
+  padding: 0% 0%;
 
   background-color: rgba(255,255,255,0);
   border : 1px solid rgba(255,255,255,0.3);
@@ -227,7 +265,8 @@
 
   float: right;
   width: 11%;
-  height: 90%;
+  height: 50px;
+  margin-right: 10%;
   padding: 0;
 
   background-color: rgba(255,255,255,0);
@@ -267,12 +306,10 @@
 .registerColumn{
 
   float: left;
-  width: 35%;
   height: 100%;
 }
 #leftErrColumn, #rightErrColumn{
 
-  width: 10%;
 }
 
 #leftErrColumn{
@@ -288,55 +325,37 @@
 #rightColumn{
 
   float: left;
-  margin-left: 2%;
 }
 
 .registerRow{
 
   float: left;
   height : 40px;
-  width: 100%;
   margin-top: 1%;
-
 }
 
 .rowError{
 
   float: left;
-  width: 80%;
   height: 90%;
   text-align: center;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  margin-left: 10%;
 
   background-color: rgba(255, 0,0,0.1);
   border: 1px solid rgba(255,0,0,0.3);
   color: red;
 }
 
-#phoneErr{
-
-  margin-top:  8%;
-}
-
 .rowTitle{
 
-  float: left;
   height: 100%;
-  width: 40%;
   text-align: left;
-  padding-right: 5%;
-  line-height: 200%;
 }
 
 .rowTextInput{
 
   float: left;
   margin-top: 1%;
-  padding-left: 5%;
   height: 60%;
-  width: 45%;
 
   outline: none;
   font-family: myFont;
@@ -344,18 +363,13 @@
   font-size: 18px;
 }
 
-#passwordInput{
-
-  width: 30%;
-}
-
 #generatePasswordButton{
 
   float: left;
-  width: 14%;
   margin-left: 1%;
-  margin-top: 1%;
+  padding: 0% 1%;
   height: 75%;
+  width: auto;
 }
 
 .typeButtonArea{
@@ -367,6 +381,7 @@
 .registerTypeButton{
 
   float: left;
+  width: 20%;
 }
 
 .registerTypeButton:hover{
@@ -379,11 +394,13 @@
   float: left;
   height : 130%;
   margin-top: 1%;
+  padding: 1% 3%;
+  margin-bottom: 5%;
 }
 
 #registerCustomerButton{
 
-  margin-left: 33.5%;
+  margin-left: 20%;
   background-color: rgba(255,255,255,0.3);
 }
 
@@ -396,4 +413,8 @@
 p{
 
   margin: 0;
+}
+
+.changeButton{
+  width: 15%;
 }

@@ -11,48 +11,11 @@ body{
 /*Screen adjustments*/
 @media all and (max-width: 991px) { /* screen size until 1000px */
 
-  .mainRow{
-    padding: 0 30% !important;
-    padding-bottom: 2% !important;
-    margin-bottom: 5% !important;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    height: auto !important;
-  }
   .mainParagraph{
-    width: 90% !important;
-    margin-left: 5% !important;
+    margin-top: 5% !important;
   }
-  .paymentType{
-    padding: 0 30% !important;
-    padding-bottom: 2% !important;
-    margin-bottom: 5% !important;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    height: auto !important;
-  }
-  .mainText{
-    text-align: center !important;
-    padding-bottom: 5% !important;
-  }
-  #datepickerMain{
-    margin-left: 5% !important;
-  }
-  #paymentTypeButton{
-    margin: auto !important;
-    width: 100% !important;
-    padding: 0% 0 !important;
-  }
-  #paymentTypeTitle{
-    padding-left: 0 !important;
-    padding-bottom: 2% !important;
-  }
-  #orderConfirmButton{
-    padding: 8% !important;
-    float: right !important;
-    margin-right: 5% !important;
-  }
-  #orderClearButton{
-    padding: 8% !important;
-    float: right !important;
+  #orderClearButton, #orderConfirmButton{
+    padding: 1% 3% !important;
   }
 
 }
@@ -93,7 +56,7 @@ body{
 
 .mainRow{
   width: 100%;
-  height: 10.5%;
+  height: 50px;
   margin-top: 1%;
   float: left;
 }

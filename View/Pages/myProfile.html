@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="../Css/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="../Css/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
     <link rel="stylesheet" type="text/css" href="../Css/generalPageStyles.css">
     <link rel="stylesheet" type="text/css" href="../Css/myProfileStyles.css">
 
@@ -30,7 +33,7 @@
       <div class="titleArea">
         <div class="title largeText" id="titleOrder">My Profile</div>
       </div>
-      <div id="profilePictureArea">
+      <div id="profilePictureArea" class="col-xs-12 col-sm-12	col-md-3 col-lg-3">
         <img id="profilePicture"/>
         <form id="profilePictureForm" action="../../Server/Responses/profilePicture.php" method="POST" enctype="multipart/form-data">
           <input type="button" name="chooseProfilePicture" value="Change profile picture" class="smallText button" id="profilePictureButton">
@@ -38,9 +41,8 @@
           <input type="hidden" id="tmppath">
         </form>
         <div id="outputAreaPicture" class="outputArea smallText"></div>
-
       </div>
-      <div class="formArea" id="formSelection">
+      <div class="formArea col-xs-12 col-sm-12	col-md-9 col-lg-9" id="formSelection">
         <div class="formRow">
           <input type="button" class="button smallText selectionButton" value="Manage personal information" id="personalFormSelection">
         </div>
@@ -51,7 +53,7 @@
           <input type="button" class="button smallText selectionButton" value="My company" id="addCompanySelection">
         </div>
       </div>
-      <div id="personalForm" class="formArea">
+      <div id="personalForm" class="formArea col-xs-12 col-sm-12	col-md-9 col-lg-9">
         <div class="formRow">
           <div class="rowTitle smallText profileRow" id="emailTitle">Email</div>
           <input type="text" class="textInput profileRow personal" id="emailInput" name="email" disabled="true">
@@ -79,14 +81,14 @@
         </div>
         <div class="formRow buttonRow">
           <input id="personalConfirmButton" type="button" name="confirmButton" value="Confirm" class="button smallText confirmButton">
-          <input id="personalCancelButton" type="button" name="cancelButton" value="Cancel changes" class="button smallText">
-          <input type="button" name="backButton" value="Back" class="button smallText profileBackButton">
+          <input id="personalCancelButton" type="button" name="cancelButton" value="Cancel changes" class="button smallText cancelButton">
+          <input type="button" name="backButton" value="Back" class="button smallText profileBackButton backButton">
         </div>
         <div class="formRow">
           <div id="outputAreaPersonalForm" class="outputAreaForm outputArea smallText"></div>
         </div>
       </div>
-      <div id="passwordForm" class="formArea">
+      <div id="passwordForm" class="formArea col-xs-12 col-sm-12	col-md-9 col-lg-9">
         <div class="formRow">
           <div class="rowTitle smallText profileRow">Current password</div>
           <input type="password" class="textInput profileRow password" name="currentPassword" id="currentPassword">
@@ -104,14 +106,14 @@
         </div>
         <div class="formRow buttonRow">
           <input id="passwordConfirmButton" type="button" name="confirmButton" value="Confirm" class="button smallText confirmButton">
-          <input id="passwordClearButton" type="button" name="cancelButton" value="Clear" class="button smallText">
-          <input type="button" name="backButton" value="Back" class="button smallText profileBackButton">
+          <input id="passwordClearButton" type="button" name="cancelButton" value="Clear" class="button smallText cancelButton">
+          <input type="button" name="backButton" value="Back" class="button smallText profileBackButton backButton">
         </div>
         <div class="formRow">
           <div id="outputAreaPasswordForm" class="outputAreaForm outputArea smallText"></div>
         </div>
       </div>
-      <div id="companyForm" class="formArea">
+      <div id="companyForm" class="formArea col-xs-12 col-sm-12	col-md-9 col-lg-9">
         <div class="formRow">
           <div class="rowTitle smallText profileRow">Company name</div>
           <input type="text" class="textInput profileRow company" name="companyName" id="companyName">
@@ -134,8 +136,8 @@
         </div>
         <div class="formRow buttonRow">
           <input id="companyConfirmButton" type="button" name="confirmButton" value="Confirm" class="button smallText confirmButton">
-          <input id="companyCancelButton" type="button" name="cancelButton" value="Cancel changes" class="button smallText">
-          <input type="button" name="backButton" value="Back" class="button smallText profileBackButton">
+          <input id="companyCancelButton" type="button" name="cancelButton" value="Cancel changes" class="button smallText cancelButton">
+          <input type="button" name="backButton" value="Back" class="button smallText profileBackButton backButton">
         </div>
         <div class="formRow">
           <div id="outputAreaCompanyForm" class="outputAreaForm outputArea smallText"></div>
