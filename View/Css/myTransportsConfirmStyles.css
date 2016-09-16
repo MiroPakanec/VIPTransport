@@ -17,7 +17,7 @@ a{
 
 .confirmArea{
 
-  height: 50%;
+  height: auto;
   width: 100%;
   float: left;
 
@@ -29,34 +29,32 @@ a{
 
   height: 100%;
   width: 94%;
-  margin: auto;
 }
 
 .column{
 
-  height: 100%;
+  height: auto;
   float: left;
 }
 
 #orderInformationColumn{
 
-  width: 23%;
-  border-right: 1px solid rgba(255,255,255,0.3);
-  border-left: 1px solid rgba(255,255,255,0.3);
+
 }
 
 .orderDetails{
 
-  height: 7%;
-  margin-top: 2%;
-  padding-left: 5%;
-  line-height: 130%;
   text-align: left;
+  margin-left: 40%;
+
+  font-size: 120% !important;
 }
 
 #detailsId{
 
-  margin-top: 10%;
+  margin-top: 2%;
+  text-align: left;
+  font-size: 100%;
 }
 
 #detailsNames{
@@ -66,24 +64,28 @@ a{
   font-size: 1vmax;
 }
 
+.confirmOrderArea{
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.3);
+  width: 100%;
+
+}
+
 #confirmationTitle{
 
-  height: 19.5%;
-  width: 76%;
   line-height: 220%;
   float: left;
   font-size: 2vmax;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
 }
 
 #managerOrderInputColumn{
 
-  width: 15%;
   height: 80%;
   float: left;
-
-  border-right: 1px solid rgba(255,255,255,0.3);
-  }
+}
 
 .inputOrderDetails{
 
@@ -106,6 +108,7 @@ a{
 .confirmSelectionInput{
 
   margin-left: 5%;
+  height: 30px;
   margin-top: 1%;
   outline: none;
 
@@ -130,7 +133,8 @@ a{
 
 .confirmButtonRow{
 
-  margin-top: 10%;
+  float: left;
+  margin-top: 50px;
   height: 15%;
   width: 100%;
 }
@@ -147,9 +151,7 @@ a{
 
   float: left;
   height: 75%;
-  width: 40%;
   margin-top: 1%;
-  margin-left: 1%;
 
   overflow-y: scroll;
   overflow-x: hidden;
@@ -174,22 +176,20 @@ a{
 #managerCountryColumn{
 
   float: left;
-  width: 20%;;
   height: 80%;
+  width: 40%;
+  margin-left: 30%;
 }
 
 #selectedCounties{
 
   height: 15%;
-  width: 90%;
-  margin-left: 5%;
   margin-top: 2%;
-  text-align: left;
+  text-align: center;
 
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
-
 }
 
 #selectedCounties::-webkit-scrollbar {
@@ -207,12 +207,12 @@ a{
 
 #countriesTitle{
 
-  margin-top: 1%;
+  margin-top: 2%;
 }
 
 #countrySelection{
 
-  height: 65%;
+  height: 200px;
   width: 90%;
   margin-left: 5%;
   margin-top: 5%;
@@ -237,12 +237,12 @@ a{
 
 .countryCodeArea{
 
-  height: 15%;
-  width: 80%;
+  height: 30px;
   border: 1px solid rgba(255,255,255,0.3);
   background-color: rgba(255,255,255,0.05);
   padding-left: 5%;
   margin-bottom: 1%;
+  text-align: center;
 }
 
 .countryCodeArea:hover{

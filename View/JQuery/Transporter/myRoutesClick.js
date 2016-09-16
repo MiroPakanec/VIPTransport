@@ -420,7 +420,7 @@ function validateRouteConfirm(){
   var errorCounter = 0;
 
   $('.routeConfirmInput').each(function(){
-    /*$(this).trigger('blur');*/
+    $(this).trigger('blur');
   });
 
   validateDateHtml('#transportDate', '#routeConfirmDateError', /^[0-9-]*$/, 'Incorrect date', false);
