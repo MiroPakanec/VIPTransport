@@ -49,17 +49,21 @@
 #transportDate, #transportDestinationDate{
 
   float: left;
-  width: 21%;
+  padding: 0 !important;
 
   background-color: rgba(255,255,255,0.1);
   border: 1px solid rgba(255,255,255,0.3);
 }
 
+.routeConfirmInputSection{
+  padding: 0;
+}
+
 #transportTodayDate, #transportDestinationTodayDate{
 
   float: left;
-  width: 8%;
-  margin-left: 1%;
+  padding: 0 0;
+  border-left: none;
 
   background-color: rgba(255,255,255,0.0);
   border: 1px solid rgba(255,255,255,0.3);
@@ -68,13 +72,14 @@
 #routeConfirmTimeHour, #routeConfirmTimeMinute, #routeConfirmDestinationTimeHour, #routeConfirmDestinationTimeMinute{
 
   float: left;
-  width: 8%;
+  height: auto;
+  padding: 1% 0;
+  font-size: 100% !important;
 }
 
 #routeConfirmArrivalTimeColon{
 
   float: left;
-  width: 4.5%;
   height: 100%;
 }
 
@@ -83,8 +88,9 @@
   float: left;
   background-color: rgba(255,255,255,0);
   border: 1px solid rgba(255,255,255,0.3);
-  margin-left: 1%;
-  width: 8%;
+  padding: 1.2% 0;
+  font-size: 15px;
+  width: 39%;
 }
 
 #transportTodayDate:hover, #transportTimeNow:hover, #transportDestinationTodayDate:hover{
@@ -95,10 +101,10 @@
 .transportTypeButton{
 
   float: left;
-  width: 10%;
 
   background-color: rgba(255,255,255,0.0);
   border: 1px solid rgba(255,255,255,0.3);
+  margin: 0 !important;
 }
 
 .transportTypeHighlighted{
@@ -113,11 +119,12 @@
 
 #datePickerRouteConfirm, #datePickerRouteConfirmDestination{
 
-  height: 85%;
-  width: 50%;
+  height: 230px;
+  width: 70%;
   float: right;
 
   margin-right: 18%;
+  margin-bottom: 10%;
 }
 
 #cancelRouteConfirmButton{
@@ -137,12 +144,27 @@
 
 .routeConfirmError{
 
-  float: right;
-  width: 18%;
   height: 55%;
+  float: left;
 
   background-color: rgba(255,0,0,0.1);
   border: 1px solid rgba(255,0,0,0.3);
   color: red;
+}
 
+#routeConfirmTimeHour, #routeConfirmTimeMinute{
+
+  width: 45%;
+}
+
+#routeConfirmDestinationTimeHour, #routeConfirmDestinationTimeMinute{
+  width: 28.5%;
+}
+
+#transportDestinationTimeNow{
+  width: 33%;
+}
+
+#routeConfirmArrivalTimeColon, #routeConfirmArrivalTimeColon{
+  width: 10%;
 }

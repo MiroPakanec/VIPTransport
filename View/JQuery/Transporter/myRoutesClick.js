@@ -116,27 +116,27 @@ $(function(){
   });
 
   //blurs
-  $('#routeConfirmPrice').on('keyup', function(){
+  $('#routeConfirmPrice').on('blur', function(){
     validateNumber('#routeConfirmPrice', '#routeConfirmPriceError', /^[0-9.]*$/, 'Incorrect number', 0, 10000, false);
   });
 
-  $('#routeConfirmMealige').on('keyup', function(){
+  $('#routeConfirmMealige').on('blur', function(){
     validateNumber('#routeConfirmMealige', '#routeConfirmMealigeError', /^[0-9.]*$/, 'Incorrect number', 0, 1000000, false);
   });
 
-  $('#routeConfirmTimeHour').on('keyup', function(){
+  $('#routeConfirmTimeHour').on('blur', function(){
     validateNumber('#routeConfirmTimeHour', '#routeConfirmTimeError', /^[0-9]*$/, 'Incorrect hour', 0, 24, false);
   });
 
-  $('#routeConfirmTimeMinute').on('keyup', function(){
+  $('#routeConfirmTimeMinute').on('blur', function(){
     validateNumber('#routeConfirmTimeMinute', '#routeConfirmTimeError', /^[0-9]*$/, 'Incorrect minute', 0, 59, false);
   });
 
-  $('#routeConfirmDestinationTimeHour').on('keyup', function(){
+  $('#routeConfirmDestinationTimeHour').on('blur', function(){
     validateNumber('#routeConfirmDestinationTimeHour', '#routeConfirmDestinationTimeError', /^[0-9]*$/, 'Incorrect hour', 0, 24, false);
   });
 
-  $('#routeConfirmDestinationTimeMinute').on('keyup', function(){
+  $('#routeConfirmDestinationTimeMinute').on('blur', function(){
     validateNumber('#routeConfirmDestinationTimeMinute', '#routeConfirmDestinationTimeError', /^[0-9]*$/, 'Incorrect minute', 0, 59, false);
   });
 
@@ -211,8 +211,8 @@ $(function(){
     $('#routeConfirmTimeHour').val(hour);
     $('#routeConfirmTimeMinute').val(minutes);
 
-    $('#routeConfirmTimeHour').trigger('keyup');
-    $('#routeConfirmTimeMinute').trigger('keyup');
+    $('#routeConfirmTimeHour').trigger('blur');
+    $('#routeConfirmTimeMinute').trigger('blur');
   });
 
   $('#transportDestinationTimeNow').on('click', function(){
@@ -224,8 +224,8 @@ $(function(){
     $('#routeConfirmDestinationTimeHour').val(hour);
     $('#routeConfirmDestinationTimeMinute').val(minutes);
 
-    $('#routeConfirmDestinationTimeHour').trigger('keyup');
-    $('#routeConfirmDestinationTimeMinute').trigger('keyup');
+    $('#routeConfirmDestinationTimeHour').trigger('blur');
+    $('#routeConfirmDestinationTimeMinute').trigger('blur');
   });
 });
 
@@ -420,7 +420,7 @@ function validateRouteConfirm(){
   var errorCounter = 0;
 
   $('.routeConfirmInput').each(function(){
-    $(this).trigger('keyup');
+    /*$(this).trigger('blur');*/
   });
 
   validateDateHtml('#transportDate', '#routeConfirmDateError', /^[0-9-]*$/, 'Incorrect date', false);
@@ -842,9 +842,9 @@ String.prototype.toHHMMSS = function () {
 
 function generateDetailsRow(title, value, id){
 
-  var html =    '<div class="routeDetailsRow">' +
-                  '<div class="rowDetailsTitle smallText">'+ title +' :</div>' +
-                  '<div class="rowDetailsValue smallText">'+value+'</div>' +
+  var html =    '<div class="routeDetailsRow col-xs-12 col-sm-12 col-md-12 col-lg-12">' +
+                  '<div class="rowDetailsTitle smallText col-xs-6 col-sm-6 col-md-6 col-lg-6">'+ title +' :</div>' +
+                  '<div class="rowDetailsValue smallText col-xs-6 col-sm-6 col-md-6 col-lg-6">'+value+'</div>' +
                 '</div>';
 
   $('#' + id).append(html);

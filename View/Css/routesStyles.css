@@ -1,5 +1,12 @@
+@media all and (max-width: 1200px) { /* screen size until 1000px */
+
+
+}
+
+
 .area{
 
+  margin-top: 1%;
   float: left;
   height: 50%;
   width: 100%;
@@ -14,6 +21,8 @@
 
   overflow-y: scroll;
   overflow-x: hidden;
+
+  background-color: rgba(255,255,255,0.1);
 }
 
 .formArea::-webkit-scrollbar {
@@ -55,16 +64,16 @@
 
 .routeDetailsRow{
 
-  height: 15%;
   width: 100%;
   float: left;
+
+  margin-bottom: 2%;
 }
 
 .rowDetailsTitle{
 
   float: left;
   height: 100%;
-  width: 47%;
   text-align: right;
   padding-right: 3%;
 
@@ -105,8 +114,9 @@
 .detailsButton{
 
   float: left;
-  height: 30px;
-  width: 15%;
+
+
+  padding: 5px 10px;
   margin-bottom: 3%;
 
   background-color: rgba(255,255,255,0);
