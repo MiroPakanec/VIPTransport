@@ -92,11 +92,20 @@ body{
   margin: 0;
   padding: 0;
 
-  background: url("Images/backgroundImage.jpg") no-repeat center center fixed;
+  background-color: #000000 !important;
+
+
+  /*background: url("Images/backgroundImage.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover;*/
+}
+
+div {
+   box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   -webkit-box-sizing: border-box;
 }
 
 .footerContainer{

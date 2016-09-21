@@ -12,7 +12,7 @@
         $email = $password = $fname = $mname = $lname = $phone = $type = $date = '';
 
         $dbc = DatabaseConnection::openConnection();
-        $query = "SELECT * FROM User " . $wClause;
+        $query = "SELECT * FROM user " . $wClause;
 
         $response = @mysqli_query($dbc, $query);
         $array = array();

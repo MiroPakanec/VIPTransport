@@ -1,0 +1,74 @@
+/* HTML ELEMENT */
+
+body{ background-color: rgba(245,245,245, 1); }
+
+p.nomargin{ margin: 0; }
+p.nopadding{ padding: 0; }
+
+/*ALL*/
+
+
+/* BACKGROUND */
+
+.container-light { background-color: #fff; }
+
+div.row-dark { background-color: rgba(240,240,240, 1); }
+div.row-light { background-color: #fff; }
+
+.row > div.col-dark { background-color: rgba(200,200,200, 1); }
+.row > div.col-light { background-color: #fff; }
+
+/* ROW */
+
+div.row-buffer-top { padding-top:20px; }
+div.row-buffer-bottom { padding-bottom: 20px; }
+div.row-buffer-left { padding-left: 20px; }
+div.row-buffer-right { padding-right: 20px; }
+
+div.row-buffer-small-top { padding-top: 5px; }
+div.row-buffer-small-bottom { padding-bottom: 5px; }
+div.row-buffer-small-left { padding-left: 5px; }
+div.row-buffer-small-right { padding-right: 5px; }
+
+.container-fluid > div.row-buffer-large-top { padding-top:40px; }
+.container-fluid > div.row-buffer-large-bottom { padding-bottom: 40px; }
+.container-fluid > div.row-buffer-large-left { padding-left: 40px; }
+.container-fluid > div.row-buffer-large-right { padding-right: 40px; }
+
+.container-fluid > div.row-border-bottom { border-bottom: 1px solid rgba(145,145,145,1); }
+.container-fluid > div.row-border-top { border-top: 1px solid rgba(145,145,145,1); }
+.container-fluid > div.row-border-left { border-left: 1px solid rgba(145,145,145,1); }
+.container-fluid > div.row-border-right { border-right: 1px solid rgba(145,145,145,1); }
+
+/* COLUMN */
+.row > .col-nopadding{
+  padding: 0;}
+
+/* ELEMENT */
+*.invisible{ display: none;}
+span.visible{ display: inline;}
+
+/* INPUT */
+.outline-white{outline-color: white;}
+
+/* BUTTON */
+.btn-standard{
+  background-color: #fff;
+  border: 1px solid rgba(145,145,145,1);
+  border-radius:0;}
+
+.btn-standard:hover{ background-color: rgba(225,225,225,1); }
+
+/* TEXT */
+.text-standard {
+  font-family: lanenar;
+  color: rgba(80,80,80,1);}
+
+.text-highlight{color: rgba(0,0,80,1);}
+.error-message{color: rgba(168,69,66,1);}
+
+.text-large { font-size: 40px; }
+.text-medium { font-size: 30px; }
+.text-small { font-size: 20px; }
+
+strong.warning{color: red}
