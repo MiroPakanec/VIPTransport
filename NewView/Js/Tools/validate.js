@@ -4,7 +4,7 @@ function ValidateForm(form){
   });
 }
 
-function ValidateElement(element){
+  function ValidateElement(element){
   //Remove spacing
   element = RemoveSpaces(element);
 
@@ -24,8 +24,8 @@ function ValidateElement(element){
     return;
   }
 
-  //check if element has to match with other element
-  if(MustMatch(element)){
+  //check if element has to match with other element (data-match)
+  if(HasDataMatch(element)){
     var referenceElementID = $(element).attr('data-match');
     var value1 = GetElementValue(element);
     var value2 = GetElementValue(referenceElementID);
@@ -34,6 +34,11 @@ function ValidateElement(element){
       Fail(element);
       return;
     }
+  }
+
+  //check if element has to be checked with another element (data-member)
+  if(HasDataMember(element)){
+    ValidateDataMember(element);
   }
 
   //check if is not mandatory and empty
@@ -109,11 +114,32 @@ function IsMandatory(element){
   }
 }
 
-function MustMatch(element){
+function HasDataMatch(element){
   if(HasAttr(element, 'data-match')){
     return true;
   }
   else{
     return false;
+  }
+}
+
+function HasDataMember(element){
+  if(HasAttr(element, 'data-member')){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
+function ValidateDataMember(element){
+  var dataMembers = $(element).attr('data-member').split();
+  var index;
+  for (index = 0; index < dataMembers.length; ++index) {
+    var dataMember = dataMembers[index];
+    if(IsEmpty(dataMember)){
+      break;
+    }
+    ValidateElement(dataMembers[index]);
   }
 }

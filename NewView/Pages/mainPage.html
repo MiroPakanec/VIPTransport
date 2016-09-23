@@ -5,22 +5,10 @@
   <link rel="stylesheet" href="../Libraries/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="../Libraries/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-  <!-- JQuery -->
-  <script src="../JQuery/Source/jquery.js"></script>
-
   <!-- style sheets -->
   <link rel="stylesheet" type="text/css" href="../Css/tools.css">
   <link rel="stylesheet" type="text/css" href="../Css/config.css">
   <link rel="stylesheet" type="text/css" href="../Css/MainPage/styles.css">
-
-  <!-- javascript before page load -->
-  <script src="../Js/Tools/elementConstructor.js"></script>
-  <script src="../Js/Tools/functions.js"></script>
-  <script src="../Js/Tools/submit.js"></script>
-  <script src="../Js/Tools/validate.js"></script>
-
-  <script src="../JQuery/Pages/MainPage/events.js"></script>
-  <script src="../JQuery/Pages/MainPage/load.js"></script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -54,16 +42,16 @@
     <div class="row row-buffer-top row-buffer-large-bottom row-border-bottom">
       <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 col-nopadding">
         <div class="row">
-          <div class="col-xs-12">
-            <a class="btn btn-block btn-standard text-standard text-center text-small" href="#" role="button">Login</a>
-            <a class="btn btn-block btn-standard text-standard text-center text-small" href="#" role="button">Register</a>
-            <a class="btn btn-block btn-standard text-standard text-center text-small" href="#" role="button">About us</a>
-            <a class="btn btn-block btn-standard text-standard text-center text-small" href="#" role="button">Contact</a>
+          <div class="col-xs-12 col-menu">
+            <a class="btn btn-block btn-standard text-standard text-center text-small" href="#signInSection" role="button">Sign in</a>
+            <a class="btn btn-block btn-standard text-standard text-center text-small" href="#signUpSection" role="button">Sign up</a>
+            <a class="btn btn-block btn-standard text-standard text-center text-small" href="#aboutUsSection" role="button">About us</a>
+            <a class="btn btn-block btn-standard text-standard text-center text-small" href="#contactSection" role="button">Contact</a>
           </div>
         </div>
       </div>
     </div>
-    <div class="row row-buffer-top row-buffer-large-bottom row-dark row-border-bottom">
+    <div class="row row-buffer-large-top row-buffer-bottom row-dark row-border-bottom" id="signInSection">
       <div class="col-sm-12">
         <h1 class="tex-large text-standard text-center">Sign in</h1>
       </div>
@@ -89,75 +77,171 @@
         </form>
       </div>
     </div>
-    <div class="row row-buffer-large-top">
+    <div class="row row-buffer-large-top" id="signUpSection">
       <div class="col-sm-12">
         <h1 class="tex-large text-standard text-center">Sign up</h1>
       </div>
     </div>
-    <div class="row">
+    <div class="row row-buffer-bottom">
       <div class="col-sm-6 col-sm-offset-3">
         <p class="text-small text-highlight text-center"><small>Became a member and explore our web-application to the fullest! Create new order, manage your transportations and more - for free.</small></p>
       </div>
     </div>
-    <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
-      <form class="form-horizontal">
-        <div class="form-group">
-          <div class="col-sm-12">
-            <input type="text" class="form-control form-mandatory" placeholder="Email">
-            <input type="hidden" value="/^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/">
-            <span class="help-block error-message text-left invisible">Use email in format <strong>e.g. example@example.com</strong>.</span>
+    <div class="row row-buffer-bottom">
+      <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" class="form-control form-mandatory" placeholder="Email">
+              <input type="hidden" value="/^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/">
+              <span class="help-block error-message text-left invisible">Use email in format <strong>e.g. example@example.com</strong>.</span>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-12">
-            <input type="text" class="form-control form-mandatory" placeholder="First name">
-            <input type="hidden" value="/[A-Z]{1}[a-z]{2,30}/">
-            <span class="help-block error-message text-left invisible">Use first name in format <strong>e.g. John</strong>, with min. of 3 characters and first capital letter.</span>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" class="form-control form-mandatory" placeholder="First name">
+              <input type="hidden" value="/[A-Z]{1}[a-z]{2,30}/">
+              <span class="help-block error-message text-left invisible">Use first name in format <strong>e.g. John</strong>, with min. of 3 characters and first capital letter.</span>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-12">
-            <input type="text" class="form-control" placeholder="Middle name">
-            <input type="hidden" value="/[A-Z]{1}[a-z][^\s]{2,30}/">
-            <span class="help-block error-message text-left invisible">Use middle name in format <strong>e.g. Peter</strong>, with min. of 3 characters and first capital letter.</span>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" class="form-control" placeholder="Middle name">
+              <input type="hidden" value="/[A-Z]{1}[a-z]{2,30}/">
+              <span class="help-block error-message text-left invisible">Use middle name in format <strong>e.g. Peter</strong>, with min. of 3 characters and first capital letter.</span>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-12">
-            <input type="text" class="form-control form-mandatory" placeholder="Last name">
-            <input type="hidden" value="/[A-Z]{1}[a-z]{2,30}/">
-            <span class="help-block error-message text-left invisible">Use last name in format <strong>e.g. Smith</strong>, with min. of 3 characters and first capital letter.</span>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" class="form-control form-mandatory" placeholder="Last name">
+              <input type="hidden" value="/[A-Z]{1}[a-z]{2,30}/">
+              <span class="help-block error-message text-left invisible">Use last name in format <strong>e.g. Smith</strong>, with min. of 3 characters and first capital letter.</span>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-12">
-            <input type="password" class="form-control form-mandatory" placeholder="Password" id="inputPassword">
-            <input type="hidden" value="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d][^\s]{8,30}$/">
-            <span class="help-block error-message text-left invisible">Password must have between 8 and 30 characters and must contain letters and at least  number.</span>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="password" class="form-control form-mandatory" placeholder="Password" data-member="#inputPasswordConfirm" id="inputPassword">
+              <input type="hidden" value="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d_-]{8,30}$/">
+              <span class="help-block error-message text-left invisible">Password must have between 8 and 30 characters, must contain letters and at least one number. Might contain _ or -.</span>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-12">
-            <input type="password" class="form-control form-mandatory" placeholder="Password" data-match="#inputPassword">
-            <span class="help-block error-message text-left invisible">Passwords have to match.</span>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="password" class="form-control form-mandatory" placeholder="Password" data-match="#inputPassword" id="inputPasswordConfirm">
+              <span class="help-block error-message text-left invisible">Passwords have to match.</span>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-12">
-            <input type="text" class="form-control form-mandatory" placeholder="Phone number">
-            <input type="hidden" value="/^[+]{1}[0-9]{5,20}/">
-            <span class="help-block error-message text-left invisible">Use phone in format <strong>e.g. +421111222333</strong>, with min. of 6 characters and mandatory country prefix.</span>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" class="form-control form-mandatory" placeholder="Phone number">
+              <input type="hidden" value="/^[+]{1}[0-9]{5,20}/">
+              <span class="help-block error-message text-left invisible">Use phone number in format <strong>e.g. +421111222333</strong>, with min. of 6 characters and mandatory country prefix.</span>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-12">
-            <button class="btn btn-block btn-standard btn-block text-standard btn-submit text-center text-small" type="button">Sign up</button>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <button class="btn btn-block btn-standard btn-block text-standard btn-submit text-center text-small" type="button">Sign up</button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
+    <div class="row row-buffer-large-top row-buffer-bottom row-dark row-border-top" id="aboutUsSection">
+      <div class="col-sm-12">
+        <h1 class="tex-large text-standard text-center">Why travel with us?</h1>
+      </div>
+    </div>
+    <div class="row row-dark row-buffer-bottom">
+      <div class="col-sm-6 col-sm-offset-3">
+        <p class="text-small text-highlight text-center"><small>Here we will write the reason why you should travel with this company... unfortunately I cannot think of any right now.</small></p>
+      </div>
+    </div>
+    <div class="row row-dark row-buffer-bottom">
+      <div class="col-sm-6 col-sm-offset-3">
+        <p class="text-small text-highlight text-center"><small>We will also write a bit about our services, employees and cars in this paragraph.</small></p>
+      </div>
+    </div>
+    <div class="row row-dark row-buffer-large-bottom">
+      <div class="col-sm-12">
+        <img src="../Files/Images/maincar5.jpg" class="img-responsive img-fluid img-config center-block border border-blue padding-medium" alt="Responsive image"/>
+      </div>
+    </div>
+    <div class="row row-buffer-large-top row-border-top" id="contactSection">
+      <div class="col-sm-12">
+        <h1 class="tex-large text-standard text-center">Contact us!</h1>
+      </div>
+    </div>
+    <div class="row row-buffer-bottom">
+      <div class="col-sm-6 col-sm-offset-3">
+        <p class="text-small text-highlight text-center"><small>If you have any questions, do not hasitate to contact us.</small></p>
+      </div>
+    </div>
+    <div class="row row-buffer-large-bottom row-buffer-top" id="menu-contact">
+      <div class="col-sm-12 col-md-6 col-md-offset-3">
+        <div class="row">
+          <div class="col-xs-6">
+            <p class="text-extrasmall text-highlight-black text-right">Company name</p>
+          </div>
+          <div class="col-xs-6 border-left border-blue">
+            <p class="text-extrasmall text-highlight-black text-left">VIP transport s.r.o</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <p class="text-extrasmall text-highlight-black text-right">Address</p>
+          </div>
+          <div class="col-xs-6 border-left border-blue">
+            <p class="text-extrasmall text-highlight-black text-left">Gemerska 4, 01008, Zilina</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <p class="text-extrasmall text-highlight-black text-right">Email</p>
+          </div>
+          <div class="col-xs-6 border-left border-blue">
+            <p class="text-extrasmall text-highlight-black text-left">info@viptransport.sk</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <p class="text-extrasmall text-highlight-black text-right">Phone number</p>
+          </div>
+          <div class="col-xs-6 border-left border-blue">
+            <p class="text-extrasmall text-highlight-black text-left">+421 911 301 111</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <p class="text-extrasmall text-highlight-black text-right">Registration Number/ ICO</p>
+          </div>
+          <div class="col-xs-6 border-left border-blue">
+            <p class="text-extrasmall text-highlight-black text-left">2023323511</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <p class="text-extrasmall text-highlight-black text-right">Tax Number/ DIC</p>
+          </div>
+          <div class="col-xs-6 border-left border-blue">
+            <p class="text-extrasmall text-highlight-black text-left">46304959</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row row-buffer-large-top row-buffer-bottom row-dark row-border-top footer"></div>  
+  </div>
 
-</div>
+  <!-- JQuery -->
+  <script src="../JQuery/Source/jquery.js"></script>
 
+  <!-- javascript before page load -->
+  <script src="../Js/Tools/elementConstructor.js"></script>
+  <script src="../Js/Tools/functions.js"></script>
+  <script src="../Js/Tools/submit.js"></script>
+  <script src="../Js/Tools/validate.js"></script>
+  <script src="../Js/Tools/smoothScrolling.js"></script>
+
+  <script src="../JQuery/Pages/MainPage/events.js"></script>
+  <script src="../JQuery/Pages/MainPage/load.js"></script>
 </body>
 </html>
