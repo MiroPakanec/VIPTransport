@@ -1,0 +1,7 @@
+{
+  "inner" : [
+    {"main" : "NewView/Pages/main.html" },
+    {"home" : "NewView/Pages/home.html" },
+    {"order" : "NewView/Pages/order.html" }
+  ]
+}

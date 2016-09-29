@@ -88,3 +88,45 @@ function RemoveSpaces(element){
   SetElementValue(element, value);
   return element;
 }
+
+function GetPageNameFromUrl(){
+  var url = window.location.href.toLowerCase();
+  var indexStart = url.lastIndexOf('/');
+  var indexEnd = url.lastIndexOf('.html');
+  var result = url.substring(indexStart + 1, indexEnd + 5);
+  return result;
+}
+
+function GetServerFromUrl(){
+  var url = window.location.href.toLowerCase();
+  var index = url.indexOf('/');
+  var result = url.substring(0, index);
+  return result;
+}
+
+function GetRootUrl(){
+  var url = window.location.href.toLowerCase();
+  var indexName = "viptransport";
+  var index = url.indexOf(indexName);
+  var result = url.substring(0, index + indexName.length + 1);
+  return result;
+}
+
+/* JSON */
+function GetJsonObject(obj, key){
+  var objects = GetObjects(obj, key);
+  return objects[0][key];
+}
+
+function GetObjects(obj, key) {
+    var objects = [];
+    for (var i in obj) {
+        if (!obj.hasOwnProperty(i)) continue;
+        if (typeof obj[i] == 'object') {
+            objects = objects.concat(GetObjects(obj[i], key));
+        } else if (i == key) {
+            objects.push(obj);
+        }
+    }
+    return objects;
+}

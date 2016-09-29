@@ -9,5 +9,32 @@ function GenerateFooter(){
     '</div>' +
   '</div>';
 
-  $('.footer').html(html);
+  $('.footer-section').html(html);
+}
+
+function GenerateNavbar(){
+  var html =
+  '<nav class="navbar navbar-default navbar-fixed-top border-standard border-bottom text-small text-standard container-light">' +
+    '<div class="container">' +
+      '<div class="navbar-header">' +
+        '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">' +
+          '<span class="sr-only">Toggle navigation</span>' +
+          '<span class="icon-bar"></span>' +
+          '<span class="icon-bar"></span>' +
+          '<span class="icon-bar"></span>' +
+        '</button>' +
+      '</div>' +
+      '<div id="navbar" class="navbar-collapse collapse">' +
+        '<ul class="nav nav-justified">' +
+          '<li id="test"><a href="home.html">Home</a></li>' +
+          '<li><a href="#">New order</a></li>' +
+          '<li><a href="#">My transports</a></li>' +
+          '<li><a href="#">About us</a></li>' +
+          '<li><a href="#">Log out</a></li>' +
+        '</ul>' +
+      '</div><!--/.nav-collapse -->' +
+    '</div>'+
+  '</nav>';
+
+  $('.navbar-section').html(html);
 }

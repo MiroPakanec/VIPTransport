@@ -1,0 +1,15 @@
+.navbar{ margin-bottom: 0;
+         border-bottom: 1px solid rgba(0,0,0,1);
+         padding: 10px 0px;}
+
+.in > ul.nav a{
+  background-color: rgba(150,150,150,0.1);
+}
+
+ul.nav a{
+  -webkit-transition: background-color 150ms linear;
+        -moz-transition: background-color 150ms linear;
+        -o-transition: background-color 150ms linear;
+        -ms-transition: background-color 150ms linear;
+        transition: background-color 150ms linear;
+}

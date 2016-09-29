@@ -1,29 +1,31 @@
 /* HTML ELEMENT */
 
-body{ background-color: rgba(245,245,245, 1); }
+body{ };
 
 p.nomargin{ margin: 0; }
 p.nopadding{ padding: 0; }
 
+a, a:hover, a:active{ color: rgba(80,80,80,1);}
 /*ALL*/
 
 
 /* BACKGROUND */
 
 .container-light { background-color: #fff; }
+.container-dark { background-color: rgba(240,240,240, 1);}
 
 div.row-dark { background-color: rgba(240,240,240, 1); }
 div.row-light { background-color: #fff; }
 
-.row > div.col-dark { background-color: rgba(200,200,200, 1); }
+.row > div.col-dark { background-color: rgba(240,240,240, 1); }
 .row > div.col-light { background-color: #fff; }
 
 /* ROW */
 
-div.row-buffer-top { padding-top:20px; }
-div.row-buffer-bottom { padding-bottom: 20px; }
-div.row-buffer-left { padding-left: 20px; }
-div.row-buffer-right { padding-right: 20px; }
+div.row-buffer-top, div.col-buffer-top { padding-top:20px; }
+div.row-buffer-bottom, div.col-buffer-bottom { padding-bottom: 20px; }
+div.row-buffer-left, div.col-buffer-left { padding-left: 20px; }
+div.row-buffer-right, div.col-buffer-right { padding-right: 20px; }
 
 div.row-buffer-small-top { padding-top: 5px; }
 div.row-buffer-small-bottom { padding-bottom: 5px; }
@@ -31,11 +33,19 @@ div.row-buffer-small-left { padding-left: 5px; }
 div.row-buffer-small-right { padding-right: 5px; }
 
 /* PADDING */
-.container-fluid > div.row-buffer-large-top { padding-top:40px; }
-.container-fluid > div.row-buffer-large-bottom { padding-bottom: 40px; }
-.container-fluid > div.row-buffer-large-left { padding-left: 40px; }
-.container-fluid > div.row-buffer-large-right { padding-right: 40px; }
+div.row-buffer-extralarge-top { padding-top:50px; }
 
+div.row-buffer-large-top { padding-top:40px; }
+div.row-buffer-large-bottom { padding-bottom: 40px; }
+div.row-buffer-large-left { padding-left: 40px; }
+div.row-buffer-large-right { padding-right: 40px; }
+
+/* IMAGES */
+img.cover {
+  display: block;
+  width: 100vw;
+
+}
 img.padding-small { padding: 5px; }
 img.padding-medium { padding: 10px; }
 
@@ -51,6 +61,7 @@ img.padding-medium { padding: 10px; }
 .border-left { border-left: 1px solid; }
 .border-right { border-right: 1px solid; }
 
+.border-standard{ border-color: rgba(145,145,145,1); }
 .border-blue{ border-color: rgba(0,0,80,1); }
 
 /* COLUMN */
@@ -60,6 +71,7 @@ img.padding-medium { padding: 10px; }
 /* ELEMENT */
 *.invisible{ display: none;}
 span.visible{ display: inline;}
+span.glyphicon { font-size: 3em; }
 
 /* INPUT */
 .outline-white{outline-color: white;}

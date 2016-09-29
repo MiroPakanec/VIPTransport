@@ -1,0 +1,5 @@
+$(function(){
+  GenerateNavbar();
+  GenerateFooter();
+  loadRoutes()
+});

@@ -8,5 +8,5 @@ function Redirect($url, $permanent = false)
 }
 
 //Redirect('/VIPTransport/View/Pages/MainPage.html', false);
-Redirect('/VIPTransport/NewView/Pages/mainPage.html', false);
+Redirect('/VIPTransport/NewView/Pages/home.html', false);
 ?>
