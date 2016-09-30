@@ -13,15 +13,28 @@
     <link rel="stylesheet" type="text/css" href="../Css/config.css">
     <link rel="stylesheet" type="text/css" href="../Css/HomePage/styles.css">
 
+    <!-- JQuery -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="../Libraries/Bootstrap/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+
+    <!-- javascript -->
+    <script src="../Js/Tools/elementConstructor.js"></script>
+    <script src="../Js/Tools/functions.js"></script>
+    <script src="../Routing/routes.js"></script>
+    <script src="../Js/Tools/navbar.js"></script>
+
+    <script src="../JQuery/Pages/HomePage/events.js"></script>
+    <script src="../JQuery/Pages/HomePage/load.js"></script>
+
     <title>VIP Transport | Home</title>
   </head>
   <body>
     <div class="navbar-section"></div>
-    
+
     <div class="container-fluid">
       <div class="row row-buffer-extralarge-top row-buffer-bottom">
         <div class="col-xs-12">
-          <img src="../Files/Images/homecar1.jpg" class="img-responsive center-block cover" alt="Responsive image"/>
+          <img resource-img="home-img" class="route-img img-responsive center-block cover" alt="Responsive image"/>
         </div>
       </div>
       <div class="row row-home-button row-buffer-large-bottom row-buffer-large-top">
@@ -29,7 +42,7 @@
           <div class="row">
             <div class="col-xs-10 col-xs-offset-1 border border-blue col-buffer-right col-buffer-left col-dark col-buffer-top col-buffer-bottom">
               <div class="row">
-                <h1 class="tex-large text-standard text-center">Order transportation</h1>
+                <h1 class="text-standard text-center">Order transportation</h1>
               </div>
               <div class="row">
                 <p class="text-small text-highlight text-center"><small>Adding some text about how ordering is a good idea.</small></p>
@@ -37,7 +50,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-12 col-lg-4 route btn-link" resource="order">
+        <div class="col-md-12 col-lg-4 route btn-link" resource="transports">
           <div class="row">
             <div class="col-xs-10 col-xs-offset-1 border border-blue col-buffer-right col-buffer-left col-dark col-buffer-top col-buffer-bottom">
               <div class="row">
@@ -49,7 +62,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-12 col-lg-4 route btn-link" resource="order">
+        <div class="col-md-12 col-lg-4 route btn-link" resource="about">
           <div class="row">
             <div class="col-xs-10 col-xs-offset-1 border border-blue col-buffer-right col-buffer-left col-dark col-buffer-top col-buffer-bottom">
               <div class="row">
@@ -67,18 +80,6 @@
     </div>
 
 
-    <!-- JQuery -->
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="../Libraries/Bootstrap/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
 
-    <!-- javascript -->
-    <script src="../Js/Tools/elementConstructor.js"></script>
-    <script src="../Js/Tools/functions.js"></script>
-    <script src="../Routing/routes.js"></script>
-    <script src="../Js/Tools/navbar.js"></script>
-    <script src="../Js/Tools/smoothScrolling.js"></script>
-
-    <script src="../JQuery/Pages/HomePage/events.js"></script>
-    <script src="../JQuery/Pages/HomePage/load.js"></script>
   </body>
 </html>

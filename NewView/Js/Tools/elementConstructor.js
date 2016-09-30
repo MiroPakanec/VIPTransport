@@ -13,6 +13,7 @@ function GenerateFooter(){
 }
 
 function GenerateNavbar(){
+
   var html =
   '<nav class="navbar navbar-default navbar-fixed-top border-standard border-bottom text-small text-standard container-light">' +
     '<div class="container">' +
@@ -26,11 +27,11 @@ function GenerateNavbar(){
       '</div>' +
       '<div id="navbar" class="navbar-collapse collapse">' +
         '<ul class="nav nav-justified">' +
-          '<li id="test"><a href="home.html">Home</a></li>' +
-          '<li><a href="#">New order</a></li>' +
-          '<li><a href="#">My transports</a></li>' +
-          '<li><a href="#">About us</a></li>' +
-          '<li><a href="#">Log out</a></li>' +
+          '<li><a class="route" resource="home">Home</a></li>' +
+          '<li><a class="route" resource="order">New Order</a></li>' +
+          '<li><a class="route" resource="transports">My transports</a></li>' +
+          '<li><a class="route" resource="about">About us</a></li>' +
+          '<li><a class="route" resource="logout">Log out</a></li>' +
         '</ul>' +
       '</div><!--/.nav-collapse -->' +
     '</div>'+

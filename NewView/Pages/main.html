@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
   <!--Bootstrap -->
   <link rel="stylesheet" href="../Libraries/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel="stylesheet" href="../Libraries/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
@@ -9,9 +12,8 @@
   <link rel="stylesheet" type="text/css" href="../Css/tools.css">
   <link rel="stylesheet" type="text/css" href="../Css/config.css">
   <link rel="stylesheet" type="text/css" href="../Css/MainPage/styles.css">
+  <link rel="stylesheet" type="text/css" href="../Css/navbar.css">
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
   <title>VIP Transport</title>
 </head>
@@ -19,7 +21,7 @@
   <div class="container-fluid container-light">
     <div class="row row-buffer-large-top row-border-bottom">
       <div class="col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-5">
-        <img src="../Files/Images/mainlogo.png" class="img-responsive center-block" alt="Responsive image"/>
+        <img resource-img="mainlogo-img" class="route-img img-responsive center-block" alt="Responsive image"/>
       </div>
     </div>
     <div class="row row-buffer-top row-buffer-bottom">
@@ -27,16 +29,16 @@
     </div>
     <div class="row">
       <div class="col-xs-3 col-nopadding">
-        <img src="../Files/Images/maincar2-low.jpg" class="img-responsive img-fluid img-config" alt="Responsive image"/>
+        <img resource-img="main2-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
       </div>
       <div class="col-xs-3 col-nopadding">
-        <img src="../Files/Images/maincar3-low.jpg" class="img-responsive img-fluid img-config" alt="Responsive image"/>
+        <img resource-img="main3-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
       </div>
       <div class="col-xs-3 col-nopadding">
-        <img src="../Files/Images/maincar1-low.jpg" class="img-responsive img-fluid img-config" alt="Responsive image"/>
+        <img resource-img="main1-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
       </div>
       <div class="col-xs-3 col-nopadding">
-        <img src="../Files/Images/maincar4-low.jpg" class="img-responsive img-fluid img-config" alt="Responsive image"/>
+        <img resource-img="main4-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
       </div>
     </div>
     <div class="row row-buffer-top row-buffer-large-bottom row-border-bottom">
@@ -163,7 +165,7 @@
     </div>
     <div class="row row-dark row-buffer-large-bottom">
       <div class="col-sm-12">
-        <img src="../Files/Images/maincar5.jpg" class="img-responsive img-fluid img-config center-block border border-blue padding-medium" alt="Responsive image"/>
+        <img resource-img="main5-img" class="route-img img-responsive img-fluid img-config center-block border border-blue padding-medium" alt="Responsive image"/>
       </div>
     </div>
     <div class="row row-buffer-large-top row-border-top" id="contactSection">
@@ -240,6 +242,7 @@
   <script src="../Js/Tools/submit.js"></script>
   <script src="../Js/Tools/validate.js"></script>
   <script src="../Js/Tools/smoothScrolling.js"></script>
+  <script src="../Routing/routes.js"></script>
 
   <script src="../JQuery/Pages/MainPage/events.js"></script>
   <script src="../JQuery/Pages/MainPage/load.js"></script>
