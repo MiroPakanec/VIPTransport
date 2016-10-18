@@ -30,6 +30,7 @@ function GenerateNavbar(){
           '<li><a class="route" resource="home">Home</a></li>' +
           '<li><a class="route" resource="order">New Order</a></li>' +
           '<li><a class="route" resource="transports">My transports</a></li>' +
+          '<li><a class="route" resource="account">My account</a></li>' +
           '<li><a class="route" resource="about">About us</a></li>' +
           '<li><a class="route" resource="logout">Log out</a></li>' +
         '</ul>' +

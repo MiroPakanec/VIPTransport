@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!--Bootstrap -->
+    <link rel="stylesheet" href="../Libraries/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- style sheets -->
+    <link rel="stylesheet" type="text/css" href="../Css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="../Css/tools.css">
+    <link rel="stylesheet" type="text/css" href="../Css/config.css">
+    <link rel="stylesheet" type="text/css" href="../Css/AboutPage/styles.css">
+
+    <!-- JQuery -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="../Libraries/Bootstrap/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+
+    <!-- javascript -->
+    <script src="../Js/Tools/elementConstructor.js"></script>
+    <script src="../Js/Tools/smoothScrolling.js"></script>
+    <script src="../Js/Tools/functions.js"></script>
+    <script src="../Js/Communication/ajax.js"></script>
+    <script src="../Js/Communication/ajaxResources.js"></script>
+    <script src="../Routing/routes.js"></script>
+    <script src="../Js/Tools/navbar.js"></script>
+
+    <script src="../JQuery/Pages/AboutPage/events.js"></script>
+    <script src="../JQuery/Pages/AboutPage/load.js"></script>
+
+    <title>VIP Transport | About</title>
+  </head>
+  <body>
+    <div class="navbar-section"></div>
+
+    <div class="container-fluid">
+      <div class="row row-buffer-extralarge-top">
+        <div class="col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-5">
+          <img resource-img="mainlogo-img" class="route-img img-responsive center-block" alt="Responsive image"/>
+        </div>
+      </div>
+      <div class="row row-buffer-bottom">
+        <p class="text-center text-standard text-large">We are VIP transport</p>
+      </div>
+      <div class="row row-buffer-large-bottom row-border-bottom">
+        <p class="text-center text-highlight text-small">a company that apparently does smth that you want</p>
+      </div>
+      <div class="row">
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main2-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main3-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main1-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main4-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+      </div>
+      <div class="row row-buffer-large-top row-buffer-large-bottom row-border-bottom">
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4 col-nopadding">
+          <div class="row">
+            <div class="col-xs-12 col-menu">
+              <a class="btn btn-block btn-standard text-standard text-center text-small" href="#whySection" role="button">Why travel with us?</a>
+              <a class="btn btn-block btn-standard text-standard text-center text-small" href="#whatSection" role="button">Our cars</a>
+              <a class="btn btn-block btn-standard text-standard text-center text-small" href="#whoSection" role="button">Transporters</a>
+              <a class="btn btn-block btn-standard text-standard text-center text-small" href="#priceSection" role="button">Price list</a>
+              <a class="btn btn-block btn-standard text-standard text-center text-small" href="#contactSection" role="button">Contact us!</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHY SECTION -->
+      <div>
+        <div class="row row-buffer-large-top row-buffer-bottom row-dark row-border-top" id="whySection">
+          <div class="col-sm-12 col-buffer-top">
+            <h1 class="tex-large text-standard text-center">Why travel with us?</h1>
+          </div>
+        </div>
+        <div class="row row-dark row-buffer-bottom">
+          <div class="col-sm-6 col-sm-offset-3">
+            <p class="text-small text-highlight text-center"><small>Here we will write the reason why you should travel with this company... unfortunately I cannot think of any right now.</small></p>
+          </div>
+        </div>
+        <div class="row row-dark row-buffer-bottom">
+          <div class="col-sm-6 col-sm-offset-3">
+            <p class="text-small text-highlight text-center"><small>We will also write a bit about our services, employees and cars in this paragraph.</small></p>
+          </div>
+        </div>
+        <div class="row row-dark row-buffer-large-bottom">
+          <div class="col-sm-12">
+            <img resource-img="about1-img" class="route-img img-responsive img-fluid img-config center-block border border-blue padding-medium" alt="Responsive image"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHAT SECTION -->
+      <div class="row row-border-top">
+        <div class="row row-buffer-large-top row-buffer-bottom" id="whatSection">
+          <div class="col-sm-12 col-buffer-top">
+            <h1 class="tex-large text-standard text-center">Our cars</h1>
+          </div>
+        </div>
+        <div class="row row-buffer-bottom">
+          <div class="col-sm-6 col-sm-offset-3">
+            <p class="text-small text-highlight text-center"><small>Here we will write something about the cars... unfortunately I cannot think of any right now.</small></p>
+          </div>
+        </div>
+        <div class="row row-buffer-bottom">
+          <div class="col-sm-6 col-sm-offset-3">
+            <p class="text-small text-highlight text-center"><small>We will also write a bit about our cars too.</small></p>
+          </div>
+        </div>
+        <div class="row row-buffer-large-bottom">
+          <div class="col-sm-12">
+            <img resource-img="about2-img" class="route-img img-responsive img-fluid img-config center-block border border-blue padding-medium" alt="Responsive image"/>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHO SECTION -->
+      <div class="row row-border-top">
+        <div class="row row-buffer-large-top row-buffer-bottom row-dark" id="whoSection">
+          <div class="col-sm-12 col-buffer-top">
+            <h1 class="tex-large text-standard text-center">Transporters</h1>
+          </div>
+        </div>
+        <div class="row row-buffer-bottom row-dark">
+          <div class="col-sm-6 col-sm-offset-3">
+            <p class="text-small text-highlight text-center"><small>Here we will write something about transporters... unfortunately I cannot think of any right now.</small></p>
+          </div>
+        </div>
+        <div class="row row-buffer-extralarge-bottom row-dark row-border-bottom">
+          <div class="col-sm-6 col-sm-offset-3">
+            <p class="text-small text-highlight text-center"><small>Some other meaningful text here.</small></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRICE SECTION -->
+      <div class="row row-border-top row-buffer-large-bottom">
+        <div class="row row-buffer-large-top row-buffer-bottom" id="priceSection">
+          <div class="col-sm-12 col-buffer-top">
+            <h1 class="tex-large text-standard text-center">Price list</h1>
+          </div>
+        </div>
+        <div class="row row-buffer-bottom">
+          <div class="col-sm-6 col-sm-offset-3">
+            <p class="text-small text-highlight text-center"><small>Here we will write something about the prices.</small></p>
+          </div>
+        </div>
+
+        <!-- TABLE SECTION -->
+        <div class="col col-sm-10 col-sm-offset-1">
+
+          <div class="table-responsive">
+            <table class="table table-hover table-bordered table-center table-dark">
+              <thead>
+                  <tr>
+                    <th rowspan="2">#</th>
+                    <th rowspan="2">From (address)</th>
+                    <th rowspan="2">To (address)</th>
+                    <th colspan="2">Price</th>
+                  </tr>
+                  <tr>
+                    <th>Car (5 seats)</th>
+                    <th>Minibus (8 seats)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Žilina</td>
+                    <td>Vienna airport</td>
+                    <td>130</td>
+                    <td>180</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Žilina</td>
+                    <td>Vienna center</td>
+                    <td>150</td>
+                    <td>200</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Žilina</td>
+                    <td>Prague airport</td>
+                    <td>200</td>
+                    <td>250</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td>Žilina</td>
+                    <td>Bratislava</td>
+                    <td>120</td>
+                    <td>160</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">5</th>
+                    <td>Žilina</td>
+                    <td>Frýdek Místek</td>
+                    <td>75</td>
+                    <td>110</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">6</th>
+                    <td>Žilina</td>
+                    <td>Nošovice</td>
+                    <td>75</td>
+                    <td>110</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">7</th>
+                    <td>Žilina</td>
+                    <td>Ostrava</td>
+                    <td>85</td>
+                    <td>117</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">8</th>
+                    <td>Transporter service</td>
+                    <td></td>
+                    <td colspan="2">7 EUR/ hour</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">8</th>
+                    <td>Waiting time</td>
+                    <td></td>
+                    <td colspan="2">5 EUR/ hour</td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- TABLE SECTION END -->
+      </div>
+
+      <!-- CONTACT SECTION -->
+      <div class="row row-buffer-large-top row-border-top" id="contactSection">
+        <div class="col-sm-12">
+          <h1 class="tex-large text-standard text-center">Contact us!</h1>
+        </div>
+      </div>
+      <div class="row row-buffer-bottom">
+        <div class="col-sm-6 col-sm-offset-3">
+          <p class="text-small text-highlight text-center"><small>If you have any questions, do not hasitate to contact us.</small></p>
+        </div>
+      </div>
+      <div class="row row-buffer-extralarge-bottom row-buffer-top" id="menu-contact">
+        <div class="col-sm-12 col-md-6 col-md-offset-3">
+          <div class="row">
+            <div class="col-xs-6">
+              <p class="text-extrasmall text-highlight-black text-right">Company name</p>
+            </div>
+            <div class="col-xs-6 border-left border-blue">
+              <p class="text-extrasmall text-highlight-black text-left">VIP transport s.r.o</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <p class="text-extrasmall text-highlight-black text-right">Address</p>
+            </div>
+            <div class="col-xs-6 border-left border-blue">
+              <p class="text-extrasmall text-highlight-black text-left">Gemerska 4, 01008, Zilina</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <p class="text-extrasmall text-highlight-black text-right">Email</p>
+            </div>
+            <div class="col-xs-6 border-left border-blue">
+              <p class="text-extrasmall text-highlight-black text-left">info@viptransport.sk</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <p class="text-extrasmall text-highlight-black text-right">Phone number</p>
+            </div>
+            <div class="col-xs-6 border-left border-blue">
+              <p class="text-extrasmall text-highlight-black text-left">+421 911 301 111</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <p class="text-extrasmall text-highlight-black text-right">Registration Number/ ICO</p>
+            </div>
+            <div class="col-xs-6 border-left border-blue">
+              <p class="text-extrasmall text-highlight-black text-left">2023323511</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-6">
+              <p class="text-extrasmall text-highlight-black text-right">Tax Number/ DIC</p>
+            </div>
+            <div class="col-xs-6 border-left border-blue">
+              <p class="text-extrasmall text-highlight-black text-left">46304959</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row row-buffer-large-top row-buffer-bottom row-dark row-border-top footer-section"></div>
+    </div>
+
+  </body>
+</html>

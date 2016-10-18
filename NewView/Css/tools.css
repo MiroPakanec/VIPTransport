@@ -36,6 +36,7 @@ div.row-buffer-small-right { padding-right: 5px; }
 
 /* PADDING */
 div.row-buffer-extralarge-top { padding-top:80px; }
+div.row-buffer-extralarge-bottom { padding-bottom:80px; }
 
 div.row-buffer-large-top { padding-top:40px; }
 div.row-buffer-large-bottom { padding-bottom: 40px; }
@@ -104,5 +105,9 @@ strong.warning{color: red}
 
 /*ICONS*/
 span.glyphicon-small {font-size: 1em;}
-
 span.glyphicon-large { font-size: 3em; }
+
+/*TABLE*/
+table.table-center td, table.table-center th {text-align: center;}
+
+table.table-dark td, table.table-dark th {background-color: rgba(240,240,240, 1);}
