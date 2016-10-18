@@ -1,4 +1,3 @@
 $(function(){
-  LoadRoutes();
   GenerateFooter();
 })

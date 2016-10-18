@@ -21,6 +21,8 @@ div.row-light { background-color: #fff; }
 .row > div.col-light { background-color: #fff; }
 
 /* ROW */
+div.row-nobuffer-top, div.col-nobuffer-top { padding-top:0px; }
+div.row-nobuffer-bottom, div.col-nobuffer-bottom { padding-top:0px; }
 
 div.row-buffer-top, div.col-buffer-top { padding-top:20px; }
 div.row-buffer-bottom, div.col-buffer-bottom { padding-bottom: 20px; }
@@ -71,7 +73,6 @@ img.padding-medium { padding: 10px; }
 /* ELEMENT */
 *.invisible{ display: none;}
 span.visible{ display: inline;}
-span.glyphicon { font-size: 3em; }
 
 /* INPUT */
 .outline-white{outline-color: white;}
@@ -100,3 +101,8 @@ span.glyphicon { font-size: 3em; }
 .text-exstrasmall {font-size: 12px; }
 
 strong.warning{color: red}
+
+/*ICONS*/
+span.glyphicon-small {font-size: 1em;}
+
+span.glyphicon-large { font-size: 3em; }

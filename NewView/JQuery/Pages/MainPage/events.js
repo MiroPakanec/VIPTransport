@@ -9,11 +9,11 @@ $(function(){
     ValidateElement($(this));
   });
 
-  $('.btn-submit-offitial').on('click', function(e){
+  /*$('.btn-submit-offitial').on('click', function(e){
     if (e.isDefaultPrevented()) {
       console.log('invalid');
     } else {
       console.log('valid');
     }
-  });
+  });*/
 });

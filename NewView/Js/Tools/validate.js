@@ -24,6 +24,15 @@ function ValidateForm(form){
     return;
   }
 
+  //check if value is not default
+  if(HasDefault(element)){
+    var defaultValue = GetElementDefaultValue(element);
+    if(value == defaultValue){
+      Fail(element);
+      return;
+    }
+  }
+
   //check if element has to match with other element (data-match)
   if(HasDataMatch(element)){
     var referenceElementID = $(element).attr('data-match');
@@ -71,7 +80,8 @@ function Success(element){
 }
 
 function GetRegex(element){
-  var regexString = $(element).next().val();
+
+  var regexString = $(element).siblings('.regex').attr('regex');
   var regex = RegexFromString(regexString);
 
   return regex;
@@ -107,6 +117,15 @@ function RegexFromString(inputstring){
 
 function IsMandatory(element){
   if($(element).hasClass('form-mandatory')){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
+function HasDefault(element){
+  if(HasAttr(element, 'default')){
     return true;
   }
   else{

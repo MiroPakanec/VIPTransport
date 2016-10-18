@@ -39,3 +39,16 @@ function GenerateNavbar(){
 
   $('.navbar-section').html(html);
 }
+
+function GenerateFormGroup(targetId, type, placeholder, regex, errorMessage){
+  var html =
+    '<div class="form-group">' +
+    '<div class="col-sm-12">' +
+      '<' + type + ' type="text" class="form-control form-mandatory" placeholder="'+placeholder+'">' +
+      '<input type="hidden" class="regex" value="/^/" regex="'+regex+'">' +
+      '<span class="help-block error-message text-left invisible">' + errorMessage + '</span> ' +
+    '</div>' +
+  '</div>';
+
+  $('#' + targetId).append(html);
+}

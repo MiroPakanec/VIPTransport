@@ -1,0 +1,19 @@
+{
+  "inner" : [
+    {"main" : "NewView/Pages/main.html" },
+    {"home" : "NewView/Pages/home.html" },
+    {"order" : "NewView/Pages/order.html" },
+    {"transports" : "NewView/Pages/transports.html"},
+    {"about" : "NewView/Pages/about.html"},
+    {"logout" : "NewView/Pages/logout.html"}
+  ],
+  "image" : [
+    {"home-img" : "../Files/Images/homecar3.jpg" },
+    {"mainlogo-img" : "../Files/Images/mainlogo.png"},
+    {"main1-img" : "../Files/Images/maincar1-low.jpg"},
+    {"main2-img" : "../Files/Images/maincar2-low.jpg"},
+    {"main3-img" : "../Files/Images/maincar3-low.jpg"},
+    {"main4-img" : "../Files/Images/maincar4-low.jpg"},
+    {"main5-img" : "../Files/Images/maincar5.jpg"}
+  ]
+}

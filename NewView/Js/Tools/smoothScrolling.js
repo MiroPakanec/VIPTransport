@@ -1,5 +1,5 @@
 $(function(){
-  $('.col-menu > a').on('click', function(e){
+  $(document).on('click', '.col-menu > a', function(e){
     e.preventDefault();
     var target = $(this).attr('href');
     $('html body').animate({

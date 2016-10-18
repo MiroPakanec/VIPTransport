@@ -20,7 +20,8 @@ function GetElementId(element){
 }
 
 function GetElementValue(element){
-  if(IsOfTypeInput(element)){
+  if(IsOfTypeInput(element) || IsOfTypeSelect(element)){
+    console.log($(element).val())
     return $(element).val();
   }
   else if(IsOfTypeDiv(element)){
@@ -33,7 +34,7 @@ function GetElementValue(element){
 }
 
 function SetElementValue(element, value){
-  if(IsOfTypeInput(element)){
+  if(IsOfTypeInput(element) || IsOfTypeSelect(element)){
     $(element).val(value);
   }
   else if(IsOfTypeDiv(element)){
@@ -44,6 +45,23 @@ function SetElementValue(element, value){
   }
 }
 
+function ClearElementValue(element, value){
+  if(IsOfTypeInput(element) || IsOfTypeSelect(element)){
+    $(element).val('');
+  }
+  else if(IsOfTypeDiv(element)){
+    $(element).html('');
+  }
+  else{
+    console.log("Requested clear of element with ID: " + $(element).attr('id') + ", is not possible, because element is neither of type INPUT nor DIV.");
+  }
+}
+
+function GetElementDefaultValue(element){
+  var defaultValue = $(element).attr('default');
+  return defaultValue;
+}
+
 function IsOfTypeInput(element){
   if($(element).is("input")){
     return true;
@@ -51,14 +69,24 @@ function IsOfTypeInput(element){
   else{
     return false;
   }
+}
 
-  function IsOfTypeDiv(element){
+function IsOfTypeDiv(element){
     if($(element).is("div")){
       return true;
     }
     else{
       return false;
     }
+}
+
+function IsOfTypeSelect(element){
+
+  if($(element).is("select")){
+    return true;
+  }
+  else{
+    return false;
   }
 }
 
@@ -106,4 +134,10 @@ function GetObjects(obj, key) {
         }
     }
     return objects;
+}
+
+function SelectOption(element){
+
+  var value = $(element).val();
+  $(element).next().val(value);
 }
