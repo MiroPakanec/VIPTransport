@@ -66,16 +66,12 @@ function ValidateForm(form){
 }
 
 function Fail(element){
-  $(element).parents('.form-group').removeClass('has-success');
-  $(element).parents('.form-group').addClass('has-error');
-
+  ShowRedOutline(element);
   ShowErrors(element);
 }
 
 function Success(element){
-  $(element).parents('.form-group').removeClass('has-error');
-  $(element).parents('.form-group').addClass('has-success');
-
+  ShowGreenOutline(element);
   HideErrors(element);
 }
 
@@ -85,6 +81,21 @@ function GetRegex(element){
   var regex = RegexFromString(regexString);
 
   return regex;
+}
+
+function ShowRedOutline(element){
+  $(element).parents('.form-group').removeClass('has-success');
+  $(element).parents('.form-group').addClass('has-error');
+}
+
+function ShowGreenOutline(element){
+  $(element).parents('.form-group').removeClass('has-error');
+  $(element).parents('.form-group').addClass('has-success');
+}
+
+function HideOutline(element){
+  $(element).parents('.form-group').removeClass('has-error');
+  $(element).parents('.form-group').removeClass('has-success');
 }
 
 function ShowErrors(element){

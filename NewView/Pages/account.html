@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!--Bootstrap -->
+    <link rel="stylesheet" href="../Libraries/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- style sheets -->
+    <link rel="stylesheet" type="text/css" href="../Css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="../Css/tools.css">
+    <link rel="stylesheet" type="text/css" href="../Css/config.css">
+    <link rel="stylesheet" type="text/css" href="../Css/AccountPage/styles.css">
+
+    <!-- JQuery -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="../Libraries/Bootstrap/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+
+    <!-- javascript -->
+    <script src="../Js/Tools/elementConstructor.js"></script>
+    <script src="../Js/Tools/functions.js"></script>
+    <script src="../Js/Communication/ajax.js"></script>
+    <script src="../Js/Communication/ajaxResources.js"></script>
+    <script src="../Routing/routes.js"></script>
+    <script src="../Js/Tools/navbar.js"></script>
+    <script src="../Js/Tools/validate.js"></script>
+    <script src="../Js/Tools/clear.js"></script>
+
+    <script src="../JQuery/Pages/AccountPage/events.js"></script>
+    <script src="../JQuery/Pages/AccountPage/load.js"></script>
+
+    <title>VIP Transport | Account</title>
+  </head>
+  <body>
+    <div class="navbar-section"></div>
+    <div class="container-fluid container-light">
+      <div class="row row-buffer-extralarge-top row-buffer-bottom row-border-bottom">
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main2-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main3-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main1-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main4-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+      </div>
+      <div class="row row-buffer-large-top row-buffer-large-bottom">
+        <div class="col-sm-12">
+          <h1 class="tex-large text-standard text-center">[Name]'s account information</h1>
+        </div>
+      </div>
+
+      <div class="row row-buffer-bottom">
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="Email">
+                <input type="hidden" class="regex" value="/^/" regex="/^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/">
+                <span class="help-block error-message text-left invisible">Use email in format <strong>e.g. example@example.com</strong>.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="First name">
+                <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-z]{2,30}$/">
+                <span class="help-block error-message text-left invisible">Use first name in format <strong>e.g. John</strong>, with min. of 3 characters and first capital letter.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control" placeholder="Middle name">
+                <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-z]{2,30}$/">
+                <span class="help-block error-message text-left invisible">Use middle name in format <strong>e.g. Peter</strong>, with min. of 3 characters and first capital letter.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="Last name">
+                <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-z]{2,30}$/">
+                <span class="help-block error-message text-left invisible">Use last name in format <strong>e.g. Smith</strong>, with min. of 3 characters and first capital letter.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="Phone number">
+                <input type="hidden" class="regex" value="/^/" regex="/^[0-9+]{6,20}$/">
+                <span class="help-block error-message text-left invisible">Use phone number in format <strong>e.g. +421111222333</strong>, with min. of 6 characters and recomended country prefix.</span>
+              </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 col-md-8 col-buffer-small-bottom">
+                  <button class="btn btn-block btn-standard btn-block text-standard btn-submit text-center text-small" type="button">Submit</button>
+                </div>
+                <div class="col-xs-12 col-md-4 col-buffer-small-bottom">
+                  <button class="btn btn-block btn-standard btn-block text-standard btn-clear text-center text-small" type="button">
+                    <span class="glyphicon glyphicon-small glyphicon-remove"></span>
+                  </button>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="row row-dark row-border-top row-buffer-large-bottom row-buffer-top">
+        <div class="col-sm-12">
+          <h1 class="tex-large text-standard text-center">Change your password</h1>
+        </div>
+      </div>
+      <div class="row row-dark row-buffer-bottom">
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
+          <form class="form-horizontal form-password">
+            <div class="form-group">
+              <div class="col-sm-12 col-nopadding">
+                <input type="password" class="form-control form-mandatory" placeholder="Old password">
+                <input type="hidden" class="regex" value="/^/" regex="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d_-]{8,30}$/">
+                <span class="help-block error-message text-left invisible">Password must have between 8 and 30 characters, must contain letters and at least one number. Might contain _ or -.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="password" class="form-control form-mandatory" placeholder="New password" data-member="#inputPasswordConfirm" id="inputPassword">
+                <input type="hidden" class="regex" value="/^/" regex="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d_-]{8,30}$/">
+                <span class="help-block error-message text-left invisible">Password must have between 8 and 30 characters, must contain letters and at least one number. Might contain _ or -.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="password" class="form-control form-mandatory" placeholder="Repeat password" data-match="#inputPassword" id="inputPasswordConfirm">
+                <input type="hidden" class="regex" value="/^/" regex="/^/">
+                <span class="help-block error-message text-left invisible">Passwords have to match.</span>
+              </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 col-md-8 col-buffer-small-bottom">
+                  <button class="btn btn-block btn-standard btn-block text-standard btn-submit text-center text-small" type="button">Submit</button>
+                </div>
+                <div class="col-xs-12 col-md-4 col-buffer-small-bottom">
+                  <button class="btn btn-block btn-standard btn-block text-standard btn-clear text-center text-small" type="button">
+                    <span class="glyphicon glyphicon-small glyphicon-remove"></span>
+                  </button>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+      <div class="row row-border-top row-buffer-top">
+        <div class="col-sm-12">
+          <h1 class="tex-large text-standard text-center">Manage company settings</h1>
+        </div>
+      </div>
+      <div class="row row row-buffer-bottom">
+        <div class="col-sm-6 col-sm-offset-3">
+          <p class="text-small text-highlight text-center"><small>Add a company to your profile and access <strong>invoice</strong> payment type.</small></p>
+        </div>
+      </div>
+      <div class="row row-buffer-bottom">
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
+          <form class="form-horizontal form-password">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="Company name">
+                <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-zA-Z0-9-.\s]{2,50}$/">
+                <span class="help-block error-message text-left invisible">Use company <strong>e.g. VIP transport</strong>.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="Company address">
+                <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-zA-Z0-9-.\s]{2,50}$/">
+                <span class="help-block error-message text-left invisible">Use tax number in format <strong>e.g. 1234567890</strong>, with exactly 10 digits.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="Registration number">
+                <input type="hidden" class="regex" value="/^/" regex="/^\d{8}$/">
+                <span class="help-block error-message text-left invisible">Use registration number in format <strong>e.g. 12345678</strong>, with exactly 8 digits.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="Tax number">
+                <input type="hidden" class="regex" value="/^/" regex="/^\d{10}$/">
+                <span class="help-block error-message text-left invisible">Use tax number in format <strong>e.g. 1234567890</strong>, with exactly 10 digits.</span>
+              </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 col-md-8 col-buffer-small-bottom">
+                  <button class="btn btn-block btn-standard btn-block text-standard btn-submit text-center text-small" type="button">Submit</button>
+                </div>
+                <div class="col-xs-12 col-md-4 col-buffer-small-bottom">
+                  <button class="btn btn-block btn-standard btn-block text-standard btn-clear text-center text-small" type="button">
+                    <span class="glyphicon glyphicon-small glyphicon-remove"></span>
+                  </button>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row row-buffer-large-top row-buffer-bottom row-dark row-border-top footer-section"></div>
+    </div>
+  </body>
+</html>

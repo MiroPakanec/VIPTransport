@@ -45,7 +45,7 @@ function SetElementValue(element, value){
   }
 }
 
-function ClearElementValue(element, value){
+function ClearElementValue(element){
   if(IsOfTypeInput(element) || IsOfTypeSelect(element)){
     $(element).val('');
   }
@@ -60,6 +60,17 @@ function ClearElementValue(element, value){
 function GetElementDefaultValue(element){
   var defaultValue = $(element).attr('default');
   return defaultValue;
+}
+
+function SetElementDefaultValue(element){
+  var defaultValue = GetElementDefaultValue(element);
+
+  if(!HasDefault(element)){
+    console.log(element + ' has no default value.');
+    return;
+  }
+
+  SetElementValue(element, defaultValue);
 }
 
 function IsOfTypeInput(element){
@@ -95,6 +106,15 @@ function IsEmpty(element){
     return true;
   }
   return false;
+}
+
+function IsGenerated(element){
+  if($(element).hasClass('generated')){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
 
 function HasAttr(element, attr){

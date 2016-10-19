@@ -8,12 +8,9 @@ $(function(){
   $('.form-control').on('blur', function(){
     ValidateElement($(this));
   });
-
-  /*$('.btn-submit-offitial').on('click', function(e){
-    if (e.isDefaultPrevented()) {
-      console.log('invalid');
-    } else {
-      console.log('valid');
-    }
-  });*/
+  /*CLEAR BUTTON*/
+  $(document).on('click', '.btn-clear', function(){
+    var form = GetFormWithButton(this);
+    ClearForm(form);
+  });
 });

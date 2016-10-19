@@ -29,10 +29,10 @@ div.row-buffer-bottom, div.col-buffer-bottom { padding-bottom: 20px; }
 div.row-buffer-left, div.col-buffer-left { padding-left: 20px; }
 div.row-buffer-right, div.col-buffer-right { padding-right: 20px; }
 
-div.row-buffer-small-top { padding-top: 5px; }
-div.row-buffer-small-bottom { padding-bottom: 5px; }
-div.row-buffer-small-left { padding-left: 5px; }
-div.row-buffer-small-right { padding-right: 5px; }
+div.row-buffer-small-top, div.col-buffer-small-top { padding-top: 5px; }
+div.row-buffer-small-bottom, div.col-buffer-small-bottom { padding-bottom: 5px; }
+div.row-buffer-small-left, div.col-buffer-small-left { padding-left: 5px; }
+div.row-buffer-small-right, div.col-buffer-small-right { padding-right: 5px; }
 
 /* PADDING */
 div.row-buffer-extralarge-top { padding-top:80px; }
@@ -105,9 +105,10 @@ strong.warning{color: red}
 
 /*ICONS*/
 span.glyphicon-small {font-size: 1em;}
+span.glyphicon-medium {font-size: 1.5em;}
 span.glyphicon-large { font-size: 3em; }
 
 /*TABLE*/
 table.table-center td, table.table-center th {text-align: center;}
-
 table.table-dark td, table.table-dark th {background-color: rgba(240,240,240, 1);}
+table.table-text-small td, table.table-text-small th {font-size: 12px; }
