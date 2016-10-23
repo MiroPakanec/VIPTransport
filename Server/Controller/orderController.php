@@ -472,7 +472,7 @@
       $wClause = 'WHERE 1';
 
       if(strlen($id) > 0)
-        $wClause .= ' AND Id LIKE '."'%".$id."%'";
+        $wClause .= ' AND Id = '.$id;
 
       if(strlen($email) > 0)
         $wClause .= " AND Email LIKE '%".$email."%'";

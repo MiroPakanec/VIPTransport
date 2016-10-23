@@ -26,6 +26,8 @@ $(function(){
           data[name] = value;
         }),
 
+        console.log(data);
+
         $.ajax({
           url: url,
           type: type,

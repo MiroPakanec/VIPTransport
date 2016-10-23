@@ -161,3 +161,56 @@ function SelectOption(element){
   var value = $(element).val();
   $(element).next().val(value);
 }
+
+function GetDateFromPHP(dateString){
+
+  var day = dateString.split("/")[0];
+  var month = dateString.split("/")[1];
+  var year = dateString.split("/")[2].split(" ")[0];
+  var hour = parseInt(dateString.split("/")[2].split(" ")[1].split(":")[0]);
+  var minute = dateString.split("/")[2].split(" ")[1].split(":")[1];
+  var second = dateString.split("/")[2].split(" ")[1].split(":")[2];
+  var noon = dateString.split("/")[2].split(" ")[2];
+
+  if(noon == "PM")
+    hour += 12;
+
+  return new Date(year + '-' + month + '-' + day + ' ' + hour + ":" + minute + ":" + second);
+}
+
+function GetDateString(date){
+
+  var monthNames = [
+  "January", "February", "March",
+  "April", "May", "June", "July",
+  "August", "September", "October",
+  "November", "December"
+];
+
+var day = date.getDate();
+var monthIndex = date.getMonth();
+var year = date.getFullYear();
+
+var dateString = day + ' ' + monthNames[monthIndex] + ' ' + year;
+return dateString;
+}
+
+function GetTimeString(date){
+
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+
+  hours = RepareTimeZero(hours);
+  minutes = RepareTimeZero(minutes);
+
+  return hours + ':' + minutes;
+}
+
+function RepareTimeZero(string){
+
+  if(string == "0"){
+    return "00";
+  }
+
+  return string;
+}

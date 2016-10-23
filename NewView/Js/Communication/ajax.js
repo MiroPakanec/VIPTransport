@@ -13,3 +13,9 @@ function ajaxCall(responseMethod, type, url, dataType, data){
       }
   });
 }
+
+function ResponseMethod(response){
+
+  console.log("Response to the ajax request:");
+  //console.log(response);
+}

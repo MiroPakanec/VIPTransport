@@ -3,10 +3,17 @@
     {"main" : "NewView/Pages/main.html" },
     {"home" : "NewView/Pages/home.html" },
     {"order" : "NewView/Pages/order.html" },
-    {"transports" : "NewView/Pages/transports.html"},
+    {"order-confirm" : "NewView/Pages/Manager/orderconfirm.html" },
+    {"myorders" : "NewView/Pages/myorders.html"},
+    {"mytransports" : "NewView/Pages/mytransports.html"},
+    {"history" : "NewView/Pages/history.html"},
     {"account" : "NewView/Pages/account.html"},
     {"about" : "NewView/Pages/about.html"},
     {"logout" : "NewView/Pages/logout.html"}
+  ],
+  "inner-data" : [
+    {"data-delete-order" : "Server/Responses/deleteOrder.php"},
+    {"data-expand-order" : "Server/Responses/getTransports.php"}
   ],
   "image" : [
     {"home-img" : "../Files/Images/homecar3.jpg" },

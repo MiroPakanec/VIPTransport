@@ -22,6 +22,7 @@ function LoadRoutesJson(){
     var routeJsonObj = ParseRoutesJson(jsonString);
 
     LoadHrefs(routeJsonObj);
+    LoadDataHrefs(routeJsonObj);
     LoadImages(routeJsonObj);
 
   }, type, url, datatype, data);
@@ -34,6 +35,16 @@ function LoadHrefs(routeJsonObj){
     var route = GetJsonObject(routeJsonObj, tag);
     var url = root + route;
     $(this).attr('href', url);
+  });
+}
+
+function LoadDataHrefs(routeJsonObj){
+
+  $('.route-data').each(function(){
+    var tag = $(this).attr('resource-data');
+    var route = GetJsonObject(routeJsonObj, tag);
+    var url = root + route;
+    $(this).attr('data-href', url);
   });
 }
 
@@ -56,6 +67,18 @@ function GetPageNameFromUrl(){
   var indexEnd = url.lastIndexOf('.html');
   var result = url.substring(indexStart + 1, indexEnd + 5);
   return result;
+}
+
+function URLToArray(url) {
+    var request = {};
+    var pairs = url.substring(url.indexOf('?') + 1).split('&');
+    for (var i = 0; i < pairs.length; i++) {
+        if(!pairs[i])
+            continue;
+        var pair = pairs[i].split('=');
+        request[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+     }
+     return request;
 }
 
 function GetServerFromUrl(){

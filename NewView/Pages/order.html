@@ -29,6 +29,7 @@
 
     <script src="../JQuery/Pages/OrderPage/events.js"></script>
     <script src="../JQuery/Pages/OrderPage/load.js"></script>
+    <script src="../JQuery/Pages/OrderPage/communication.js"></script>
 
     <!-- DATETIME PICKER RESOURCES -->
     <link href="../Libraries/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
@@ -68,7 +69,7 @@
           <form class="form-horizontal">
             <div class="form-group">
               <div class="col-sm-12">
-                <input type="text" class="form-control form-mandatory" placeholder="Email">
+                <input type="text" class="form-control form-mandatory" placeholder="Email" id="email">
                 <input type="hidden" class="regex" value="/^/" regex="/^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/">
                 <span class="help-block error-message text-left invisible">Use email in format <strong>e.g. example@example.com</strong>.</span>
               </div>
@@ -76,7 +77,7 @@
             <div class="form-group">
               <div class="col-sm-12 col-nobuffer-bottom">
                 <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                  <input class="form-control form-mandatory" size="16" type="text" value="" readonly>
+                  <input class="form-control form-mandatory" size="16" type="text" value="" readonly id="date">
                   <span class="input-group-addon"><span class="glyphicon glyphicon-small glyphicon-remove"></span></span>
                   <span class="input-group-addon"><span class="glyphicon glyphicon-small glyphicon-calendar"></span></span>
                   <input type="hidden" class="regex" value="/^/" regex="/^/">
@@ -87,7 +88,7 @@
             <div class="form-group">
               <div class="col-sm-12">
                 <div class="input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
-                  <input class="form-control form-mandatory" size="16" type="text" value="" readonly>
+                  <input class="form-control form-mandatory" size="16" type="text" value="" id="time" readonly>
                   <span class="input-group-addon"><span class="glyphicon glyphicon-small glyphicon-remove"></span></span>
                   <span class="input-group-addon"><span class="glyphicon glyphicon-small glyphicon-time"></span></span>
                   <input type="hidden" class="regex" value="/^/" regex="/^/">
@@ -97,21 +98,21 @@
             </div>
             <div class="form-group">
               <div class="col-sm-12">
-                <input type="text" class="form-control form-mandatory" placeholder="From (address)">
+                <input type="text" id="from" class="form-control form-mandatory" placeholder="From (address)">
                 <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-zA-Z0-9-.\s]{2,50}$/">
                 <span class="help-block error-message text-left invisible">Use address in format <strong>e.g. City Street-name Street-number ZipCode Country</strong>, with min. of 3 characters and first capital letter.</span>
               </div>
             </div>
             <div class="form-group">
               <div class="col-sm-12">
-                <input type="text" class="form-control form-mandatory" placeholder="To (address)">
+                <input type="text" id="to" class="form-control form-mandatory" placeholder="To (address)">
                 <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-zA-Z0-9-.\s]{2,50}$/">
                 <span class="help-block error-message text-left invisible">Use address in format <strong>e.g. City Street-name Street-number ZipCode Country</strong>, with min. of 3 characters and first capital letter.</span>
               </div>
             </div>
             <div class="form-group">
               <div class="col-sm-12">
-                <select class="form-control" default="Payment type">
+                <select class="form-control" default="Payment type" id="type">
                   <option>Payment type</option>
                   <option>Cash</option>
                   <option>Creadit card</option>
@@ -155,7 +156,7 @@
             </div>
             <div class="form-group">
               <div class="col-sm-12">
-                <input type="text" class="form-control form-mandatory" placeholder="Pasangers phone">
+                <input type="text" class="form-control form-mandatory" placeholder="Pasangers phone" id="phone">
                 <input type="hidden" class="regex" value="/^/" regex="/^[0-9+]{6,20}$/">
                 <span class="help-block error-message text-left invisible">Use phone number in format <strong>e.g. +421111222333</strong>, with min. of 6 characters and recomended country prefix.</span>
               </div>
@@ -164,10 +165,15 @@
                 <div class="col-xs-12 col-md-8 col-buffer-small-bottom">
                   <button class="btn btn-block btn-standard btn-block text-standard btn-submit text-center text-small" type="button">Submit order</button>
                 </div>
-                <div class="col-xs-12 col-md-4 col-buffer-small-bottom">
+                <div class="col-xs-12 col-md-2 col-buffer-small-bottom">
                   <button class="btn btn-block btn-standard btn-block text-standard btn-clear text-center text-small" type="button">
                     <span class="glyphicon glyphicon-small glyphicon-remove"></span>
                   </button>
+                </div>
+                <div class="col-xs-12 col-md-2 col-buffer-small-bottom">
+                  <a class="btn btn-block btn-standard btn-block text-standard text-center text-small route" resource="myorders" type="button">
+                    <span class="glyphicon glyphicon-small glyphicon-th-list"></span>
+                  </a>
                 </div>
             </div>
           </form>

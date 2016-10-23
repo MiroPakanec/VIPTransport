@@ -29,7 +29,18 @@ function GenerateNavbar(){
         '<ul class="nav nav-justified">' +
           '<li><a class="route" resource="home">Home</a></li>' +
           '<li><a class="route" resource="order">New Order</a></li>' +
-          '<li><a class="route" resource="transports">My transports</a></li>' +
+          '<li class="dropdown">' +
+            '<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Transports<span class="caret"></span></a>' +
+            '<ul class="dropdown-menu">' +
+              '<li><a class="route" resource="myorders">Orders</a></li>' +
+              '<li><a class="route" resource="mytransports">Scheduled transports</a></li>' +
+              '<li><a class="route" resource="history">History</a></li>' +
+              '<li role="separator" class="divider"></li>' +
+              '<li class="dropdown-header">Management section</li>' +
+              '<li><a href="#">Action1</a></li>' +
+              '<li><a href="#">Action2</a></li>' +
+            '</ul>' +
+          '</li>' +
           '<li><a class="route" resource="account">My account</a></li>' +
           '<li><a class="route" resource="about">About us</a></li>' +
           '<li><a class="route" resource="logout">Log out</a></li>' +

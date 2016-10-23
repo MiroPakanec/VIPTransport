@@ -84,7 +84,12 @@ span.visible{ display: inline;}
   border: 1px solid rgba(145,145,145,1);
   border-radius:0;}
 
+.btn-table{background-color: rgba(0,0,0,0);
+          padding: 0;
+          border: none;}
+
 .btn-standard:hover{ background-color: rgba(225,225,225,1); }
+
 
 /* TEXT */
 .text-standard {
@@ -104,6 +109,7 @@ span.visible{ display: inline;}
 strong.warning{color: red}
 
 /*ICONS*/
+span.glyphicon-extrasmall {font-size: 0.8em;}
 span.glyphicon-small {font-size: 1em;}
 span.glyphicon-medium {font-size: 1.5em;}
 span.glyphicon-large { font-size: 3em; }
@@ -112,3 +118,4 @@ span.glyphicon-large { font-size: 3em; }
 table.table-center td, table.table-center th {text-align: center;}
 table.table-dark td, table.table-dark th {background-color: rgba(240,240,240, 1);}
 table.table-text-small td, table.table-text-small th {font-size: 12px; }
+table.table-text-extrasmall td, table.table-text-extrasmall th {font-size: 10px; }

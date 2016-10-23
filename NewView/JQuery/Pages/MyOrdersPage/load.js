@@ -1,0 +1,6 @@
+$(function(){
+  GenerateNavbar();
+  GenerateFooter();
+
+  GenerateTable();
+});
