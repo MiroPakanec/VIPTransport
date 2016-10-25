@@ -28,6 +28,11 @@ function LoadRoutesJson(){
   }, type, url, datatype, data);
 }
 
+function RouteResponse(response){
+
+  console.log(response);
+}
+
 function LoadHrefs(routeJsonObj){
 
   $('.route').each(function(){

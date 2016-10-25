@@ -60,6 +60,7 @@ function GenerateSmallTable(){
 function GenerateLargeTable(){
 
   var tableHead = GenerateLargeTableHead();
+  var tableBody = GenerateLargeTableBody();
   var html =
   '<table class="table table-hover table-bordered table-center table-dark table-text-small">' +
       tableHead +
@@ -131,4 +132,9 @@ function GenerateLargeTableHead(){
     '</thead>';
 
     return html;
+}
+
+function GenerateLargeTableBody(){
+
+  throw "GenerateLargeTableBody - Not implemented exception";
 }

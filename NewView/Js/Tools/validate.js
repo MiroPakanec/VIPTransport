@@ -4,6 +4,22 @@ function ValidateForm(form){
   });
 }
 
+function IsFormCorrect(form){
+  var ec = 0;
+  $(form).find('.form-group').each(function(){
+    if($(this).hasClass('has-error')){
+      ec++;
+    }
+  });
+  console.log("ERROR COUNT " + ec);
+
+  if(ec == 0){
+    return true;
+  }
+
+  return false;
+}
+
   function ValidateElement(element){
   //Remove spacing
   element = RemoveSpaces(element);

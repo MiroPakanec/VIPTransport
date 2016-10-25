@@ -8,6 +8,16 @@ function GetFormWithButton(submitButton){
   return $(submitButton).parent().parent().parent();
 }
 
+function ResetForm(form){
+
+  $(form).find('.form-control').each(function(){
+
+    console.log($(this));
+    HideOutline($(this));
+    HideErrors($(this));
+  })
+}
+
 /* LOCATE ELEMENT ID */
 function GetElementId(element){
   var idText = $(element).attr('id');
@@ -21,7 +31,6 @@ function GetElementId(element){
 
 function GetElementValue(element){
   if(IsOfTypeInput(element) || IsOfTypeSelect(element)){
-    console.log($(element).val())
     return $(element).val();
   }
   else if(IsOfTypeDiv(element)){
@@ -46,6 +55,10 @@ function SetElementValue(element, value){
 }
 
 function ClearElementValue(element){
+  if($(element).hasClass('permanent')){
+    return;
+  }
+
   if(IsOfTypeInput(element) || IsOfTypeSelect(element)){
     $(element).val('');
   }
@@ -213,4 +226,27 @@ function RepareTimeZero(string){
   }
 
   return string;
+}
+
+function GetFormData(form){
+
+  var data = {};
+
+  $(form).find('.form-control').each(function(){
+    var key = GetElementKey($(this));
+    var value = GetElementValue($(this));
+    data[key] = value;
+  });
+
+  return data;
+}
+
+function GetElementKey(element){
+  return $(element).attr('name');
+}
+
+function AlertObject(obj){
+  str = JSON.stringify(obj);
+  str = JSON.stringify(obj, null, 4);
+  alert(str);
 }

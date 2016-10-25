@@ -9,7 +9,7 @@ function LoadOrder(){
   var url = GetOrdersUrl();
   ajaxCall(LoadOrderResponse, "POST", url, 'json', data);
 
-  $( document ).ajaxComplete(function( event, xhr, settings ) {
+  $(document).ajaxComplete(function( event, xhr, settings ) {
     if ( settings.url === GetOrdersUrl() ) {
       LoadNames();
     }

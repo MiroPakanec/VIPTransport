@@ -1,4 +1,5 @@
 $(function(){
+  LoadSession();
   GenerateNavbar();
   GenerateFooter();
 });

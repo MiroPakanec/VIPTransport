@@ -14,3 +14,7 @@ function ClearGeneratedElements(form){
       ClearElementValue(this);
   });
 }
+
+function TriggerClear(){
+  $('.btn-clear').trigger('click');
+}

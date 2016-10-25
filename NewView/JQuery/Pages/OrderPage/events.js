@@ -14,7 +14,7 @@ $(function(){
     ClearForm(form);
   });
 
-  $('select').on('change', function(){
+  $(document).on('change', 'select', function(){
     SelectOption($(this));
   });
 

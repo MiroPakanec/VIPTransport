@@ -8,7 +8,6 @@
     $sessionControllerObject->startSession();
 
   if(isset($_POST['email'],$_POST['password'], $_POST['token']) && $_SESSION['token'] == $_POST['token']){
-
     $userControllerObject = new UserController();
     $sessionControllerObject = new SessionController();
     $response = $userControllerObject->loginUser(
@@ -17,11 +16,17 @@
         $_POST['token']
       );
 
-    if($response == 'in')
+    if($response == 'in'){
       $sessionControllerObject->setSessionData($_POST['email']);
+      $response = 'Login successful';
+    }
+
 
     //response to client
     echo $response;
+  }
+  else{
+    echo "We apologize, user cannot be signed in.";
   }
 
 ?>
