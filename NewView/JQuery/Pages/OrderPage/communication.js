@@ -1,3 +1,20 @@
+function SubmitFormNewOrder(form){
+
+  ValidateForm(form);
+  if(IsFormCorrect(form) == false){
+    return;
+  }
+
+  var url = GetNewOrderUrl();
+
+  /*MANAGE DATA*/
+  var data = GetFormData(form);
+  data = ManageOrderData(data);
+
+  console.log(data);
+  ajaxCall(NewOrderResponse, "POST", url, '', data);
+}
+
 function LoadOrder(){
 
   var id = GetIdFromUrl();
@@ -57,6 +74,29 @@ function LoadNamesResponse(response){
   $('#numberOfPasangersTarget').find('.form-control').each(function(e){
     $(this).val(response[e]);
   });
+}
+
+function NewOrderResponse(response){
+
+  console.log("Response to the ajax request - New order.");
+  console.log(response);
+
+  var title = GetNewOrderTitle();
+  var text = response;
+
+  VerifyNewOrderResponse(text);
+  HandleResponse(title, text);
+}
+
+function VerifyNewOrderResponse(text){
+
+  if(text == "Order was created successfully."){
+    RedirectMyOrders();
+  }
+  else if(text == "We apologize, order could not be created. Please verify that all entered information is correct or try again later."){
+    var form = $('#form-neworder');
+    ResetForm(form);
+  }
 }
 
 function GetIdFromUrl(){

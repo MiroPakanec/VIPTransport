@@ -59,10 +59,10 @@
         if($totalRows == $orderModelObject->getPasangers()){
 
           $dbc->commit();
-          return 1;
+          return 'Order was created successfully.';
         }
 
-        return 0;
+        return 'We apologize, order could not be created. Please verify that all entered information is correct or try again later.';
       }
       catch(Exception $e){
 

@@ -54,11 +54,13 @@
         }
         else if(strpos($error, 'n')){
           $dbc->commit();
-          return 2;
+          'Order was updated successfully - no changes were made.';
+          //return 2;
         }
         else{
           $dbc->commit();
-          return 3;
+          return 'Order was updated successfully.';
+          //return 3;
         }
       }
       catch(Exception $e){

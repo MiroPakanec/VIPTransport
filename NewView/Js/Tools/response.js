@@ -23,3 +23,7 @@ function GetLoginTitle(){
 function GetRegisterTitle(){
   return 'Sign-up';
 }
+
+function GetNewOrderTitle(){
+  return 'New order';
+}

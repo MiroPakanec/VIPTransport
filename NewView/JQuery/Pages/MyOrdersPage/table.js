@@ -21,6 +21,33 @@ default:
   }
 
   $('.table-responsive').html(tableHtml);
+  LoadOrders();
+}
+
+function GenerateTableBody(tableData){
+
+  var viewport = GetViewPort();
+  var tableBodyHtml;
+  switch(viewport){
+
+    case 'xs':
+      tableBodyHtml = GenerateSmallTableBody(tableData);
+      break;
+    case 'sm':
+      tableBodyHtml = GenerateSmallTableBody(tableData);
+      break;
+    case 'md':
+      tableBodyHtml = GenerateLargeTableBody(tableData);
+      break;
+    case 'lg':
+      tableBodyHtml = GenerateLargeTableBody(tableData);
+      break;
+default:
+    throw "Unable to detect screen viewport.";
+  }
+
+  $('tbody').html(tableBodyHtml);
+  LoadRoutesJson();
 }
 
 function GenerateSmallTable(){
@@ -30,27 +57,6 @@ function GenerateSmallTable(){
     '<table class="table table-hover table-bordered table-center table-dark table-text-extrasmall table-sm">' +
         tableHead +
         '<tbody>' +
-          '<tr>' +
-            '<td class="col-xs-1 row-id">213</td>' +
-            '<td class="col-xs-3">20th October 2016</td>' +
-            '<td class="col-xs-4">Zilina Velka Okruzna</td>' +
-            '<td class="col-xs-4">Jernbanegade 12A</td>' +
-            '<td>' +
-              '<button class="btn-table btn-table-remove route-data" resource-data="data-delete-order" data-toggle="modal" data-target="#confirm-delete" type="button">' +
-                '<span class="glyphicon glyphicon-medium glyphicon-remove"></span>' +
-              '</button>' +
-            '</td>' +
-            '<td>' +
-              '<button class="btn-table btn-table-expand route" resource="order" type="button">' +
-                '<span class="glyphicon glyphicon-medium glyphicon-zoom-in"></span>' +
-              '</button>' +
-            '</td>' +
-            '<td>' +
-              '<button class="btn-table btn-table-confirm route" resource="order-confirm" type="button">' +
-                '<span class="glyphicon glyphicon-medium glyphicon-ok"></span>' +
-              '</button>' +
-            '</td>' +
-          '</tr>' +
         '</tbody>' +
     '</table>';
 
@@ -60,36 +66,10 @@ function GenerateSmallTable(){
 function GenerateLargeTable(){
 
   var tableHead = GenerateLargeTableHead();
-  var tableBody = GenerateLargeTableBody();
   var html =
   '<table class="table table-hover table-bordered table-center table-dark table-text-small">' +
       tableHead +
       '<tbody>' +
-        '<tr>' +
-          '<td class="row-id">213</td>' +
-          '<td>20th October 2016</td>' +
-          '<td>20:00</td>' +
-          '<td>Zilina Velka Okruzna</td>' +
-          '<td>Jernbanegade 12A</td>' +
-          '<td>4</td>' +
-          '<td>Cash</td>' +
-          '<td>15th October 2016</td>' +
-          '<td>' +
-            '<button class="btn-table btn-table-remove route-data" resource-data="data-delete-order" data-toggle="modal" data-target="#confirm-delete" type="button">' +
-              '<span class="glyphicon glyphicon-medium glyphicon-remove"></span>' +
-            '</button>' +
-          '</td>' +
-          '<td>' +
-            '<button class="btn-table btn-table-expand route" resource="order" type="button">' +
-              '<span class="glyphicon glyphicon-medium glyphicon-zoom-in"></span>' +
-            '</button>' +
-          '</td>' +
-          '<td>' +
-            '<button class="btn-table btn-table-confirm route" resource="order-confirm" type="button">' +
-              '<span class="glyphicon glyphicon-medium glyphicon-ok"></span>' +
-            '</button>' +
-          '</td>' +
-        '</tr>' +
       '</tbody>' +
   '</table>';
 
@@ -134,7 +114,66 @@ function GenerateLargeTableHead(){
     return html;
 }
 
-function GenerateLargeTableBody(){
+function GenerateLargeTableBody(tableData){
 
-  throw "GenerateLargeTableBody - Not implemented exception";
+  var buttonsHtml = GenerateTableButtons();
+  var html = '';
+  for (index in tableData){
+
+    html +=
+      '<tr>' +
+        '<td class="row-id">'+tableData[index].id+'</td>' +
+        '<td>20th October 2016</td>' +
+        '<td>20:00</td>' +
+        '<td>'+tableData[index].from+'</td>' +
+        '<td>'+tableData[index].to+'</td>' +
+        '<td>'+tableData[index].pasangers+'</td>' +
+        '<td>'+tableData[index].payment+'</td>' +
+        '<td>'+tableData[index].creationDate+'</td>' +
+        buttonsHtml +
+      '</tr>';
+  }
+
+  return html;
+}
+
+function GenerateSmallTableBody(tableData){
+
+  var buttonsHtml = GenerateTableButtons();
+  var html = '';
+  for (index in tableData){
+
+    html +=
+      '<tr>' +
+        '<td class="col-xs-1 row-id">'+tableData[index].id+'</td>' +
+        '<td class="col-xs-3">20th October 2016</td>' +
+        '<td class="col-xs-4">'+tableData[index].from+'</td>' +
+        '<td class="col-xs-4">'+tableData[index].to+'</td>' +
+        buttonsHtml +
+      '</tr>';
+  }
+
+  return html;
+}
+
+function GenerateTableButtons(){
+
+  var html =
+  '<td>' +
+    '<button class="btn-table btn-table-remove route-data" resource-data="data-delete-order" data-toggle="modal" data-target="#confirm-delete" type="button">' +
+      '<span class="glyphicon glyphicon-medium glyphicon-remove"></span>' +
+    '</button>' +
+  '</td>' +
+  '<td>' +
+    '<button class="btn-table btn-table-expand route" resource="order" type="button">' +
+      '<span class="glyphicon glyphicon-medium glyphicon-zoom-in"></span>' +
+    '</button>' +
+  '</td>' +
+  '<td>' +
+    '<button class="btn-table btn-table-confirm route" resource="order-confirm" type="button">' +
+      '<span class="glyphicon glyphicon-medium glyphicon-ok"></span>' +
+    '</button>' +
+  '</td>';
+
+  return html;
 }

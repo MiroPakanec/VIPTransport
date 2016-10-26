@@ -10,6 +10,10 @@ function GetOrdersUrl(){
   return '../../Server/Responses/getTransports.php';
 }
 
+function GetNewOrderUrl(){
+  return '../../Server/Responses/newOrder.php';
+}
+
 function GetNamesUrl(){
   return '../../Server/Responses/getNames.php';
 }

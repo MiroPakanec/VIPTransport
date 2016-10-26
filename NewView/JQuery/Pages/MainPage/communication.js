@@ -42,13 +42,13 @@ function RegisterResponse(response){
   var title = GetRegisterTitle();
   var text = response;
 
-  VerifyRegisterResponse(response);
-  HandleResponse(title, response);
+  VerifyRegisterResponse(text);
+  HandleResponse(title, text);
 }
 
-function VerifyLoginResponse(response){
+function VerifyLoginResponse(text){
 
-  if(response == 'Login successful'){
+  if(text == 'Login successful'){
 
     RedirectHome();
   }
@@ -59,9 +59,9 @@ function VerifyLoginResponse(response){
   }
 }
 
-function VerifyRegisterResponse(response){
+function VerifyRegisterResponse(text){
 
-  if(response == "Registration successful"){
+  if(text == "Registration successful"){
     TriggerClear();
   }
   else{

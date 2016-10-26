@@ -21,3 +21,15 @@ function RedirectMain(){
     window.location = href;
   }
 }
+
+function RedirectMyOrders(){
+  var href = $('#gomyorders').attr('href');
+
+  if(href == null){
+    throw "This page URL is incorrect";
+    return;
+  }
+  else{
+    window.location = href;
+  }
+}

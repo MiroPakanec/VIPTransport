@@ -2,7 +2,7 @@ $(function(){
   /*LOGIN SUBMIT*/
   $(document).on('click', '.btn-submit', function(){
     var form = GetFormWithButton(this);
-    ValidateForm(form);
+    SubmitFormNewOrder(form);
   });
   /*LOGIN BLUR*/
   $(document).on('blur', '.form-control', function(){
