@@ -1,12 +1,11 @@
 $(function(){
   LoadSession();
-  
+
   GenerateNavbar();
   GenerateFooter();
 
   if(!IsNewOrder()){
     LoadOrder();
-    //LoadNames();
   }
 });
 

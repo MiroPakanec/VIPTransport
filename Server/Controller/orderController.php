@@ -90,7 +90,7 @@
         //ID is returned from DAL and set to model object
         $orderModelObject->setId($orderInsertDatabaseAccessObject->createOrder($orderModelObject));
         if(!$orderModelObject->getId() > 0)
-          return 6;
+          return 0;
 
         $wasNotified = $this->sendOrderNotifications($orderModelObject->getId(), 'create', ' ');
         if($wasNotified == 0)
@@ -106,15 +106,15 @@
         $validationControllerObject = new ValidationController();
 
         if($this->validateDate($date, $timeHour, $timeMinute, 00, $clock) > 0)
-          return 0;
+          return 10;
         //$status = $this->getStatusBySession();
         $datetimeString = $date." ".$timeHour.":".$timeMinute.":00 ".$clock;
         $datetime = Datetime::createFromFormat('d/m/Y H:i:s A', $datetimeString);
         $orderModelObject = new OrderModel($id, $email, $datetime, $from, $to, $pasangers, $payment, $phone, $names, '', '');
         if($validationControllerObject->validateOrder($orderModelObject) > 0)
-          return 0;
+          return 10;
         if($this->checkOrderState($orderModelObject->getId()) > 0)
-          return 0;
+          return 10;
         $orderUpdateDatabaseAccessObject = new OrderUpdateDatabaseAccess();
         $updateResponse = $orderUpdateDatabaseAccessObject->updateOrder($orderModelObject);
         $wasNotified = $this->sendOrderNotifications($orderModelObject->getId(), 'update', ' ');

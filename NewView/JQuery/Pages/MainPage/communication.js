@@ -28,10 +28,10 @@ function LoginResponse(response){
   console.log(response);
 
   var title = GetLoginTitle();
-  var text = response;
+  var text = GetLoginText(response);
 
   VerifyLoginResponse(response);
-  HandleResponse(title, response);
+  HandleResponse(title, text);
 }
 
 function RegisterResponse(response){
@@ -40,16 +40,16 @@ function RegisterResponse(response){
   console.log(response);
 
   var title = GetRegisterTitle();
-  var text = response;
+  var text = GetRegisterText(response);
 
-  VerifyRegisterResponse(text);
+  VerifyRegisterResponse(response);
   HandleResponse(title, text);
 }
 
-function VerifyLoginResponse(text){
+function VerifyLoginResponse(response){
 
-  if(text == 'Login successful'){
-
+  console.log(response);
+  if(response == 1){
     RedirectHome();
   }
   else{
@@ -59,9 +59,9 @@ function VerifyLoginResponse(text){
   }
 }
 
-function VerifyRegisterResponse(text){
+function VerifyRegisterResponse(response){
 
-  if(text == "Registration successful"){
+  if(response == 1){
     TriggerClear();
   }
   else{

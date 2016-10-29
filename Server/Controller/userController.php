@@ -120,19 +120,19 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/notifica
       $userModelObject = new UserModel($email, null, null, null, $password, null, null, null);
 
       if($validationControllerObject->validateUser($userModelObject) > 0)
-        return 'Please enter valid email and password';
+        return 2;
 
       $wClause = " WHERE Email = '" . $email . "'";
 
       //get populated user model from db
       $userModelArray = $userDataAccessObject->getUserData($wClause);
       if(sizeof($userModelArray) == 0)
-        return 'Incorrect email';
+        return 2;
 
       if(!password_verify($password, $userModelArray[0]->getPassword()))
-        return 'Incorrect password';
+        return 2;
       else
-        return 'in';
+        return 1;
     }
 
     public function updateImage($image){

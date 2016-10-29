@@ -29,7 +29,7 @@
       }
       catch(Exception $e){
 
-        return 'We are sorry, something went wrong...';
+        return -1;
       }
     }
   }

@@ -16,9 +16,8 @@
         $_POST['token']
       );
 
-    if($response == 'in'){
+    if($response == 1){
       $sessionControllerObject->setSessionData($_POST['email']);
-      $response = 'Login successful';
     }
 
 
@@ -26,7 +25,7 @@
     echo $response;
   }
   else{
-    echo "We apologize, user cannot be signed in.";
+    echo 0;
   }
 
 ?>

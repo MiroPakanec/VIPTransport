@@ -29,16 +29,16 @@
         $affectedRows = mysqli_stmt_affected_rows($stmt);
 
         if($affectedRows == 1)
-          return 'Registration successful';
+          return 1;
         else
-          return 'We are sorry, this email is already in use...';
+          return 2;
 
         mysqli_stmt_close($stmt);
         mysqli_close($dbc);
       }
       catch(Exception $e){
 
-        return 'We are sorry, something went wrong...';
+        return -1;
       }
     }
   }

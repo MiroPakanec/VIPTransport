@@ -29,7 +29,7 @@
       }
       catch(Exception $e){
 
-        return 'We are sorry, something went wrong...';
+        return -1;
       }
     }
 
@@ -59,14 +59,14 @@
         if($totalRows == $orderModelObject->getPasangers()){
 
           $dbc->commit();
-          return 'Order was created successfully.';
+          return 1;
         }
 
-        return 'We apologize, order could not be created. Please verify that all entered information is correct or try again later.';
+        return 0;
       }
       catch(Exception $e){
 
-        return 'We are sorry, something went wrong...';
+        return -1;
       }
     }
   }

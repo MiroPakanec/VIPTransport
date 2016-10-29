@@ -50,22 +50,22 @@
         //notice - no changes
         if(strpos($error, 'e')){
           $dbc->rollback();
-          return 4;
+          return 10;
         }
         else if(strpos($error, 'n')){
           $dbc->commit();
-          'Order was updated successfully - no changes were made.';
+          11;
           //return 2;
         }
         else{
           $dbc->commit();
-          return 'Order was updated successfully.';
+          return 11;
           //return 3;
         }
       }
       catch(Exception $e){
 
-        return 'We are sorry, something went wrong...';
+        return -1;
       }
     }
 

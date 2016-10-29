@@ -27,3 +27,112 @@ function GetRegisterTitle(){
 function GetNewOrderTitle(){
   return 'New order';
 }
+
+function GetAccountInformationTitle(){
+  return 'Account';
+}
+
+function GetNewPasswordTitle(){
+  return 'New Password';
+}
+
+function GetCompanyUpdateTitle(){
+  return 'Company update';
+}
+
+/*TEXT*/
+function GetLoginText(response){
+  if(response == 0){
+    return "We apologize, user could not be signed in.";
+  }
+  else if(response == 1){
+    return 'Login successful.';
+  }
+  else if(response == 2){
+    return 'Email or password are not valid, please try again.';
+  }
+  else if(response == -1){
+    return 'We are sorry, something went wrong...';
+  }
+
+  return "";
+}
+
+function GetRegisterText(response){
+  if(response == 0){
+    return "We apologize, user could not be registered.";
+  }
+  else if(response == 1){
+    return 'Registration successful. Now you can log in';
+  }
+  else if(response == 2){
+    return 'We apologize, this email is already used by someone else.';
+  }
+  else if(response == -1){
+    return 'We are sorry, something went wrong...';
+  }
+
+  return "";
+}
+
+function GetNewOrderText(response){
+  if(response == 0){
+    return 'We apologize, order could not be created. Please verify that all entered information is correct or try again later.';
+  }
+  else if(response == 1){
+    return 'Order was created successfully.';
+  }
+  else if(response == 10){
+    return 'We apologize, order could not be updated. Please verify that all entered information is correct or try again later.';
+  }
+  else if(response == 11){
+    return 'Order was updated successfully.';
+  }
+  else if(response == -1){
+    return 'We are sorry, something went wrong...';
+  }
+
+  return "";
+}
+
+function GetAccountInformationText(response){
+  if(response == 0){
+    return 'We apologize, your account could not be updated.';
+  }
+  else if(response == 1){
+    return 'Your account was updated successfully.';
+  }
+  else if(response == -1){
+    return 'We are sorry, something went wrong...';
+  }
+
+  return "";
+}
+
+function GetNewPasswordText(response){
+  if(response == 0){
+    return 'We apologize, your account could not be updated.';
+  }
+  else if(response == 1){
+    return 'Your account was updated successfully.';
+  }
+  else if(response == -1){
+    return 'We are sorry, something went wrong...';
+  }
+
+  return "";
+}
+
+function GetCompanyUpdateText(response){
+  if(response == 0){
+    return 'We apologize, company could not be updated.';
+  }
+  else if(response == 1){
+    return 'Company was updated successfully.';
+  }
+  else if(response == -1){
+    return 'We are sorry, something went wrong...';
+  }
+
+  return "";
+}

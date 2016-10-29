@@ -11,7 +11,6 @@ function SubmitFormNewOrder(form){
   var data = GetFormData(form);
   data = ManageOrderData(data);
 
-  console.log(data);
   ajaxCall(NewOrderResponse, "POST", url, '', data);
 }
 
@@ -82,7 +81,7 @@ function NewOrderResponse(response){
   console.log(response);
 
   var title = GetNewOrderTitle();
-  var text = response;
+  var text = GetNewOrderText(response);
 
   VerifyNewOrderResponse(text);
   HandleResponse(title, text);

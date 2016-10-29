@@ -20,7 +20,7 @@
       }
       catch(Exception $e){
 
-        return 'We are sorry, something went wrong...';
+        return -1;
       }
     }
 
@@ -62,7 +62,7 @@
       }
       catch(Exception $e){
 
-        return 0;
+        return -1;
       }
     }
 

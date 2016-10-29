@@ -5,7 +5,6 @@
 
     if(isset($_GET['email']) && strlen($_GET['email']) > 1){
 
-      echo  strlen($_GET['email']);
       $companyControllerObject = new CompanyController();
       $companyModelObject = $companyControllerObject->getCompanyData($_GET['email']);
       $array = array();

@@ -33,3 +33,19 @@ function GetLoginUrl(){
 function GetRegisterUrl(){
   return '../../Server/Responses/register.php';
 }
+
+function GetAccountInformationUrl(){
+  return '../../Server/Responses/updateProfile.php';
+}
+
+function GetNewPasswordUrl(){
+  return '../../Server/Responses/updatePassword.php';
+}
+
+function GetCompanyUrl(){
+  return '../../Server/Responses/getCompany.php';
+}
+
+function GetUpdateCompanyUrl(){
+  return '../../Server/Responses/updateCompany.php';
+}
