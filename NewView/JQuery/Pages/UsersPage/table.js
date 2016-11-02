@@ -146,10 +146,10 @@ function GenerateSmallTableBody(tableData){
 function GenerateTableButtons(){
 
   var html =
-  '<td>' +
-    '<button class="btn-table btn-table-edit route" resource="order" type="button">' +
+  '<td class="col-menu">' +
+    '<a href="#manage-user-section" class="btn-table btn-table-edit" type="button">' +
       '<span class="glyphicon glyphicon-medium glyphicon-pencil"></span>' +
-    '</button>' +
+    '</a>' +
   '</td>';
 
   return html;
