@@ -250,3 +250,25 @@ function AlertObject(obj){
   str = JSON.stringify(obj, null, 4);
   alert(str);
 }
+
+function RemoveActiveClass(customClass){
+  $(customClass).each(function(){
+    $(this).removeClass('active');
+  });
+}
+
+function GeneratePassword(target){
+
+  var password = "";
+  var possibleChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  var possibleDigit = "0123456789";
+
+  for( var i=0; i < 5; i++ ){
+
+    password += possibleChar.charAt(Math.floor(Math.random() * possibleChar.length));
+    password += possibleDigit.charAt(Math.floor(Math.random() * possibleDigit.length));
+  }
+
+  $('#' + target).val(password);
+  console.log(target);
+}

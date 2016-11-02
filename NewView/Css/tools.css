@@ -23,6 +23,8 @@ div.row-light { background-color: #fff; }
 /* ROW */
 div.row-nobuffer-top, div.col-nobuffer-top { padding-top:0px; }
 div.row-nobuffer-bottom, div.col-nobuffer-bottom { padding-top:0px; }
+div.row-nobuffer-bottom, div.col-nobuffer-left { padding-left:0px !important; }
+div.row-nobuffer-bottom, div.col-nobuffer-right { padding-right:0px; }
 
 div.row-buffer-top, div.col-buffer-top { padding-top:20px; }
 div.row-buffer-bottom, div.col-buffer-bottom { padding-bottom: 20px; }
@@ -84,6 +86,11 @@ span.visible{ display: inline;}
   border: 1px solid rgba(145,145,145,1);
   border-radius:0;}
 
+.btn-standard-danger{
+  background-color: #ff9393;
+  border: 1px solid rgba(145,145,145,1);
+  border-radius:0;}
+
 .btn-table{background-color: rgba(0,0,0,0);
           padding: 0;
           border: none;}
@@ -109,6 +116,7 @@ span.visible{ display: inline;}
 strong.warning{color: red}
 
 /*ICONS*/
+span.glyphicon-smallest {font-size: 0.6em;}
 span.glyphicon-extrasmall {font-size: 0.8em;}
 span.glyphicon-small {font-size: 1em;}
 span.glyphicon-medium {font-size: 1.5em;}

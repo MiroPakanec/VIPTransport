@@ -3,13 +3,16 @@
     {"main" : "NewView/Pages/main.html" },
     {"home" : "NewView/Pages/home.html" },
     {"order" : "NewView/Pages/order.html" },
-    {"order-confirm" : "NewView/Pages/Manager/orderconfirm.html" },
     {"myorders" : "NewView/Pages/myorders.html"},
     {"mytransports" : "NewView/Pages/mytransports.html"},
     {"history" : "NewView/Pages/history.html"},
     {"account" : "NewView/Pages/account.html"},
     {"about" : "NewView/Pages/about.html"},
-    {"logout" : "NewView/Pages/logout.html"}
+    {"logout" : "NewView/Pages/logout.html"},
+
+    {"order-confirm" : "NewView/Pages/Manager/orderconfirm.html" },
+    {"users" : "NewView/Pages/m-users.html"},
+    {"cars" : "NewView/Pages/m-cars.html"}
   ],
   "inner-data" : [
     {"data-delete-order" : "Server/Responses/deleteOrder.php"},

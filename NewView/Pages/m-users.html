@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!--Bootstrap -->
+    <link rel="stylesheet" href="../Libraries/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- style sheets -->
+    <link rel="stylesheet" type="text/css" href="../Css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="../Css/tools.css">
+    <link rel="stylesheet" type="text/css" href="../Css/config.css">
+    <link rel="stylesheet" type="text/css" href="../Css/UsersPage/styles.css">
+
+    <!-- JQuery -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="../Libraries/Bootstrap/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+
+    <!-- javascript -->
+    <script src="../Js/Tools/session.js"></script>
+    <script src="../Js/Tools/elementConstructor.js"></script>
+    <script src="../Js/Tools/functions.js"></script>
+    <script src="../Js/Tools/tableFunctions.js"></script>
+    <script src="../Js/Communication/ajax.js"></script>
+    <script src="../Js/Communication/ajaxResources.js"></script>
+    <script src="../Js/Communication/redirect.js"></script>
+    <script src="../Routing/routes.js"></script>
+    <script src="../Js/Tools/navbar.js"></script>
+    <script src="../Js/Tools/validate.js"></script>
+    <script src="../Js/Tools/clear.js"></script>
+    <script src="../Js/Tools/viewport.js"></script>
+    <script src="../Js/Tools/response.js"></script>
+
+    <script src="../JQuery/Pages/UsersPage/events.js"></script>
+    <script src="../JQuery/Pages/UsersPage/load.js"></script>
+    <script src="../JQuery/Pages/UsersPage/communication.js"></script>
+    <script src="../JQuery/Pages/UsersPage/table.js"></script>
+    <script src="../JQuery/Pages/UsersPage/session.js"></script>
+    <script src="../JQuery/Pages/UsersPage/functions.js"></script>
+
+    <!-- DATETIME PICKER RESOURCES -->
+    <link href="../Libraries/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+
+    <title>VIP Transport | Emloyees</title>
+  </head>
+  <body>
+    <div class="navbar-section"></div>
+    <div class="container-fluid container-light">
+      <div class="row row-buffer-extralarge-top row-buffer-bottom row-border-bottom">
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main2-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main3-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main1-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main4-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="tex-large text-standard text-center">Users</h1>
+        </div>
+      </div>
+      <div class="row row-buffer-bottom">
+        <div class="col-sm-6 col-sm-offset-3">
+          <p class="text-small text-highlight text-center"><small>On this page, you as a manager are able to manage and register company users.</small></p>
+        </div>
+      </div>
+      <div class="row row-buffer-bottom">
+        <div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
+          <div class="row search-bar-row">
+            <div class="col-sm-6 col-sm-offset-3 col-md-2 col-md-offset-0">
+              <a class="btn btn-standard btn-block text-standard text-center text-exstrasmall btn-lg btn-radio active" role="button" aria-pressed="true">Customer</a>
+            </div>
+            <div class="col-sm-6 col-sm-offset-3 col-md-2 col-md-offset-0">
+              <a class="btn btn-standard btn-block text-standard text-center text-exstrasmall btn-lg btn-radio" role="button" aria-pressed="true">Employee</a>
+            </div>
+            <div class="col-sm-6 col-sm-offset-3 col-md-2 col-md-offset-0">
+              <a class="btn btn-standard btn-block text-standard text-center text-exstrasmall btn-lg btn-radio" role="button" aria-pressed="true">Manager</a>
+            </div>
+            <div class="col-sm-12 col-sm-offset-0 col-md-6 col-md-offset-0">
+              <div class="input-group">
+                <span class="input-group-btn">
+                  <button class="btn btn-default search-btn" target="search-input" type="button">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  </button>
+                </span>
+                <input type="text" class="form-control search-input" placeholder="Search by user's surname">
+              </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+          </div>
+        </div>
+      </div>
+      <div class="row row-buffer-bottom">
+        <div class="col col-sm-10 col-sm-offset-1">
+          <div class="table-responsive"></div>
+        </div>
+      </div>
+      <div class="row row-border-top row-buffer-top">
+        <div class="col-sm-12">
+          <h1 class="tex-large text-standard text-center">Manage existing user</h1>
+        </div>
+      </div>
+      <div class="row row-buffer-bottom">
+        <div class="col-sm-6 col-sm-offset-3">
+          <p class="text-small text-highlight text-center"><small>Here you can manage user, which is aready registered in your system.</small></p>
+        </div>
+      </div>
+      <div class="row row-buffer-bottom">
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
+          <form class="form-horizontal" id="form-manage-user-type">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="Email" name="email" id="email" disabled>
+                <input type="hidden" class="regex" value="/^/" regex="/^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/">
+                <span class="help-block error-message text-left invisible">Use email in format <strong>e.g. example@example.com</strong>.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="First name" name="firstName" id="fname" disabled>
+                <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-z]{2,30}$/">
+                <span class="help-block error-message text-left invisible">Use first name in format <strong>e.g. John</strong>, with min. of 3 characters and first capital letter.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control" placeholder="Middle name" name="middleName" id="mname" disabled>
+                <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-z]{2,30}$/">
+                <span class="help-block error-message text-left invisible">Use middle name in format <strong>e.g. Peter</strong>, with min. of 3 characters and first capital letter.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="Last name" name="lastName" id="lname" disabled>
+                <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-z]{2,30}$/">
+                <span class="help-block error-message text-left invisible">Use last name in format <strong>e.g. Smith</strong>, with min. of 3 characters and first capital letter.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="Phone number" name="phone" id="phone" disabled>
+                <input type="hidden" class="regex" value="/^/" regex="/^[0-9+]{6,20}$/">
+                <span class="help-block error-message text-left invisible">Use phone number in format <strong>e.g. +421111222333</strong>, with min. of 6 characters and recomended country prefix.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <select class="form-control" default="User type" id="type" name="type">
+                  <option>User type</option>
+                  <option>customer</option>
+                  <option>manager</option>
+                  <option>employee</option>
+                </select>
+                <input type="hidden" class="regex" value="/^/" regex="/^/">
+                <span class="help-block error-message text-left invisible">One of the options has to be selected.</span>
+              </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 col-md-8 col-buffer-small-bottom">
+                  <button class="btn btn-block btn-standard btn-block text-standard btn-submit text-center text-small" type="button">Submit</button>
+                </div>
+                <div class="col-xs-12 col-md-4 col-buffer-small-bottom">
+                  <button class="btn btn-block btn-standard btn-block text-standard btn-clear text-center text-small" type="button">
+                    <span class="glyphicon glyphicon-small glyphicon-remove"></span>
+                  </button>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row row row-border-top row-buffer-top row-dark">
+        <div class="col-sm-12">
+          <h1 class="tex-large text-standard text-center">Register user</h1>
+        </div>
+      </div>
+      <div class="row row-buffer-bottom row-dark">
+        <div class="col-sm-6 col-sm-offset-3">
+          <p class="text-small text-highlight text-center"><small>Here you can register a new user.</small></p>
+        </div>
+      </div>
+
+      <div class="row row-buffer-bottom row-dark">
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
+          <form class="form-horizontal" id="form-register">
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="Email" name="email">
+                <input type="hidden" class="regex" value="/^/" regex="/^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/">
+                <span class="help-block error-message text-left invisible">Use email in format <strong>e.g. example@example.com</strong>.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="First name" name="firstName">
+                <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-z]{2,30}$/">
+                <span class="help-block error-message text-left invisible">Use first name in format <strong>e.g. John</strong>, with min. of 3 characters and first capital letter.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control" placeholder="Middle name" name="middleName">
+                <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-z]{2,30}$/">
+                <span class="help-block error-message text-left invisible">Use middle name in format <strong>e.g. Peter</strong>, with min. of 3 characters and first capital letter.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="Last name" name="lastName">
+                <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-z]{2,30}$/">
+                <span class="help-block error-message text-left invisible">Use last name in format <strong>e.g. Smith</strong>, with min. of 3 characters and first capital letter.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-md-2 col-xs-12">
+                    <button class="btn btn-standard btn-block text-standard btn-generate-password text-center text-small" type="button" targer="generated-password">
+                      <span class="glyphicon glyphicon-extrasmall glyphicon-refresh"></span>
+                    </button>
+                  </div>
+                  <div class="col-md-2 col-xs-12">
+                    <button class="btn btn-block btn-block btn-standard text-standard btn-copy text-center text-small" type="button" id="copy" targer="generated-password" disabled>
+                      <span class="glyphicon glyphicon-extrasmall glyphicon-copy"></span>
+                    </button>
+                    <input type="hidden" id="hiddenCopyText">
+                  </div>
+                  <div class="col-md-8 col-xs-12">
+                    <input type="text" class="form-control form-mandatory" placeholder="Password" name="password" id="generated-password" disabled>
+                    <input type="hidden" class="regex" value="/^/" regex="/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d_-]{8,30}$/">
+                    <span class="help-block error-message text-left invisible">Please generate new password.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <select class="form-control" default="User type" id="type" name="type">
+                  <option>User type</option>
+                  <option>customer</option>
+                  <option>manager</option>
+                  <option>employee</option>
+                </select>
+                <input type="hidden" class="regex" value="/^/" regex="/^/">
+                <span class="help-block error-message text-left invisible">One of the options has to be selected.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control form-mandatory" placeholder="Phone number" name="phone">
+                <input type="hidden" class="regex" value="/^/" regex="/^[0-9+]{6,20}$/">
+                <span class="help-block error-message text-left invisible">Use phone number in format <strong>e.g. +421111222333</strong>, with min. of 6 characters and recomended country prefix.</span>
+              </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 col-md-8 col-buffer-small-bottom">
+                  <button class="btn btn-block btn-standard btn-block text-standard btn-submit-register text-center text-small" type="button">Sign up</button>
+                </div>
+                <div class="col-xs-12 col-md-4 col-buffer-small-bottom">
+                  <button class="btn btn-block btn-standard btn-block text-standard btn-clear text-center text-small" id="register-form-clear" type="button">
+                    <span class="glyphicon glyphicon-small glyphicon-remove"></span>
+                  </button>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+      <div class="row row-buffer-large-top row-buffer-bottom row-dark row-border-top footer-section"></div>
+    </div>
+    <div id="response-modal"></div>
+    <button href="" id="gohome" class="route" resource="home"></button>
+  </body>
+</html>

@@ -49,3 +49,15 @@ function GetCompanyUrl(){
 function GetUpdateCompanyUrl(){
   return '../../Server/Responses/updateCompany.php';
 }
+
+function GetUsersUrl(){
+  return '../../Server/Responses/getEmployees.php';
+}
+
+function GetUserUrl(){
+  return '../../Server/Responses/getUser.php';
+}
+
+function GetChangeUserTypeUrl(){
+  return '../../Server/Responses/updateUserType.php';
+}

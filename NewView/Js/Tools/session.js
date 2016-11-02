@@ -16,6 +16,7 @@ function LoadSessionResponse(response){
   console.log("Response to the ajax request - Load session");
   console.log(response);
 
+  AdjustNavbar(response);
   AuthenticateUser(response);
   SaveToken(response);
 }
@@ -36,4 +37,24 @@ function EndSessionResponse(response){
 function SaveToken(userData){
   var token = userData.token;
   $('#token').val(token);
+}
+
+function AdjustNavbar(response){
+
+  if(response == null || response == 'undefined'){
+    throw "Session is null.";
+    return;
+  }
+
+  if(response.type == 'customer'){
+    return;
+  }
+
+  if(response.type == 'manager'){
+    AdjustNavbarForManager();
+  }
+
+  if(response.type == 'transporter'){
+    AdjustNavbarForEmployee();
+  }
 }

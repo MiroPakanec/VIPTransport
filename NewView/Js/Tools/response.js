@@ -40,6 +40,10 @@ function GetCompanyUpdateTitle(){
   return 'Company update';
 }
 
+function GetManageUserTitle(){
+  return 'Manage user type';
+}
+
 /*TEXT*/
 function GetLoginText(response){
   if(response == 0){
@@ -64,6 +68,23 @@ function GetRegisterText(response){
   }
   else if(response == 1){
     return 'Registration successful. Now you can log in';
+  }
+  else if(response == 2){
+    return 'We apologize, this email is already used by someone else.';
+  }
+  else if(response == -1){
+    return 'We are sorry, something went wrong...';
+  }
+
+  return "";
+}
+
+function GetRegisterByManagerText(response){
+  if(response == 0){
+    return "We apologize, user could not be registered.";
+  }
+  else if(response == 1){
+    return 'User was registered successfully successful.';
   }
   else if(response == 2){
     return 'We apologize, this email is already used by someone else.';
@@ -129,6 +150,20 @@ function GetCompanyUpdateText(response){
   }
   else if(response == 1){
     return 'Company was updated successfully.';
+  }
+  else if(response == -1){
+    return 'We are sorry, something went wrong...';
+  }
+
+  return "";
+}
+
+function GetManageUserText(response){
+  if(response == 0){
+    return 'We apologize, user type could not be updated.';
+  }
+  else if(response == 1){
+    return 'User type was updated successfully.';
   }
   else if(response == -1){
     return 'We are sorry, something went wrong...';

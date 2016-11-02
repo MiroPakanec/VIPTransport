@@ -1,5 +1,6 @@
-function GenerateTable(){
+function GenerateTable(type){
 
+  console.log(type);
   var viewport = GetViewPort();
   var tableHtml;
   switch(viewport){
@@ -21,7 +22,7 @@ default:
   }
 
   $('.table-responsive').html(tableHtml);
-  LoadOrders();
+  LoadUsers(type);
 }
 
 function GenerateTableBody(tableData){
@@ -80,13 +81,10 @@ function GenerateSmallTableHead(){
   var html =
   '<thead>' +
       '<tr>' +
-        '<th>Id</th>' +
-        '<th>Date</th>' +
-        '<th>From</th>' +
-        '<th>To</th>' +
-        '<th></th>' +
-        '<th></th>' +
-        '<th></th>' +
+      '<th class="col-xs-4 row-id">Email</th>' +
+      '<th class="col-xs-2">Name</th>' +
+      '<th class="col-xs-3">Surname</th>' +
+      '<th class="col-xs-1"></th>' +
       '</tr>' +
     '</thead>';
 
@@ -97,17 +95,11 @@ function GenerateLargeTableHead(){
   var html =
   '<thead>' +
       '<tr>' +
-        '<th>Id</th>' +
-        '<th>Date</th>' +
-        '<th>Hour</th>' +
-        '<th>From</th>' +
-        '<th>To</th>' +
-        '<th>Pasangers</th>' +
-        '<th>Payment</th>' +
-        '<th>Created</th>' +
-        '<th></th>' +
-        '<th></th>' +
-        '<th></th>' +
+        '<th class="col-xs-4 row-id">Email</th>' +
+        '<th class="col-xs-2">Name</th>' +
+        '<th class="col-xs-2">Surname</th>' +
+        '<th class="col-xs-3">Phone</th>' +
+        '<th class="col-xs-1"></th>' +
       '</tr>' +
     '</thead>';
 
@@ -117,20 +109,15 @@ function GenerateLargeTableHead(){
 function GenerateLargeTableBody(tableData){
 
   var buttonsHtml = GenerateTableButtons();
-  throw "Date/time not imeplemented.";
   var html = '';
   for (index in tableData){
 
     html +=
       '<tr>' +
-        '<td class="row-id">'+tableData[index].id+'</td>' +
-        '<td>20th October 2016</td>' +
-        '<td>20:00</td>' +
-        '<td>'+tableData[index].from+'</td>' +
-        '<td>'+tableData[index].to+'</td>' +
-        '<td>'+tableData[index].pasangers+'</td>' +
-        '<td>'+tableData[index].payment+'</td>' +
-        '<td>'+tableData[index].creationDate+'</td>' +
+        '<td class="row-id">'+tableData[index].email+'</td>' +
+        '<td>'+tableData[index].fname+'</td>' +
+        '<td>'+tableData[index].lname+'</td>' +
+        '<td>'+tableData[index].phone+'</td>' +
         buttonsHtml +
       '</tr>';
   }
@@ -141,16 +128,14 @@ function GenerateLargeTableBody(tableData){
 function GenerateSmallTableBody(tableData){
 
   var buttonsHtml = GenerateTableButtons();
-  throw "Date/time not imeplemented.";
   var html = '';
   for (index in tableData){
 
     html +=
       '<tr>' +
-        '<td class="col-xs-1 row-id">'+tableData[index].id+'</td>' +
-        '<td class="col-xs-3">20th October 2016</td>' +
-        '<td class="col-xs-4">'+tableData[index].from+'</td>' +
-        '<td class="col-xs-4">'+tableData[index].to+'</td>' +
+        '<td class="row-id">'+tableData[index].email+'</td>' +
+        '<td>'+tableData[index].fname+'</td>' +
+        '<td>'+tableData[index].lname+'</td>' +
         buttonsHtml +
       '</tr>';
   }
@@ -162,18 +147,8 @@ function GenerateTableButtons(){
 
   var html =
   '<td>' +
-    '<button class="btn-table btn-table-remove route-data" resource-data="data-delete-order" data-toggle="modal" data-target="#confirm-delete" type="button">' +
-      '<span class="glyphicon glyphicon-medium glyphicon-remove"></span>' +
-    '</button>' +
-  '</td>' +
-  '<td>' +
-    '<button class="btn-table btn-table-expand route" resource="order" type="button">' +
-      '<span class="glyphicon glyphicon-medium glyphicon-fullscreen"></span>' +
-    '</button>' +
-  '</td>' +
-  '<td>' +
-    '<button class="btn-table btn-table-confirm route" resource="order-confirm" type="button">' +
-      '<span class="glyphicon glyphicon-medium glyphicon-ok"></span>' +
+    '<button class="btn-table btn-table-edit route" resource="order" type="button">' +
+      '<span class="glyphicon glyphicon-medium glyphicon-pencil"></span>' +
     '</button>' +
   '</td>';
 
