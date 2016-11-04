@@ -65,7 +65,7 @@
                 <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                   <input class="form-control form-mandatory" size="16" type="text" value="" readonly id="date" name="Date">
                   <!--<span class="input-group-addon"><span class="glyphicon glyphicon-small glyphicon-remove"></span></span>-->
-                  <span class="input-group-addon"><span class="glyphicon glyphicon-small glyphicon-calendar"></span></span>
+                  <span class="input-group-addon"><span class="glyphicon glyphicon-small glyphicon-calendar" title="Open calendar"></span></span>
                   <input type="hidden" class="regex" value="/^/" regex="/^/">
                 </div>
                 <input type="hidden" id="dtp_input2" value="" /><br/>
@@ -76,7 +76,7 @@
                 <div class="input-group date form_time" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
                   <input class="form-control form-mandatory" size="16" type="text" value="" id="time" readonly name="Time">
                   <!--<span class="input-group-addon"><span class="glyphicon glyphicon-small glyphicon-remove"></span></span>-->
-                  <span class="input-group-addon"><span class="glyphicon glyphicon-small glyphicon-time"></span></span>
+                  <span class="input-group-addon"><span class="glyphicon glyphicon-small glyphicon-time" title="Open clock"></span></span>
                   <input type="hidden" class="regex" value="/^/" regex="/^/">
                 </div>
           			<input type="hidden" id="dtp_input3" value="" /><br/>
@@ -152,12 +152,12 @@
                   <button class="btn btn-block btn-standard btn-block text-standard btn-submit text-center text-small" type="button">Submit order</button>
                 </div>
                 <div class="col-xs-12 col-md-2 col-buffer-small-bottom">
-                  <button class="btn btn-block btn-standard btn-block text-standard btn-clear text-center text-small" type="button">
+                  <button class="btn btn-block btn-standard btn-block text-standard btn-clear text-center text-small" type="button" title="Clear form">
                     <span class="glyphicon glyphicon-small glyphicon-remove"></span>
                   </button>
                 </div>
                 <div class="col-xs-12 col-md-2 col-buffer-small-bottom">
-                  <a class="btn btn-block btn-standard btn-block text-standard text-center text-small route" resource="myorders" type="button">
+                  <a class="btn btn-block btn-standard btn-block text-standard text-center text-small route" resource="myorders" type="button" title="View all orders">
                     <span class="glyphicon glyphicon-small glyphicon-th-list"></span>
                   </a>
                 </div>

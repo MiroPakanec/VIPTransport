@@ -191,6 +191,14 @@ function GetDateFromPHP(dateString){
   return new Date(year + '-' + month + '-' + day + ' ' + hour + ":" + minute + ":" + second);
 }
 
+function GetTimeFromDatetimeObject(datetime){
+
+  var minutes = RepareTime(datetime.getMinutes());
+  var hours = RepareTime(datetime.getHours());
+
+  return hours + ":" + minutes;
+}
+
 function GetDateString(date){
 
   var monthNames = [
@@ -226,6 +234,15 @@ function RepareTimeZero(string){
   }
 
   return string;
+}
+
+function RepareTime(time){
+
+    if(time < 10){
+      return "0"+time;
+    }
+
+    return time;
 }
 
 function GetFormData(form){

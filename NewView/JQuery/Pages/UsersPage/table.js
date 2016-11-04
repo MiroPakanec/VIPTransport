@@ -147,7 +147,7 @@ function GenerateTableButtons(){
 
   var html =
   '<td class="col-menu">' +
-    '<a href="#manage-user-section" class="btn-table btn-table-edit" type="button">' +
+    '<a href="#manage-user-section" class="btn-table btn-table-edit" type="button" title="Edit user">' +
       '<span class="glyphicon glyphicon-medium glyphicon-pencil"></span>' +
     '</a>' +
   '</td>';

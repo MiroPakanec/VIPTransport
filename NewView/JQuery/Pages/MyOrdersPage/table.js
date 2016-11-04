@@ -117,15 +117,19 @@ function GenerateLargeTableHead(){
 function GenerateLargeTableBody(tableData){
 
   var buttonsHtml = GenerateTableButtons();
-  throw "Date/time not imeplemented.";
+
   var html = '';
   for (index in tableData){
+
+    var datetime = GetDateFromPHP(tableData[index].date);
+    var time = GetTimeFromDatetimeObject(datetime);
+    var date = GetDateString(datetime);
 
     html +=
       '<tr>' +
         '<td class="row-id">'+tableData[index].id+'</td>' +
-        '<td>20th October 2016</td>' +
-        '<td>20:00</td>' +
+        '<td>'+date+'</td>' +
+        '<td>'+time+'</td>' +
         '<td>'+tableData[index].from+'</td>' +
         '<td>'+tableData[index].to+'</td>' +
         '<td>'+tableData[index].pasangers+'</td>' +
@@ -162,17 +166,17 @@ function GenerateTableButtons(){
 
   var html =
   '<td>' +
-    '<button class="btn-table btn-table-remove route-data" resource-data="data-delete-order" data-toggle="modal" data-target="#confirm-delete" type="button">' +
+    '<button class="btn-table btn-table-remove route-data" resource-data="data-delete-order" data-toggle="modal" data-target="#confirm-delete" type="button" title="Delete order">' +
       '<span class="glyphicon glyphicon-medium glyphicon-remove"></span>' +
     '</button>' +
   '</td>' +
   '<td>' +
-    '<button class="btn-table btn-table-expand route" resource="order" type="button">' +
+    '<button class="btn-table btn-table-expand route" resource="order" type="button" title="View order details">' +
       '<span class="glyphicon glyphicon-medium glyphicon-fullscreen"></span>' +
     '</button>' +
   '</td>' +
   '<td>' +
-    '<button class="btn-table btn-table-confirm route" resource="order-confirm" type="button">' +
+    '<button class="btn-table btn-table-confirm route" resource="order-confirm" type="button" title="Confirm order">' +
       '<span class="glyphicon glyphicon-medium glyphicon-ok"></span>' +
     '</button>' +
   '</td>';
