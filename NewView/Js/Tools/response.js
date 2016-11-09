@@ -44,6 +44,10 @@ function GetManageUserTitle(){
   return 'Manage user type';
 }
 
+function GetUpdateCarTitle(){
+  return 'Car update';
+}
+
 /*TEXT*/
 function GetLoginText(response){
   if(response == 0){
@@ -164,6 +168,20 @@ function GetManageUserText(response){
   }
   else if(response == 1){
     return 'User type was updated successfully.';
+  }
+  else if(response == -1){
+    return 'We are sorry, something went wrong...';
+  }
+
+  return "";
+}
+
+function GetUpdateCarText(response){
+  if(response == 0){
+    return 'We apologize, car could not be updated.';
+  }
+  else if(response == 1){
+    return 'Car was updated successfully.';
   }
   else if(response == -1){
     return 'We are sorry, something went wrong...';

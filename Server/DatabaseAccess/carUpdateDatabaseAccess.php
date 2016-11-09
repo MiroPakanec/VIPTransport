@@ -95,7 +95,7 @@
       }
       catch(Exception $e){
 
-        return $e;
+        return -1;
       }
     }
 

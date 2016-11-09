@@ -18,6 +18,11 @@ function ResetForm(form){
   })
 }
 
+function FindClosestParentWithClass(element, className){
+  var parent = $(element).closest("." + className);
+  return parent; 
+}
+
 /* LOCATE ELEMENT ID */
 function GetElementId(element){
   var idText = $(element).attr('id');

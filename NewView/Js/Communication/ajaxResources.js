@@ -61,3 +61,11 @@ function GetUserUrl(){
 function GetChangeUserTypeUrl(){
   return '../../Server/Responses/updateUserType.php';
 }
+
+function GetCarsUrl(){
+  return '../../Server/Responses/getCars.php';
+}
+
+function GetCarUpdateUrl(){
+  return '../../Server/Responses/updateCar.php';
+}

@@ -180,7 +180,7 @@ function getCars(handleData, spz){
 
 function updateCar(handleData, data){
 
-
+  console.log(data);
   $.ajax({
       type: 'POST',
       url: '../../Server/Responses/updateCar.php',

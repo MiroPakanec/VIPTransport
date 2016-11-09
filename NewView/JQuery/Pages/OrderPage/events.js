@@ -6,6 +6,9 @@ $(function(){
   });
   /*LOGIN BLUR*/
   $(document).on('blur', '.form-control', function(){
+    if($(this).hasClass('form-blur-skip')){
+      return;
+    }
     ValidateElement($(this));
   });
   /*CLEAR BUTTON*/

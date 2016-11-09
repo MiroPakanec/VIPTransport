@@ -24,5 +24,4 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/carContr
 
     echo $response;
   }
-
 ?>

@@ -1,6 +1,5 @@
 function GenerateTable(type){
 
-  console.log(type);
   var viewport = GetViewPort();
   var tableHtml;
   switch(viewport){

@@ -28,11 +28,13 @@ class CarController{
 
       $carUpdateDatabaseAccessObject = new CarUpdateDatabaseAccess();
       $carInsertDatabaseAccessObject = new CarInsertDatabaseAccess();
+      $validationControllerObject = new ValidationController();
+
       $carModelObject = new CarModel($spz, $brand, $type, $seats, $state, $emissionCheck, $stk, $mandatoryInsurance,
                                     $accidentInsurance, $mealige, $relativeMealige, $services, $stickers);
 
       $carModelObject = $this->setDefaultValues($carModelObject);
-      if($this->validateCar($carModelObject, true) == 0)
+      /*if($this->validateCar($carModelObject, true) == 0)
         return 0;
 
       if($action == 'update')
@@ -46,10 +48,26 @@ class CarController{
       }
       else
         return 0;
+    */
+    //NEW
+    $this->startSession();
+    if($_SESSION['type'] != 'manager')
+      return 0;
+
+    if($validationControllerObject->validateCar($carModelObject) != 0)
+      return 0;
+
+    $update = $carUpdateDatabaseAccessObject->updateCar($carModelObject);
+    if($update == 1) {
+      return 1;
+    }
+
+    return $carInsertDatabaseAccessObject->insertCar($carModelObject);
   }
 
   public function deleteCar($spz){
 
+    $this->startSession();
     if($_SESSION['type'] != 'manager')
       return 0;
 

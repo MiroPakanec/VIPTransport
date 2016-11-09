@@ -39,7 +39,7 @@
       catch(Exception $e){
 
         $dbc->rollback();
-        return 0;
+        return -1;
       }
     }
 
@@ -86,7 +86,7 @@
       }
       catch(Exception $e){
 
-        return $e;
+        return -1;
       }
     }
 

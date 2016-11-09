@@ -103,3 +103,100 @@ function GenerateModal(targetId, title, text){
 
   $('#' + targetId).html(html);
 }
+
+function GenerateElementCarOption(option){
+
+  var html='<option>'+option+'</option>';
+  $('.car-options').append(html);
+}
+
+function GenerateSticker(countryCode, dateString){
+
+  var html =
+  '<div class="row row-sticker row-buffer-top border border-standard row-margin-top row-dark">' +
+    '<div class="form-group">' +
+      '<div class="col-xs-3 col-xs-offset-1">' +
+        '<span class="text-standard text-center">Country code</span>' +
+      '</div>' +
+      '<div class="col-xs-7 col-xs-offset-0 col-buffer-bottom">' +
+        '<input type="text" class="form-control form-mandatory" name="country" value="'+countryCode+'">' +
+        '<input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1,3}$/">' +
+        '<span class="help-block error-message text-left invisible">Please use only capital lettern, <strong>e.g. SK</strong>, with max. of 3 characters.</span>' +
+      '</div>' +
+    '</div>' +
+    '<div class="form-group">' +
+      '<div class="col-xs-3 col-xs-offset-1">' +
+        '<span class="text-standard text-center">Expiration date</span>' +
+      '</div>' +
+      '<div class="col-xs-7 col-xs-offset-0">' +
+        '<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">' +
+          '<input class="form-control form-blur-skip form-mandatory" size="16" type="text" value="'+dateString+'" readonly name="expirationDate">' +
+          '<!--<span class="input-group-addon"><span class="glyphicon glyphicon-small glyphicon-remove"></span></span>-->' +
+          '<span class="input-group-addon"><span class="glyphicon glyphicon-small glyphicon-calendar" title="Open calendar"></span></span>' +
+          '<input type="hidden" class="regex" value="/^/" regex="/^/">' +
+        '</div>' +
+        '<input type="hidden" id="dtp_input2" value="" /><br/>' +
+      '</div>' +
+    '</div>' +
+    '<div class="form-group">' +
+      '<div class="col-xs-3 col-xs-offset-8 col-buffer-small-bottom">' +
+        '<button class="btn btn-block btn-standard btn-block text-standard btn-remove-sticker text-center text-small" type="button" title="Remove sticker">' +
+          '<span class="glyphicon glyphicon-extrasmall glyphicon-minus"></span>' +
+        '</button>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+
+  $('.stickers-section').append(html);
+}
+
+function GenerateService(issue, mealige, dateString){
+
+  var issueRegex = /^[A-Za-z0-9-_.,\s]{1,30}$/;
+
+  var html =
+  '<div class="row row-service row-buffer-top border border-standard row-margin-top row-light">' +
+    '<div class="form-group">' +
+      '<div class="col-xs-3 col-xs-offset-1">' +
+        '<span class="text-standard text-center">Issue</span>' +
+      '</div>' +
+      '<div class="col-xs-7 col-xs-offset-0 col-buffer-bottom">' +
+        '<input type="text" class="form-control form-mandatory" name="issue" value="'+issue+'">' +
+        '<input type="hidden" class="regex" value="/^/" regex="'+issueRegex+'">' +
+        '<span class="help-block error-message text-left invisible">Please use text, <strong>e.g. Issue example - small desc. </strong>, with max. of 30 characters.</span>' +
+      '</div>' +
+    '</div>' +
+    '<div class="form-group">' +
+      '<div class="col-xs-3 col-xs-offset-1">' +
+        '<span class="text-standard text-center">Service date</span>' +
+      '</div>' +
+      '<div class="col-xs-7 col-xs-offset-0">' +
+        '<div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">' +
+          '<input class="form-control form-blur-skip form-mandatory" size="16" type="text" value="'+dateString+'" readonly name="repareDate">' +
+          '<span class="input-group-addon"><span class="glyphicon glyphicon-small glyphicon-calendar" title="Open calendar"></span></span>' +
+          '<input type="hidden" class="regex" value="/^/" regex="/^/">' +
+        '</div>' +
+        '<input type="hidden" id="dtp_input2" value="" /><br/>' +
+      '</div>' +
+    '</div>' +
+    '<div class="form-group">' +
+      '<div class="col-xs-3 col-xs-offset-1">' +
+        '<span class="text-standard text-center">Mealige</span>' +
+      '</div>' +
+      '<div class="col-xs-7 col-xs-offset-0">' +
+        '<input type="text" class="form-control form-mandatory" name="mealige" value="'+mealige+'">' +
+        '<input type="hidden" class="regex" value="/^/" regex="/^[0-9]{1,6}$/">' +
+        '<span class="help-block error-message text-left invisible">Please use only whole numbers <strong>e.g. 1000</strong>, with max. amount 1 000 000 (km).</span>' +
+      '</div>' +
+    '</div>' +
+    '<div class="form-group">' +
+      '<div class="col-xs-3 col-xs-offset-8 col-buffer-small-bottom">' +
+        '<button class="btn btn-block btn-standard btn-block text-standard btn-remove-service text-center text-small" type="button" title="Remove sticker">' +
+          '<span class="glyphicon glyphicon-extrasmall glyphicon-minus"></span>' +
+        '</button>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+
+  $('.services-section').append(html);
+}

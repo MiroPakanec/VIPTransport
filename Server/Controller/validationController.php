@@ -118,7 +118,6 @@
     public function validateCar($carModelObject){
 
       $errorCounter = 0;
-
       //if(!empty($carModelObject->getSpz()))
         $errorCounter += $this->validateInput($carModelObject->getSpz(), '^[a-zA-Z0-9]+$^', 8, 8, false);
       //if(!empty($carModelObject->getBrand()))
@@ -127,6 +126,7 @@
         $errorCounter += $this->validateInput($carModelObject->getType(), '^[a-zA-Z0-9-]+$^', 50, 3, false);
       //if(!empty($carModelObject->getSeats()))
         $errorCounter += $this->validateIntegerInput($carModelObject->getSeats(), 50, 2, false);
+
       if(!empty($carModelObject->getEmissionCheck()))
         $errorCounter += $this->validateDateString($carModelObject->getEmissionCheck(), 'Y-m-d');
       if(!empty($carModelObject->getStk()))

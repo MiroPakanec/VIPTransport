@@ -16,6 +16,7 @@
   ],
   "inner-data" : [
     {"data-delete-order" : "Server/Responses/deleteOrder.php"},
+    {"data-delete-car" : "Server/Responses/deleteCar.php"},
     {"data-expand-order" : "Server/Responses/getTransports.php"}
   ],
   "image" : [

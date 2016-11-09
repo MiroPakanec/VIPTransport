@@ -21,7 +21,7 @@ default:
   }
 
   $('.table-responsive').html(tableHtml);
-  LoadOrders();
+  LoadCars();
 }
 
 function GenerateTableBody(tableData){
@@ -46,8 +46,12 @@ default:
     throw "Unable to detect screen viewport.";
   }
 
-  $('tbody').html(tableBodyHtml);
+  $('#tbody-cars').html(tableBodyHtml);
   LoadRoutesJson();
+}
+
+function GenerateLargeTable(){
+  throw "unimplemented excetion";
 }
 
 function GenerateSmallTable(){
@@ -56,7 +60,7 @@ function GenerateSmallTable(){
   var html =
     '<table class="table table-hover table-bordered table-center table-dark table-text-extrasmall table-sm">' +
         tableHead +
-        '<tbody>' +
+        '<tbody id="tbody-cars">' +
         '</tbody>' +
     '</table>';
 
@@ -69,7 +73,7 @@ function GenerateLargeTable(){
   var html =
   '<table class="table table-hover table-bordered table-center table-dark table-text-extrasmall">' +
       tableHead +
-      '<tbody>' +
+      '<tbody id="tbody-cars">' +
       '</tbody>' +
   '</table>';
 
@@ -80,13 +84,11 @@ function GenerateSmallTableHead(){
   var html =
   '<thead>' +
       '<tr>' +
-        '<th>Id</th>' +
-        '<th>Date</th>' +
-        '<th>From</th>' +
-        '<th>To</th>' +
-        '<th></th>' +
-        '<th></th>' +
-        '<th></th>' +
+      '<th class="col-xs-3 row-id">Spz</th>' +
+      '<th class="col-xs-3">Type</th>' +
+      '<th class="col-xs-4">State</th>' +
+      '<th class="col-xs-1"></th>' +
+      '<th class="col-xs-1"></th>' +
       '</tr>' +
     '</thead>';
 
@@ -97,49 +99,18 @@ function GenerateLargeTableHead(){
   var html =
   '<thead>' +
       '<tr>' +
-        '<th>Id</th>' +
-        '<th>Date</th>' +
-        '<th>Hour</th>' +
-        '<th>From</th>' +
-        '<th>To</th>' +
-        '<th>Pasangers</th>' +
-        '<th>Payment</th>' +
-        '<th>Created</th>' +
-        '<th></th>' +
-        '<th></th>' +
-        '<th></th>' +
+      '<th class="col-xs-2 row-id">Spz</th>' +
+      '<th class="col-xs-2">Brand</th>' +
+      '<th class="col-xs-2">Type</th>' +
+      '<th class="col-xs-1">Seats</th>' +
+      '<th class="col-xs-1">Mealige</th>' +
+      '<th class="col-xs-2">State</th>' +
+      '<th class="col-xs-1"></th>' +
+      '<th class="col-xs-1"></th>' +
       '</tr>' +
     '</thead>';
 
     return html;
-}
-
-function GenerateLargeTableBody(tableData){
-
-  var buttonsHtml = GenerateTableButtons();
-
-  var html = '';
-  for (index in tableData){
-
-    var datetime = GetDateFromPHP(tableData[index].date);
-    var time = GetTimeFromDatetimeObject(datetime);
-    var date = GetDateString(datetime);
-
-    html +=
-      '<tr>' +
-        '<td class="row-id">'+tableData[index].id+'</td>' +
-        '<td>'+date+'</td>' +
-        '<td>'+time+'</td>' +
-        '<td>'+tableData[index].from+'</td>' +
-        '<td>'+tableData[index].to+'</td>' +
-        '<td>'+tableData[index].pasangers+'</td>' +
-        '<td>'+tableData[index].payment+'</td>' +
-        '<td>'+tableData[index].creationDate+'</td>' +
-        buttonsHtml +
-      '</tr>';
-  }
-
-  return html;
 }
 
 function GenerateSmallTableBody(tableData){
@@ -148,15 +119,32 @@ function GenerateSmallTableBody(tableData){
   var html = '';
   for (index in tableData){
 
-    var datetime = GetDateFromPHP(tableData[index].date);
-    var date = GetDateString(datetime);
+    html +=
+      '<tr>' +
+        '<td class="row-id">'+tableData[index].Spz+'</td>' +
+        '<td>'+tableData[index].Type+'</td>' +
+        '<td>'+tableData[index].State+'</td>' +
+        buttonsHtml +
+      '</tr>';
+  }
+
+  return html;
+}
+
+function GenerateLargeTableBody(tableData){
+
+  var buttonsHtml = GenerateTableButtons();
+  var html = '';
+  for (index in tableData){
 
     html +=
       '<tr>' +
-        '<td class="col-xs-1 row-id">'+tableData[index].id+'</td>' +
-        '<td class="col-xs-3">'+date+'</td>' +
-        '<td class="col-xs-4">'+tableData[index].from+'</td>' +
-        '<td class="col-xs-4">'+tableData[index].to+'</td>' +
+        '<td class="row-id">'+tableData[index].Spz+'</td>' +
+        '<td>'+tableData[index].Brand+'</td>' +
+        '<td>'+tableData[index].Type+'</td>' +
+        '<td>'+tableData[index].Seats+'</td>' +
+        '<td>'+tableData[index].Mealige+'</td>' +
+        '<td>'+tableData[index].State+'</td>' +
         buttonsHtml +
       '</tr>';
   }
@@ -168,19 +156,14 @@ function GenerateTableButtons(){
 
   var html =
   '<td>' +
-    '<button class="btn-table btn-table-remove route-data" resource-data="data-delete-order" data-toggle="modal" data-target="#confirm-delete" type="button" title="Delete order">' +
+    '<button class="btn-table btn-table-remove route-data" resource-data="data-delete-car" data-toggle="modal" data-target="#confirm-delete" type="button" title="Delete car">' +
       '<span class="glyphicon glyphicon-medium glyphicon-remove"></span>' +
     '</button>' +
   '</td>' +
-  '<td>' +
-    '<button class="btn-table btn-table-expand route" resource="order" type="button" title="View order details">' +
+  '<td class="col-menu">' +
+    '<a href="#manage-car-section" class="btn-table btn-table-expand" type="button" title="View car details">' +
       '<span class="glyphicon glyphicon-medium glyphicon-fullscreen"></span>' +
-    '</button>' +
-  '</td>' +
-  '<td>' +
-    '<button class="btn-table btn-table-confirm route" resource="order-confirm" type="button" title="Confirm order">' +
-      '<span class="glyphicon glyphicon-medium glyphicon-ok"></span>' +
-    '</button>' +
+    '</a>' +
   '</td>';
 
   return html;
