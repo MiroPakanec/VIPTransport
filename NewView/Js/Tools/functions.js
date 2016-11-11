@@ -20,7 +20,16 @@ function ResetForm(form){
 
 function FindClosestParentWithClass(element, className){
   var parent = $(element).closest("." + className);
-  return parent; 
+  return parent;
+}
+
+function FillFormData(form, object){
+
+  $(form).find('[name]').each(function(){
+
+    var name = $(this).attr('name');
+    $(this).val(object[name]);
+  });
 }
 
 /* LOCATE ELEMENT ID */
@@ -38,7 +47,7 @@ function GetElementValue(element){
   if(IsOfTypeInput(element) || IsOfTypeSelect(element)){
     return $(element).val();
   }
-  else if(IsOfTypeDiv(element)){
+  else if(IsOfTypeDiv(element) || IsOfTypeTextArea(element)){
     return $(element).html();
   }
   else{
@@ -51,7 +60,7 @@ function SetElementValue(element, value){
   if(IsOfTypeInput(element) || IsOfTypeSelect(element)){
     $(element).val(value);
   }
-  else if(IsOfTypeDiv(element)){
+  else if(IsOfTypeDiv(element) || IsOfTypeTextArea(element)){
     $(element).html(value);
   }
   else{
@@ -119,6 +128,16 @@ function IsOfTypeSelect(element){
   }
 }
 
+function IsOfTypeTextArea(element){
+
+  if($(element).is("textarea")){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
 function IsEmpty(element){
   if($(element).val().length <= 0 && $(element).html().length <= 0){
     return true;
@@ -178,6 +197,18 @@ function SelectOption(element){
 
   var value = $(element).val();
   $(element).next().val(value);
+}
+
+function GetDayFromDate(dateString){
+
+  var day = dateString.split("/")[0];
+  return day;
+}
+
+function GetDayFromDateSpecified(dateString, splitter, index){
+
+  var day = dateString.split(splitter)[index];
+  return day;
 }
 
 function GetDateFromPHP(dateString){

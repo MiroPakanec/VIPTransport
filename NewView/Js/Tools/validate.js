@@ -100,17 +100,26 @@ function GetRegex(element){
 }
 
 function ShowRedOutline(element){
+  $(element).parents('.form-group').removeClass('has-warning');
   $(element).parents('.form-group').removeClass('has-success');
   $(element).parents('.form-group').addClass('has-error');
 }
 
 function ShowGreenOutline(element){
+  $(element).parents('.form-group').removeClass('has-warning');
   $(element).parents('.form-group').removeClass('has-error');
   $(element).parents('.form-group').addClass('has-success');
 }
 
+function ShowYellowOutline(element){
+  $(element).parents('.form-group').removeClass('has-error');
+  $(element).parents('.form-group').removeClass('has-success');
+  $(element).parents('.form-group').addClass('has-warning');
+}
+
 function HideOutline(element){
   $(element).parents('.form-group').removeClass('has-error');
+  $(element).parents('.form-group').removeClass('has-warning');
   $(element).parents('.form-group').removeClass('has-success');
 }
 

@@ -41,8 +41,10 @@
         $existValidationMessage =  $this->validateOrderSubmitInputExists($routeModelObject->getOrderId(),
                                                                          $routeModelObject->getTransporterEmail(),
                                                                          $routeModelObject->getCarSpz(), $action);
-        if($existValidationMessage != 1)
-          return $this->getSubmitOrderJson(0, $existValidationMessage, '');
+
+        //--THIS HAS BEEN COMMENTED OUT--
+        //if($existValidationMessage != 1)
+          //return $this->getSubmitOrderJson(0, $existValidationMessage, '');
 
         //validate countryCodes
         $carControllerObject = new CarController();
@@ -50,7 +52,6 @@
                                                                                     $routeModelObject->getCountries());
 
         if($action == 'update'){
-
           $orderRouteUpdateDatabaseAccessObject = new OrderRouteUpdateDatabaseAccess();
           $confirmStatusCode = $orderRouteUpdateDatabaseAccessObject->updateRoute($routeModelObject);
         }

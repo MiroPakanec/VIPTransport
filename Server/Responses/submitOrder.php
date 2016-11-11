@@ -1,6 +1,8 @@
 <?php
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/VIPTransport/Server/Controller/orderController.php';
+header('Content-Type: text/javascript');
+
 
 if(isset($_POST['orderId'], $_POST['transporter'], $_POST['car'], $_POST['action'])){
 

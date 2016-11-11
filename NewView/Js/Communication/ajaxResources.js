@@ -69,3 +69,11 @@ function GetCarsUrl(){
 function GetCarUpdateUrl(){
   return '../../Server/Responses/updateCar.php';
 }
+
+function GetRoutesUrl(){
+  return '../../Server/Responses/getRoutes.php';
+}
+
+function GetConfirmOrderUrl(){
+  return '../../Server/Responses/submitOrder.php';
+}

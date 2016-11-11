@@ -121,7 +121,8 @@ class CarController{
     else
       $warningMessage = 'All highway stickers are up to date.';
 
-    return $warningMessage;
+    //return $warningMessage;
+    return $stickerMessage;
   }
 
   private function startSession(){

@@ -97,10 +97,3 @@ function VerifyNewOrderResponse(text){
     ResetForm(form);
   }
 }
-
-function GetIdFromUrl(){
-  var url = window.location.href;
-  var urlParams = URLToArray(url);
-  var id = urlParams["id"];
-  return id;
-}

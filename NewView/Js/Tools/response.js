@@ -48,6 +48,10 @@ function GetUpdateCarTitle(){
   return 'Car update';
 }
 
+function GetSubmitOrderTitle(){
+  return 'Schedule transport';
+}
+
 /*TEXT*/
 function GetLoginText(response){
   if(response == 0){
@@ -188,4 +192,31 @@ function GetUpdateCarText(response){
   }
 
   return "";
+}
+
+function GetSubmitOrderText(response){
+
+  var status = response.status;
+  var warning = response.warning;
+  var statusMessage = "";
+  var warningMessage = "";
+
+  if(status == 0){
+    return 'We apologize, scheduled transport could not be confirmed/updated.';
+  }
+  else if(status == 1){
+    statusMessage = 'Scheduled transport has been confirmed/updated successfully.';
+  }
+  else if(status == -1){
+    return 'We are sorry, something went wrong...';
+  }
+
+  if(warning.length <= 0){
+    warningMessage = "All highway stickers necessary for this journey are up to date.";
+  }
+  else{
+    warningMessage = "You are missing some highway stickers. Counry codes: " + warning;
+  }
+
+  return statusMessage + '\n' + warningMessage;
 }

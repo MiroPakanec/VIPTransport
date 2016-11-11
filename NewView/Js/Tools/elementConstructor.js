@@ -104,10 +104,10 @@ function GenerateModal(targetId, title, text){
   $('#' + targetId).html(html);
 }
 
-function GenerateElementCarOption(option){
+function GenerateElementOption(option, element){
 
   var html='<option>'+option+'</option>';
-  $('.car-options').append(html);
+  $(element).append(html);
 }
 
 function GenerateSticker(countryCode, dateString){
@@ -199,4 +199,15 @@ function GenerateService(issue, mealige, dateString){
   '</div>';
 
   $('.services-section').append(html);
+}
+
+function GenerateElementCountryOption(name, code, element){
+  var html =
+  '<div class="row">' +
+    '<div class="col-xs-12">' +
+      '<button class="btn btn-block btn-standard btn-countrycode btn-block text-standard text-center text-extrasmall" countryCode="'+code+'" type="button">'+name+'</button>' +
+    '</div>' +
+  '</div>';
+
+  $(element).append(html);
 }

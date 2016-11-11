@@ -7,7 +7,7 @@ function FillFormWithCar(response){
   $("[name='type']").val(car.Type);
   $("[name='seats']").val(car.Seats);
 
-  if(car.State == 'ready'){
+  if(car.State == 'Ready'){
     $("[name='state']").val('Ready');
   }
   else{
@@ -38,7 +38,7 @@ function GenerateCarOptios(response){
   $('.car-options').html('');
   for (index in response){
 
-    GenerateElementCarOption(response[index].Spz);
+    GenerateElementOption(response[index].Spz, '.car-options');
   }
 }
 

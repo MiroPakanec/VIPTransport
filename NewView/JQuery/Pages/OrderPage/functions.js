@@ -10,6 +10,13 @@ function GetFormNames(){
   return data;
 }
 
+function GetIdFromUrl(){
+  var url = window.location.href;
+  var urlParams = URLToArray(url);
+  var id = urlParams["id"];
+  return id;
+}
+
 function ManageOrderData(data){
 
   var id = GetIdFromUrl();

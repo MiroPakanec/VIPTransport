@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!--Bootstrap -->
+    <link rel="stylesheet" href="../Libraries/Bootstrap/bootstrap-3.3.6-dist/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- style sheets -->
+    <link rel="stylesheet" type="text/css" href="../Css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="../Css/tools.css">
+    <link rel="stylesheet" type="text/css" href="../Css/config.css">
+    <link rel="stylesheet" type="text/css" href="../Css/OrderConfirmPage/styles.css">
+
+    <!-- JQuery -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="../Libraries/Bootstrap/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+
+    <!-- DATETIME PICKER RESOURCES -->
+    <link href="../Libraries/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.css" rel="stylesheet" media="screen">
+
+    <title>VIP Transport | Confirm order</title>
+  </head>
+  <body>
+    <div class="navbar-section"></div>
+    <div class="container-fluid container-light">
+      <div class="row row-buffer-extralarge-top row-buffer-bottom row-border-bottom">
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main2-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main3-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main1-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+        <div class="col-xs-3 col-nopadding">
+          <img resource-img="main4-img" class="route-img img-responsive img-fluid img-config" alt="Responsive image"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="tex-large text-standard text-center">Confirm order</h1>
+        </div>
+      </div>
+      <div class="row row-buffer-bottom">
+        <div class="col-sm-6 col-sm-offset-3">
+          <p class="text-small text-highlight text-center"><small>Confirm customers order or adjust it to your needs.</small></p>
+        </div>
+      </div>
+
+      <div class="row row-buffer-bottom">
+        <div class="col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4">
+          <form class="form-horizontal form-id">
+            <!-- ID Dropdown -->
+            <div class="form-group">
+              <div class="col-sm-12">
+                <select class="form-control generated-oprions" id="options-id" default="ID" name="orderId">
+                  <option>ID</option>
+                </select>
+                <input type="hidden" class="regex" value="/^/" regex="/^/">
+                <span class="help-block error-message text-left invisible">One of the options has to be selected.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-12 col-md-4">
+                <span class="text-standard text-center">Scheduled transport ID</span>
+              </div>
+              <div class="col-xs-12 col-md-8">
+                <input type="text" class="form-control form-mandatory" id="route-id" name="routeId" disabled>
+                <input type="hidden" class="regex" value="/^/" regex="/^/">
+                <span class="help-block error-message text-left invisible"></span>
+              </div>
+            </div>
+          </form>
+          <form class="form-horizontal form-info">
+            <div class="col-xs-12 col-xs-offset-0 col-md-10 col-md-offset-1">
+              <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                  <p class="text-small text-highlight text-center"><small>Order info</small></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-md-4">
+                  <span class="text-standard text-center">Date and time</span>
+                </div>
+                <div class="col-xs-12 col-md-8 col-buffer-bottom">
+                  <input type="text" class="form-control form-mandatory" id="order-datetime" name="date" disabled>
+                  <input type="hidden" class="regex" value="/^/" regex="/^/">
+                  <span class="help-block error-message text-left invisible"></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-md-4">
+                  <span class="text-standard text-center">Address (from)</span>
+                </div>
+                <div class="col-xs-12 col-md-8 col-buffer-bottom">
+                  <input type="text" class="form-control form-mandatory" name="from" disabled>
+                  <input type="hidden" class="regex" value="/^/" regex="/^/">
+                  <span class="help-block error-message text-left invisible"></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-md-4">
+                  <span class="text-standard text-center">Address (to)</span>
+                </div>
+                <div class="col-xs-12 col-md-8 col-buffer-bottom">
+                  <input type="text" class="form-control form-mandatory" name="to" disabled>
+                  <input type="hidden" class="regex" value="/^/" regex="/^/">
+                  <span class="help-block error-message text-left invisible"></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-md-4">
+                  <span class="text-standard text-center">Payment type</span>
+                </div>
+                <div class="col-xs-12 col-md-8 col-buffer-bottom">
+                  <input type="text" class="form-control form-mandatory" name="payment" disabled>
+                  <input type="hidden" class="regex" value="/^/" regex="/^/">
+                  <span class="help-block error-message text-left invisible"></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-md-4">
+                  <span class="text-standard text-center">Number of pasangers</span>
+                </div>
+                <div class="col-xs-12 col-md-8 col-buffer-bottom">
+                  <input type="text" class="form-control form-mandatory" name="pasangers" disabled>
+                  <input type="hidden" class="regex" value="/^/" regex="/^/">
+                  <span class="help-block error-message text-left invisible"></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-md-4">
+                  <span class="text-standard text-center">Phone on pasanger</span>
+                </div>
+                <div class="col-xs-12 col-md-8 col-buffer-bottom">
+                  <input type="text" class="form-control form-mandatory" name="phone" disabled>
+                  <input type="hidden" class="regex" value="/^/" regex="/^/">
+                  <span class="help-block error-message text-left invisible"></span>
+                </div>
+              </div>
+            </div>
+          </form>
+          <form class="form-horizontal form-submit">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <p class="text-small text-highlight text-center"><small>Submit</small></p>
+              </div>
+            </div>
+            <!-- Employee Dropdown -->
+            <div class="form-group">
+              <div class="col-sm-12">
+                <select class="form-control generated-oprions" id="options-employee" default="Employee" name="transporter" disabled>
+                  <option>Employee</option>
+                </select>
+                <input type="hidden" class="regex" value="/^/" regex="/^/">
+                <span class="help-block error-message text-left invisible">One of the options has to be selected.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-12 col-md-12 col-buffer-bottom">
+                <textarea rows="4" cols="50" type="text" class="form-control form-mandatory" name="employee-message" id="employee-check" default="Select an employee to verify if he/she is free." disabled>Select an employee to verify if he/she is free.
+                </textarea>
+                <input type="hidden" class="regex" value="/^/" regex="/^/">
+                <span class="help-block error-message text-left invisible"></span>
+              </div>
+            </div>
+            <!-- Car Dropdown -->
+            <div class="form-group">
+              <div class="col-sm-12">
+                <select class="form-control generated-oprions" id="options-car" default="Car" name="car" disabled>
+                  <option>Car</option>
+                </select>
+                <input type="hidden" class="regex" value="/^/" regex="/^/">
+                <span class="help-block error-message text-left invisible">One of the options has to be selected.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-xs-12 col-md-12 col-buffer-bottom">
+                <textarea rows="4" cols="50" type="text" class="form-control form-mandatory" name="car-message" id="car-check" default="Select a car to verify if it is free." disabled>Select a car to verify if it is free.
+                </textarea>
+                <input type="hidden" class="regex" value="/^/" regex="/^/">
+                <span class="help-block error-message text-left invisible"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <input type="text" class="form-control" placeholder="Stickers" name="countryCodes" id="stickers" disabled>
+                <input type="hidden" class="regex" value="/^/" regex="/^/">
+                <span class="help-block error-message text-left invisible"></span>
+              </div>
+            </div>
+            <div class="sticker-section"></div>
+            <div class="form-group">
+                <div class="col-xs-12 col-md-8 col-buffer-small-bottom">
+                  <button class="btn btn-block btn-standard btn-block text-standard btn-submit btn-submit-account-information text-center text-small" type="button">Submit</button>
+                </div>
+                <div class="col-xs-12 col-md-4 col-buffer-small-bottom" title="Clear form">
+                  <button class="btn btn-block btn-standard btn-block text-standard btn-clear text-center text-small" type="button">
+                    <span class="glyphicon glyphicon-small glyphicon-remove"></span>
+                  </button>
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row row-buffer-large-top row-buffer-bottom row-dark row-border-top footer-section"></div>
+    </div>
+
+    <button href="" id="gomain" class="route" resource="main"></button>
+    <div id="response-modal"></div>
+
+    <!-- DATEPICKER SCRIPT RESOURCES -->
+    <script type="text/javascript" src="../Libraries/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="../Js/Tools/datetimepicker.js"></script>
+
+    <!-- javascript -->
+    <script src="../Js/Tools/session.js"></script>
+    <script src="../Js/Tools/elementConstructor.js"></script>
+    <script src="../Js/Tools/functions.js"></script>
+    <script src="../Js/Communication/ajax.js"></script>
+    <script src="../Js/Communication/ajaxResources.js"></script>
+    <script src="../Js/Communication/ajaxResourcesExternal.js"></script>
+    <script src="../Js/Communication/redirect.js"></script>
+    <script src="../Routing/routes.js"></script>
+    <script src="../Js/Tools/navbar.js"></script>
+    <script src="../Js/Tools/validate.js"></script>
+    <script src="../Js/Tools/clear.js"></script>
+    <script src="../Js/Tools/response.js"></script>
+
+    <script src="../JQuery/Pages/OrderConfirmPage/events.js"></script>
+    <script src="../JQuery/Pages/OrderConfirmPage/functions.js"></script>
+    <script src="../JQuery/Pages/OrderConfirmPage/communication.js"></script>
+    <script src="../JQuery/Pages/OrderConfirmPage/session.js"></script>
+    <script src="../JQuery/Pages/OrderConfirmPage/validate.js"></script>
+    <script src="../JQuery/Pages/OrderConfirmPage/clear.js"></script>
+    <script src="../JQuery/Pages/OrderConfirmPage/load.js"></script>
+  </body>
+</html>
