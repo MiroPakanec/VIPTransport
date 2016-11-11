@@ -102,7 +102,7 @@ function SetNonExistingRoute(){
   $('#options-car').trigger('change');
   $('#options-employee').val('Employee');
   $('#options-employee').trigger('change');
-  $('#route-id').val('Does not exist.');
+  $('#route-id').val('Not yet created.');
 
   $('.sticker-section').find('.cc-selected').each(function(){
     $(this).trigger('click');
@@ -141,7 +141,7 @@ function ManageSubmitData(data, dataId){
   data.orderId = dataId.orderId;
   data.routeId = dataId.routeId;
 
-  if(routeId == 'Does not exist.'){
+  if(routeId == 'Not yet created.'){
     data.action = 'confirm';
   }
   else{

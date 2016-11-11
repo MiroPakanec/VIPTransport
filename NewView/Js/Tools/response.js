@@ -215,7 +215,7 @@ function GetSubmitOrderText(response){
     warningMessage = "All highway stickers necessary for this journey are up to date.";
   }
   else{
-    warningMessage = "You are missing some highway stickers. Counry codes: " + warning;
+    warningMessage = "Selected car is missing some highway stickers for counry codes: " + warning + ". Make sure you procure them before the transportation.";
   }
 
   return statusMessage + '\n' + warningMessage;

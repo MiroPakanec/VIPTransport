@@ -77,9 +77,6 @@ function SubmitFormConfirmOrder(){
 
   //MANAGE DATA
   var data = ManageSubmitData(data, dataId);
-  console.log(data);
-
-
   ajaxCall(SubmitOrderResponse, "POST", url, 'json', data);
 }
 
@@ -195,11 +192,8 @@ function SubmitOrderResponse(response){
   console.log("Response to the ajax request - Submit order");
   console.log(response);
 
-  $('#options-id').trigger('change');
-
   var title = GetSubmitOrderTitle();
   var text = GetSubmitOrderText(response);
 
-  //VerifySubmitOrderResponse(response);
   HandleResponse(title, text);
 }
