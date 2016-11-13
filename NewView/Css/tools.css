@@ -14,7 +14,10 @@ a, a:hover, a:active{ color: rgba(80,80,80,1);}
 .container-dark { background-color: rgba(240,240,240, 1);}
 
 div.row-dark { background-color: rgba(240,240,240, 1); }
+form.form-dark { background-color: rgba(240,240,240, 1); }
 div.row-light { background-color: #fff; }
+form.form-light {  background-color: #fff;}
+
 
 .row > div.col-dark { background-color: rgba(240,240,240, 1); }
 .row > div.col-light { background-color: #fff; }

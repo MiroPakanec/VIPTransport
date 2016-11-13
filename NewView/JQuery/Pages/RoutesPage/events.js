@@ -23,3 +23,12 @@ $(document).on('click', '.btn-table-expand', function(){
   var id = GetRowId($(this))
   window.location.replace(url + "?id=" + id);
 });
+
+/*Confirm record*/
+$(document).on('click', '.btn-table-confirm', function(){
+
+  var url = $(this).attr('href');
+  var rId = GetRowRouteId($(this))
+  var oId = GetRowId($(this))
+  window.location.replace(url + "?oid=" + oId + "&rid=" + rId);
+});

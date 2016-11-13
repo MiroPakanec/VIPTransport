@@ -75,21 +75,21 @@
               <div class="col-sm-12">
                 <input type="text" class="form-control form-mandatory" placeholder="First name" name="fname">
                 <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-z]{2,30}$/">
-                <span class="help-block error-message text-left invisible">Use first name in format <strong>e.g. John</strong>, with min. of 3 characters and first capital letter.</span>
+                <span class="help-block error-message text-left invisible">Use first name in format <strong>e.g. John</strong>, with min. of 3 characters and first capital letter. Use only characters of <strong>English aplhabet</strong>.</span>
               </div>
             </div>
             <div class="form-group">
               <div class="col-sm-12">
                 <input type="text" class="form-control" placeholder="Middle name" name="mname">
                 <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-z]{2,30}$/">
-                <span class="help-block error-message text-left invisible">Use middle name in format <strong>e.g. Peter</strong>, with min. of 3 characters and first capital letter.</span>
+                <span class="help-block error-message text-left invisible">Use middle name in format <strong>e.g. Peter</strong>, with min. of 3 characters and first capital letter. Use only characters of <strong>English aplhabet</strong>.</span>
               </div>
             </div>
             <div class="form-group">
               <div class="col-sm-12">
                 <input type="text" class="form-control form-mandatory" placeholder="Last name" name="lname">
                 <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-z]{2,30}$/">
-                <span class="help-block error-message text-left invisible">Use last name in format <strong>e.g. Smith</strong>, with min. of 3 characters and first capital letter.</span>
+                <span class="help-block error-message text-left invisible">Use last name in format <strong>e.g. Smith</strong>, with min. of 3 characters and first capital letter. Use only characters of <strong>English aplhabet</strong>.</span>
               </div>
             </div>
             <div class="form-group">
@@ -174,14 +174,14 @@
               <div class="col-sm-12">
                 <input type="text" class="form-control form-mandatory" placeholder="Company name" name="companyName">
                 <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-zA-Z0-9-.\s]{2,50}$/">
-                <span class="help-block error-message text-left invisible">Use company <strong>e.g. VIP transport</strong>.</span>
+                <span class="help-block error-message text-left invisible">Use company <strong>e.g. VIP transport</strong>. Name should start with capital letter. Use only characters of <strong>English aplhabet</strong>.</span>
               </div>
             </div>
             <div class="form-group">
               <div class="col-sm-12">
                 <input type="text" class="form-control form-mandatory" placeholder="Company address" name="invoiceAddress">
-                <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-zA-Z0-9-.\s]{2,50}$/">
-                <span class="help-block error-message text-left invisible">Use tax number in format <strong>e.g. 1234567890</strong>, with exactly 10 digits.</span>
+                <input type="hidden" class="regex" value="/^/" regex="/^[A-Z]{1}[a-zA-Z0-9-,.\s]{2,50}$/">
+                <span class="help-block error-message text-left invisible">Use address in format <strong>e.g. City, Street-name, Street-number, ZipCode, Country</strong>, with min. of 3 characters and first capital letter. Use only characters of <strong>English aplhabet</strong>.</span>
               </div>
             </div>
             <div class="form-group">

@@ -21,7 +21,8 @@ default:
   }
 
   $('.table-responsive').html(tableHtml);
-  LoadOrders();
+  //LoadOrders();
+  LoadTransports();
 }
 
 function GenerateTableBody(tableData){
@@ -80,7 +81,7 @@ function GenerateSmallTableHead(){
   var html =
   '<thead>' +
       '<tr>' +
-        '<th>Id</th>' +
+        '<th>Order ID</th>' +
         '<th>Date</th>' +
         '<th>From</th>' +
         '<th>To</th>' +
@@ -94,15 +95,14 @@ function GenerateLargeTableHead(){
   var html =
   '<thead>' +
       '<tr>' +
-        '<th>Id</th>' +
+        '<th>Order ID</th>' +
         '<th>Date</th>' +
         '<th>Hour</th>' +
         '<th>From</th>' +
         '<th>To</th>' +
-        '<th>Pasangers</th>' +
-        '<th>Payment</th>' +
-        '<th>Created</th>' +
-        //'<th>Status</th>' +
+        '<th>Price(EUR)</th>' +
+        '<th>Duration</th>' +
+        '<th>Distance(KM)</th>' +
       '</tr>' +
     '</thead>';
 
@@ -119,24 +119,17 @@ function GenerateLargeTableBody(tableData){
     var datetime = GetDateFromPHP(tableData[index].date);
     var time = GetTimeFromDatetimeObject(datetime);
     var date = GetDateString(datetime);
-    var status = tableData[index].status;
-
-    //ONLY ORDERS
-    if(status != "Completed"){
-      continue;
-    }
 
     html +=
       '<tr>' +
-        '<td class="row-id">'+tableData[index].id+'</td>' +
+        '<td class="row-id">'+tableData[index].orderId+'</td>' +
         '<td>'+date+'</td>' +
         '<td>'+time+'</td>' +
         '<td>'+tableData[index].from+'</td>' +
         '<td>'+tableData[index].to+'</td>' +
-        '<td>'+tableData[index].pasangers+'</td>' +
-        '<td>'+tableData[index].payment+'</td>' +
-        '<td>'+tableData[index].creationDate+'</td>' +
-        //'<td>'+tableData[index].status+'</td>' +
+        '<td>'+tableData[index].price+'</td>' +
+        '<td>'+tableData[index].duration+'</td>' +
+        '<td>'+tableData[index].distance+'</td>' +
         buttonsHtml +
       '</tr>';
   }
@@ -152,16 +145,10 @@ function GenerateSmallTableBody(tableData){
 
     var datetime = GetDateFromPHP(tableData[index].date);
     var date = GetDateString(datetime);
-    var status = tableData[index].status;
-
-    //ONLY ORDERS
-    if(status != "Completed"){
-      continue;
-    }
 
     html +=
       '<tr>' +
-        '<td class="col-xs-1 row-id">'+tableData[index].id+'</td>' +
+        '<td class="col-xs-1 row-id">'+tableData[index].orderId+'</td>' +
         '<td class="col-xs-3">'+date+'</td>' +
         '<td class="col-xs-4">'+tableData[index].from+'</td>' +
         '<td class="col-xs-4">'+tableData[index].to+'</td>' +

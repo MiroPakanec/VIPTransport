@@ -47,6 +47,7 @@ default:
   }
 
   $('tbody').html(tableBodyHtml);
+  DisableFutureRoutesConfirmation();
   LoadRoutesJson();
 }
 
@@ -126,9 +127,9 @@ function GenerateLargeTableBody(tableData){
 
     html +=
       '<tr>' +
-        '<td>'+tableData[index][0]+'</td>' +
+        '<td class="row-route-id">'+tableData[index][0]+'</td>' +
         '<td class="row-id">'+tableData[index][1]+'</td>' +
-        '<td>'+date+'</td>' +
+        '<td class="row-date">'+date+'</td>' +
         '<td>'+time+'</td>' +
         '<td>'+tableData[index][3]+'</td>' +
         '<td>'+tableData[index][4]+'</td>' +
@@ -153,9 +154,9 @@ function GenerateSmallTableBody(tableData){
 
     html +=
       '<tr>' +
-        '<td>'+tableData[index][0]+'</td>' +
+        '<td class="row-route-id">'+tableData[index][0]+'</td>' +
         '<td class="row-id">'+tableData[index][1]+'</td>' +
-        '<td>'+date+'</td>' +
+        '<td class="row-date">'+date+'</td>' +
         '<td>'+time+'</td>' +
         buttonsHtml +
       '</tr>';
@@ -180,8 +181,8 @@ function GenerateTableButtons(){
       '<span class="glyphicon glyphicon-medium glyphicon-fullscreen"></span>' +
     '</button>' +
   '</td>' +
-  '<td>' +
-    '<button class="btn-table btn-table-confirm route" resource="order-confirm" type="button" title="Confirm order">' +
+  '<td class="cell-confirm">' +
+    '<button class="btn-table btn-table-confirm route" resource="route-confirm" type="button" title="Confirm order">' +
       '<span class="glyphicon glyphicon-medium glyphicon-ok"></span>' +
     '</button>' +
   '</td>';

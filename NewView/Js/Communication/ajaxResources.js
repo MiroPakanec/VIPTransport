@@ -77,3 +77,11 @@ function GetRoutesUrl(){
 function GetConfirmOrderUrl(){
   return '../../Server/Responses/submitOrder.php';
 }
+
+function GetSubmitTransportUrl(){
+  return '../../Server/Responses/zSubmitRoute.php';
+}
+
+function GetTransportsUrl(){
+  return '../../Server/Responses/zGetTransportsCustom.php';
+}

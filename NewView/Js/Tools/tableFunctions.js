@@ -11,3 +11,13 @@ function GetRowId(cell){
 
   return rowId;
 }
+
+function GetRowRouteId(cell){
+  var rowId = $(cell).closest('td').siblings(".row-route-id").html();
+
+  if(rowId == null){
+    throw("Row id does not exist.");
+  }
+
+  return rowId;
+}

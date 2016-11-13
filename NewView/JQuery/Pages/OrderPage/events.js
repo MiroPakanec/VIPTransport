@@ -23,7 +23,7 @@ $(function(){
 
   /* Generate pasanger name input fields based on selected number of pasangers */
   $(document).on('change', '#numberOfPasangersSelector', function(){
-    var errorMessage = "Use first and last name in format <strong>e.g. John Smith</strong>, with min. of 3 characters each, separated with space and first capital letters.";
+    var errorMessage = "Use first and last name in format <strong>e.g. John Smith</strong>, with min. of 3 characters each, separated with space and first capital letters. Use only characters of <strong>English aplhabet</strong>.";
     var regex = /^[a-zA-Z\s]*$/;
     var type = "input";
     var targetId = 'numberOfPasangersTarget';

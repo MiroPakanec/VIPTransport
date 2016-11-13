@@ -47,6 +47,7 @@ default:
   }
 
   $('tbody').html(tableBodyHtml);
+  VerifyManagerSection();
   LoadRoutesJson();
 }
 
@@ -84,7 +85,7 @@ function GenerateSmallTableHead(){
         '<th>Date</th>' +
         '<th>From</th>' +
         '<th>To</th>' +
-        '<th></th>' +
+        '<th class="manager-section invisible"></th>' +
       '</tr>' +
     '</thead>';
 
@@ -104,6 +105,7 @@ function GenerateLargeTableHead(){
         '<th>Payment</th>' +
         '<th>Created</th>' +
         //'<th>Status</th>' +
+        '<th class="manager-section invisible"></th>' +
       '</tr>' +
     '</thead>';
 
@@ -175,4 +177,12 @@ function GenerateSmallTableBody(tableData){
 
 function GenerateTableButtons(){
 
+  var html =
+  '<td class="manager-section invisible">' +
+    '<button class="btn-table btn-table-expand route" resource="order-confirm" type="button" title="View order details">' +
+      '<span class="glyphicon glyphicon-medium glyphicon-fullscreen"></span>' +
+    '</button>' +
+  '</td>';
+
+  return html;
 }

@@ -33,3 +33,15 @@ function RedirectMyOrders(){
     window.location = href;
   }
 }
+
+function RedirectHistory(){
+  var href = $('#gohistory').attr('href');
+
+  if(href == null){
+    throw "This page URL is incorrect";
+    return;
+  }
+  else{
+    window.location = href;
+  }
+}

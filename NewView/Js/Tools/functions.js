@@ -154,6 +154,13 @@ function IsGenerated(element){
   }
 }
 
+function GetParamFromUrl(paramName){
+  var url = window.location.href;
+  var urlParams = URLToArray(url);
+  var id = urlParams[paramName];
+  return id;
+}
+
 function HasAttr(element, attr){
   if($(element).attr(attr) == null){
     return false;

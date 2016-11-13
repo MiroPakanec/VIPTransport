@@ -12,6 +12,7 @@
 
     {"order-confirm" : "NewView/Pages/m-planner.html" },
     {"routes" : "NewView/Pages/m-routes.html" },
+    {"route-confirm" : "NewView/Pages/m-route-confirm.html" },
     {"users" : "NewView/Pages/m-users.html"},
     {"cars" : "NewView/Pages/m-cars.html"}
   ],
