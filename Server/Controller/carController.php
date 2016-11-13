@@ -107,7 +107,42 @@ class CarController{
       $codeFound = false;
       foreach ($stickers as $stickerModelObject) {
 
+        /*COMPARE WITH ORDER DATE NOT 24 H)*/
         if($countryCode == $stickerModelObject->getCountry() && (time()-(60*60*24)) <= strtotime($stickerModelObject->getExpirationDate()))
+          $codeFound = true;
+      }
+
+      if($codeFound == false)
+        $stickerMessage .= $countryCode.' ';
+    }
+
+    if(strlen($stickerMessage) > 0)
+      $warningMessage = '<strong class="white">Notice:</strong> Your car is missing highway stickers for countries: <strong class="white">'.
+                        $stickerMessage."</strong>";
+    else
+      $warningMessage = 'All highway stickers are up to date.';
+
+    //return $warningMessage;
+    return $stickerMessage;
+  }
+
+  public function checkHighwayStickersWithOrderDate($spz, $countryCodes, $orderDate){
+
+    $carModelObject = $this->getCars($spz)[0];
+    $stickers = $carModelObject->getStickers();
+    $stickerMessage = '';
+    $warningMessage = '';
+
+    foreach ($countryCodes as $countryCode) {
+
+      $codeFound = false;
+      foreach ($stickers as $stickerModelObject) {
+
+        /*COMPARE WITH ORDER DATE NOT 24 H)*/
+        $stickerDateString = date('Y-m-d', strtotime($stickerModelObject->getExpirationDate()));
+        $stickerDate = DateTime::createFromFormat('Y-m-d', $stickerDateString);
+
+        if($countryCode == $stickerModelObject->getCountry() && ($orderDate <= $stickerDate))
           $codeFound = true;
       }
 

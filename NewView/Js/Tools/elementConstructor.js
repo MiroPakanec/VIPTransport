@@ -58,6 +58,7 @@ function GenerateManagerDropdown(){
               '<li><a class="route" resource="history">History</a></li>' +
               '<li role="separator" class="divider"></li>' +
               '<li><a class="route" resource="order-confirm">Planner</a></li>' +
+              '<li><a class="route" resource="routes">Routes</a></li>' +
               '<li role="separator" class="divider"></li>' +
               '<li><a class="route" resource="users">Users</a></li>' +
               '<li><a class="route" resource="cars">Cars</a></li>' +

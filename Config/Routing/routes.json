@@ -10,7 +10,8 @@
     {"about" : "NewView/Pages/about.html"},
     {"logout" : "NewView/Pages/logout.html"},
 
-    {"order-confirm" : "NewView/Pages/m-orderconfirm.html" },
+    {"order-confirm" : "NewView/Pages/m-planner.html" },
+    {"routes" : "NewView/Pages/m-routes.html" },
     {"users" : "NewView/Pages/m-users.html"},
     {"cars" : "NewView/Pages/m-cars.html"}
   ],

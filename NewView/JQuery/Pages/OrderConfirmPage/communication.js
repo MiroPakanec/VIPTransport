@@ -106,6 +106,7 @@ function LoadCarsResponse(response){
   }
 
   GenerateCarOptions(response);
+  LoadRoute($('#options-id').val());
 }
 
 function LoadUsersResponse(response){
@@ -131,6 +132,8 @@ function LoadOrderResponse(response){
   }
 
   FillOrderDetails(response);
+  //ORDER DATE NECESSARY
+  LoadCars();
 }
 
 function LoadRoutesCarResponse(response){
@@ -196,4 +199,7 @@ function SubmitOrderResponse(response){
   var text = GetSubmitOrderText(response);
 
   HandleResponse(title, text);
+  if(response.status == 1){
+    SimulateReload($('#options-id').val());
+  }
 }

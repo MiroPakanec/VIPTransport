@@ -47,7 +47,6 @@ default:
   }
 
   $('tbody').html(tableBodyHtml);
-  VerifyManagerSection();
   LoadRoutesJson();
 }
 
@@ -86,8 +85,6 @@ function GenerateSmallTableHead(){
         '<th>From</th>' +
         '<th>To</th>' +
         '<th></th>' +
-        '<th></th>' +
-        '<th class="manager-section invisible"></th>' +
       '</tr>' +
     '</thead>';
 
@@ -107,9 +104,6 @@ function GenerateLargeTableHead(){
         '<th>Payment</th>' +
         '<th>Created</th>' +
         //'<th>Status</th>' +
-        '<th></th>' +
-        '<th></th>' +
-        '<th class="manager-section invisible"></th>' +
       '</tr>' +
     '</thead>';
 
@@ -129,7 +123,7 @@ function GenerateLargeTableBody(tableData){
     var status = tableData[index].status;
 
     //ONLY ORDERS
-    if(status != "Stand by"){
+    if(status != "Confirmed"){
       continue;
     }
 
@@ -162,10 +156,9 @@ function GenerateSmallTableBody(tableData){
     var status = tableData[index].status;
 
     //ONLY ORDERS
-    if(status != "Stand by"){
+    if(status != "Confirmed"){
       continue;
     }
-
 
     html +=
       '<tr>' +
@@ -182,22 +175,4 @@ function GenerateSmallTableBody(tableData){
 
 function GenerateTableButtons(){
 
-  var html =
-  '<td>' +
-    '<button class="btn-table btn-table-remove route-data" resource-data="data-delete-order" data-toggle="modal" data-target="#confirm-delete" type="button" title="Delete order">' +
-      '<span class="glyphicon glyphicon-medium glyphicon-remove"></span>' +
-    '</button>' +
-  '</td>' +
-  '<td>' +
-    '<button class="btn-table btn-table-expand route" resource="order" type="button" title="View order details">' +
-      '<span class="glyphicon glyphicon-medium glyphicon-fullscreen"></span>' +
-    '</button>' +
-  '</td>' +
-  '<td class="manager-section invisible">' +
-    '<button class="btn-table btn-table-confirm route" resource="order-confirm" type="button" title="Confirm order">' +
-      '<span class="glyphicon glyphicon-medium glyphicon-ok"></span>' +
-    '</button>' +
-  '</td>';
-
-  return html;
 }

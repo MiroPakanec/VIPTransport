@@ -18,6 +18,7 @@
     <script src="../Libraries/Bootstrap/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
 
     <!-- javascript -->
+    <script src="../Js/Tools/config.js"></script>
     <script src="../Js/Tools/session.js"></script>
     <script src="../Js/Tools/elementConstructor.js"></script>
     <script src="../Js/Tools/functions.js"></script>
@@ -36,7 +37,7 @@
   <body>
     <div class="navbar-section"></div>
 
-    <div class="container-fluid">
+    <div class="container-fluid container-main">
       <div class="row row-buffer-extralarge-top row-buffer-bottom">
         <div class="col-xs-12">
           <img resource-img="home-img" class="route-img img-responsive center-block cover" alt="Responsive image"/>
@@ -86,9 +87,10 @@
           </div>
         </div>
       </div>
-
-      <div class="row row-buffer-large-top row-buffer-bottom row-dark row-border-top footer-section"></div>
     </div>
-    <button href="" id="gomain" class="route" resource="main"></button>
+    <div href="" id="gomain" class="route" resource="main"></div>
+    <div class="container-fluid">
+      <div class="row row-buffer-large-top row-buffer-bottom row-dark row-border-top row-border-bottom footer-section"></div>
+    </div>
   </body>
 </html>

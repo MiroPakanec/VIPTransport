@@ -17,7 +17,7 @@
   <title>VIP Transport | Main</title>
 </head>
 <body>
-  <div class="container-fluid container-light">
+  <div class="container-fluid container-main container-light">
     <div class="row row-buffer-large-top row-border-bottom">
       <div class="col-sm-4 col-sm-offset-4 col-md-2 col-md-offset-5">
         <img resource-img="mainlogo-img" class="route-img img-responsive center-block" alt="Responsive image"/>
@@ -345,13 +345,15 @@
         </div>
       </div>
     </div>
-    <div class="row row-buffer-large-top row-buffer-bottom row-dark row-border-top footer-section"></div>
   </div>
 
   <!-- SETUP -->
-  <button href="" id="gohome" class="route" resource="home"></button>
+  <div href="" id="gohome" class="route" resource="home"></div>
   <div id="response-modal"></div>
 
+  <div class="container-fluid">
+    <div class="row row-buffer-large-top row-buffer-bottom row-dark row-border-top row-border-bottom footer-section"></div>
+  </div>
 
 
   <!-- JQuery -->
@@ -359,6 +361,7 @@
   <script src="../Libraries/Bootstrap/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
 
   <!-- javascript -->
+  <script src="../Js/Tools/config.js"></script>
   <script src="../Js/Tools/session.js"></script>
   <script src="../Js/Communication/ajaxResources.js"></script>
   <script src="../Js/Communication/redirect.js"></script>

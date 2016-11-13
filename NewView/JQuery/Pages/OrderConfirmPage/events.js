@@ -1,4 +1,5 @@
 $(document).on('change', '#options-id', function(){
+  console.log('---Order ID was selected --');
   var id = $(this).val();
   var defaultVal = $(this).attr('default');
 
@@ -8,7 +9,7 @@ $(document).on('change', '#options-id', function(){
   }
 
   LoadOrder(id);
-  LoadRoute(id);
+  //LoadRoute(id);
   Disable(false);
 });
 

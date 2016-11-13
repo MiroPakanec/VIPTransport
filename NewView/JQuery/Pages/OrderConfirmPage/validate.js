@@ -27,23 +27,29 @@ function IsCarCapable(data){
   if(data[index].State == 'Offhand'){
     return false;
   }
+
   /*check date*/
-  var now = new Date();
+  var dateString = $('#order-datetime').val();
+  if(dateString == null || dateString.length <= 0){
+    return false;
+  }
+
+  var date = GetDateFromPHP(dateString);
   var emissionCheckDate = new Date(data[index].EmissionCheck);
   var stkDate = new Date(data[index].Stk);
   var mandatoryInsuranceDate = new Date(data[index].MandatoryInsurance);
   var accidentInsuranceDate = new Date(data[index].AccidentInsurance);
 
-  if(emissionCheckDate < now){
+  if(emissionCheckDate < date){
     return false;
   }
-  if(stkDate < now){
+  if(stkDate < date){
     return false;
   }
-  if(mandatoryInsuranceDate < now){
+  if(mandatoryInsuranceDate < date){
     return false;
   }
-  if(accidentInsuranceDate < now){
+  if(accidentInsuranceDate < date){
     return false;
   }
   return true;

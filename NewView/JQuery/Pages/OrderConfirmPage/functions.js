@@ -1,6 +1,10 @@
 function GenerateIdOptions(data){
 
   for (index in data){
+
+    if(data[index].status == "Completed"){
+      continue;
+    }
     GenerateElementOption(data[index].id, "#options-id");
   }
 }
@@ -124,15 +128,23 @@ function SetExistingRoute(route){
 
   $('#route-id').val(routeId);
 
-  for (index in countrycodes){
-
-    $('.sticker-section').find('.btn-countrycode').each(function(){
-      var cc = $(this).attr('countryCode');
-      if(countrycodes[index] == cc){
-        $(this).trigger('click');
-      }
-    });
+  //WAIT FOR STICKERS
+  var sleep = 0;
+  var amount = $('.btn-countrycode').length;
+  if(amount == 0){
+      sleep = 500;
   }
+
+  setTimeout(function(){
+    for (index in countrycodes){
+
+      $('.sticker-section').find('.btn-countrycode').each(function(){
+        var cc = $(this).attr('countryCode');
+        if(countrycodes[index] == cc){
+          $(this).trigger('click');
+        }
+      });
+    }}, sleep);
 }
 
 function ManageSubmitData(data, dataId){
@@ -150,4 +162,10 @@ function ManageSubmitData(data, dataId){
   data.countryCodes = ManageStickerData(data.countryCodes);
 
   return data;
+}
+
+function SimulateReload(id){
+  $('.btn-clear').trigger('click');
+  $('#options-id').val(id);
+  $('#options-id').trigger('change');
 }

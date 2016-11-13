@@ -63,6 +63,7 @@ function LoadOrderResponse(response){
   $('#type').val(order.payment);
   $('#numberOfPasangersSelector').val(order.pasangers).trigger('change');
   $('#phone').val(order.phone);
+  //$('#status').val(order.status);
 }
 
 function LoadNamesResponse(response){

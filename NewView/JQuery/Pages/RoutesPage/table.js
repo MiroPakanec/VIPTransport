@@ -21,7 +21,7 @@ default:
   }
 
   $('.table-responsive').html(tableHtml);
-  LoadOrders();
+  LoadRoutes();
 }
 
 function GenerateTableBody(tableData){
@@ -47,7 +47,6 @@ default:
   }
 
   $('tbody').html(tableBodyHtml);
-  VerifyManagerSection();
   LoadRoutesJson();
 }
 
@@ -81,13 +80,13 @@ function GenerateSmallTableHead(){
   var html =
   '<thead>' +
       '<tr>' +
-        '<th>Id</th>' +
+        '<th>R-ID</th>' +
+        '<th>O-ID</th>' +
         '<th>Date</th>' +
-        '<th>From</th>' +
-        '<th>To</th>' +
+        '<th>Time</th>' +
         '<th></th>' +
         '<th></th>' +
-        '<th class="manager-section invisible"></th>' +
+        '<th></th>' +
       '</tr>' +
     '</thead>';
 
@@ -98,18 +97,16 @@ function GenerateLargeTableHead(){
   var html =
   '<thead>' +
       '<tr>' +
-        '<th>Id</th>' +
+        '<th>R-ID</th>' +
+        '<th>O-ID</th>' +
         '<th>Date</th>' +
-        '<th>Hour</th>' +
-        '<th>From</th>' +
-        '<th>To</th>' +
-        '<th>Pasangers</th>' +
-        '<th>Payment</th>' +
-        '<th>Created</th>' +
-        //'<th>Status</th>' +
+        '<th>Time</th>' +
+        '<th>Transporter</th>' +
+        '<th>Car</th>' +
+        '<th>Countries</th>' +
         '<th></th>' +
         '<th></th>' +
-        '<th class="manager-section invisible"></th>' +
+        '<th></th>' +
       '</tr>' +
     '</thead>';
 
@@ -123,27 +120,19 @@ function GenerateLargeTableBody(tableData){
   var html = '';
   for (index in tableData){
 
-    var datetime = GetDateFromPHP(tableData[index].date);
+    var datetime = new Date(tableData[index][2]);
     var time = GetTimeFromDatetimeObject(datetime);
     var date = GetDateString(datetime);
-    var status = tableData[index].status;
-
-    //ONLY ORDERS
-    if(status != "Stand by"){
-      continue;
-    }
 
     html +=
       '<tr>' +
-        '<td class="row-id">'+tableData[index].id+'</td>' +
+        '<td>'+tableData[index][0]+'</td>' +
+        '<td class="row-id">'+tableData[index][1]+'</td>' +
         '<td>'+date+'</td>' +
         '<td>'+time+'</td>' +
-        '<td>'+tableData[index].from+'</td>' +
-        '<td>'+tableData[index].to+'</td>' +
-        '<td>'+tableData[index].pasangers+'</td>' +
-        '<td>'+tableData[index].payment+'</td>' +
-        '<td>'+tableData[index].creationDate+'</td>' +
-        //'<td>'+tableData[index].status+'</td>' +
+        '<td>'+tableData[index][3]+'</td>' +
+        '<td>'+tableData[index][4]+'</td>' +
+        '<td>'+tableData[index][5]+'</td>' +
         buttonsHtml +
       '</tr>';
   }
@@ -154,25 +143,20 @@ function GenerateLargeTableBody(tableData){
 function GenerateSmallTableBody(tableData){
 
   var buttonsHtml = GenerateTableButtons();
+
   var html = '';
   for (index in tableData){
 
-    var datetime = GetDateFromPHP(tableData[index].date);
+    var datetime = new Date(tableData[index][2]);
+    var time = GetTimeFromDatetimeObject(datetime);
     var date = GetDateString(datetime);
-    var status = tableData[index].status;
-
-    //ONLY ORDERS
-    if(status != "Stand by"){
-      continue;
-    }
-
 
     html +=
       '<tr>' +
-        '<td class="col-xs-1 row-id">'+tableData[index].id+'</td>' +
-        '<td class="col-xs-3">'+date+'</td>' +
-        '<td class="col-xs-4">'+tableData[index].from+'</td>' +
-        '<td class="col-xs-4">'+tableData[index].to+'</td>' +
+        '<td>'+tableData[index][0]+'</td>' +
+        '<td class="row-id">'+tableData[index][1]+'</td>' +
+        '<td>'+date+'</td>' +
+        '<td>'+time+'</td>' +
         buttonsHtml +
       '</tr>';
   }
@@ -180,7 +164,10 @@ function GenerateSmallTableBody(tableData){
   return html;
 }
 
+
 function GenerateTableButtons(){
+
+  /*ADD DELETE ROUTE*/
 
   var html =
   '<td>' +
@@ -189,11 +176,11 @@ function GenerateTableButtons(){
     '</button>' +
   '</td>' +
   '<td>' +
-    '<button class="btn-table btn-table-expand route" resource="order" type="button" title="View order details">' +
+    '<button class="btn-table btn-table-expand route" resource="order-confirm" type="button" title="View order details">' +
       '<span class="glyphicon glyphicon-medium glyphicon-fullscreen"></span>' +
     '</button>' +
   '</td>' +
-  '<td class="manager-section invisible">' +
+  '<td>' +
     '<button class="btn-table btn-table-confirm route" resource="order-confirm" type="button" title="Confirm order">' +
       '<span class="glyphicon glyphicon-medium glyphicon-ok"></span>' +
     '</button>' +

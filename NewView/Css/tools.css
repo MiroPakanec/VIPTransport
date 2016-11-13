@@ -10,7 +10,6 @@ a, a:hover, a:active{ color: rgba(80,80,80,1);}
 
 
 /* BACKGROUND */
-
 .container-light { background-color: #fff; }
 .container-dark { background-color: rgba(240,240,240, 1);}
 
@@ -75,6 +74,7 @@ img.padding-medium { padding: 10px; }
 
 /* ELEMENT */
 *.invisible{ display: none;}
+td.visible{ display: table-cell;}
 span.visible{ display: inline;}
 
 /* INPUT */

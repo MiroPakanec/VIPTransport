@@ -48,8 +48,10 @@
 
         //validate countryCodes
         $carControllerObject = new CarController();
-        $highwayStickersWarningMessage = $carControllerObject->checkHighwayStickers($routeModelObject->getCarSpz(),
-                                                                                    $routeModelObject->getCountries());
+        $orderArray = $this->getOrders($orderId, null, null, null);
+
+        $highwayStickersWarningMessage = $carControllerObject->checkHighwayStickersWithOrderDate($routeModelObject->getCarSpz(),
+                                                                                    $routeModelObject->getCountries(), $orderArray[0]->getDate());
 
         if($action == 'update'){
           $orderRouteUpdateDatabaseAccessObject = new OrderRouteUpdateDatabaseAccess();
@@ -130,7 +132,7 @@
         $wClause = $this->getOrdersWClause($id, $email, $dateFrom, $dateTo);
         if($validationControllerObject->validateOrderSearch($id, $email, $dateFrom, $dateTo) > 0)
           $wClause = " WHERE 1";
-        $wClause .= " AND Status <> 'Completed' ";
+        //$wClause .= " AND Status <> 'Completed' ";
         return $orderSelectDatabaseAccessObject->getOrderData($wClause);
       }
       public function getFinishedOrders(){
